@@ -14,8 +14,13 @@ app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
-//routes
+//error middleware
+app.use(function (err, req, res, next) {
+  console.error(err);
+  res.status(err.status || 500).send(err.message);
+});
 
+//routes
  app.use("/api", routes)
 
 //static files
