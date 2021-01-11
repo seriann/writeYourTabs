@@ -4,18 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./back/src/index"
+    "start": "nodemon ./back/src/index",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "bcrypt": "^5.0.0",
     "chalk": "^4.1.0",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "html-webpack-plugin": "^4.5.1",
     "mongoose": "^5.11.10",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^5.12.3",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
   }
 }
