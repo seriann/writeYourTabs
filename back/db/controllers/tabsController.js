@@ -29,7 +29,12 @@ const TabController = {
         .then(tab => res.send(tab))
         .catch(err => next(err))
   },
-
+   /*addNewLine(req,res,next){
+     Tab.findById({_id:req.params.id})
+        .then(tab => {
+          [...tab.modelPerLine, req.body]
+        })
+   }*/
 }
 
 module.exports = TabController

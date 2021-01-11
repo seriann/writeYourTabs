@@ -6,10 +6,15 @@ const commentSchema = new Schema({
      type: String,
      requiered: true
    },
-   owner:{
+   userId:{
      type: Schema.Types.ObjectId,
      required: true,
      ref: "user"
+   },
+   tabId:{
+     type: Schema.Types.ObjectId,
+     required:true,
+     ref: "tab"
    },
    active : {
     type : Boolean,
