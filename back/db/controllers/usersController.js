@@ -8,7 +8,14 @@ const UserController = {
   },
   create(req,res,next){
     User.create(req.body)
-        .then(user => res.send(user))
+        .then(user => {
+          if(req.file){
+            const { filename } = req.file
+            user.setImage(filename)
+            user.save()
+          }
+          res.send(user)
+        })
         .catch(err => next(err))
   },
   update(req,res,next){

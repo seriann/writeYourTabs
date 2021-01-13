@@ -1,0 +1,4 @@
+.footerContainer{
+  height: 25vmin;
+  background: linear-gradient(90deg, var(--main-background) 85%, #131316 100%);
+}
