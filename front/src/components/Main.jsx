@@ -6,7 +6,7 @@ import TabCreator from "../containers/TabCreatorContainer"
 import Navbar from '../containers/NavbarContainer'
 import Sidebar from '../containers/SidebarContainer'
 import Footer from './footer'
-import styles from "../styles/main.css"
+import styles from "../styles/main.module.css"
 
 const Main = () => {
   return (

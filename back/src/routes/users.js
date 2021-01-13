@@ -7,6 +7,7 @@ router.get("/:id", UserController.findById)
 router.post("/", upload.single("image"),UserController.create)
 router.put("/:id", UserController.update)
 router.put("/delete/:id", UserController.delete)
+router.get("/me", UserController.check)
 
 //------------------------Favourites--------------------------------------------
 router.get("/:id/showfav/tabs", UserController.showFavTabs)

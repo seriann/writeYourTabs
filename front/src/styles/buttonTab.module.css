@@ -1,0 +1,19 @@
+.buttons{
+   border:none;
+   color: white;
+   background: none;
+   outline: none;
+   padding:5%;
+}
+.buttons:hover{
+  border-bottom: 1px solid #124ba6;
+}
+.activeButton{
+   border:none;
+   font-weight: bold;
+   color: white;
+   background: none;
+   outline: none;
+   padding:5%;
+   border-bottom: 2px solid #124ba6;
+ }

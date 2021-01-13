@@ -63,6 +63,11 @@ showFavTabs(req,res,next){
       })
       .catch((err) => next(err));
   },
+  check(req ,res ,next){
+    if(req.user) res.send(req.user)
+      res.sendStatus(401)
+    }
+  }
 }
 
 module.exports = UserController
