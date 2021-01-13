@@ -1,3 +1,21 @@
+:root{
+  --main-background: #202024;
+  --main-black: #121212;
+  --main-button: #042078;
+}
+
 * {
  box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ font-family:sans-serif;
 }
+ body{
+      display: flex;
+      flex-direction: column;
+      background-color: var(--main-background);
+      min-height: 100vh;
+    }
+    .fa-search{
+      font-size: 150%;
+    }

@@ -1,0 +1,11 @@
+.flexContainer{
+display:flex;
+flex:1;
+flex-direction: row;
+min-height: 100vmin;
+}
+
+.content{
+  flex:8;
+background-color: var(--main-black)
+}

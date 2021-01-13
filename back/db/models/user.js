@@ -39,6 +39,9 @@ const userSchema = new Schema({
 /*userSchema.methods.hash = function(password, salt){
   return bcrypt.hash(password, salt)
 }*/
+userSchema.methods.setImage = function(filename){
+  this.image = `http://localhost:3000/public/${filename}` //IMPORTANTE cambiar puerto 3000 por process.env.PORT
+}
 
 userSchema.pre("save", function (next) {
   const user = this;

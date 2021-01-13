@@ -9,6 +9,7 @@ const app = express()
 app.set('port', process.env.PORT || 3000);
 
 //middlewares
+app.use("/public", express.static(`${__dirname}/storage/imgs`))
 app.use(express.static(__dirname + "/public"));
 app.use(morgan('dev'))
 app.use(express.json());

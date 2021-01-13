@@ -1,9 +1,10 @@
 const router = require("express").Router()
+const upload = require("../libs/storage")
 const UserController = require("../../db/controllers/usersController")
 
 router.get("/", UserController.findAll)
 router.get("/:id", UserController.findById)
-router.post("/", UserController.create)
+router.post("/", upload.single("image"),UserController.create)
 router.put("/:id", UserController.update)
 router.put("/delete/:id", UserController.delete)
 
