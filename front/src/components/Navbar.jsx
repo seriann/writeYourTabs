@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../styles/navbar.module.css"
 import { Link } from 'react-router-dom'
-
+import ButtonTab from "./buttons/buttonsTab"
 
 const Navbar = () => {
   return (
@@ -12,9 +12,7 @@ const Navbar = () => {
         <button className={styles.boton} type="submit"><i className="fas fa-search"></i></button>
       </form>
       <section className={styles.navbarSection}>
-        <button className={styles.b}><Link className={styles.c}>Home</Link></button>
-        <button className={styles.ab}><Link className={styles.c}> MyTabs</Link></button>
-        <button className={styles.b}><Link className={styles.c}>Create Tab</Link></button>
+        <ButtonTab />
       </section>
     </div>
   )
