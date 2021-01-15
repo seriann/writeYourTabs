@@ -63,11 +63,20 @@ showFavTabs(req,res,next){
       })
       .catch((err) => next(err));
   },
-  check(req ,res ,next){
-    if(req.user) res.send(req.user)
+//---------------------passport-------------------------------------------------
+  login(req, res, next){
+    console.log(req.user);
+     res.send(req.user)
+  },
+  logout(req, res, next){
+    req.logOut()
+    res.sendStatus(200)
+  },
+  check(req, res, next){
+    if(req.user)return res.send(req.user)
       res.sendStatus(401)
     }
   }
-}
+
 
 module.exports = UserController
