@@ -38,7 +38,7 @@ const UserController = {
 //--------------------------Favourites------------------------------------------
 showFavTabs(req,res,next){
    User.findById({_id:req.params.id})
-       .populate({path:"tabs",select:"title"})
+       .populate({path:"favsTabs",select:"title"})
        .then(user => res.send(user.favsTabs))
        .catch(err => next(err))
  },
@@ -51,9 +51,9 @@ showFavTabs(req,res,next){
         })
         .catch(err => next(err))
   },
-  deleteFavProduct(req, res, next) {
+  deleteFavTab(req, res, next) {
     User.findById(req.params.userId)
-      .populate({ path: "favsProducts", select: "title" })
+      .populate({ path: "favsTabs", select: "title" })
       .then((user) => {
         user.favsTabs = user.favsTabs.filter(
           (e) => e._id != req.params.tabId

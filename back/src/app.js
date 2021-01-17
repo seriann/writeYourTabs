@@ -6,6 +6,7 @@ const passport = require('passport')
 const app = express()
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
+const cors = require("cors")
 const LocalStrategy = require('passport-local').Strategy
 const User = require("../db/models/user")
 
@@ -13,6 +14,12 @@ const User = require("../db/models/user")
 app.set('port', process.env.PORT || 3000);
 
 //middlewares
+app.use(
+  cors({
+    credentials: true,
+    exposedHeaders: ["set-cookie"],
+  })
+)
 app.use(cookieParser())
 app.use(sessions({
   secret: "mysecret",

@@ -10,11 +10,11 @@ router.put("/:id", UserController.update)
 router.put("/delete/:id", UserController.delete)
 router.post("/login",passport.authenticate("local"), UserController.login)
 router.post("/logout", UserController.logout)
-router.get("/me", UserController.check)
+router.get("/persist/me", UserController.check)
 
 //------------------------Favourites--------------------------------------------
 router.get("/:id/showfav/tabs", UserController.showFavTabs)
 router.post("/:id/addfav/tab/:tabId", UserController.addFavTab)
-router.delete("/:id/delfav/tab/:tabId", UserController.deleteFavProduct)
+router.delete("/:id/delfav/tab/:tabId", UserController.deleteFavTab)
 
 module.exports = router
