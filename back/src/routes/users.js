@@ -10,7 +10,7 @@ router.put("/:id", UserController.update)
 router.put("/delete/:id", UserController.delete)
 router.post("/login",passport.authenticate("local"), UserController.login)
 router.post("/logout", UserController.logout)
-router.get("/me", UserController.check)
+router.get("/persist/me", UserController.check)
 
 //------------------------Favourites--------------------------------------------
 router.get("/:id/showfav/tabs", UserController.showFavTabs)
