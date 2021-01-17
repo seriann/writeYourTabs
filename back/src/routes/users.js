@@ -15,6 +15,6 @@ router.get("/persist/me", UserController.check)
 //------------------------Favourites--------------------------------------------
 router.get("/:id/showfav/tabs", UserController.showFavTabs)
 router.post("/:id/addfav/tab/:tabId", UserController.addFavTab)
-router.delete("/:id/delfav/tab/:tabId", UserController.deleteFavProduct)
+router.delete("/:id/delfav/tab/:tabId", UserController.deleteFavTab)
 
 module.exports = router

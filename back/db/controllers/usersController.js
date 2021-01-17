@@ -51,7 +51,7 @@ showFavTabs(req,res,next){
         })
         .catch(err => next(err))
   },
-  deleteFavProduct(req, res, next) {
+  deleteFavTab(req, res, next) {
     User.findById(req.params.userId)
       .populate({ path: "favsTabs", select: "title" })
       .then((user) => {
