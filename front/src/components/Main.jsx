@@ -13,7 +13,7 @@ const Main = () => {
 const dispatch = useDispatch()
 
 useEffect(()=>{
-  API.get("/me")
+  API.get("/users/persist/me")
      .then(res => res.data)
      .then(data => {
        console.log("user logged:", data);

@@ -1967,7 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
 const Main = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    _api_index__WEBPACK_IMPORTED_MODULE_5__.default.get("/me").then(res => res.data).then(data => {
+    _api_index__WEBPACK_IMPORTED_MODULE_5__.default.get("/users/persist/me").then(res => res.data).then(data => {
       console.log("user logged:", data);
       dispatch((0,_redux_action_creators_login__WEBPACK_IMPORTED_MODULE_7__.loggUser)(data));
     }).catch(err => console.log("ups", err));
@@ -2192,7 +2192,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _sidebarContent_sidebarNotLogged__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sidebarContent/sidebarNotLogged */ "./front/src/components/sidebarContent/sidebarNotLogged.jsx");
-/* harmony import */ var _styles_sidebar_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/sidebar.module.css */ "./front/src/styles/sidebar.module.css");
+/* harmony import */ var _sidebarContent_sidebarLogged__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sidebarContent/sidebarLogged */ "./front/src/components/sidebarContent/sidebarLogged.jsx");
+/* harmony import */ var _styles_sidebar_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/sidebar.module.css */ "./front/src/styles/sidebar.module.css");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/index */ "./front/src/api/index.js");
+/* harmony import */ var _redux_action_creators_login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/action-creators/login */ "./front/src/redux/action-creators/login.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
 
 
 
@@ -2200,13 +2208,73 @@ __webpack_require__.r(__webpack_exports__);
 const Sidebar = ({
   logged
 }) => {
-  console.log("usuario logueado en sidebar", logged);
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_6__.useDispatch)();
+
+  const handleLogout = () => {
+    _api_index__WEBPACK_IMPORTED_MODULE_4__.default.post("/users/logout").then(res => res.data).then(() => dispatch((0,_redux_action_creators_login__WEBPACK_IMPORTED_MODULE_5__.loggUser)({}))).catch(err => console.log(err));
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: _styles_sidebar_module_css__WEBPACK_IMPORTED_MODULE_2__.default.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebarContent_sidebarNotLogged__WEBPACK_IMPORTED_MODULE_1__.default, null));
+    className: _styles_sidebar_module_css__WEBPACK_IMPORTED_MODULE_3__.default.container
+  }, JSON.stringify(logged) == "{}" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebarContent_sidebarNotLogged__WEBPACK_IMPORTED_MODULE_1__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebarContent_sidebarLogged__WEBPACK_IMPORTED_MODULE_2__.default, {
+    user: logged
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleLogout
+  }, "asd"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sidebar);
+
+/***/ }),
+
+/***/ "./front/src/components/sidebarContent/sidebarLogged.jsx":
+/*!***************************************************************!*\
+  !*** ./front/src/components/sidebarContent/sidebarLogged.jsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/sidebarLogged.module.css */ "./front/src/styles/sidebarLogged.module.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+const SidebarContent = ({
+  user
+}) => {
+  console.log("info", user);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.user
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.img,
+    src: user.image,
+    alt: "img"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.userCol
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.name
+  }, user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.username
+  }, user.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.button
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.button
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "fas fa-angle-down"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inf
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SidebarContent);
 
 /***/ }),
 
@@ -2585,7 +2653,7 @@ const initialState = {
   switch (type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__.IS_LOGGED:
       return { ...state,
-        loggUser: payload
+        loggedUser: payload
       };
 
     default:
@@ -2781,6 +2849,43 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".xDaXx729lraj7rzmYuXJQ{\r\n  flex:2;\r
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "xDaXx729lraj7rzmYuXJQ"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/sidebarLogged.module.css":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./front/src/styles/sidebarLogged.module.css ***!
+  \*****************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".VqTIZdN8RFN7scRtoN5fE{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 8%;\r\n  margin-left: 3%;\r\n}\r\n._1iNoVr0LAneQw7jS1pvkiy{\r\n  width: 18%;\r\n  border-radius: 100%;\r\n  border: black 2px solid;\r\n  margin-right:4%;\r\n  flex:2\r\n}\r\n._2F1kuxgsTWKNSTOScGpFU8{\r\n  display: flex;\r\n  flex:1;\r\n}\r\n._1gwcW7F3okVF-DtIFcaxey{\r\n  height: 50vh;\r\n}\r\n._5w8Xpro_IRQXuC1CyE9cK{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 2%;\r\n  flex:7;\r\n}\r\n._2dY5CYbxpsj7TO3yveGWgb{\r\n  color:white;\r\n  font-weight:550;\r\n  font-size: 95%;\r\n}\r\n._1XWAZHiTS29QT7dwbiEs4_{\r\n  color: #9590A0;\r\n  font-size: 80%;\r\n  margin-top: 3%;\r\n}\r\n.eTrlFLjyh7vd0z9TdAjBH{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 100%;\r\n  align-self:center;\r\n  flex:1;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,cAAc;EACd,eAAe;AACjB;AACA;EACE,UAAU;EACV,mBAAmB;EACnB,uBAAuB;EACvB,eAAe;EACf;AACF;AACA;EACE,aAAa;EACb,MAAM;AACR;AACA;EACE,YAAY;AACd;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,cAAc;EACd,MAAM;AACR;AACA;EACE,WAAW;EACX,eAAe;EACf,cAAc;AAChB;AACA;EACE,cAAc;EACd,cAAc;EACd,cAAc;AAChB;AACA;EACE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,eAAe;EACf,iBAAiB;EACjB,MAAM;AACR","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 8%;\r\n  margin-left: 3%;\r\n}\r\n.img{\r\n  width: 18%;\r\n  border-radius: 100%;\r\n  border: black 2px solid;\r\n  margin-right:4%;\r\n  flex:2\r\n}\r\n.user{\r\n  display: flex;\r\n  flex:1;\r\n}\r\n.inf{\r\n  height: 50vh;\r\n}\r\n.userCol{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 2%;\r\n  flex:7;\r\n}\r\n.name{\r\n  color:white;\r\n  font-weight:550;\r\n  font-size: 95%;\r\n}\r\n.username{\r\n  color: #9590A0;\r\n  font-size: 80%;\r\n  margin-top: 3%;\r\n}\r\n.button{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 100%;\r\n  align-self:center;\r\n  flex:1;\r\n}\r\n"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"container": "VqTIZdN8RFN7scRtoN5fE",
+	"img": "_1iNoVr0LAneQw7jS1pvkiy",
+	"user": "_2F1kuxgsTWKNSTOScGpFU8",
+	"inf": "_1gwcW7F3okVF-DtIFcaxey",
+	"userCol": "_5w8Xpro_IRQXuC1CyE9cK",
+	"name": "_2dY5CYbxpsj7TO3yveGWgb",
+	"username": "_1XWAZHiTS29QT7dwbiEs4_",
+	"button": "eTrlFLjyh7vd0z9TdAjBH"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39445,6 +39550,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_sidebar_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./front/src/styles/sidebarLogged.module.css":
+/*!***************************************************!*\
+  !*** ./front/src/styles/sidebarLogged.module.css ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./sidebarLogged.module.css */ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/sidebarLogged.module.css");
+
+            
+
+var options = {"injectType":"singletonStyleTag"};
+
+options.insert = "head";
+options.singleton = true;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

@@ -21,7 +21,6 @@ const userSchema = new Schema({
   password:{
     type: String,
     required: true,
-    unique: true
   },
   salt: { type:String },
   image: {type: String},
@@ -45,7 +44,7 @@ userSchema.methods.setImage = function(filename){
 
 userSchema.pre("save", function (next) {
   const user = this;
-
+  user.username = `@${user.username}`
   // only hash the password if it has been modified (or is new)
   if (!user.isModified("password")) return next();
 
@@ -66,6 +65,7 @@ userSchema.methods.comparePassword = function (password, done) {
     done(null, isMatch);
   });
 };
+
 
 const User = mongoose.model("user", userSchema);
 
