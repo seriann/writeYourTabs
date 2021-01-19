@@ -1,5 +1,5 @@
 import React from 'react'
-import TabCreator from "../components/myTabs"
+import TabCreator from "../components/tabCreator"
 
 const TabCreatorContainer = () => {
   return (

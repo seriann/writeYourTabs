@@ -1,0 +1,8 @@
+.container{
+  background-color: #1D1B1B;
+  height: 95%;
+  width: 95%;
+  display:flex;
+  margin:0 auto;
+  border-radius: 1%;
+}
