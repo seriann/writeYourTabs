@@ -1,4 +1,5 @@
 import React,{ useState } from 'react'
+import { Link } from 'react-router-dom'
 import styles from "../../styles/buttonTab.module.css"
 
 const ButtonTab = () => {
@@ -29,17 +30,17 @@ const handleClick = (e) => {
         onClick={handleClick}
         className={home? styles.activeButton : styles.buttons}
         title="home"
-        >Home</button>
+        ><Link to="/home">Home</Link></button>
       <button
        onClick={handleClick}
        className={tab? styles.activeButton : styles.buttons}
        title="mytabs"
-       >MyTabs</button>
+       ><Link to="/mytabs">MyTabs</Link></button>
       <button
       onClick={handleClick}
       className={create? styles.activeButton : styles.buttons}
       title="create"
-      >Create Tab</button>
+      > <Link to="/create">Create Tab</Link></button>
     </div>
   )
 }
