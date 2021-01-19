@@ -8,7 +8,7 @@ const SidebarContainer = () => {
   })
 
   return(
-   <Sidebar logged={logged}/>
+      <Sidebar logged={logged}/>
   )
 }
 

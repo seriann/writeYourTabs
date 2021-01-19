@@ -13,7 +13,7 @@ const Main = () => {
 const dispatch = useDispatch()
 
 useEffect(()=>{
-  API.get("/me")
+  API.get("/users/persist/me")
      .then(res => res.data)
      .then(data => {
        console.log("user logged:", data);
@@ -29,8 +29,6 @@ useEffect(()=>{
         <div className={styles.content}>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/mytabs" component={MyTabs} />
-          <Route path="/createtab" component={TabCreator} />
           <Redirect from="/" to="/home"/>
         </Switch>
          </div>

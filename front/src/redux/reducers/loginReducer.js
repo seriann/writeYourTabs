@@ -5,7 +5,7 @@ const initialState = {
  export default (state = initialState, { type, payload }) => {
    switch (type) {
      case IS_LOGGED:
-       return {...state, loggUser: payload}
+       return {...state, loggedUser: payload}
      default:
     return state
    }

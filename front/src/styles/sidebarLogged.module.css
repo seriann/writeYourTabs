@@ -1,0 +1,46 @@
+.container{
+  display:flex;
+  flex-direction: column;
+  margin-top: 8%;
+  margin-left: 3%;
+}
+.img{
+  width: 18%;
+  border-radius: 100%;
+  border: black 2px solid;
+  margin-right:4%;
+  flex:2
+}
+.user{
+  display: flex;
+  flex:1;
+}
+.inf{
+  height: 50vh;
+}
+.userCol{
+  display:flex;
+  flex-direction: column;
+  margin-top: 2%;
+  flex:7;
+}
+.name{
+  color:white;
+  font-weight:550;
+  font-size: 95%;
+}
+.username{
+  color: #9590A0;
+  font-size: 80%;
+  margin-top: 3%;
+}
+.button{
+  border:none;
+  color: #9590A0;
+  background: none;
+  outline: none;
+  margin-right:5%;
+  font-size: 115%;
+  align-self:center;
+  flex:1;
+}
