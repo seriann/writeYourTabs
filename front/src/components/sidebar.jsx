@@ -22,10 +22,9 @@ const Sidebar = ({ logged }) => {
       JSON.stringify(logged) == "{}"?
       <ContentNotLogged />
       :
-      <ContentLogged user={logged}/>
+      <ContentLogged user={logged} logout={handleLogout}/>
 
     }
-   <button onClick={handleLogout}>asd</button>
     </div>
   )
 }

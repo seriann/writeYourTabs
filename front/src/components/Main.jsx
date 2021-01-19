@@ -29,8 +29,6 @@ useEffect(()=>{
         <div className={styles.content}>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/mytabs" component={MyTabs} />
-          <Route path="/createtab" component={TabCreator} />
           <Redirect from="/" to="/home"/>
         </Switch>
          </div>
