@@ -2092,7 +2092,7 @@ const ButtonTab = () => {
       setTab(true);
       setHome(false);
       setCreate(false);
-    } else {
+    } else if (pathname == "/create") {
       setCreate(true);
       setTab(false);
       setHome(false);
@@ -2459,13 +2459,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../styles/sidebarNotLogged.module.css */ "./front/src/styles/sidebarNotLogged.module.css");
 /* harmony import */ var _redux_action_creators_login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/action-creators/login */ "./front/src/redux/action-creators/login.js");
-/* harmony import */ var _errors_msgerror__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../errors/msgerror */ "./front/src/components/errors/msgerror.jsx");
-/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
-/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var _signUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../signUp */ "./front/src/components/signUp.jsx");
+/* harmony import */ var _errors_msgerror__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../errors/msgerror */ "./front/src/components/errors/msgerror.jsx");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+
 
 
 
@@ -2482,7 +2484,8 @@ const SidebarContent = () => {
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [errorMsg, setErrorMsg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [errorBool, setErrorBool] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_6__.useSpring)({
+  const [signup, setSignup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_7__.useSpring)({
     to: {
       opacity: 1,
       transform: 'translate3d(0%,0,0)'
@@ -2515,7 +2518,7 @@ const SidebarContent = () => {
   const handleSubmit = e => {
     e.preventDefault();
     setIsLoading(true);
-    _api_index__WEBPACK_IMPORTED_MODULE_5__.default.post("/users/login", {
+    _api_index__WEBPACK_IMPORTED_MODULE_6__.default.post("/users/login", {
       email,
       password
     }).then(res => res.data).then(data => {
@@ -2529,10 +2532,10 @@ const SidebarContent = () => {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_6__.animated.div, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_7__.animated.div, {
     style: props,
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.container
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }, signup ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_signUp__WEBPACK_IMPORTED_MODULE_4__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.h
   }, " Sign in "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     onSubmit: handleSubmit,
@@ -2555,18 +2558,91 @@ const SidebarContent = () => {
     required: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: isLoading ? _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.loader : null
-  }), errorBool ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_4__.default, null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), errorBool ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_5__.default, null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.button,
     type: "submit"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.signUp
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't have an account yet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't have an account yet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
     to: "#",
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.link
-  }, "Sign up here")));
+  }, "Sign up here"))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SidebarContent);
+
+/***/ }),
+
+/***/ "./front/src/components/signUp.jsx":
+/*!*****************************************!*\
+  !*** ./front/src/components/signUp.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/signUp.module.css */ "./front/src/styles/signUp.module.css");
+
+
+
+const SignUp = ({
+  handleChange,
+  email,
+  password,
+  handleSubmit,
+  username,
+  photo
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h
+  }, "Sign up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    onSubmit: handleSubmit,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.containerForm
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
+    value: email,
+    type: "text",
+    placeholder: "email",
+    name: "email",
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
+    value: password,
+    type: "password",
+    placeholder: "password",
+    name: "password",
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
+    value: username,
+    type: "text",
+    placeholder: "username",
+    name: "username",
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.photo,
+    value: photo,
+    type: "file",
+    placeholder: "photo",
+    name: "photo",
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.button,
+    type: "submit"
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SignUp);
 
 /***/ }),
 
@@ -3237,7 +3313,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._8-pDxWbvz-VyJbtobWRaG{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n}\r\n._1ipkfZoiekoBmxIdL9pLOA{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n._1KU5IN9S_YxwlG362yodqy{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n._3hWotO4baM-_r9NIKwfeva{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._3hWotO4baM-_r9NIKwfeva:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2j8_xhEXOGQOc8UpTxhfka{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n._18uJePFzChhjOrEuVAt0id{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n._3uJL04s-vbB7juJGWuFRJz{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n._3iUU-sU8bTCQDG9BzDSsk- {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: _2OqMr69BCrnQ2iBSQCF3Ia 1s linear infinite;\r\n    animation: _2OqMr69BCrnQ2iBSQCF3Ia 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes _2OqMr69BCrnQ2iBSQCF3Ia {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarNotLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;AACjB;AACA;EACE,YAAY;EACZ,sBAAsB;AACxB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,eAAe;AACjB;AACA;AACA,qBAAqB;AACrB,cAAc;AACd,cAAc;AACd;AACA;EACE,yBAAyB;IACvB,6DAA0C;IAC1C,qDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;;AAEA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n}\r\n.containerForm{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.signUp{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n.link{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._8-pDxWbvz-VyJbtobWRaG{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n._1ipkfZoiekoBmxIdL9pLOA{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n._1KU5IN9S_YxwlG362yodqy{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n._3hWotO4baM-_r9NIKwfeva{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._3hWotO4baM-_r9NIKwfeva:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2j8_xhEXOGQOc8UpTxhfka{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n._18uJePFzChhjOrEuVAt0id{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n._3uJL04s-vbB7juJGWuFRJz{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n._3iUU-sU8bTCQDG9BzDSsk- {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: _2OqMr69BCrnQ2iBSQCF3Ia 1s linear infinite;\r\n    animation: _2OqMr69BCrnQ2iBSQCF3Ia 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes _2OqMr69BCrnQ2iBSQCF3Ia {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarNotLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;;AAEjB;AACA;EACE,YAAY;EACZ,sBAAsB;AACxB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,eAAe;AACjB;AACA;AACA,qBAAqB;AACrB,cAAc;AACd,cAAc;AACd;AACA;EACE,yBAAyB;IACvB,6DAA0C;IAC1C,qDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;;AAEA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n.containerForm{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.signUp{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n.link{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_8-pDxWbvz-VyJbtobWRaG",
@@ -3249,6 +3325,40 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"link": "_3uJL04s-vbB7juJGWuFRJz",
 	"loader": "_3iUU-sU8bTCQDG9BzDSsk-",
 	"spin": "_2OqMr69BCrnQ2iBSQCF3Ia"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/signUp.module.css":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./front/src/styles/signUp.module.css ***!
+  \**********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "._3RMyRa432bG_f2CARbqT52{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n._7n26URIZTQwU8jRvgKz-i{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n._18sJOEF7flhzcPkp87d59o{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._18sJOEF7flhzcPkp87d59o:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2b_Aq9a-bGIVZsWLTv44SA{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.cGAn1eljN71Xfry33QSiu{\r\n\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/signUp.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;EACV,YAAY;EACZ,sBAAsB;EACtB,gBAAgB;AAClB;AACA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;;AAEA","sourcesContent":[".container{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.photo{\r\n\r\n}\r\n"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"container": "_3RMyRa432bG_f2CARbqT52",
+	"h": "_7n26URIZTQwU8jRvgKz-i",
+	"input": "_18sJOEF7flhzcPkp87d59o",
+	"button": "_2b_Aq9a-bGIVZsWLTv44SA",
+	"photo": "cGAn1eljN71Xfry33QSiu"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -42061,6 +42171,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./front/src/styles/signUp.module.css":
+/*!********************************************!*\
+  !*** ./front/src/styles/signUp.module.css ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./signUp.module.css */ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/signUp.module.css");
+
+            
+
+var options = {"injectType":"singletonStyleTag"};
+
+options.insert = "head";
+options.singleton = true;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
