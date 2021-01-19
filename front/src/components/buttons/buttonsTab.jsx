@@ -23,7 +23,7 @@ useEffect(()=>{
     setTab(true)
     setHome(false)
     setCreate(false)
-  }else{
+  }else if(pathname == "/create"){
     setCreate(true)
     setTab(false)
     setHome(false)

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styles from "../../styles/sidebarNotLogged.module.css"
 import { loggUser } from "../../redux/action-creators/login"
+import SignUp from "../signUp"
 import ErrorMsg from "../errors/msgerror"
 import API from "../../api/index"
 import { useSpring, animated } from 'react-spring'
@@ -14,6 +15,7 @@ const [password, setPassword] = useState("")
 const [isLoading, setIsLoading] = useState(false)
 const [errorMsg, setErrorMsg] = useState("")
 const [errorBool, setErrorBool] = useState(false)
+const [signup, setSignup] = useState(true)
 const props = useSpring({
     to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
     from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
@@ -55,18 +57,27 @@ const handleSubmit = (e) => {
 
   return(
     <animated.div style={props} className={styles.container}>
-     <h3 className={styles.h}> Sign in </h3>
-      <form onSubmit={handleSubmit} className={styles.containerForm}>
-         <input onChange={handleChange} className={styles.input} value={email} type="text" placeholder="email" name="email" required></input>
-         <input onChange={handleChange} className={styles.input} value={password} type="password" placeholder="password" name="password" required></input>
-         <div className={isLoading?styles.loader: null}></div>
-         {errorBool?<ErrorMsg />:null}
-         <input className={styles.button} type="submit"></input>
-      </form>
-      <div className={styles.signUp}>
-         <p>Don't have an account yet?</p>
-         <Link to="#" className={styles.link}>Sign up here</Link>
-      </div>
+    {
+      signup?
+      <SignUp />
+      :
+      <div>
+      <h3 className={styles.h}> Sign in </h3>
+       <form onSubmit={handleSubmit} className={styles.containerForm}>
+          <input onChange={handleChange} className={styles.input} value={email} type="text" placeholder="email" name="email" required></input>
+          <input onChange={handleChange} className={styles.input} value={password} type="password" placeholder="password" name="password" required></input>
+          <div className={isLoading?styles.loader: null}></div>
+          {errorBool?<ErrorMsg />:null}
+          <input className={styles.button} type="submit"></input>
+       </form>
+       <div className={styles.signUp}>
+          <p>Don't have an account yet?</p>
+          <Link to="#" className={styles.link}>Sign up here</Link>
+
+       </div>
+       </div>
+    }
+
     </animated.div>
   )
 }
