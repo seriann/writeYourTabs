@@ -3,12 +3,21 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styles from "../../styles/sidebarNotLogged.module.css"
 import { loggUser } from "../../redux/action-creators/login"
+import ErrorMsg from "../errors/msgerror"
 import API from "../../api/index"
+import { useSpring, animated } from 'react-spring'
 
 const SidebarContent = () => {
 const dispatch = useDispatch()
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
+const [isLoading, setIsLoading] = useState(false)
+const [errorMsg, setErrorMsg] = useState("")
+const [errorBool, setErrorBool] = useState(false)
+const props = useSpring({
+    to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
+    from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
+  })
 
 const handleChange = (e) => {
   const { name } = e.target
@@ -26,8 +35,7 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  console.log("login attempt...");
-  console.log("email:",email, "password:",password);
+  setIsLoading(true)
   API.post("/users/login",{
     email,
     password
@@ -37,22 +45,29 @@ const handleSubmit = (e) => {
     dispatch(loggUser(data))
     console.log("user loged",data);
   })
-  .catch(err => console.log("upps..",err))
+  .catch(err =>{
+     console.log("upps..",err)
+     setIsLoading(false)
+     setErrorBool(true)
+     setTimeout(()=> setErrorBool(false),3000)
+   })
 }
 
   return(
-    <div className={styles.container}>
+    <animated.div style={props} className={styles.container}>
      <h3 className={styles.h}> Sign in </h3>
       <form onSubmit={handleSubmit} className={styles.containerForm}>
          <input onChange={handleChange} className={styles.input} value={email} type="text" placeholder="email" name="email" required></input>
          <input onChange={handleChange} className={styles.input} value={password} type="password" placeholder="password" name="password" required></input>
+         <div className={isLoading?styles.loader: null}></div>
+         {errorBool?<ErrorMsg />:null}
          <input className={styles.button} type="submit"></input>
       </form>
       <div className={styles.signUp}>
          <p>Don't have an account yet?</p>
          <Link to="#" className={styles.link}>Sign up here</Link>
       </div>
-    </div>
+    </animated.div>
   )
 }
 export default SidebarContent
