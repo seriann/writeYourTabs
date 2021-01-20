@@ -33,7 +33,5 @@
   border:none;
   border-radius: 15px;
   color:white;
-}
-.photo{
-
+  cursor: pointer;
 }
