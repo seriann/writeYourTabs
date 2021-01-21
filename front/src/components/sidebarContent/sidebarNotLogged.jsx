@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styles from "../../styles/sidebarNotLogged.module.css"
 import { loggUser } from "../../redux/action-creators/login"
-import SignUp from "../signUp"
+import SignUp from "../../containers/signUpContainer"
 import ErrorMsg from "../errors/msgerror"
 import API from "../../api/index"
 import { useSpring, animated } from 'react-spring'
@@ -67,7 +67,7 @@ const handleSubmit = (e) => {
           <input onChange={handleChange} className={styles.input} value={email} type="text" placeholder="email" name="email" required></input>
           <input onChange={handleChange} className={styles.input} value={password} type="password" placeholder="password" name="password" required></input>
           <div className={isLoading?styles.loader: null}></div>
-          {errorBool?<ErrorMsg />:null}
+          {errorBool?<ErrorMsg text="Sorry, something went wrong" />:null}
           <input className={styles.button} type="submit"></input>
        </form>
        <div className={styles.signUp}>

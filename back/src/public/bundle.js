@@ -2162,14 +2162,20 @@ __webpack_require__.r(__webpack_exports__);
 const FileUploader = ({
   text,
   onFileSelectSuccess,
-  onFileSelectError,
-  name
+  onFileSelectError
 }) => {
   const handleFileInput = e => {
     const file = e.target.files[0];
+    const fileType = file.type.split("/");
     console.log(file.size);
     if (file.size > 3500000) return onFileSelectError({
       error: "File size cannot exceed more than 3.5MB"
+    });
+    if (fileType[1] != "jpeg" || fileType[1] != "jpeg") return onFileSelectError({
+      error: "we just accept format jpeg or png"
+    });
+    if (fileType[0] != "image") return onFileSelectError({
+      error: "we just accept images with a jpeg or png format"
     });
     onFileSelectSuccess(file);
   };
@@ -2182,9 +2188,8 @@ const FileUploader = ({
   }), " ", text, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     onChange: handleFileInput,
     id: "file-upload",
-    type: "file",
-    name: "photo",
-    required: true
+    name: "image",
+    type: "file"
   })));
 };
 
@@ -2209,7 +2214,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  text
+}) => {
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_2__.useSpring)({
     opacity: 1,
     from: {
@@ -2219,7 +2226,7 @@ __webpack_require__.r(__webpack_exports__);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_2__.animated.p, {
     style: props,
     className: _styles_errmsg_module_css__WEBPACK_IMPORTED_MODULE_1__.default.err
-  }, "Sorry, something went wrong");
+  }, text);
 });
 
 /***/ }),
@@ -2512,7 +2519,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../styles/sidebarNotLogged.module.css */ "./front/src/styles/sidebarNotLogged.module.css");
 /* harmony import */ var _redux_action_creators_login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/action-creators/login */ "./front/src/redux/action-creators/login.js");
-/* harmony import */ var _signUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../signUp */ "./front/src/components/signUp.jsx");
+/* harmony import */ var _containers_signUpContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../containers/signUpContainer */ "./front/src/containers/signUpContainer.jsx");
 /* harmony import */ var _errors_msgerror__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../errors/msgerror */ "./front/src/components/errors/msgerror.jsx");
 /* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
 /* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
@@ -2584,7 +2591,7 @@ const SidebarContent = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_7__.animated.div, {
     style: props,
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.container
-  }, signup ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_signUp__WEBPACK_IMPORTED_MODULE_4__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }, signup ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_signUpContainer__WEBPACK_IMPORTED_MODULE_4__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.h
   }, " Sign in "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     onSubmit: handleSubmit,
@@ -2607,7 +2614,9 @@ const SidebarContent = () => {
     required: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: isLoading ? _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.loader : null
-  }), errorBool ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_5__.default, null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), errorBool ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_5__.default, {
+    text: "Sorry, something went wrong"
+  }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.button,
     type: "submit"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2636,6 +2645,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/signUp.module.css */ "./front/src/styles/signUp.module.css");
 /* harmony import */ var _buttons_inputFile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buttons/inputFile */ "./front/src/components/buttons/inputFile.jsx");
+/* harmony import */ var _errors_msgerror__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors/msgerror */ "./front/src/components/errors/msgerror.jsx");
+
 
 
 
@@ -2644,10 +2655,14 @@ const SignUp = ({
   handleChange,
   email,
   password,
+  handleFile,
+  handleImgError,
   handleSubmit,
   username,
-  photo,
-  setPhoto
+  image,
+  errMsg,
+  name,
+  errBool
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
@@ -2655,7 +2670,8 @@ const SignUp = ({
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h
   }, "Sign up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     onSubmit: handleSubmit,
-    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.containerForm
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.containerForm,
+    encType: "multipart/form-data"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     onChange: handleChange,
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
@@ -2675,19 +2691,28 @@ const SignUp = ({
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     onChange: handleChange,
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
+    value: name,
+    type: "text",
+    placeholder: "name",
+    name: "name",
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
     value: username,
     type: "text",
     placeholder: "username",
     name: "username",
     required: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_buttons_inputFile__WEBPACK_IMPORTED_MODULE_2__.default, {
-    name: "photo",
     text: "Profile photo",
-    onFileSelectError: ({
-      error
-    }) => console.log(error),
-    onFileSelectSuccess: file => console.log(file)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onFileSelectError: handleImgError,
+    onFileSelectSuccess: handleFile
+  }), errBool && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_3__.default, {
+    text: errMsg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.p
+  }, image.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.button,
     type: "submit"
   })));
@@ -2862,6 +2887,106 @@ const SidebarContainer = () => {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SidebarContainer);
+
+/***/ }),
+
+/***/ "./front/src/containers/signUpContainer.jsx":
+/*!**************************************************!*\
+  !*** ./front/src/containers/signUpContainer.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_signUp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/signUp */ "./front/src/components/signUp.jsx");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api/index */ "./front/src/api/index.js");
+
+
+
+
+const SignUpContainer = () => {
+  const [email, setEmail] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [password, setPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [image, setImage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  const [errBool, setErrBool] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [errMsg, setErrMsg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [name, setName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+
+  const handleChange = e => {
+    const {
+      name
+    } = e.target;
+
+    switch (name) {
+      case "email":
+        setEmail(e.target.value);
+        break;
+
+      case "name":
+        setName(e.target.value);
+        break;
+
+      case "password":
+        setPassword(e.target.value);
+        break;
+
+      case "username":
+        setUsername(e.target.value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
+  const handleImgError = ({
+    error
+  }) => {
+    setErrMsg(error);
+    setErrBool(true);
+    setTimeout(() => {
+      setErrBool(false);
+    }, 5000);
+    console.log(error);
+  };
+
+  const handleFile = file => {
+    setImage(file);
+    console.log(image);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    _api_index__WEBPACK_IMPORTED_MODULE_2__.default.post("/users", {
+      name,
+      email,
+      password,
+      username,
+      image
+    }).then(res => res.data).then(data => console.log("created", data)).catch(err => console.log(err));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_signUp__WEBPACK_IMPORTED_MODULE_1__.default, {
+    username: username,
+    image: image,
+    name: name,
+    email: email,
+    password: password,
+    errBool: errBool,
+    errMsg: errMsg,
+    handleSubmit: handleSubmit,
+    handleChange: handleChange,
+    handleImgError: handleImgError,
+    handleFile: handleFile
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SignUpContainer);
 
 /***/ }),
 
@@ -3165,7 +3290,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "input[type=\"file\"] {\r\n    display: none;\r\n}\r\n._1qa63C_ERhhF1CYBNvYPfx {\r\n    border: 1px solid #124ba6;\r\n    display: inline-block;\r\n    padding: 6px 12px;\r\n    cursor: pointer;\r\n    margin-top:5%;\r\n    color:white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/inputFile.module.css"],"names":[],"mappings":"AAAA;IACI,aAAa;AACjB;AACA;IACI,yBAAyB;IACzB,qBAAqB;IACrB,iBAAiB;IACjB,eAAe;IACf,aAAa;IACb,WAAW;AACf","sourcesContent":["input[type=\"file\"] {\r\n    display: none;\r\n}\r\n.customFile {\r\n    border: 1px solid #124ba6;\r\n    display: inline-block;\r\n    padding: 6px 12px;\r\n    cursor: pointer;\r\n    margin-top:5%;\r\n    color:white;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "input[type=\"file\"] {\r\n    display: none;\r\n}\r\n._1qa63C_ERhhF1CYBNvYPfx {\r\n    border: 1px solid #124ba6;\r\n    display: inline-block;\r\n    padding: 6px 12px;\r\n    cursor: pointer;\r\n    margin-top:5%;\r\n    margin-bottom: 3%;\r\n    color:white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/inputFile.module.css"],"names":[],"mappings":"AAAA;IACI,aAAa;AACjB;AACA;IACI,yBAAyB;IACzB,qBAAqB;IACrB,iBAAiB;IACjB,eAAe;IACf,aAAa;IACb,iBAAiB;IACjB,WAAW;AACf","sourcesContent":["input[type=\"file\"] {\r\n    display: none;\r\n}\r\n.customFile {\r\n    border: 1px solid #124ba6;\r\n    display: inline-block;\r\n    padding: 6px 12px;\r\n    cursor: pointer;\r\n    margin-top:5%;\r\n    margin-bottom: 3%;\r\n    color:white;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"customFile": "_1qa63C_ERhhF1CYBNvYPfx"
@@ -3432,13 +3557,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._3RMyRa432bG_f2CARbqT52{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n._7n26URIZTQwU8jRvgKz-i{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n._18sJOEF7flhzcPkp87d59o{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._18sJOEF7flhzcPkp87d59o:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2b_Aq9a-bGIVZsWLTv44SA{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/signUp.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;EACV,YAAY;EACZ,sBAAsB;EACtB,gBAAgB;AAClB;AACA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;EACX,eAAe;AACjB","sourcesContent":[".container{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._3RMyRa432bG_f2CARbqT52{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n._7n26URIZTQwU8jRvgKz-i{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n._18sJOEF7flhzcPkp87d59o{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._18sJOEF7flhzcPkp87d59o:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2b_Aq9a-bGIVZsWLTv44SA{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n._2kteQAZbDh_7PEVROI-Gon{\r\n  color:#dae0e6;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/signUp.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;EACV,YAAY;EACZ,sBAAsB;EACtB,gBAAgB;AAClB;AACA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;EACX,eAAe;AACjB;AACA;EACE,aAAa;AACf","sourcesContent":[".container{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n.p{\r\n  color:#dae0e6;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_3RMyRa432bG_f2CARbqT52",
 	"h": "_7n26URIZTQwU8jRvgKz-i",
 	"input": "_18sJOEF7flhzcPkp87d59o",
-	"button": "_2b_Aq9a-bGIVZsWLTv44SA"
+	"button": "_2b_Aq9a-bGIVZsWLTv44SA",
+	"p": "_2kteQAZbDh_7PEVROI-Gon"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
