@@ -1,13 +1,15 @@
 import React from 'react'
 import styles from "../../styles/inputFile.module.css"
 
-const FileUploader = ({ text, onFileSelectSuccess, onFileSelectError,name }) =>{
+const FileUploader = ({ text, onFileSelectSuccess, onFileSelectError}) =>{
 
  const handleFileInput = (e) => {
    const file = e.target.files[0]
-
+   const fileType = file.type.split("/")
    console.log(file.size);
     if(file.size > 3500000) return onFileSelectError({error: "File size cannot exceed more than 3.5MB"})
+    if(fileType[1] != "jpeg" || fileType[1] != "jpeg") return onFileSelectError({error: "we just accept format jpeg or png"})
+    if(fileType[0] != "image") return onFileSelectError({error: "we just accept images with a jpeg or png format"})
      onFileSelectSuccess(file)
  }
 
@@ -20,9 +22,8 @@ const FileUploader = ({ text, onFileSelectSuccess, onFileSelectError,name }) =>{
          <input
           onChange={handleFileInput}
           id="file-upload"
+          name="image"
           type="file"
-          name="photo"
-          required
          />
       </label>
     </div>
