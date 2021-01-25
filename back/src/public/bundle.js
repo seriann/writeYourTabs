@@ -2171,8 +2171,8 @@ const FileUploader = ({
     if (file.size > 3500000) return onFileSelectError({
       error: "File size cannot exceed more than 3.5MB"
     });
-    if (fileType[1] != "jpeg" || fileType[1] != "jpeg") return onFileSelectError({
-      error: "we just accept format jpeg or png"
+    if (fileType[1] != "jpeg") return onFileSelectError({
+      error: "we just accept format jpeg"
     });
     if (fileType[0] != "image") return onFileSelectError({
       error: "we just accept images with a jpeg or png format"
@@ -2540,7 +2540,7 @@ const SidebarContent = () => {
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [errorMsg, setErrorMsg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [errorBool, setErrorBool] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [signup, setSignup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [signup, setSignup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_7__.useSpring)({
     to: {
       opacity: 1,
@@ -2571,6 +2571,11 @@ const SidebarContent = () => {
     }
   };
 
+  const goBack = () => {
+    console.log("ATRAS");
+    setSignup(false);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     setIsLoading(true);
@@ -2588,10 +2593,18 @@ const SidebarContent = () => {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_7__.animated.div, {
-    style: props,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.container
-  }, signup ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_signUpContainer__WEBPACK_IMPORTED_MODULE_4__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }, signup ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.back,
+    onClick: goBack
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "far fa-arrow-alt-circle-left"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_signUpContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
+    goBack: goBack
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_7__.animated.div, {
+    style: props
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.h
   }, " Sign in "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     onSubmit: handleSubmit,
@@ -2622,6 +2635,7 @@ const SidebarContent = () => {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.signUp
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't have an account yet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+    onClick: () => setSignup(true),
     to: "#",
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.link
   }, "Sign up here"))));
@@ -2646,12 +2660,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/signUp.module.css */ "./front/src/styles/signUp.module.css");
 /* harmony import */ var _buttons_inputFile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buttons/inputFile */ "./front/src/components/buttons/inputFile.jsx");
 /* harmony import */ var _errors_msgerror__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors/msgerror */ "./front/src/components/errors/msgerror.jsx");
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+
 
 
 
 
 
 const SignUp = ({
+  isLoading,
   handleChange,
   email,
   password,
@@ -2664,7 +2681,18 @@ const SignUp = ({
   name,
   errBool
 }) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_4__.useSpring)({
+    to: {
+      opacity: 1,
+      transform: 'translate3d(0%,0,0)'
+    },
+    from: {
+      opacity: 0,
+      transform: 'translate3d(-100%,0,0)'
+    }
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_4__.animated.div, {
+    style: props,
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h
@@ -2672,7 +2700,9 @@ const SignUp = ({
     onSubmit: handleSubmit,
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.containerForm,
     encType: "multipart/form-data"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.label
+  }, " email must be unique "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     onChange: handleChange,
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
     value: email,
@@ -2688,6 +2718,16 @@ const SignUp = ({
     placeholder: "password",
     name: "password",
     required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.label
+  }, " username must be unique "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
+    value: username,
+    type: "text",
+    placeholder: "username",
+    name: "username",
+    required: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     onChange: handleChange,
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
@@ -2696,23 +2736,17 @@ const SignUp = ({
     placeholder: "name",
     name: "name",
     required: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    onChange: handleChange,
-    className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
-    value: username,
-    type: "text",
-    placeholder: "username",
-    name: "username",
-    required: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_buttons_inputFile__WEBPACK_IMPORTED_MODULE_2__.default, {
     text: "Profile photo",
     onFileSelectError: handleImgError,
     onFileSelectSuccess: handleFile
-  }), errBool && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_3__.default, {
-    text: errMsg
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.p
-  }, image.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, image.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: isLoading ? _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.loader : null
+  }), errBool && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_msgerror__WEBPACK_IMPORTED_MODULE_3__.default, {
+    text: errMsg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     className: _styles_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.button,
     type: "submit"
   })));
@@ -2908,14 +2942,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const SignUpContainer = () => {
+const SignUpContainer = ({
+  goBack
+}) => {
   const [email, setEmail] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [password, setPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-  const [image, setImage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  const [image, setImage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [errBool, setErrBool] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [errMsg, setErrMsg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [name, setName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
 
   const handleChange = e => {
     const {
@@ -2957,18 +2994,37 @@ const SignUpContainer = () => {
 
   const handleFile = file => {
     setImage(file);
-    console.log(image);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    _api_index__WEBPACK_IMPORTED_MODULE_2__.default.post("/users", {
-      name,
-      email,
-      password,
-      username,
-      image
-    }).then(res => res.data).then(data => console.log("created", data)).catch(err => console.log(err));
+    setIsLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('username', username);
+      formData.append('image', image);
+      const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_2__.default)({
+        url: '/users',
+        method: 'POST',
+        data: formData
+      });
+      setIsLoading(false);
+      goBack();
+      return response;
+    } catch (e) {
+      console.log(e);
+      setIsLoading(false);
+      setErrBool(true);
+      setErrMsg("try with other email or username");
+      setTimeout(() => {
+        setErrMsg("");
+        setErrorBool(false);
+      }, 5000);
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_signUp__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -2982,7 +3038,8 @@ const SignUpContainer = () => {
     handleSubmit: handleSubmit,
     handleChange: handleChange,
     handleImgError: handleImgError,
-    handleFile: handleFile
+    handleFile: handleFile,
+    isLoading: isLoading
   });
 };
 
@@ -3481,7 +3538,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".VqTIZdN8RFN7scRtoN5fE{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 8%;\r\n  margin-left: 3%;\r\n}\r\n._1iNoVr0LAneQw7jS1pvkiy{\r\n  width: 18%;\r\n  border-radius: 100%;\r\n  border: black 2px solid;\r\n  margin-right:4%;\r\n  flex:2\r\n}\r\n._2F1kuxgsTWKNSTOScGpFU8{\r\n  display: flex;\r\n  flex:1;\r\n}\r\n._1gwcW7F3okVF-DtIFcaxey{\r\n  height: 50vh;\r\n}\r\n._5w8Xpro_IRQXuC1CyE9cK{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 2%;\r\n  flex:7;\r\n}\r\n._2dY5CYbxpsj7TO3yveGWgb{\r\n  color:white;\r\n  font-weight:550;\r\n  font-size: 95%;\r\n}\r\n._1XWAZHiTS29QT7dwbiEs4_{\r\n  color: #9590A0;\r\n  font-size: 80%;\r\n  margin-top: 3%;\r\n}\r\n.eTrlFLjyh7vd0z9TdAjBH{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .5s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .5s ease-in-out;       /* Firefox */\r\n  -o-transition: all .5s ease-in-out; \r\n}\r\n._2kD57-n8O55NFr9vBkH5I0{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .6s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .6s ease-in-out;       /* Firefox */\r\n  -o-transition: all .6s ease-in-out;\r\n  transform: scaleY(-1);\r\n  -moz-transform: scaleY(-1); /* Firefox */\r\n  -webkit-transform: scaleY(-1); /* Chrome - Safari */\r\n  -o-transform: scaleY(-1); /* Opera */\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,cAAc;EACd,eAAe;AACjB;AACA;EACE,UAAU;EACV,mBAAmB;EACnB,uBAAuB;EACvB,eAAe;EACf;AACF;AACA;EACE,aAAa;EACb,MAAM;AACR;AACA;EACE,YAAY;AACd;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,cAAc;EACd,MAAM;AACR;AACA;EACE,WAAW;EACX,eAAe;EACf,cAAc;AAChB;AACA;EACE,cAAc;EACd,cAAc;EACd,cAAc;AAChB;AACA;EACE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,eAAe;EACf,iBAAiB;EACjB,MAAM;EACN,+BAA+B;EAC/B,uCAAuC,KAAK,mBAAmB;EAC/D,oCAAoC,QAAQ,YAAY;EACxD,kCAAkC;AACpC;AACA;EACE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,eAAe;EACf,iBAAiB;EACjB,MAAM;EACN,+BAA+B;EAC/B,uCAAuC,KAAK,mBAAmB;EAC/D,oCAAoC,QAAQ,YAAY;EACxD,kCAAkC;EAClC,qBAAqB;EACrB,0BAA0B,EAAE,YAAY;EACxC,6BAA6B,EAAE,oBAAoB;EACnD,wBAAwB,EAAE,UAAU;AACtC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 8%;\r\n  margin-left: 3%;\r\n}\r\n.img{\r\n  width: 18%;\r\n  border-radius: 100%;\r\n  border: black 2px solid;\r\n  margin-right:4%;\r\n  flex:2\r\n}\r\n.user{\r\n  display: flex;\r\n  flex:1;\r\n}\r\n.inf{\r\n  height: 50vh;\r\n}\r\n.userCol{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 2%;\r\n  flex:7;\r\n}\r\n.name{\r\n  color:white;\r\n  font-weight:550;\r\n  font-size: 95%;\r\n}\r\n.username{\r\n  color: #9590A0;\r\n  font-size: 80%;\r\n  margin-top: 3%;\r\n}\r\n.button{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .5s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .5s ease-in-out;       /* Firefox */\r\n  -o-transition: all .5s ease-in-out; \r\n}\r\n.buttonActive{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .6s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .6s ease-in-out;       /* Firefox */\r\n  -o-transition: all .6s ease-in-out;\r\n  transform: scaleY(-1);\r\n  -moz-transform: scaleY(-1); /* Firefox */\r\n  -webkit-transform: scaleY(-1); /* Chrome - Safari */\r\n  -o-transform: scaleY(-1); /* Opera */\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".VqTIZdN8RFN7scRtoN5fE{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 8%;\r\n  margin-left: 3%;\r\n}\r\n._1iNoVr0LAneQw7jS1pvkiy{\r\n  width: 18%;\r\n  border-radius: 100%;\r\n  border: black 2px solid;\r\n  margin-right:4%;\r\n  flex:2;\r\n  width: 6vw;\r\n  height: 4vw;\r\n\r\n}\r\n._2F1kuxgsTWKNSTOScGpFU8{\r\n  display: flex;\r\n  flex:1;\r\n}\r\n._1gwcW7F3okVF-DtIFcaxey{\r\n  height: 50vh;\r\n}\r\n._5w8Xpro_IRQXuC1CyE9cK{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 2%;\r\n  flex:7;\r\n}\r\n._2dY5CYbxpsj7TO3yveGWgb{\r\n  color:white;\r\n  font-weight:550;\r\n  font-size: 95%;\r\n}\r\n._1XWAZHiTS29QT7dwbiEs4_{\r\n  color: #9590A0;\r\n  font-size: 80%;\r\n  margin-top: 3%;\r\n}\r\n.eTrlFLjyh7vd0z9TdAjBH{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .5s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .5s ease-in-out;       /* Firefox */\r\n  -o-transition: all .5s ease-in-out;\r\n}\r\n._2kD57-n8O55NFr9vBkH5I0{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .6s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .6s ease-in-out;       /* Firefox */\r\n  -o-transition: all .6s ease-in-out;\r\n  transform: scaleY(-1);\r\n  -moz-transform: scaleY(-1); /* Firefox */\r\n  -webkit-transform: scaleY(-1); /* Chrome - Safari */\r\n  -o-transform: scaleY(-1); /* Opera */\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,cAAc;EACd,eAAe;AACjB;AACA;EACE,UAAU;EACV,mBAAmB;EACnB,uBAAuB;EACvB,eAAe;EACf,MAAM;EACN,UAAU;EACV,WAAW;;AAEb;AACA;EACE,aAAa;EACb,MAAM;AACR;AACA;EACE,YAAY;AACd;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,cAAc;EACd,MAAM;AACR;AACA;EACE,WAAW;EACX,eAAe;EACf,cAAc;AAChB;AACA;EACE,cAAc;EACd,cAAc;EACd,cAAc;AAChB;AACA;EACE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,eAAe;EACf,iBAAiB;EACjB,MAAM;EACN,+BAA+B;EAC/B,uCAAuC,KAAK,mBAAmB;EAC/D,oCAAoC,QAAQ,YAAY;EACxD,kCAAkC;AACpC;AACA;EACE,WAAW;EACX,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,eAAe;EACf,iBAAiB;EACjB,MAAM;EACN,+BAA+B;EAC/B,uCAAuC,KAAK,mBAAmB;EAC/D,oCAAoC,QAAQ,YAAY;EACxD,kCAAkC;EAClC,qBAAqB;EACrB,0BAA0B,EAAE,YAAY;EACxC,6BAA6B,EAAE,oBAAoB;EACnD,wBAAwB,EAAE,UAAU;AACtC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 8%;\r\n  margin-left: 3%;\r\n}\r\n.img{\r\n  width: 18%;\r\n  border-radius: 100%;\r\n  border: black 2px solid;\r\n  margin-right:4%;\r\n  flex:2;\r\n  width: 6vw;\r\n  height: 4vw;\r\n\r\n}\r\n.user{\r\n  display: flex;\r\n  flex:1;\r\n}\r\n.inf{\r\n  height: 50vh;\r\n}\r\n.userCol{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 2%;\r\n  flex:7;\r\n}\r\n.name{\r\n  color:white;\r\n  font-weight:550;\r\n  font-size: 95%;\r\n}\r\n.username{\r\n  color: #9590A0;\r\n  font-size: 80%;\r\n  margin-top: 3%;\r\n}\r\n.button{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .5s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .5s ease-in-out;       /* Firefox */\r\n  -o-transition: all .5s ease-in-out;\r\n}\r\n.buttonActive{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: none;\r\n  outline: none;\r\n  margin-right:5%;\r\n  font-size: 115%;\r\n  align-self:center;\r\n  flex:1;\r\n  transition: all .6s ease-in-out;\r\n  -webkit-transition: all .6s ease-in-out;    /* safari - Chrome*/\r\n  -moz-transition: all .6s ease-in-out;       /* Firefox */\r\n  -o-transition: all .6s ease-in-out;\r\n  transform: scaleY(-1);\r\n  -moz-transform: scaleY(-1); /* Firefox */\r\n  -webkit-transform: scaleY(-1); /* Chrome - Safari */\r\n  -o-transform: scaleY(-1); /* Opera */\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "VqTIZdN8RFN7scRtoN5fE",
@@ -3519,7 +3576,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._8-pDxWbvz-VyJbtobWRaG{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n._1ipkfZoiekoBmxIdL9pLOA{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n._1KU5IN9S_YxwlG362yodqy{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n._3hWotO4baM-_r9NIKwfeva{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._3hWotO4baM-_r9NIKwfeva:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2j8_xhEXOGQOc8UpTxhfka{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n._18uJePFzChhjOrEuVAt0id{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n._3uJL04s-vbB7juJGWuFRJz{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n._3iUU-sU8bTCQDG9BzDSsk- {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: _2OqMr69BCrnQ2iBSQCF3Ia 1s linear infinite;\r\n    animation: _2OqMr69BCrnQ2iBSQCF3Ia 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes _2OqMr69BCrnQ2iBSQCF3Ia {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarNotLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;;AAEjB;AACA;EACE,YAAY;EACZ,sBAAsB;AACxB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,eAAe;AACjB;AACA;AACA,qBAAqB;AACrB,cAAc;AACd,cAAc;AACd;AACA;EACE,yBAAyB;IACvB,6DAA0C;IAC1C,qDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;;AAEA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n.containerForm{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.signUp{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n.link{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._8-pDxWbvz-VyJbtobWRaG{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n._1ipkfZoiekoBmxIdL9pLOA{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n._1KU5IN9S_YxwlG362yodqy{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n._3hWotO4baM-_r9NIKwfeva{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._3hWotO4baM-_r9NIKwfeva:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2j8_xhEXOGQOc8UpTxhfka{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n._18uJePFzChhjOrEuVAt0id{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n._3uJL04s-vbB7juJGWuFRJz{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n._20pPCk3RxI1CYpUWdvqojH{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  margin-left: 7%;\r\n  padding-bottom:7%;\r\n}\r\n._3iUU-sU8bTCQDG9BzDSsk- {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: _2OqMr69BCrnQ2iBSQCF3Ia 1s linear infinite;\r\n    animation: _2OqMr69BCrnQ2iBSQCF3Ia 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes _2OqMr69BCrnQ2iBSQCF3Ia {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/sidebarNotLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;;AAEjB;AACA;EACE,YAAY;EACZ,sBAAsB;AACxB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,eAAe;AACjB;AACA;AACA,qBAAqB;AACrB,cAAc;AACd,cAAc;AACd;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,iBAAiB;AACnB;AACA;EACE,yBAAyB;IACvB,6DAA0C;IAC1C,qDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;;AAEA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n.containerForm{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.signUp{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n.link{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  margin-left: 7%;\r\n  padding-bottom:7%;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_8-pDxWbvz-VyJbtobWRaG",
@@ -3529,6 +3586,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"button": "_2j8_xhEXOGQOc8UpTxhfka",
 	"signUp": "_18uJePFzChhjOrEuVAt0id",
 	"link": "_3uJL04s-vbB7juJGWuFRJz",
+	"back": "_20pPCk3RxI1CYpUWdvqojH",
 	"loader": "_3iUU-sU8bTCQDG9BzDSsk-",
 	"spin": "_2OqMr69BCrnQ2iBSQCF3Ia"
 };
@@ -3557,14 +3615,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._3RMyRa432bG_f2CARbqT52{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n._7n26URIZTQwU8jRvgKz-i{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n._18sJOEF7flhzcPkp87d59o{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._18sJOEF7flhzcPkp87d59o:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2b_Aq9a-bGIVZsWLTv44SA{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n._2kteQAZbDh_7PEVROI-Gon{\r\n  color:#dae0e6;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/signUp.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;EACV,YAAY;EACZ,sBAAsB;EACtB,gBAAgB;AAClB;AACA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;EACX,eAAe;AACjB;AACA;EACE,aAAa;AACf","sourcesContent":[".container{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n.p{\r\n  color:#dae0e6;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._3RMyRa432bG_f2CARbqT52{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n._7n26URIZTQwU8jRvgKz-i{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 5%;\r\n}\r\n._18sJOEF7flhzcPkp87d59o{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-bottom:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n._18sJOEF7flhzcPkp87d59o:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._2b_Aq9a-bGIVZsWLTv44SA{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n._2kteQAZbDh_7PEVROI-Gon{\r\n  color:#dae0e6;\r\n}\r\n._3zbZl6k7EQPxKSAXchp_7h{\r\n  color:#c9ced4;\r\n}\r\n._1aNTbxSLTc7R19hDnDUrXG {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: _3rEx5ORCd02mKKZCUzHnxO 1s linear infinite;\r\n    animation: _3rEx5ORCd02mKKZCUzHnxO 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes _3rEx5ORCd02mKKZCUzHnxO {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/signUp.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;EACV,YAAY;EACZ,sBAAsB;EACtB,gBAAgB;AAClB;AACA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,gBAAgB;CAChB,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;EACX,eAAe;AACjB;AACA;EACE,aAAa;AACf;AACA;EACE,aAAa;AACf;AACA;EACE,yBAAyB;IACvB,6DAA0C;IAC1C,qDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;;AAEA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  z-index: 3;\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-left: 10%;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-bottom: 5%;\r\n}\r\n.input{\r\n width:90%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-bottom:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:90%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n  cursor: pointer;\r\n}\r\n.p{\r\n  color:#dae0e6;\r\n}\r\n.label{\r\n  color:#c9ced4;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_3RMyRa432bG_f2CARbqT52",
 	"h": "_7n26URIZTQwU8jRvgKz-i",
 	"input": "_18sJOEF7flhzcPkp87d59o",
 	"button": "_2b_Aq9a-bGIVZsWLTv44SA",
-	"p": "_2kteQAZbDh_7PEVROI-Gon"
+	"p": "_2kteQAZbDh_7PEVROI-Gon",
+	"label": "_3zbZl6k7EQPxKSAXchp_7h",
+	"loader": "_1aNTbxSLTc7R19hDnDUrXG",
+	"spin": "_3rEx5ORCd02mKKZCUzHnxO"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

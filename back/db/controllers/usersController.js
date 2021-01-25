@@ -10,6 +10,7 @@ const UserController = {
     User.create(req.body)
         .then(user => {
           if(req.file){
+            console.log("REQ.FILE",req.file);
             const { filename } = req.file
             user.setImage(filename)
             user.save()

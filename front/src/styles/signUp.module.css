@@ -7,14 +7,14 @@
 .h{
   color:white;
   flex-wrap: wrap;
-  margin-bottom: 1%;
+  margin-bottom: 5%;
 }
 .input{
  width:90%;
  height: 5vh;
  margin: 0 auto;
  padding-left: 5%;
- margin-top:5%;
+ margin-bottom:5%;
  background-color: var(--main-black);
  border:none;
  border-radius: 5px;
@@ -37,4 +37,23 @@
 }
 .p{
   color:#dae0e6;
+}
+.label{
+  color:#c9ced4;
+}
+.loader {
+  border: 3px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 2s linear infinite;
+    border-top: 3px solid #555;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin:0 auto;
+    margin-top:3%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

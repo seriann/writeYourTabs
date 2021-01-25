@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import SignUp from "../components/signUp"
 import API from "../api/index"
 
-const SignUpContainer = () => {
+const SignUpContainer = ({ goBack }) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [username, setUsername] = useState("")
-  const [image, setImage] = useState({})
+  const [image, setImage] = useState([])
   const [errBool, setErrBool] = useState(false)
   const [errMsg, setErrMsg] = useState("")
   const [name, setName] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name } = e.target
@@ -41,21 +42,39 @@ const SignUpContainer = () => {
 
   const handleFile = (file) => {
     setImage(file)
-    console.log(image);
   }
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault()
-    API.post("/users",{
-      name,
-      email,
-      password,
-      username,
-      image,
-    })
-       .then(res => res.data)
-       .then(data => console.log("created",data))
-       .catch(err=>console.log(err))
+    setIsLoading(true)
+
+    try{
+      const formData = new FormData()
+
+      formData.append('name', name)
+      formData.append('email', email)
+      formData.append('password', password)
+      formData.append('username', username)
+      formData.append('image', image)
+
+      const response = await API({
+        url:'/users',
+        method: 'POST',
+        data:formData
+      })
+      setIsLoading(false)
+      goBack()
+      return response
+    } catch (e) {
+      console.log(e)
+      setIsLoading(false)
+      setErrBool(true)
+      setErrMsg("try with other email or username")
+      setTimeout(()=> {
+        setErrMsg("")
+        setErrorBool(false)
+      },5000)
+    }
   }
 
   return(
@@ -71,6 +90,7 @@ const SignUpContainer = () => {
     handleChange={handleChange}
     handleImgError={handleImgError}
     handleFile={handleFile}
+    isLoading={isLoading}
     />
   )
 }

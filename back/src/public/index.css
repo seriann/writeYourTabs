@@ -20,3 +20,10 @@
     .fa-search{
       font-size: 150%;
     }
+    .fa-arrow-alt-circle-left{
+      font-size: 200%;
+      color: #605D67;
+    }
+    .fa-arrow-alt-circle-left:hover{
+      color: #797780;
+    }
