@@ -9,7 +9,10 @@
   border-radius: 100%;
   border: black 2px solid;
   margin-right:4%;
-  flex:2
+  flex:2;
+  width: 6vw;
+  height: 4vw;
+
 }
 .user{
   display: flex;
@@ -46,7 +49,7 @@
   transition: all .6s ease-in-out;
   -webkit-transition: all .5s ease-in-out;    /* safari - Chrome*/
   -moz-transition: all .5s ease-in-out;       /* Firefox */
-  -o-transition: all .5s ease-in-out; 
+  -o-transition: all .5s ease-in-out;
 }
 .buttonActive{
   border:none;

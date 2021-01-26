@@ -15,7 +15,7 @@ const [password, setPassword] = useState("")
 const [isLoading, setIsLoading] = useState(false)
 const [errorMsg, setErrorMsg] = useState("")
 const [errorBool, setErrorBool] = useState(false)
-const [signup, setSignup] = useState(true)
+const [signup, setSignup] = useState(false)
 const props = useSpring({
     to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
     from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
@@ -34,7 +34,10 @@ const handleChange = (e) => {
       return;
   }
 }
-
+const goBack = () => {
+  console.log("ATRAS");
+  setSignup(false)
+}
 const handleSubmit = (e) => {
   e.preventDefault()
   setIsLoading(true)
@@ -56,12 +59,17 @@ const handleSubmit = (e) => {
 }
 
   return(
-    <animated.div style={props} className={styles.container}>
+    <div className={styles.container}>
     {
       signup?
-      <SignUp />
-      :
       <div>
+        <button className={styles.back} onClick={goBack}>
+        <i  className="far fa-arrow-alt-circle-left"></i>
+        </button>
+          <SignUp goBack={goBack} />
+      </div>
+      :
+      <animated.div style={props}>
       <h3 className={styles.h}> Sign in </h3>
        <form onSubmit={handleSubmit} className={styles.containerForm}>
           <input onChange={handleChange} className={styles.input} value={email} type="text" placeholder="email" name="email" required></input>
@@ -72,13 +80,13 @@ const handleSubmit = (e) => {
        </form>
        <div className={styles.signUp}>
           <p>Don't have an account yet?</p>
-          <Link to="#" className={styles.link}>Sign up here</Link>
+          <Link onClick={() => setSignup(true)} to="#" className={styles.link}>Sign up here</Link>
 
        </div>
-       </div>
+       </animated.div>
     }
 
-    </animated.div>
+    </div>
   )
 }
 export default SidebarContent

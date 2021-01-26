@@ -41,10 +41,13 @@ const userSchema = new Schema({
 userSchema.methods.setImage = function(filename){
   this.image = `http://localhost:3000/public/${filename}` //IMPORTANTE cambiar puerto 3000 por process.env.PORT
 }
-
+userSchema.pre("save",function(next){
+  if(this.username.includes("@"))return next()
+  this.username = `@${this.username}`
+  next()
+})
 userSchema.pre("save", function (next) {
   const user = this;
-  user.username = `@${user.username}`
   // only hash the password if it has been modified (or is new)
   if (!user.isModified("password")) return next();
 
