@@ -1,0 +1,14 @@
+.string{
+  height: 1px;
+  background-color: grey;
+  margin-top:1%;
+  width: 10%;
+
+}
+.stringInline{
+  height: 1px;
+  background-color: grey;
+  margin-top:1%;
+  width: 10%;
+  display: inline-block;
+}

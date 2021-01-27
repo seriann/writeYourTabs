@@ -2769,13 +2769,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/tabCreator.module.css */ "./front/src/styles/tabCreator.module.css");
-/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var _tabs_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs/start */ "./front/src/components/tabs/start.jsx");
+
 
 
 
 
 const TabCreator = () => {
-  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_2__.useSpring)({
+  const [fretNum, setFretNum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_3__.useSpring)({
     to: {
       opacity: 1,
       transform: 'translate3d(0%,0,0)'
@@ -2785,15 +2788,132 @@ const TabCreator = () => {
       transform: 'translate3d(100%,0,0)'
     }
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_2__.animated.div, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_3__.animated.div, {
     style: props,
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.sheet
-  }));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
+    fretNum: fretNum
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TabCreator);
+
+/***/ }),
+
+/***/ "./front/src/components/tabs/start.jsx":
+/*!*********************************************!*\
+  !*** ./front/src/components/tabs/start.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_start_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/start.module.css */ "./front/src/styles/start.module.css");
+
+
+
+const Start = ({
+  fretNum
+}) => {
+  const clicked = evt => {
+    const {
+      currentTarget: svg,
+      pageX,
+      pageY
+    } = evt;
+    const coords = svg.getBoundingClientRect();
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const txtNode = document.createTextNode(fretNum);
+    text.appendChild(txtNode);
+    text.setAttribute('x', `${pageX - coords.x - 3}`);
+    text.setAttribute('y', `${pageY - coords.y + 6}`);
+    text.setAttribute('font-size', '18');
+    svg.appendChild(text);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    version: "1.1",
+    baseProfile: "full",
+    width: "750",
+    height: "100",
+    onClick: clicked,
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "15",
+    x2: "300",
+    y2: "15",
+    stroke: "grey",
+    "stroke-width": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "30",
+    x2: "300",
+    y2: "30",
+    stroke: "grey",
+    "stroke-width": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "45",
+    x2: "300",
+    y2: "45",
+    stroke: "grey",
+    "stroke-width": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "60",
+    x2: "300",
+    y2: "60",
+    stroke: "grey",
+    "stroke-width": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "75",
+    x2: "300",
+    y2: "75",
+    stroke: "grey",
+    "stroke-width": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "90",
+    x2: "300",
+    y2: "90",
+    stroke: "grey",
+    "stroke-width": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "30",
+    y: "20"
+  }, "e"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "30",
+    y: "35"
+  }, "B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "30",
+    y: "50"
+  }, "G"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "30",
+    y: "65"
+  }, "D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "30",
+    y: "80"
+  }, "A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "30",
+    y: "95"
+  }, "E"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Start);
+/*<div className={styles.string}></div><div className={styles.stringInline}></div>
+<div className={styles.string}></div><div className={styles.stringInline}></div>
+<div className={styles.string}></div><div className={styles.stringInline}></div>
+<div className={styles.string}></div><div className={styles.stringInline}></div>
+<div className={styles.string}></div><div className={styles.stringInline}></div>
+<div className={styles.string}></div><div className={styles.stringInline}></div>*/
 
 /***/ }),
 
@@ -3632,6 +3752,37 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/start.module.css":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./front/src/styles/start.module.css ***!
+  \*********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "._3vZ3_NifgQc3fXuDcMLLxt{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n\r\n}\r\n._3NKmy1rPxudNq4-SmR6zxN{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n  display: inline-block;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/start.module.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,sBAAsB;EACtB,aAAa;EACb,UAAU;;AAEZ;AACA;EACE,WAAW;EACX,sBAAsB;EACtB,aAAa;EACb,UAAU;EACV,qBAAqB;AACvB","sourcesContent":[".string{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n\r\n}\r\n.stringInline{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n  display: inline-block;\r\n}\r\n"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"string": "_3vZ3_NifgQc3fXuDcMLLxt",
+	"stringInline": "_3NKmy1rPxudNq4-SmR6zxN"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/tabCreator.module.css":
 /*!**************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./front/src/styles/tabCreator.module.css ***!
@@ -3652,7 +3803,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;AACrB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",
@@ -42498,6 +42649,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_signUp_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./front/src/styles/start.module.css":
+/*!*******************************************!*\
+  !*** ./front/src/styles/start.module.css ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_start_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./start.module.css */ "./node_modules/css-loader/dist/cjs.js!./front/src/styles/start.module.css");
+
+            
+
+var options = {"injectType":"singletonStyleTag"};
+
+options.insert = "head";
+options.singleton = true;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_start_module_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_start_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

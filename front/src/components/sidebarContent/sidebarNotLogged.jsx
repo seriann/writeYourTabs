@@ -16,6 +16,7 @@ const [isLoading, setIsLoading] = useState(false)
 const [errorMsg, setErrorMsg] = useState("")
 const [errorBool, setErrorBool] = useState(false)
 const [signup, setSignup] = useState(false)
+
 const props = useSpring({
     to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
     from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
