@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "../../styles/start.module.css"
+import { createSvgText } from "../custom_functions/functions"
 
 const Start = ({fretNum}) => {
 
@@ -7,19 +8,17 @@ const Start = ({fretNum}) => {
   const clicked = (evt) =>{
     const { currentTarget: svg, pageX, pageY } = evt
     const coords = svg.getBoundingClientRect()
-    const text = document.createElementNS('http://www.w3.org/2000/svg','text')
-    const txtNode = document.createTextNode(fretNum)
-    text.appendChild(txtNode)
-    text.setAttribute('x', `${pageX - coords.x - 3}`)
-    text.setAttribute('y', `${pageY - coords.y + 6}`)
-    text.setAttribute('font-size', '18')
-    svg.appendChild(text)
+    const y_rounded = Math.round(`${pageY - coords.y}`)
+
+    createSvgText(pageX, pageY, coords.x, coords.y,y_rounded, fretNum, svg)
+
   }
 
   return (
      <svg version="1.1"
       baseProfile="full"
-      width="750" height="100"
+      width="1000" height="5000"
+      viewBox="0 0 1001 5001"
       onClick={clicked}
       xmlns="http://www.w3.org/2000/svg">
       <line x1="30" y1="15" x2="300" y2="15" stroke="grey" stroke-width="1"></line>

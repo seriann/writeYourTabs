@@ -2197,6 +2197,45 @@ const FileUploader = ({
 
 /***/ }),
 
+/***/ "./front/src/components/custom_functions/functions.js":
+/*!************************************************************!*\
+  !*** ./front/src/components/custom_functions/functions.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createSvgText": () => /* binding */ createSvgText
+/* harmony export */ });
+const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg) => {
+  const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  const txtNode = document.createTextNode(fretNum);
+  text.appendChild(txtNode);
+  text.setAttribute('x', `${mouseX - coordsX - 3}`);
+
+  if (rounded >= 12 && rounded <= 18) {
+    text.setAttribute('y', 22);
+  } else if (rounded >= 27 && rounded <= 33) {
+    text.setAttribute('y', 37);
+  } else if (rounded >= 42 && rounded <= 48) {
+    text.setAttribute('y', 52);
+  } else if (rounded >= 57 && rounded <= 63) {
+    text.setAttribute('y', 67);
+  } else if (rounded >= 72 && rounded <= 78) {
+    text.setAttribute('y', 82);
+  } else if (rounded >= 87 && rounded <= 93) {
+    text.setAttribute('y', 97);
+  } else {
+    return;
+  }
+
+  text.setAttribute('font-size', '18');
+  svg.appendChild(text);
+};
+
+/***/ }),
+
 /***/ "./front/src/components/errors/msgerror.jsx":
 /*!**************************************************!*\
   !*** ./front/src/components/errors/msgerror.jsx ***!
@@ -2777,7 +2816,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TabCreator = () => {
-  const [fretNum, setFretNum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [fretNum, setFretNum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0); //const [input, setInput] = useState("")
+
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_3__.useSpring)({
     to: {
       opacity: 1,
@@ -2788,12 +2828,26 @@ const TabCreator = () => {
       transform: 'translate3d(100%,0,0)'
     }
   });
+
+  const handleChange = e => {
+    setFretNum(e.target.value);
+    console.log(fretNum);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_3__.animated.div, {
     style: props,
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.sheet
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.optionsContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h4
+  }, "put the fret number to insert: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
+    onChange: handleChange,
+    value: fretNum
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
     fretNum: fretNum
   })));
 };
@@ -2815,6 +2869,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_start_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/start.module.css */ "./front/src/styles/start.module.css");
+/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom_functions/functions */ "./front/src/components/custom_functions/functions.js");
+
 
 
 
@@ -2828,20 +2884,16 @@ const Start = ({
       pageY
     } = evt;
     const coords = svg.getBoundingClientRect();
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    const txtNode = document.createTextNode(fretNum);
-    text.appendChild(txtNode);
-    text.setAttribute('x', `${pageX - coords.x - 3}`);
-    text.setAttribute('y', `${pageY - coords.y + 6}`);
-    text.setAttribute('font-size', '18');
-    svg.appendChild(text);
+    const y_rounded = Math.round(`${pageY - coords.y}`);
+    (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_2__.createSvgText)(pageX, pageY, coords.x, coords.y, y_rounded, fretNum, svg);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     version: "1.1",
     baseProfile: "full",
-    width: "750",
-    height: "100",
+    width: "1000",
+    height: "5000",
+    viewBox: "0 0 1001 5001",
     onClick: clicked,
     xmlns: "http://www.w3.org/2000/svg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
@@ -3803,11 +3855,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,YAAY;EACZ,mBAAmB;EACnB,6BAA6B;AAC/B;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n}\r\n.input{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",
-	"sheet": "_30QTFjcbeCCiACaJjrDojM"
+	"sheet": "_30QTFjcbeCCiACaJjrDojM",
+	"optionsContainer": "_2OwO10MVgqsHJbtWUmkuP3",
+	"input": "_1xWal2t-a0ZuxdzYxtMOwN",
+	"h4": "_38Vih5DlzVRHwzqTgllPmX"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
