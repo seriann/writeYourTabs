@@ -2207,8 +2207,10 @@ const FileUploader = ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createSvgText": () => /* binding */ createSvgText,
-/* harmony export */   "createString": () => /* binding */ createString,
-/* harmony export */   "uniqid": () => /* binding */ uniqid
+/* harmony export */   "uniqid": () => /* binding */ uniqid,
+/* harmony export */   "createSeparationLine": () => /* binding */ createSeparationLine,
+/* harmony export */   "createSvg": () => /* binding */ createSvg,
+/* harmony export */   "createSvgLine": () => /* binding */ createSvgLine
 /* harmony export */ });
 const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg) => {
   const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -2234,9 +2236,6 @@ const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg) 
 
   text.setAttribute('font-size', '18');
   svg.appendChild(text);
-};
-const createString = fatherElm => {
-  const newString = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 };
 const uniqid = (prefix, moreEntropy) => {
   if (typeof prefix === 'undefined') {
@@ -2278,6 +2277,38 @@ const uniqid = (prefix, moreEntropy) => {
   }
 
   return retId;
+};
+const createSeparationLine = (x1, firstString, sixthString, svg) => {
+  const separationLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  separationLine.setAttribute('x1', x1);
+  separationLine.setAttribute('x2', x1);
+  separationLine.setAttribute('y1', firstString);
+  separationLine.setAttribute('y2', sixthString);
+  separationLine.setAttribute('stroke', 'grey');
+  separationLine.setAttribute('stroke-width', "2");
+  svg.appendChild(separationLine);
+};
+const createSvg = (container, id, fn) => {
+  const div = document.getElementById(container);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute("version", "1.1");
+  svg.setAttribute("baseProfile", "full");
+  svg.setAttribute("width", "90%");
+  svg.setAttribute("id", id);
+  svg.setAttribute("onclick", "writeNumber()");
+  div.appendChild(svg);
+};
+const createSvgLine = (container, x1, x2, y1, y2, className) => {
+  const svgContainer = document.getElementById(container);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute("x1", x1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y1", y1);
+  line.setAttribute("y2", y2);
+  line.setAttribute("class", className);
+  line.setAttribute("stroke", "grey");
+  line.setAttribute("stroke-width", "1");
+  svgContainer.appendChild(line);
 };
 
 /***/ }),
@@ -2865,11 +2896,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const TabCreator = () => {
   const [fretNum, setFretNum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [linesCounter, setLinesCounter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)());
+  const [className, setClassName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_5__.useSpring)({
     to: {
       opacity: 1,
@@ -2887,6 +2918,7 @@ const TabCreator = () => {
   };
 
   const clicked = evt => {
+    //dibuja el numero/simbolo del input con las coordenadas del mouse
     const {
       currentTarget: svg,
       pageX,
@@ -2895,37 +2927,65 @@ const TabCreator = () => {
     const coords = svg.getBoundingClientRect();
     const y_rounded = Math.round(`${pageY - coords.y}`);
     (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSvgText)(pageX, pageY, coords.x, coords.y, y_rounded, fretNum, svg);
-  };
+  }; //agrega nueva linea con espacio normal (todavia no hay otro tamaño)
+
 
   const addNewLine = () => {
+    //a mejorar
     const svg = document.getElementById('svg');
     const strings = document.getElementsByClassName('string');
-    const stringWidth = strings[0].x2.animVal.value;
-    const firstString = strings[0].y1.animVal.value;
-    const sixthString = strings[5].y1.animVal.value;
+    /*const stringWidth = strings[0].x2.animVal.value
+      const firstString = strings[0].y1.animVal.value
+      const sixthString = strings[5].y1.animVal.value*/
+
+    const strings1Inf = new Array(strings[0].x2.animVal.value, strings[0].y1.animVal.value, strings[5].y1.animVal.value); // equivalente a las variables de arriba (para ahorrar espacio)
+
+    const arr = [];
 
     if (linesCounter < 3) {
       const separationLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      separationLine.setAttribute('x1', stringWidth);
-      separationLine.setAttribute('x2', stringWidth);
-      separationLine.setAttribute('y1', firstString);
-      separationLine.setAttribute('y2', sixthString);
+      separationLine.setAttribute('x1', strings1Inf[0]);
+      separationLine.setAttribute('x2', strings1Inf[0]);
+      separationLine.setAttribute('y1', strings1Inf[1]);
+      separationLine.setAttribute('y2', strings1Inf[2]);
       separationLine.setAttribute('stroke', 'grey');
       separationLine.setAttribute('stroke-width', "2");
       svg.appendChild(separationLine);
-      [].map.call(document.getElementsByClassName('string'), el => el.setAttribute('x2', `${stringWidth + 270}`));
-      setLinesCounter(linesCounter + 1);
-    } else {
-      setId((0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)());
-      const newSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      newSvg.setAttribute('version', "1.1");
-      newSvg.setAttribute('width', "90%");
-      newSvg.setAttribute('height', "100");
-      newSvg.setAttribute('viewBox', `0 ${-sixthString - 15} 100 100`);
-      newSvg.setAttribute('id', `${id}`);
-      newSvg.setAttribute('style', 'fill: red;');
-      svg.appendChild(newSvg);
+      arr.map.call(document.getElementsByClassName('string'), el => el.setAttribute('x2', `${strings1Inf[0] + 270}`));
+    } else if (linesCounter > 3 && linesCounter < 6) {
+      let svg2 = document.getElementById('svg2');
+      let strings2 = document.getElementsByClassName('string2');
+      let strings2Inf = new Array(strings2[0].x2.animVal.value, strings2[0].y1.animVal.value, strings2[5].y1.animVal.value);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings2Inf[0], strings2Inf[1], strings2Inf[2], svg2);
+      arr.map.call(document.getElementsByClassName('string2'), el => el.setAttribute('x2', `${strings2Inf[0] + 270}`));
+    } else if (linesCounter > 6 && linesCounter < 9) {
+      let svg3 = document.getElementById('svg3');
+      let strings3 = document.getElementsByClassName('string3');
+      let strings3Inf = new Array(strings3[0].x2.animVal.value, strings3[0].y1.animVal.value, strings3[5].y1.animVal.value);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings3Inf[0], strings3Inf[1], strings3Inf[2], svg3);
+      arr.map.call(document.getElementsByClassName('string3'), el => el.setAttribute('x2', `${strings3Inf[0] + 270}`));
+    } else if (linesCounter > 9 && linesCounter < 12) {
+      let svg4 = document.getElementById('svg4');
+      let strings4 = document.getElementsByClassName('string4');
+      let strings4Inf = new Array(strings4[0].x2.animVal.value, strings4[0].y1.animVal.value, strings4[5].y1.animVal.value);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings4Inf[0], strings4Inf[1], strings4Inf[2], svg4);
+      arr.map.call(document.getElementsByClassName('string4'), el => el.setAttribute('x2', `${strings4Inf[0] + 270}`));
+    } else if (linesCounter > 12 && linesCounter < 15) {
+      let svg5 = document.getElementById('svg5');
+      let strings5 = document.getElementsByClassName('string5');
+      let strings5Inf = new Array(strings5[0].x2.animVal.value, strings5[0].y1.animVal.value, strings5[5].y1.animVal.value);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings5Inf[0], strings5Inf[1], strings5Inf[2], svg5);
+      arr.map.call(document.getElementsByClassName('string5'), el => el.setAttribute('x2', `${strings5Inf[0] + 270}`));
+    } else if (linesCounter > 15 && linesCounter < 18) {
+      let svg6 = document.getElementById('svg6');
+      let string6 = document.getElementsByClassName('string6');
+      let strings6Inf = new Array(string6[0].x2.animVal.value, string6[0].y1.animVal.value, string6[5].y1.animVal.value);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings6Inf[0], strings6Inf[1], strings6Inf[2], svg6);
+      arr.map.call(document.getElementsByClassName('string6'), el => el.setAttribute('x2', `${strings6Inf[0] + 270}`));
     }
+
+    console.log(linesCounter);
+    setLinesCounter(linesCounter + 1);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_5__.animated.div, {
@@ -2945,7 +3005,8 @@ const TabCreator = () => {
     onClick: addNewLine
   }, "Add new line")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
     id: id,
-    clicked: clicked
+    clicked: clicked,
+    counter: linesCounter
   })));
 };
 
@@ -3041,14 +3102,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Start = ({
+  counter,
   clicked,
   id
 }) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "svgContainer",
+    className: _styles_start_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     version: "1.1",
     baseProfile: "full",
     width: "90%",
-    height: "600",
+    height: "150",
     id: "svg",
     onClick: clicked,
     xmlns: "http://www.w3.org/2000/svg"
@@ -3118,7 +3183,287 @@ const Start = ({
   }, "A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "95"
-  }, "E"));
+  }, "E")), counter > 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    version: "1.1",
+    baseProfile: "full",
+    id: "svg2",
+    width: "90%",
+    height: "150",
+    onClick: clicked,
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "15",
+    x2: "300",
+    y2: "15",
+    className: "string2",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "30",
+    x2: "300",
+    y2: "30",
+    className: "string2",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "45",
+    x2: "300",
+    y2: "45",
+    className: "string2",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "60",
+    x2: "300",
+    y2: "60",
+    className: "string2",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "75",
+    x2: "300",
+    y2: "75",
+    className: "string2",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "90",
+    x2: "300",
+    y2: "90",
+    className: "string2",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 6 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    version: "1.1",
+    baseProfile: "full",
+    id: "svg3",
+    width: "90%",
+    height: "150",
+    onClick: clicked,
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "15",
+    x2: "300",
+    y2: "15",
+    className: "string3",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "30",
+    x2: "300",
+    y2: "30",
+    className: "string3",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "45",
+    x2: "300",
+    y2: "45",
+    className: "string3",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "60",
+    x2: "300",
+    y2: "60",
+    className: "string3",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "75",
+    x2: "300",
+    y2: "75",
+    className: "string3",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "90",
+    x2: "300",
+    y2: "90",
+    className: "string3",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 9 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    version: "1.1",
+    baseProfile: "full",
+    id: "svg4",
+    width: "90%",
+    height: "150",
+    onClick: clicked,
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "15",
+    x2: "300",
+    y2: "15",
+    className: "string4",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "30",
+    x2: "300",
+    y2: "30",
+    className: "string4",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "45",
+    x2: "300",
+    y2: "45",
+    className: "string4",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "60",
+    x2: "300",
+    y2: "60",
+    className: "string4",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "75",
+    x2: "300",
+    y2: "75",
+    className: "string4",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "90",
+    x2: "300",
+    y2: "90",
+    className: "string4",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 12 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    version: "1.1",
+    baseProfile: "full",
+    id: "svg5",
+    width: "90%",
+    height: "150",
+    onClick: clicked,
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "15",
+    x2: "300",
+    y2: "15",
+    className: "string5",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "30",
+    x2: "300",
+    y2: "30",
+    className: "string5",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "45",
+    x2: "300",
+    y2: "45",
+    className: "string5",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "60",
+    x2: "300",
+    y2: "60",
+    className: "string5",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "75",
+    x2: "300",
+    y2: "75",
+    className: "string5",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "90",
+    x2: "300",
+    y2: "90",
+    className: "string5",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 15 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    version: "1.1",
+    baseProfile: "full",
+    id: "svg6",
+    width: "90%",
+    height: "150",
+    onClick: clicked,
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "15",
+    x2: "300",
+    y2: "15",
+    className: "string6",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "30",
+    x2: "300",
+    y2: "30",
+    className: "string6",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "45",
+    x2: "300",
+    y2: "45",
+    className: "string6",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "60",
+    x2: "300",
+    y2: "60",
+    className: "string6",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "75",
+    x2: "300",
+    y2: "75",
+    className: "string6",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "90",
+    x2: "300",
+    y2: "90",
+    className: "string6",
+    stroke: "grey",
+    strokeWidth: "1"
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Start); //<line x1="300" y1="15" x2="300" y2="90" stroke="grey" strokeWidth="2"></line> agregar
@@ -3987,11 +4332,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._3vZ3_NifgQc3fXuDcMLLxt{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n\r\n}\r\n._3NKmy1rPxudNq4-SmR6zxN{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n  display: inline-block;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/start.module.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,sBAAsB;EACtB,aAAa;EACb,UAAU;;AAEZ;AACA;EACE,WAAW;EACX,sBAAsB;EACtB,aAAa;EACb,UAAU;EACV,qBAAqB;AACvB","sourcesContent":[".string{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n\r\n}\r\n.stringInline{\r\n  height: 1px;\r\n  background-color: grey;\r\n  margin-top:1%;\r\n  width: 10%;\r\n  display: inline-block;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._37bL43SjCiiICxpBgXsVFV{\n  margin-top:5%;\n}\n", "",{"version":3,"sources":["webpack://./front/src/styles/start.module.css"],"names":[],"mappings":"AAAA;EACE,aAAa;AACf","sourcesContent":[".container{\n  margin-top:5%;\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"string": "_3vZ3_NifgQc3fXuDcMLLxt",
-	"stringInline": "_3NKmy1rPxudNq4-SmR6zxN"
+	"container": "_37bL43SjCiiICxpBgXsVFV"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4018,7 +4362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,YAAY;EACZ,mBAAmB;EACnB,6BAA6B;AAC/B;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n}\r\n.input{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,6BAA6B;EAC7B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",

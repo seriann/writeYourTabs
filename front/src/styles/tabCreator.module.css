@@ -16,9 +16,11 @@
   overflow-y: scroll;
 }
 .optionsContainer{
+  position: absolute;
   display:flex;
   align-items: center;
   justify-content: space-around;
+  background-color: lightblue; /*color temporal*/
 }
 .input{
   width:5%;

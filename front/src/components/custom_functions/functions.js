@@ -22,10 +22,6 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
  svg.appendChild(text)
 }
 
-export const createString = (fatherElm) => {
-  const newString = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-}
-
 export const uniqid = (prefix, moreEntropy) => {
   if (typeof prefix === 'undefined') {
     prefix = ''
@@ -59,4 +55,38 @@ export const uniqid = (prefix, moreEntropy) => {
     retId += (Math.random() * 10).toFixed(8).toString()
   }
   return retId
+}
+export const createSeparationLine = (x1,firstString,sixthString,svg) => {
+  const separationLine = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+        separationLine.setAttribute('x1',x1)
+        separationLine.setAttribute('x2',x1)
+        separationLine.setAttribute('y1',firstString)
+        separationLine.setAttribute('y2',sixthString)
+        separationLine.setAttribute('stroke','grey')
+        separationLine.setAttribute('stroke-width',"2")
+  svg.appendChild(separationLine);
+}
+
+export const createSvg = (container,id,fn) => {
+  const div = document.getElementById(container)
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg')
+        svg.setAttribute("version", "1.1")
+        svg.setAttribute("baseProfile", "full")
+        svg.setAttribute("width", "90%")
+        svg.setAttribute("id", id)
+        svg.setAttribute("onclick", "writeNumber()")
+  div.appendChild(svg)
+}
+
+export const createSvgLine = (container,x1,x2,y1,y2,className) => {
+  const svgContainer = document.getElementById(container)
+  const line = document.createElementNS('http://www.w3.org/2000/svg','line')
+        line.setAttribute("x1",x1)
+        line.setAttribute("x2",x2)
+        line.setAttribute("y1",y1)
+        line.setAttribute("y2",y2)
+        line.setAttribute("class",className)
+        line.setAttribute("stroke","grey")
+        line.setAttribute("stroke-width","1")
+  svgContainer.appendChild(line)
 }
