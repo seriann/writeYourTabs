@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../../styles/start.module.css"
 
-const Start = ({counter, clicked, id}) => {
+const Start = ({counter, clicked}) => {
   return (
     <div id="svgContainer" className={styles.container}>
      <svg version="1.1"

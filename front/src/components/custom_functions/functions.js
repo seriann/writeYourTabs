@@ -1,4 +1,5 @@
-export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,svg) =>{
+export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,svg, id) =>{
+  let bool = true
   const text = document.createElementNS('http://www.w3.org/2000/svg','text')
   const txtNode = document.createTextNode(fretNum)
   text.appendChild(txtNode)
@@ -16,10 +17,13 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
   }else if (rounded >= 87 && rounded <= 93) {
     text.setAttribute('y', 97)
  }else {
-   return;
+   bool = false
  }
  text.setAttribute('font-size', '18')
+ text.setAttribute('id', id)
  svg.appendChild(text)
+ if(bool)return id
+
 }
 
 export const uniqid = (prefix, moreEntropy) => {

@@ -2212,7 +2212,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createSvg": () => /* binding */ createSvg,
 /* harmony export */   "createSvgLine": () => /* binding */ createSvgLine
 /* harmony export */ });
-const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg) => {
+const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, id) => {
+  let bool = true;
   const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   const txtNode = document.createTextNode(fretNum);
   text.appendChild(txtNode);
@@ -2231,11 +2232,13 @@ const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg) 
   } else if (rounded >= 87 && rounded <= 93) {
     text.setAttribute('y', 97);
   } else {
-    return;
+    bool = false;
   }
 
   text.setAttribute('font-size', '18');
+  text.setAttribute('id', id);
   svg.appendChild(text);
+  if (bool) return id;
 };
 const uniqid = (prefix, moreEntropy) => {
   if (typeof prefix === 'undefined') {
@@ -2608,9 +2611,9 @@ const SidebarContent = ({
     className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.button
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-down"
-  })))), isVisible ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileOpt__WEBPACK_IMPORTED_MODULE_2__.default, {
+  })))), isVisible && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileOpt__WEBPACK_IMPORTED_MODULE_2__.default, {
     logout: logout
-  }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_sidebarLogged_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inf
   }));
 };
@@ -2899,7 +2902,7 @@ __webpack_require__.r(__webpack_exports__);
 const TabCreator = () => {
   const [fretNum, setFretNum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [linesCounter, setLinesCounter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const [id, setId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)());
+  const [idHistory, setIdHistory] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [className, setClassName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_5__.useSpring)({
     to: {
@@ -2911,6 +2914,23 @@ const TabCreator = () => {
       transform: 'translate3d(100%,0,0)'
     }
   });
+  const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+
+  document.onkeydown = function (e) {
+    e = e || window.event;
+
+    if ((e.which == 90 || e.keyCode == 90) && e.ctrlKey) {
+      goBack();
+    }
+  };
+
+  const goBack = () => {
+    if (idHistory.length > 0) {
+      const toRemove = document.getElementById(idHistory[idHistory.length - 1]);
+      toRemove.remove();
+      setIdHistory(idHistory.filter(el => el !== toRemove.id));
+    }
+  };
 
   const handleChange = e => {
     setFretNum(e.target.value);
@@ -2926,7 +2946,13 @@ const TabCreator = () => {
     } = evt;
     const coords = svg.getBoundingClientRect();
     const y_rounded = Math.round(`${pageY - coords.y}`);
-    (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSvgText)(pageX, pageY, coords.x, coords.y, y_rounded, fretNum, svg);
+    const id = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)();
+    const prueba = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSvgText)(pageX, pageY, coords.x, coords.y, y_rounded, fretNum, svg, id);
+
+    if (prueba != undefined) {
+      setIdHistory([...idHistory, prueba]);
+      inputRef.current.focus();
+    }
   }; //agrega nueva linea con espacio normal (todavia no hay otro tamaño)
 
 
@@ -2998,13 +3024,15 @@ const TabCreator = () => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h4
   }, "put the fret number to insert: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    ref: inputRef,
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
     onChange: handleChange,
     value: fretNum
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: goBack
+  }, "Undo"), "(ctrl + z)", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: addNewLine
   }, "Add new line")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
-    id: id,
     clicked: clicked,
     counter: linesCounter
   })));
@@ -3103,8 +3131,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const Start = ({
   counter,
-  clicked,
-  id
+  clicked
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "svgContainer",
@@ -4362,7 +4389,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,6BAA6B;EAC7B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-around;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:5%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",

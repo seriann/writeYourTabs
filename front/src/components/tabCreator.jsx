@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import styles from "../styles/tabCreator.module.css"
 import { useSpring, animated } from 'react-spring'
 import Tab from "./tabs/start"
@@ -8,13 +8,27 @@ import { createSvgText, uniqid, createSeparationLine } from "./custom_functions/
 const TabCreator = () => {
  const [fretNum, setFretNum] = useState(0)
  const [linesCounter, setLinesCounter] = useState(1)
- const [id, setId] = useState(uniqid())
+ const [idHistory, setIdHistory] = useState([])
  const [className, setClassName] = useState("")
  const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
       from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
     })
+ const inputRef = useRef()
+    document.onkeydown = function (e){
+     e = e || window.event;
+     if ((e.which == 90 || e.keyCode == 90) && e.ctrlKey) {
+         goBack()
+     }
+}
 
+const goBack = () => {
+  if(idHistory.length > 0){
+    const toRemove = document.getElementById(idHistory[idHistory.length-1])
+    toRemove.remove()
+    setIdHistory(idHistory.filter(el => el !== toRemove.id))
+  }
+}
 
 const handleChange = (e) => {
   setFretNum(e.target.value)
@@ -25,8 +39,14 @@ const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordena
   const { currentTarget: svg, pageX, pageY } = evt
   const coords = svg.getBoundingClientRect()
   const y_rounded = Math.round(`${pageY - coords.y}`)
+  const id = uniqid()
 
-  createSvgText(pageX, pageY, coords.x, coords.y,y_rounded, fretNum, svg)
+  const prueba = createSvgText(pageX, pageY, coords.x, coords.y,y_rounded, fretNum, svg, id)
+   if(prueba != undefined) {
+     setIdHistory([...idHistory, prueba])
+     inputRef.current.focus()
+   }
+
 }
 
                             //agrega nueva linea con espacio normal (todavia no hay otro tamaño)
@@ -92,12 +112,17 @@ setLinesCounter(linesCounter+1)
           <div className={styles.optionsContainer}>
             <section>
               <h4 className={styles.h4}>put the fret number to insert: </h4>
-              <input className={styles.input} onChange={handleChange} value={fretNum}/>
+              <input
+              ref= {inputRef}
+              className={styles.input}
+              onChange={handleChange}
+              value={fretNum}
+              />
             </section>
+            <button onClick={goBack}>Undo</button>(ctrl + z)
             <button onClick={addNewLine}>Add new line</button>
           </div>
             <Tab
-            id={id}
             clicked={clicked}
             counter={linesCounter}
             />

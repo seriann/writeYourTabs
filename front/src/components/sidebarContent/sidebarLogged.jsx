@@ -26,10 +26,8 @@ const SidebarContent = ({user, logout}) => {
        <button onClick={handleClick} className={isVisible? styles.buttonActive:styles.button}><Link className={styles.button}><i className="fas fa-angle-down"></i></Link></button>
       </div>
       {
-        isVisible?
+        isVisible &&
         <Options logout={logout}/>
-        :
-       null
       }
 
       <div className={styles.inf}>
