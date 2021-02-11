@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import styles from "../../styles/sidebarLogged.module.css"
 import Options from "./profileOpt"
 import { useSpring, animated } from 'react-spring'
 
 const SidebarContent = ({user, logout}) => {
 
+  const location = useLocation()
+  console.log(location);
   const [isVisible, setIsVisible] = useState(false)
   const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -30,8 +32,8 @@ const SidebarContent = ({user, logout}) => {
         <Options logout={logout}/>
       }
 
-      <div className={styles.inf}>
-      </div>
+
+
     </animated.div>
   )
 }

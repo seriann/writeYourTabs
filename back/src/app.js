@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 const morgan = require('morgan')
 const path = require('path')
 const routes = require('./routes/index')
@@ -22,7 +23,7 @@ app.use(
 )
 app.use(cookieParser())
 app.use(sessions({
-  secret: "mysecret",
+  secret: process.env.SECRET,
   resave: false,
   saveUnitialized: false
 }))

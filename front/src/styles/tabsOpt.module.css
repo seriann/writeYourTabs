@@ -1,0 +1,31 @@
+.inf{
+  display:flex;
+  flex-direction: column;
+  position:fixed;
+  z-index: 3;
+  left: -28%;
+  width:25%;
+  background-color: #1f1e1e;
+
+}
+.otherButton{
+  border:none;
+  color: #9590A0;
+  background: #5c5c5c;
+  outline: none;
+  width:50%;
+  border-radius: 5%;
+  margin-top:2%;
+  cursor: pointer;
+}
+.infRow{
+  display:flex;
+}
+.h4{
+  color:#9590A0;
+}
+.infInput{
+  width:12%;
+  font-size: 150%;
+  padding-left: 1%;
+}

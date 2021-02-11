@@ -3,7 +3,7 @@ import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Home from "../containers/HomeContainer"
 import MyTabs from "../containers/MyTabsContainer"
-import TabCreator from "../containers/TabCreatorContainer"
+import TabCreator from "../containers/tabCreatorContainer"
 import API from "../api/index"
 import Footer from './footer'
 import Navbar from "../containers/NavbarContainer"
@@ -13,6 +13,9 @@ import styles from "../styles/main.module.css"
 
 const Main = () => {
 const dispatch = useDispatch()
+const logged = useSelector((state) => {
+  return state.login.loggedUser
+})
 
 useEffect(()=>{
   API.get("/users/persist/me")
@@ -28,12 +31,12 @@ useEffect(()=>{
     <div>
     <Navbar />
      <div className={styles.flexContainer}>
-         <SidebarContainer />
+         <SidebarContainer logged={logged} />
         <div className={styles.content}>
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/mytabs" component={MyTabs} />
-          <Route path="/create" component={TabCreator} />
+          <Route path="/create" render={()=> <TabCreator logged={logged} />} />
           <Redirect from="/" to="/home"/>
         </Switch>
          </div>

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const chalk = require("chalk");
+require('dotenv').config()
 
-const mongo = require("../env")
 
-mongoose.connect(mongo, {
+mongoose.connect(process.env.MONGO_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
