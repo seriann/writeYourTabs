@@ -7,6 +7,8 @@ import Line from "../components/tabs/extraLine"
 import { createSvgText, uniqid, createSeparationLine } from "../components/custom_functions/functions"
 import TabsOpt from "../components/sidebarContent/TabsOpt"
 import FirstStep from "../components/tabs/FirstStep"
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
 
 const TabCreator = ({logged}) => {
  const location = useLocation()
@@ -19,17 +21,34 @@ const TabCreator = ({logged}) => {
  const [genre, setGenre] = useState("")
  const [textArea, setTextArea] = useState("")
  const [tab, setTab] = useState(false)
+ const [pdf, setPdf] = useState(null)
+ const input = document.getElementById('svgContainer')
  const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
       from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
     })
  const inputRef = useRef()
+ const svgContainerRef = useRef()
     document.onkeydown = function (e){
      e = e || window.event;
      if ((e.which == 90 || e.keyCode == 90) && e.ctrlKey) {
          goBack()
      }
 }
+
+const handleSave = () => {
+  html2canvas(svgContainerRef.current)
+                      .then(canvas => {
+                        const imgData = canvas.toDataURL('image/png')
+
+                        const newPdf = new jsPDF()
+                        newPdf.addImage(imgData, 'PNG', 0, 0)
+                        setPdf(newPdf)
+                        newPdf.save('download.pdf')
+                      }).catch(err=>console.log(err))
+                      console.log(pdf);
+}
+
 
 const goBack = () => {
   if(idHistory.length > 0){
@@ -142,16 +161,18 @@ setLinesCounter(linesCounter+1)
         <button className={styles.back} onClick={handleClick}>
           <i  className="far fa-arrow-alt-circle-left"></i>
         </button>
-            <Tab
-            clicked={clicked}
-            counter={linesCounter}
-            />
             <TabsOpt
              inputRef={inputRef}
              handleChange={handleChange}
              fretNum={fretNum}
              goBack={goBack}
              addNewLine={addNewLine}
+             handleSave={handleSave}
+            />
+            <Tab
+            clicked={clicked}
+            counter={linesCounter}
+            svgContainerRef={svgContainerRef}
             />
        </div>
 

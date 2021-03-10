@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../../styles/tabsOpt.module.css"
 
-const TabsOpt = ({ inputRef, handleChange, fretNum, goBack, addNewLine }) => {
+const TabsOpt = ({ inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
   return(
     <div className={styles.inf}>
      <section className={styles.infRow}>
@@ -25,6 +25,7 @@ const TabsOpt = ({ inputRef, handleChange, fretNum, goBack, addNewLine }) => {
      >Add normal line</button>
      <button className={styles.otherButton}>Add long line</button>
      <button className={styles.otherButton}>Add larger line</button>
+     <button onClick={handleSave} className={styles.otherButton}>save tab</button>
     </div>
   )
 }

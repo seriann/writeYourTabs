@@ -1,4 +1,7 @@
 .container{
-  margin-top:5%;
+  width: 100%;
   z-index: 2;
+}
+.svg-container {
+
 }
