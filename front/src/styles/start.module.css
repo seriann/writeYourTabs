@@ -1,7 +1,16 @@
 .container{
-  width: 100%;
   z-index: 2;
 }
-.svg-container {
-
+@media screen and (min-width: 1200px){
+  .container{
+    width: 123%;
+  }
+}
+@media screen and (min-width: 1600px){
+  .container{
+    width: 86%;
+  }
+}
+.title{
+  text-align: center;
 }

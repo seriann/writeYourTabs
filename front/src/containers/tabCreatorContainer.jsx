@@ -40,9 +40,12 @@ const handleSave = () => {
   html2canvas(svgContainerRef.current)
                       .then(canvas => {
                         const imgData = canvas.toDataURL('image/png')
-
                         const newPdf = new jsPDF()
-                        newPdf.addImage(imgData, 'PNG', 0, 0)
+
+                        const imgProps= newPdf.getImageProperties(imgData);
+                        const pdfWidth = newPdf.internal.pageSize.getWidth();
+                        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                        newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)
                         setPdf(newPdf)
                         newPdf.save('download.pdf')
                       }).catch(err=>console.log(err))
@@ -57,8 +60,17 @@ const goBack = () => {
     setIdHistory(idHistory.filter(el => el !== toRemove.id))
   }
 }
-const handleClick = () => {
+const handleClick = (e) => {
+  e.preventDefault()
    setTab(!tab)
+}
+const handleQuit = () => {
+  setLinesCounter(1)
+  setTitle("")
+  setAuthor("")
+  setGenre("")
+  setTextArea("")
+  setTab(!tab)
 }
 const handleChange = (e) => {
   const { name, value } = e.target
@@ -71,9 +83,15 @@ const handleChange = (e) => {
 
 const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordenadas del mouse
   const { currentTarget: svg, pageX, pageY } = evt
+  const point = svg.createSVGPoint()
   const coords = svg.getBoundingClientRect()
   const y_rounded = Math.round(`${pageY - coords.y}`)
   const id = uniqid()
+
+  svg.addEventListener('mousemove', function(e){
+    point.x = e.clientX
+    point.y = e.clientX
+  })
 
   const txt = createSvgText(pageX, pageY, coords.x, coords.y,y_rounded, fretNum, svg, id)
    if(txt != undefined) {
@@ -158,18 +176,21 @@ setLinesCounter(linesCounter+1)
         />
        :
        <div className={styles.sheet}>
-        <button className={styles.back} onClick={handleClick}>
-          <i  className="far fa-arrow-alt-circle-left"></i>
+       <TabsOpt
+        inputRef={inputRef}
+        handleChange={handleChange}
+        fretNum={fretNum}
+        goBack={goBack}
+        addNewLine={addNewLine}
+        handleSave={handleSave}
+       />
+        <button className={styles.back} onClick={handleQuit}>
+          <i className="far fa-times-circle"></i>
         </button>
-            <TabsOpt
-             inputRef={inputRef}
-             handleChange={handleChange}
-             fretNum={fretNum}
-             goBack={goBack}
-             addNewLine={addNewLine}
-             handleSave={handleSave}
-            />
+
             <Tab
+            author={author}
+            title={title}
             clicked={clicked}
             counter={linesCounter}
             svgContainerRef={svgContainerRef}

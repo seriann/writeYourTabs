@@ -5,7 +5,7 @@ const TabsOpt = ({ inputRef, handleChange, fretNum, goBack, addNewLine,handleSav
   return(
     <div className={styles.inf}>
      <section className={styles.infRow}>
-       <h4 className={styles.h4}>put the fret number to insert:  </h4>
+       <h4 className={styles.h4}>fret number: </h4>
        <input
        ref={inputRef}
        onChange={handleChange}
@@ -18,13 +18,10 @@ const TabsOpt = ({ inputRef, handleChange, fretNum, goBack, addNewLine,handleSav
      onClick={goBack}
      className={styles.otherButton}
      >Undo (ctrl + z)</button>
-     <button className={styles.otherButton}>Add short line</button>
      <button
      onClick={addNewLine}
      className={styles.otherButton}
-     >Add normal line</button>
-     <button className={styles.otherButton}>Add long line</button>
-     <button className={styles.otherButton}>Add larger line</button>
+     >Add line</button>
      <button onClick={handleSave} className={styles.otherButton}>save tab</button>
     </div>
   )

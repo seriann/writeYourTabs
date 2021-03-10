@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../../styles/start.module.css"
 
-const Start = ({counter, clicked,svgContainerRef}) => {
+const Start = ({author,title,counter, clicked,svgContainerRef}) => {
 
   return (
     <div
@@ -9,12 +9,11 @@ const Start = ({counter, clicked,svgContainerRef}) => {
      ref={svgContainerRef}
      className={styles.container}
     >
+    <h2 className={styles.title}>{title} - {author}</h2>
      <svg version="1.1"
       baseProfile="full"
       width="90%" height="150"
       id="svg"
-      viewBox="0 0 830 150"
-      preserveAspectRatio="xMinYMin meet" class="svg-content"
       onClick={clicked}
       xmlns="http://www.w3.org/2000/svg">
       <line x1="30" y1="15" x2="300" y2="15" className="string" stroke="grey" strokeWidth="1"></line>

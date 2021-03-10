@@ -26,6 +26,12 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
 
 }
 
+export const createText = (fretNum) => {
+  let bool = true
+  const text = document.createElementNS('http://www.w3.org/2000/svg','text')
+  const textNode = document.createTextNode(fretNum)
+}
+
 export const uniqid = (prefix, moreEntropy) => {
   if (typeof prefix === 'undefined') {
     prefix = ''
