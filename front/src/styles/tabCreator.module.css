@@ -16,16 +16,28 @@
   overflow-y: scroll;
 }
 .optionsContainer{
+  position: absolute;
   display:flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: lightblue; /*color temporal*/
 }
 .input{
-  width:5%;
+  width:8%;
   height: 4vh;
   font-size: 150%;
   padding-left: 1%;
 }
 .h4{
   display: inline;
+}
+.back{
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  font-size: 150%;
 }

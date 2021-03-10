@@ -1,14 +1,16 @@
-.string{
-  height: 1px;
-  background-color: grey;
-  margin-top:1%;
-  width: 10%;
-
+.container{
+  z-index: 2;
 }
-.stringInline{
-  height: 1px;
-  background-color: grey;
-  margin-top:1%;
-  width: 10%;
-  display: inline-block;
+@media screen and (min-width: 1200px){
+  .container{
+    width: 123%;
+  }
+}
+@media screen and (min-width: 1600px){
+  .container{
+    width: 86%;
+  }
+}
+.title{
+  text-align: center;
 }
