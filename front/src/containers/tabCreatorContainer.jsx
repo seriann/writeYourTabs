@@ -83,15 +83,9 @@ const handleChange = (e) => {
 
 const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordenadas del mouse
   const { currentTarget: svg, pageX, pageY } = evt
-  const point = svg.createSVGPoint()
   const coords = svg.getBoundingClientRect()
   const y_rounded = Math.round(`${pageY - coords.y}`)
   const id = uniqid()
-
-  svg.addEventListener('mousemove', function(e){
-    point.x = e.clientX
-    point.y = e.clientX
-  })
 
   const txt = createSvgText(pageX, pageY, coords.x, coords.y,y_rounded, fretNum, svg, id)
    if(txt != undefined) {
