@@ -25,11 +25,29 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
  if(bool)return id
 
 }
+export function svgPoint(element, x, y) {
+console.log("el",element);
+  const pt = svg.createSVGPoint();
+  pt.x = x;
+  pt.y = y;
 
-export const createText = (fretNum) => {
+  return pt.matrixTransform( element.getScreenCTM().inverse() );
+
+}
+
+export const createText = (svgX,svgY,fretNum,id) => {
   let bool = true
   const text = document.createElementNS('http://www.w3.org/2000/svg','text')
-  const textNode = document.createTextNode(fretNum)
+  const txtNode = document.createTextNode(fretNum)
+  text.appendChild(txtNode)
+  text.setAttribute('x', `${svgX - 3}`)
+
+    text.setAttribute('y', svgY)
+
+ text.setAttribute('font-size', '18')
+ text.setAttribute('id', id)
+ svg.appendChild(text)
+ if(bool)return id
 }
 
 export const uniqid = (prefix, moreEntropy) => {

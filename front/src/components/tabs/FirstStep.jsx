@@ -12,7 +12,7 @@ const FirstStep = ({ handleClick, handleChange, title, author, genre, textarea }
      onChange={handleChange}
      name="title"
      className={styles.input}
-     required
+     
      />
     <label className={styles.label}>Author</label>
      <input
@@ -20,7 +20,7 @@ const FirstStep = ({ handleClick, handleChange, title, author, genre, textarea }
      onChange={handleChange}
      name="author"
      className={styles.input}
-     required
+
      />
     <label className={styles.label}>Genre</label>
     <input
