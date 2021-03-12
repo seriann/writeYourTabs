@@ -25,29 +25,47 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
  if(bool)return id
 
 }
+
+export const createText = (svgX,svgY,fretNum,id) => {
+  let split = Math.round(svgY).toString().split("")
+  let splY = split.length > 2? split : split=[0, ...split]
+
+  let bool = true
+  const text = document.createElementNS('http://www.w3.org/2000/svg','text')
+  const txtNode = document.createTextNode(fretNum)
+  text.appendChild(txtNode)
+  text.setAttribute('x', `${svgX - 3}`)
+  if(svgY >= join(splY,12) && svgY <= join(splY,18)){
+    text.setAttribute('y', join(splY[0],22))
+  }else if(svgY >= join(splY,27) && svgY <= join(splY,33)){
+    text.setAttribute('y', join(splY,37))
+  }else if(svgY >= join(splY,42) && svgY <= join(splY,48)){
+    text.setAttribute('y', join(splY,52))
+  }else if(svgY >= join(splY,57) && svgY <= join(splY,63)){
+    text.setAttribute('y', join(splY,67))
+  }else if(svgY >= join(splY,72) && svgY <= join(splY,78)){
+    text.setAttribute('y', join(splY,82))
+  }else if (svgY >= join(splY,87) && svgY <= join(splY,93)) {
+    text.setAttribute('y', join(splY,97))
+ }else {
+   bool = false
+ }
+function join(arr,num){
+  return parseInt([arr[0],num].join(""))
+}
+ text.setAttribute('font-size', '18')
+ text.setAttribute('id', id)
+ svg.appendChild(text)
+ if(bool)return id
+}
+
 export function svgPoint(element, x, y) {
-console.log("el",element);
   const pt = svg.createSVGPoint();
   pt.x = x;
   pt.y = y;
 
   return pt.matrixTransform( element.getScreenCTM().inverse() );
 
-}
-
-export const createText = (svgX,svgY,fretNum,id) => {
-  let bool = true
-  const text = document.createElementNS('http://www.w3.org/2000/svg','text')
-  const txtNode = document.createTextNode(fretNum)
-  text.appendChild(txtNode)
-  text.setAttribute('x', `${svgX - 3}`)
-
-    text.setAttribute('y', svgY)
-
- text.setAttribute('font-size', '18')
- text.setAttribute('id', id)
- svg.appendChild(text)
- if(bool)return id
 }
 
 export const uniqid = (prefix, moreEntropy) => {

@@ -2214,8 +2214,8 @@ const FileUploader = ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createSvgText": () => /* binding */ createSvgText,
-/* harmony export */   "svgPoint": () => /* binding */ svgPoint,
 /* harmony export */   "createText": () => /* binding */ createText,
+/* harmony export */   "svgPoint": () => /* binding */ svgPoint,
 /* harmony export */   "uniqid": () => /* binding */ uniqid,
 /* harmony export */   "createSeparationLine": () => /* binding */ createSeparationLine,
 /* harmony export */   "createSvg": () => /* binding */ createSvg,
@@ -2249,25 +2249,46 @@ const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, 
   svg.appendChild(text);
   if (bool) return id;
 };
-function svgPoint(element, x, y) {
-  console.log("el", element);
-  const pt = svg.createSVGPoint();
-  pt.x = x;
-  pt.y = y;
-  return pt.matrixTransform(element.getScreenCTM().inverse());
-}
 const createText = (svgX, svgY, fretNum, id) => {
+  let split = Math.round(svgY).toString().split("");
+  let splY = split.length > 2 ? split : split = [0, ...split];
   let bool = true;
   const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   const txtNode = document.createTextNode(fretNum);
   text.appendChild(txtNode);
   text.setAttribute('x', `${svgX - 3}`);
-  text.setAttribute('y', svgY);
+
+  if (svgY >= join(splY, 12) && svgY <= join(splY, 18)) {
+    text.setAttribute('y', join(splY[0], 22));
+  } else if (svgY >= join(splY, 27) && svgY <= join(splY, 33)) {
+    text.setAttribute('y', join(splY, 37));
+  } else if (svgY >= join(splY, 42) && svgY <= join(splY, 48)) {
+    text.setAttribute('y', join(splY, 52));
+  } else if (svgY >= join(splY, 57) && svgY <= join(splY, 63)) {
+    text.setAttribute('y', join(splY, 67));
+  } else if (svgY >= join(splY, 72) && svgY <= join(splY, 78)) {
+    text.setAttribute('y', join(splY, 82));
+  } else if (svgY >= join(splY, 87) && svgY <= join(splY, 93)) {
+    text.setAttribute('y', join(splY, 97));
+  } else {
+    bool = false;
+  }
+
+  function join(arr, num) {
+    return parseInt([arr[0], num].join(""));
+  }
+
   text.setAttribute('font-size', '18');
   text.setAttribute('id', id);
   svg.appendChild(text);
   if (bool) return id;
 };
+function svgPoint(element, x, y) {
+  const pt = svg.createSVGPoint();
+  pt.x = x;
+  pt.y = y;
+  return pt.matrixTransform(element.getScreenCTM().inverse());
+}
 const uniqid = (prefix, moreEntropy) => {
   if (typeof prefix === 'undefined') {
     prefix = '';
@@ -3866,7 +3887,7 @@ const TabCreator = ({
   const [textArea, setTextArea] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [tab, setTab] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [pdf, setPdf] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 150");
+  const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 300");
   const input = document.getElementById('svgContainer');
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_10__.useSpring)({
     to: {
@@ -3948,8 +3969,6 @@ const TabCreator = ({
     } = evt;
     const id = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)();
     let svgP = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.svgPoint)(svg, clientX, clientY);
-    console.log(svgP);
-    console.log("clientY", clientY);
     const txt = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createText)(svgP.x, svgP.y, fretNum, id);
     /*const coords = svg.getBoundingClientRect()
     const y_rounded = Math.round(`${pageY - coords.y}`)
@@ -3985,7 +4004,6 @@ const TabCreator = ({
       svg.appendChild(separationLine);
       arr.map.call(strings, el => el.setAttribute('x2', `${strings1Inf[0] + 270}`));
     } else if (linesCounter > 3 && linesCounter < 6) {
-      setViewBox("0 0 950 300");
       let svg2 = document.getElementById('svg2');
       let strings2 = document.getElementsByClassName('string2');
       let strings2Inf = new Array(strings2[0].x2.animVal.value, strings2[0].y1.animVal.value, strings2[5].y1.animVal.value);
@@ -4749,7 +4767,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n.rDpj8rcFkydifVmAAk24N{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  \r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n.rDpj8rcFkydifVmAAk24N{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;;AAErB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  \r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",

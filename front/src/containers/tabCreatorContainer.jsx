@@ -22,7 +22,7 @@ const TabCreator = ({logged}) => {
  const [textArea, setTextArea] = useState("")
  const [tab, setTab] = useState(false)
  const [pdf, setPdf] = useState(null)
- const [viewBox, setViewBox] = useState("0 0 950 150")
+ const [viewBox, setViewBox] = useState("0 0 950 300")
  const input = document.getElementById('svgContainer')
  const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -86,8 +86,6 @@ const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordena
   const { currentTarget: svg, pageX, pageY, clientX, clientY } = evt
   const id = uniqid()
   let svgP = svgPoint(svg, clientX, clientY)
-console.log(svgP);
-console.log("clientY",clientY);
   const txt = createText(svgP.x, svgP.y,fretNum, id)
 
   /*const coords = svg.getBoundingClientRect()
@@ -123,7 +121,6 @@ const addNewLine = () => {  //a mejorar
  arr.map.call(strings,(el)=> el.setAttribute('x2',`${strings1Inf[0] + 270}`))
 
 } else if (linesCounter > 3 && linesCounter < 6) {
-  setViewBox("0 0 950 300")
   let svg2 = document.getElementById('svg2')
   let strings2 = document.getElementsByClassName('string2')
   let strings2Inf = new Array(strings2[0].x2.animVal.value,strings2[0].y1.animVal.value, strings2[5].y1.animVal.value)
