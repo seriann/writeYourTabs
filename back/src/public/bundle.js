@@ -2215,6 +2215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createSvgText": () => /* binding */ createSvgText,
 /* harmony export */   "createText": () => /* binding */ createText,
+/* harmony export */   "svgPoint": () => /* binding */ svgPoint,
 /* harmony export */   "uniqid": () => /* binding */ uniqid,
 /* harmony export */   "createSeparationLine": () => /* binding */ createSeparationLine,
 /* harmony export */   "createSvg": () => /* binding */ createSvg,
@@ -2248,11 +2249,46 @@ const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, 
   svg.appendChild(text);
   if (bool) return id;
 };
-const createText = fretNum => {
+const createText = (svgX, svgY, fretNum, id) => {
+  let split = Math.round(svgY).toString().split("");
+  let splY = split.length > 2 ? split : split = [0, ...split];
   let bool = true;
   const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  const textNode = document.createTextNode(fretNum);
+  const txtNode = document.createTextNode(fretNum);
+  text.appendChild(txtNode);
+  text.setAttribute('x', `${svgX - 3}`);
+
+  if (svgY >= join(splY, 12) && svgY <= join(splY, 18)) {
+    text.setAttribute('y', join(splY[0], 22));
+  } else if (svgY >= join(splY, 27) && svgY <= join(splY, 33)) {
+    text.setAttribute('y', join(splY, 37));
+  } else if (svgY >= join(splY, 42) && svgY <= join(splY, 48)) {
+    text.setAttribute('y', join(splY, 52));
+  } else if (svgY >= join(splY, 57) && svgY <= join(splY, 63)) {
+    text.setAttribute('y', join(splY, 67));
+  } else if (svgY >= join(splY, 72) && svgY <= join(splY, 78)) {
+    text.setAttribute('y', join(splY, 82));
+  } else if (svgY >= join(splY, 87) && svgY <= join(splY, 93)) {
+    text.setAttribute('y', join(splY, 97));
+  } else {
+    bool = false;
+  }
+
+  function join(arr, num) {
+    return parseInt([arr[0], num].join(""));
+  }
+
+  text.setAttribute('font-size', '18');
+  text.setAttribute('id', id);
+  svg.appendChild(text);
+  if (bool) return id;
 };
+function svgPoint(element, x, y) {
+  const pt = svg.createSVGPoint();
+  pt.x = x;
+  pt.y = y;
+  return pt.matrixTransform(element.getScreenCTM().inverse());
+}
 const uniqid = (prefix, moreEntropy) => {
   if (typeof prefix === 'undefined') {
     prefix = '';
@@ -2978,16 +3014,14 @@ const FirstStep = ({
     value: title,
     onChange: handleChange,
     name: "title",
-    className: _styles_firstStep_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
-    required: true
+    className: _styles_firstStep_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     className: _styles_firstStep_module_css__WEBPACK_IMPORTED_MODULE_1__.default.label
   }, "Author"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     value: author,
     onChange: handleChange,
     name: "author",
-    className: _styles_firstStep_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input,
-    required: true
+    className: _styles_firstStep_module_css__WEBPACK_IMPORTED_MODULE_1__.default.input
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     className: _styles_firstStep_module_css__WEBPACK_IMPORTED_MODULE_1__.default.label
   }, "Genre"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -3104,6 +3138,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Start = ({
+  viewBox,
   author,
   title,
   counter,
@@ -3120,8 +3155,10 @@ const Start = ({
     version: "1.1",
     baseProfile: "full",
     width: "90%",
-    height: "150",
+    height: "auto",
     id: "svg",
+    viewBox: viewBox,
+    preserveAspectRatio: "xMinYMin meet",
     onClick: clicked,
     xmlns: "http://www.w3.org/2000/svg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
@@ -3173,6 +3210,9 @@ const Start = ({
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "13"
+  }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "20"
   }, "e"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
@@ -3190,287 +3230,378 @@ const Start = ({
   }, "A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "95"
-  }, "E")), counter > 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    version: "1.1",
-    baseProfile: "full",
-    id: "svg2",
-    width: "90%",
-    height: "150",
-    onClick: clicked,
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+  }, "E"), counter > 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "113"
+  }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "15",
+    y1: "115",
     x2: "300",
-    y2: "15",
+    y2: "115",
     className: "string2",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "30",
+    y1: "130",
     x2: "300",
-    y2: "30",
+    y2: "130",
     className: "string2",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "45",
+    y1: "145",
     x2: "300",
-    y2: "45",
+    y2: "145",
     className: "string2",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "60",
+    y1: "160",
     x2: "300",
-    y2: "60",
+    y2: "160",
     className: "string2",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "75",
+    y1: "175",
     x2: "300",
-    y2: "75",
+    y2: "175",
     className: "string2",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "90",
+    y1: "190",
     x2: "300",
-    y2: "90",
+    y2: "190",
     className: "string2",
     stroke: "grey",
     strokeWidth: "1"
   })), counter > 6 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    version: "1.1",
-    baseProfile: "full",
-    id: "svg3",
-    width: "90%",
-    height: "150",
-    onClick: clicked,
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    id: "svg3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "213"
+  }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "15",
+    y1: "215",
     x2: "300",
-    y2: "15",
+    y2: "215",
     className: "string3",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "30",
+    y1: "230",
     x2: "300",
-    y2: "30",
+    y2: "230",
     className: "string3",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "45",
+    y1: "245",
     x2: "300",
-    y2: "45",
+    y2: "245",
     className: "string3",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "60",
+    y1: "260",
     x2: "300",
-    y2: "60",
+    y2: "260",
     className: "string3",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "75",
+    y1: "275",
     x2: "300",
-    y2: "75",
+    y2: "275",
     className: "string3",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "90",
+    y1: "290",
     x2: "300",
-    y2: "90",
+    y2: "290",
     className: "string3",
     stroke: "grey",
     strokeWidth: "1"
   })), counter > 9 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    version: "1.1",
-    baseProfile: "full",
-    id: "svg4",
-    width: "90%",
-    height: "150",
-    onClick: clicked,
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    id: "svg4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "313"
+  }, "4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "15",
+    y1: "315",
     x2: "300",
-    y2: "15",
+    y2: "315",
     className: "string4",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "30",
+    y1: "330",
     x2: "300",
-    y2: "30",
+    y2: "330",
     className: "string4",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "45",
+    y1: "345",
     x2: "300",
-    y2: "45",
+    y2: "345",
     className: "string4",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "60",
+    y1: "360",
     x2: "300",
-    y2: "60",
+    y2: "360",
     className: "string4",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "75",
+    y1: "375",
     x2: "300",
-    y2: "75",
+    y2: "375",
     className: "string4",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "90",
+    y1: "390",
     x2: "300",
-    y2: "90",
+    y2: "390",
     className: "string4",
     stroke: "grey",
     strokeWidth: "1"
   })), counter > 12 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    version: "1.1",
-    baseProfile: "full",
-    id: "svg5",
-    width: "90%",
-    height: "150",
-    onClick: clicked,
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    id: "svg5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "413"
+  }, "5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "15",
+    y1: "415",
     x2: "300",
-    y2: "15",
+    y2: "415",
     className: "string5",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "30",
+    y1: "430",
     x2: "300",
-    y2: "30",
+    y2: "430",
     className: "string5",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "45",
+    y1: "445",
     x2: "300",
-    y2: "45",
+    y2: "445",
     className: "string5",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "60",
+    y1: "460",
     x2: "300",
-    y2: "60",
+    y2: "460",
     className: "string5",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "75",
+    y1: "475",
     x2: "300",
-    y2: "75",
+    y2: "475",
     className: "string5",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "90",
+    y1: "490",
     x2: "300",
-    y2: "90",
+    y2: "490",
     className: "string5",
     stroke: "grey",
     strokeWidth: "1"
   })), counter > 15 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    version: "1.1",
-    baseProfile: "full",
-    id: "svg6",
-    width: "90%",
-    height: "150",
-    onClick: clicked,
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    id: "svg6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "513"
+  }, "6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "15",
+    y1: "515",
     x2: "300",
-    y2: "15",
+    y2: "515",
     className: "string6",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "30",
+    y1: "530",
     x2: "300",
-    y2: "30",
+    y2: "530",
     className: "string6",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "45",
+    y1: "545",
     x2: "300",
-    y2: "45",
+    y2: "545",
     className: "string6",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "60",
+    y1: "560",
     x2: "300",
-    y2: "60",
+    y2: "560",
     className: "string6",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "75",
+    y1: "575",
     x2: "300",
-    y2: "75",
+    y2: "575",
     className: "string6",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "90",
+    y1: "590",
     x2: "300",
-    y2: "90",
+    y2: "590",
     className: "string6",
     stroke: "grey",
     strokeWidth: "1"
-  })));
+  })), counter > 18 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg7"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "613"
+  }, "7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "615",
+    x2: "300",
+    y2: "615",
+    className: "string7",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "630",
+    x2: "300",
+    y2: "630",
+    className: "string7",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "645",
+    x2: "300",
+    y2: "645",
+    className: "string7",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "660",
+    x2: "300",
+    y2: "660",
+    className: "string7",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "675",
+    x2: "300",
+    y2: "675",
+    className: "string7",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "690",
+    x2: "300",
+    y2: "690",
+    className: "string7",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 21 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "713"
+  }, "8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "715",
+    x2: "300",
+    y2: "715",
+    className: "string8",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "730",
+    x2: "300",
+    y2: "730",
+    className: "string8",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "745",
+    x2: "300",
+    y2: "745",
+    className: "string8",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "760",
+    x2: "300",
+    y2: "760",
+    className: "string8",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "775",
+    x2: "300",
+    y2: "775",
+    className: "string8",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "790",
+    x2: "300",
+    y2: "790",
+    className: "string8",
+    stroke: "grey",
+    strokeWidth: "1"
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Start); //<line x1="300" y1="15" x2="300" y2="90" stroke="grey" strokeWidth="2"></line> agregar
@@ -3756,6 +3887,7 @@ const TabCreator = ({
   const [textArea, setTextArea] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [tab, setTab] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [pdf, setPdf] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 300");
   const input = document.getElementById('svgContainer');
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_10__.useSpring)({
     to: {
@@ -3831,17 +3963,20 @@ const TabCreator = ({
     const {
       currentTarget: svg,
       pageX,
-      pageY
+      pageY,
+      clientX,
+      clientY
     } = evt;
-    const point = svg.createSVGPoint();
-    const coords = svg.getBoundingClientRect();
-    const y_rounded = Math.round(`${pageY - coords.y}`);
     const id = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)();
-    svg.addEventListener('mousemove', function (e) {
-      point.x = e.clientX;
-      point.y = e.clientX;
-    });
-    const txt = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSvgText)(pageX, pageY, coords.x, coords.y, y_rounded, fretNum, svg, id);
+    let svgP = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.svgPoint)(svg, clientX, clientY);
+    const txt = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createText)(svgP.x, svgP.y, fretNum, id);
+    /*const coords = svg.getBoundingClientRect()
+    const y_rounded = Math.round(`${pageY - coords.y}`)
+    const id = uniqid()
+    console.log("coords",coords.x,coords.y);
+    console.log("client",clientX,clientY);
+    console.log("page",pageX,pageY);
+    const txt = createSvgText(clientX, clientY, coords.x, coords.y,y_rounded, fretNum, svg, id)*/
 
     if (txt != undefined) {
       setIdHistory([...idHistory, txt]);
@@ -3854,10 +3989,6 @@ const TabCreator = ({
     //a mejorar
     const svg = document.getElementById('svg');
     const strings = document.getElementsByClassName('string');
-    /*const stringWidth = strings[0].x2.animVal.value
-      const firstString = strings[0].y1.animVal.value
-      const sixthString = strings[5].y1.animVal.value*/
-
     const strings1Inf = new Array(strings[0].x2.animVal.value, strings[0].y1.animVal.value, strings[5].y1.animVal.value); // equivalente a las variables de arriba (para ahorrar espacio)
 
     const arr = [];
@@ -3871,37 +4002,55 @@ const TabCreator = ({
       separationLine.setAttribute('stroke', 'grey');
       separationLine.setAttribute('stroke-width', "2");
       svg.appendChild(separationLine);
-      arr.map.call(document.getElementsByClassName('string'), el => el.setAttribute('x2', `${strings1Inf[0] + 270}`));
+      arr.map.call(strings, el => el.setAttribute('x2', `${strings1Inf[0] + 270}`));
     } else if (linesCounter > 3 && linesCounter < 6) {
       let svg2 = document.getElementById('svg2');
       let strings2 = document.getElementsByClassName('string2');
       let strings2Inf = new Array(strings2[0].x2.animVal.value, strings2[0].y1.animVal.value, strings2[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings2Inf[0], strings2Inf[1], strings2Inf[2], svg2);
-      arr.map.call(document.getElementsByClassName('string2'), el => el.setAttribute('x2', `${strings2Inf[0] + 270}`));
+      arr.map.call(strings2, el => el.setAttribute('x2', `${strings2Inf[0] + 270}`));
     } else if (linesCounter > 6 && linesCounter < 9) {
+      setViewBox("0 0 950 450");
       let svg3 = document.getElementById('svg3');
       let strings3 = document.getElementsByClassName('string3');
       let strings3Inf = new Array(strings3[0].x2.animVal.value, strings3[0].y1.animVal.value, strings3[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings3Inf[0], strings3Inf[1], strings3Inf[2], svg3);
-      arr.map.call(document.getElementsByClassName('string3'), el => el.setAttribute('x2', `${strings3Inf[0] + 270}`));
+      arr.map.call(strings3, el => el.setAttribute('x2', `${strings3Inf[0] + 270}`));
     } else if (linesCounter > 9 && linesCounter < 12) {
+      setViewBox("0 0 950 600");
       let svg4 = document.getElementById('svg4');
       let strings4 = document.getElementsByClassName('string4');
       let strings4Inf = new Array(strings4[0].x2.animVal.value, strings4[0].y1.animVal.value, strings4[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings4Inf[0], strings4Inf[1], strings4Inf[2], svg4);
-      arr.map.call(document.getElementsByClassName('string4'), el => el.setAttribute('x2', `${strings4Inf[0] + 270}`));
+      arr.map.call(strings4, el => el.setAttribute('x2', `${strings4Inf[0] + 270}`));
     } else if (linesCounter > 12 && linesCounter < 15) {
+      setViewBox("0 0 950 750");
       let svg5 = document.getElementById('svg5');
       let strings5 = document.getElementsByClassName('string5');
       let strings5Inf = new Array(strings5[0].x2.animVal.value, strings5[0].y1.animVal.value, strings5[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings5Inf[0], strings5Inf[1], strings5Inf[2], svg5);
-      arr.map.call(document.getElementsByClassName('string5'), el => el.setAttribute('x2', `${strings5Inf[0] + 270}`));
+      arr.map.call(strings5, el => el.setAttribute('x2', `${strings5Inf[0] + 270}`));
     } else if (linesCounter > 15 && linesCounter < 18) {
+      setViewBox("0 0 950 900");
       let svg6 = document.getElementById('svg6');
       let string6 = document.getElementsByClassName('string6');
       let strings6Inf = new Array(string6[0].x2.animVal.value, string6[0].y1.animVal.value, string6[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings6Inf[0], strings6Inf[1], strings6Inf[2], svg6);
-      arr.map.call(document.getElementsByClassName('string6'), el => el.setAttribute('x2', `${strings6Inf[0] + 270}`));
+      arr.map.call(string6, el => el.setAttribute('x2', `${strings6Inf[0] + 270}`));
+    } else if (linesCounter > 18 && linesCounter < 21) {
+      setViewBox("0 0 950 1050");
+      let svg7 = document.getElementById('svg7');
+      let string7 = document.getElementsByClassName('string7');
+      let strings7Inf = new Array(string7[0].x2.animVal.value, string7[0].y1.animVal.value, string7[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings7Inf[0], strings7Inf[1], strings7Inf[2], svg7);
+      arr.map.call(string7, el => el.setAttribute('x2', `${strings7Inf[0] + 270}`));
+    } else if (linesCounter > 21 && linesCounter < 24) {
+      setViewBox("0 0 950 1200");
+      let svg8 = document.getElementById('svg8');
+      let string8 = document.getElementsByClassName('string8');
+      let strings8Inf = new Array(string8[0].x2.animVal.value, string8[0].y1.animVal.value, string8[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings8Inf[0], strings8Inf[1], strings8Inf[2], svg8);
+      arr.map.call(string8, el => el.setAttribute('x2', `${strings8Inf[0] + 270}`));
     }
 
     console.log(linesCounter);
@@ -3933,6 +4082,7 @@ const TabCreator = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "far fa-times-circle"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
+    viewBox: viewBox,
     author: author,
     title: title,
     clicked: clicked,
@@ -4617,7 +4767,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n.rDpj8rcFkydifVmAAk24N{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  overflow-y: scroll;\r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  \r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n.rDpj8rcFkydifVmAAk24N{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;;AAErB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  \r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",
