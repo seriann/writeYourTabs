@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../../styles/start.module.css"
 
-const Start = ({viewBox,author,title,counter, clicked,svgContainerRef}) => {
+const Start = ({firstString,secondString,thirdString,fourthString,fifthString,sixthString,viewBox,author,title,counter, clicked,svgContainerRef}) => {
 
   return (
     <div
@@ -13,7 +13,7 @@ const Start = ({viewBox,author,title,counter, clicked,svgContainerRef}) => {
 
      <svg version="1.1"
       baseProfile="full"
-      width="90%" height="auto"
+      width="90%"
       id="svg"
       viewBox={viewBox}
       preserveAspectRatio="xMinYMin meet"
@@ -28,12 +28,12 @@ const Start = ({viewBox,author,title,counter, clicked,svgContainerRef}) => {
 
       <text x="15" y="13">1</text>
 
-      <text x="30" y="20">e</text>
-      <text x="30" y="35">B</text>
-      <text x="30" y="50">G</text>
-      <text x="30" y="65">D</text>
-      <text x="30" y="80">A</text>
-      <text x="30" y="95">E</text>
+      <text x="30" y="20">{firstString}</text>
+      <text x="30" y="35">{secondString}</text>
+      <text x="30" y="50">{thirdString}</text>
+      <text x="30" y="65">{fourthString}</text>
+      <text x="30" y="80">{fifthString}</text>
+      <text x="30" y="95">{sixthString}</text>
 
      {counter > 3 &&
 
@@ -130,6 +130,62 @@ const Start = ({viewBox,author,title,counter, clicked,svgContainerRef}) => {
                <line x1="30" y1="775" x2="300" y2="775" className="string8" stroke="grey" strokeWidth="1"></line>
                <line x1="30" y1="790" x2="300" y2="790" className="string8" stroke="grey" strokeWidth="1"></line>
                </svg>
+
+               }
+               {
+               counter > 24 &&
+
+                <svg id="svg9">
+                <text x="15" y="813">9</text>
+                 <line x1="30" y1="815" x2="300" y2="815" className="string9" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="830" x2="300" y2="830" className="string9" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="845" x2="300" y2="845" className="string9" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="860" x2="300" y2="860" className="string9" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="875" x2="300" y2="875" className="string9" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="890" x2="300" y2="890" className="string9" stroke="grey" strokeWidth="1"></line>
+                 </svg>
+
+               }
+               {
+               counter > 27 &&
+
+                <svg id="svg10">
+                <text x="15" y="913">10</text>
+                 <line x1="30" y1="915" x2="300" y2="915" className="string10" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="930" x2="300" y2="930" className="string10" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="945" x2="300" y2="945" className="string10" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="960" x2="300" y2="960" className="string10" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="975" x2="300" y2="975" className="string10" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="990" x2="300" y2="990" className="string10" stroke="grey" strokeWidth="1"></line>
+                 </svg>
+
+               }
+               {
+               counter > 30 &&
+
+                <svg id="svg11">
+                <text x="15" y="1013">11</text>
+                 <line x1="30" y1="1015" x2="300" y2="1015" className="string11" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1030" x2="300" y2="1030" className="string11" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1045" x2="300" y2="1045" className="string11" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1060" x2="300" y2="1060" className="string11" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1075" x2="300" y2="1075" className="string11" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1090" x2="300" y2="1090" className="string11" stroke="grey" strokeWidth="1"></line>
+                 </svg>
+
+               }
+               {
+               counter > 33 &&
+
+                <svg id="svg12">
+                <text x="15" y="1113">12</text>
+                 <line x1="30" y1="1115" x2="300" y2="1115" className="string12" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1130" x2="300" y2="1130" className="string12" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1145" x2="300" y2="1145" className="string12" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1160" x2="300" y2="1160" className="string12" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1175" x2="300" y2="1175" className="string12" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1190" x2="300" y2="1190" className="string12" stroke="grey" strokeWidth="1"></line>
+                 </svg>
 
                }
              </svg>

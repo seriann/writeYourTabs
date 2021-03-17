@@ -2250,6 +2250,7 @@ const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, 
   if (bool) return id;
 };
 const createText = (svgX, svgY, fretNum, id) => {
+  console.log("y:", svgY);
   let split = Math.round(svgY).toString().split("");
   let splY = split.length > 2 ? split : split = [0, ...split];
   let bool = true;
@@ -2259,7 +2260,7 @@ const createText = (svgX, svgY, fretNum, id) => {
   text.setAttribute('x', `${svgX - 3}`);
 
   if (svgY >= join(splY, 12) && svgY <= join(splY, 18)) {
-    text.setAttribute('y', join(splY[0], 22));
+    text.setAttribute('y', join(splY, 22));
   } else if (svgY >= join(splY, 27) && svgY <= join(splY, 33)) {
     text.setAttribute('y', join(splY, 37));
   } else if (svgY >= join(splY, 42) && svgY <= join(splY, 48)) {
@@ -2274,15 +2275,26 @@ const createText = (svgX, svgY, fretNum, id) => {
     bool = false;
   }
 
-  function join(arr, num) {
-    return parseInt([arr[0], num].join(""));
-  }
-
   text.setAttribute('font-size', '18');
   text.setAttribute('id', id);
   svg.appendChild(text);
   if (bool) return id;
 };
+
+function join(arr, num) {
+  console.log("pasa por arr:", arr);
+
+  if (arr.length > 3) {
+    const numArr = num.toString().split("");
+    let newArr = arr.map((el, i) => {
+      if (i == arr.length - numArr.length) return el = numArr[0];else if (i == arr.length - 1) return el = numArr[1];else return el;
+    });
+    return parseInt(newArr.join(""));
+  } else {
+    return parseInt([arr[0], num].join(""));
+  }
+}
+
 function svgPoint(element, x, y) {
   const pt = svg.createSVGPoint();
   pt.x = x;
@@ -2567,6 +2579,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TabsOpt = ({
+  firstString,
+  secondString,
+  thirdString,
+  fourthString,
+  fifthString,
+  sixthString,
   inputRef,
   handleChange,
   fretNum,
@@ -2576,6 +2594,8 @@ const TabsOpt = ({
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inf
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.infCol
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.infRow
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
@@ -2586,7 +2606,9 @@ const TabsOpt = ({
     name: "fret",
     value: fretNum,
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.infInput
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.infCol
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: goBack,
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
   }, "Undo (ctrl + z)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2595,7 +2617,43 @@ const TabsOpt = ({
   }, "Add line"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleSave,
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
-  }, "save tab"));
+  }, "save tab"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.infCol2
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h4
+  }, "tuning: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inpSection
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    value: firstString,
+    name: "firstString",
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inputTg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    value: secondString,
+    name: "secondString",
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inputTg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    value: thirdString,
+    name: "thirdString",
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inputTg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    value: fourthString,
+    name: "fourthString",
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inputTg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    value: fifthString,
+    name: "fifthString",
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inputTg
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    onChange: handleChange,
+    value: sixthString,
+    name: "sixthString",
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inputTg
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TabsOpt);
@@ -3138,6 +3196,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Start = ({
+  firstString,
+  secondString,
+  thirdString,
+  fourthString,
+  fifthString,
+  sixthString,
   viewBox,
   author,
   title,
@@ -3155,7 +3219,6 @@ const Start = ({
     version: "1.1",
     baseProfile: "full",
     width: "90%",
-    height: "auto",
     id: "svg",
     viewBox: viewBox,
     preserveAspectRatio: "xMinYMin meet",
@@ -3215,22 +3278,22 @@ const Start = ({
   }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "20"
-  }, "e"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+  }, firstString), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "35"
-  }, "B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+  }, secondString), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "50"
-  }, "G"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+  }, thirdString), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "65"
-  }, "D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+  }, fourthString), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "80"
-  }, "A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+  }, fifthString), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "30",
     y: "95"
-  }, "E"), counter > 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+  }, sixthString), counter > 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     id: "svg2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "15",
@@ -3601,6 +3664,218 @@ const Start = ({
     className: "string8",
     stroke: "grey",
     strokeWidth: "1"
+  })), counter > 24 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg9"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "813"
+  }, "9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "815",
+    x2: "300",
+    y2: "815",
+    className: "string9",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "830",
+    x2: "300",
+    y2: "830",
+    className: "string9",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "845",
+    x2: "300",
+    y2: "845",
+    className: "string9",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "860",
+    x2: "300",
+    y2: "860",
+    className: "string9",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "875",
+    x2: "300",
+    y2: "875",
+    className: "string9",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "890",
+    x2: "300",
+    y2: "890",
+    className: "string9",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 27 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "913"
+  }, "10"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "915",
+    x2: "300",
+    y2: "915",
+    className: "string10",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "930",
+    x2: "300",
+    y2: "930",
+    className: "string10",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "945",
+    x2: "300",
+    y2: "945",
+    className: "string10",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "960",
+    x2: "300",
+    y2: "960",
+    className: "string10",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "975",
+    x2: "300",
+    y2: "975",
+    className: "string10",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "990",
+    x2: "300",
+    y2: "990",
+    className: "string10",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 30 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg11"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1013"
+  }, "11"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1015",
+    x2: "300",
+    y2: "1015",
+    className: "string11",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1030",
+    x2: "300",
+    y2: "1030",
+    className: "string11",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1045",
+    x2: "300",
+    y2: "1045",
+    className: "string11",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1060",
+    x2: "300",
+    y2: "1060",
+    className: "string11",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1075",
+    x2: "300",
+    y2: "1075",
+    className: "string11",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1090",
+    x2: "300",
+    y2: "1090",
+    className: "string11",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 33 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1113"
+  }, "12"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1115",
+    x2: "300",
+    y2: "1115",
+    className: "string12",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1130",
+    x2: "300",
+    y2: "1130",
+    className: "string12",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1145",
+    x2: "300",
+    y2: "1145",
+    className: "string12",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1160",
+    x2: "300",
+    y2: "1160",
+    className: "string12",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1175",
+    x2: "300",
+    y2: "1175",
+    className: "string12",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1190",
+    x2: "300",
+    y2: "1190",
+    className: "string12",
+    stroke: "grey",
+    strokeWidth: "1"
   }))));
 };
 
@@ -3885,9 +4160,15 @@ const TabCreator = ({
   const [author, setAuthor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [genre, setGenre] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [textArea, setTextArea] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [firstString, setFirstString] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("e");
+  const [secondString, setSecondString] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("B");
+  const [thirdString, setThirdString] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("G");
+  const [fourthString, setFourthString] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("D");
+  const [fifthString, setFifthString] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("A");
+  const [sixthString, setSixthString] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("E");
   const [tab, setTab] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [pdf, setPdf] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 300");
+  const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 200");
   const input = document.getElementById('svgContainer');
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_10__.useSpring)({
     to: {
@@ -3911,7 +4192,9 @@ const TabCreator = ({
   };
 
   const handleSave = () => {
-    html2canvas__WEBPACK_IMPORTED_MODULE_7___default()(svgContainerRef.current).then(canvas => {
+    html2canvas__WEBPACK_IMPORTED_MODULE_7___default()(svgContainerRef.current, {
+      width: 1000
+    }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF();
       const imgProps = newPdf.getImageProperties(imgData);
@@ -3956,6 +4239,12 @@ const TabCreator = ({
     if (name == "author") return setAuthor(value);
     if (name == "genre") return setGenre(value);
     if (name == "textarea") return setTextArea(value);
+    if (name == "firstString") return setFirstString(value);
+    if (name == "secondString") return setSecondString(value);
+    if (name == "thirdString") return setThirdString(value);
+    if (name == "fourthString") return setFourthString(value);
+    if (name == "fifthString") return setFifthString(value);
+    if (name == "sixthString") return setThirdString(value);
   };
 
   const clicked = evt => {
@@ -3969,7 +4258,7 @@ const TabCreator = ({
     } = evt;
     const id = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)();
     let svgP = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.svgPoint)(svg, clientX, clientY);
-    const txt = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createText)(svgP.x, svgP.y, fretNum, id);
+    const txt = (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createText)(svgP.x, Math.round(svgP.y), fretNum, id);
     /*const coords = svg.getBoundingClientRect()
     const y_rounded = Math.round(`${pageY - coords.y}`)
     const id = uniqid()
@@ -4004,6 +4293,7 @@ const TabCreator = ({
       svg.appendChild(separationLine);
       arr.map.call(strings, el => el.setAttribute('x2', `${strings1Inf[0] + 270}`));
     } else if (linesCounter > 3 && linesCounter < 6) {
+      setViewBox("0 0 950 300");
       let svg2 = document.getElementById('svg2');
       let strings2 = document.getElementsByClassName('string2');
       let strings2Inf = new Array(strings2[0].x2.animVal.value, strings2[0].y1.animVal.value, strings2[5].y1.animVal.value);
@@ -4051,6 +4341,34 @@ const TabCreator = ({
       let strings8Inf = new Array(string8[0].x2.animVal.value, string8[0].y1.animVal.value, string8[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings8Inf[0], strings8Inf[1], strings8Inf[2], svg8);
       arr.map.call(string8, el => el.setAttribute('x2', `${strings8Inf[0] + 270}`));
+    } else if (linesCounter > 24 && linesCounter < 27) {
+      setViewBox("0 0 950 1350");
+      let svg9 = document.getElementById('svg9');
+      let string9 = document.getElementsByClassName('string9');
+      let strings9Inf = new Array(string9[0].x2.animVal.value, string9[0].y1.animVal.value, string9[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings9Inf[0], strings9Inf[1], strings9Inf[2], svg9);
+      arr.map.call(string9, el => el.setAttribute('x2', `${strings9Inf[0] + 270}`));
+    } else if (linesCounter > 27 && linesCounter < 30) {
+      setViewBox("0 0 950 1500");
+      let svg10 = document.getElementById('svg10');
+      let string10 = document.getElementsByClassName('string10');
+      let strings10Inf = new Array(string10[0].x2.animVal.value, string10[0].y1.animVal.value, string10[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings10Inf[0], strings10Inf[1], strings10Inf[2], svg10);
+      arr.map.call(string10, el => el.setAttribute('x2', `${strings10Inf[0] + 270}`));
+    } else if (linesCounter > 30 && linesCounter < 33) {
+      setViewBox("0 0 950 1650");
+      let svg11 = document.getElementById('svg11');
+      let string11 = document.getElementsByClassName('string11');
+      let strings11Inf = new Array(string11[0].x2.animVal.value, string11[0].y1.animVal.value, string11[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings11Inf[0], strings11Inf[1], strings11Inf[2], svg11);
+      arr.map.call(string11, el => el.setAttribute('x2', `${strings11Inf[0] + 270}`));
+    } else if (linesCounter > 33 && linesCounter < 36) {
+      setViewBox("0 0 950 1800");
+      let svg12 = document.getElementById('svg12');
+      let string12 = document.getElementsByClassName('string12');
+      let strings12Inf = new Array(string12[0].x2.animVal.value, string12[0].y1.animVal.value, string12[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings12Inf[0], strings12Inf[1], strings12Inf[2], svg12);
+      arr.map.call(string12, el => el.setAttribute('x2', `${strings12Inf[0] + 270}`));
     }
 
     console.log(linesCounter);
@@ -4069,19 +4387,31 @@ const TabCreator = ({
     textarea: textArea
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.sheet
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_sidebarContent_TabsOpt__WEBPACK_IMPORTED_MODULE_5__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.back,
+    onClick: handleQuit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "far fa-times-circle"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_sidebarContent_TabsOpt__WEBPACK_IMPORTED_MODULE_5__.default, {
     inputRef: inputRef,
     handleChange: handleChange,
     fretNum: fretNum,
     goBack: goBack,
     addNewLine: addNewLine,
-    handleSave: handleSave
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.back,
-    onClick: handleQuit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-    className: "far fa-times-circle"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
+    handleSave: handleSave,
+    firstString: firstString,
+    secondString: secondString,
+    thirdString: thirdString,
+    fourthString: fourthString,
+    fifthString: fifthString,
+    sixthString: sixthString
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_tabs_start__WEBPACK_IMPORTED_MODULE_2__.default, {
+    firstString: firstString,
+    secondString: secondString,
+    thirdString: thirdString,
+    fourthString: fourthString,
+    fifthString: fifthString,
+    sixthString: sixthString,
     viewBox: viewBox,
     author: author,
     title: title,
@@ -4736,7 +5066,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._37bL43SjCiiICxpBgXsVFV{\n  z-index: 2;\n}\n@media screen and (min-width: 1200px){\n  ._37bL43SjCiiICxpBgXsVFV{\n    width: 123%;\n  }\n}\n@media screen and (min-width: 1600px){\n  ._37bL43SjCiiICxpBgXsVFV{\n    width: 86%;\n  }\n}\n._33noMIP3OUyal1qO5YAFzZ{\n  text-align: center;\n}\n", "",{"version":3,"sources":["webpack://./front/src/styles/start.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;AACZ;AACA;EACE;IACE,WAAW;EACb;AACF;AACA;EACE;IACE,UAAU;EACZ;AACF;AACA;EACE,kBAAkB;AACpB","sourcesContent":[".container{\n  z-index: 2;\n}\n@media screen and (min-width: 1200px){\n  .container{\n    width: 123%;\n  }\n}\n@media screen and (min-width: 1600px){\n  .container{\n    width: 86%;\n  }\n}\n.title{\n  text-align: center;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._37bL43SjCiiICxpBgXsVFV{\n  width:113%;\n  display:flex;\n  flex-direction: column;\n}\n\n._33noMIP3OUyal1qO5YAFzZ{\n  align-self: flex-start;\n  margin-bottom: 1%;\n}\n", "",{"version":3,"sources":["webpack://./front/src/styles/start.module.css"],"names":[],"mappings":"AAAA;EACE,UAAU;EACV,YAAY;EACZ,sBAAsB;AACxB;;AAEA;EACE,sBAAsB;EACtB,iBAAiB;AACnB","sourcesContent":[".container{\n  width:113%;\n  display:flex;\n  flex-direction: column;\n}\n\n.title{\n  align-self: flex-start;\n  margin-bottom: 1%;\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_37bL43SjCiiICxpBgXsVFV",
@@ -4767,7 +5097,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  \r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n.rDpj8rcFkydifVmAAk24N{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;;AAErB;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  \r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._19sAE_qddDUootF9-ZJEnL{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n._30QTFjcbeCCiACaJjrDojM{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  z-index: 3;\r\n}\r\n._2OwO10MVgqsHJbtWUmkuP3{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n._1xWal2t-a0ZuxdzYxtMOwN{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n._38Vih5DlzVRHwzqTgllPmX{\r\n  display: inline;\r\n}\r\n.rDpj8rcFkydifVmAAk24N{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabCreator.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,UAAU;EACV,WAAW;EACX,aAAa;EACb,yBAAyB;EACzB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;AACA;EACE,yBAAyB;EACzB,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,UAAU;AACZ;AACA;EACE,kBAAkB;EAClB,YAAY;EACZ,mBAAmB;EACnB,8BAA8B;EAC9B,2BAA2B,EAAE,iBAAiB;AAChD;AACA;EACE,QAAQ;EACR,WAAW;EACX,eAAe;EACf,gBAAgB;AAClB;AACA;EACE,eAAe;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;AACjB","sourcesContent":[".container{\r\n  background-color: white;\r\n  width: 95%;\r\n  height: 95%;\r\n  margin:0 auto;\r\n  background-color: #555454;\r\n  display: flex;\r\n  justify-content: center;\r\n  border-radius: 0.5%;\r\n}\r\n.sheet{\r\n  background-color: #EBEBEB;\r\n  width: 95%;\r\n  height: 95%;\r\n  border-radius: 0.1%;\r\n  z-index: 3;\r\n}\r\n.optionsContainer{\r\n  position: absolute;\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  background-color: lightblue; /*color temporal*/\r\n}\r\n.input{\r\n  width:8%;\r\n  height: 4vh;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n.h4{\r\n  display: inline;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  font-size: 150%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_19sAE_qddDUootF9-ZJEnL",
@@ -4802,14 +5132,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1SuUxCZvdOeEP0JmLqvYaq{\r\n  position:absolute;\r\n  display:flex;\r\n  flex-direction: column;\r\n  z-index: 4;\r\n  left: -28%;\r\n  width:25%;\r\n  top:25%;\r\n  background-color: #1f1e1e;\r\n\r\n}\r\n._1aH3Sa3jBA3IgALK2ZYUjM{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:50%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n._2OPi1na-vWcR6CxbK7L6TW{\r\n  display:flex;\r\n}\r\n._3vhfdZg1ztZRq4Ujq7oJeY{\r\n  color:#9590A0;\r\n}\r\n._2Tl5-a0bGHVveJpcaz8v-o{\r\n  width:12%;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabsOpt.module.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,YAAY;EACZ,sBAAsB;EACtB,UAAU;EACV,UAAU;EACV,SAAS;EACT,OAAO;EACP,yBAAyB;;AAE3B;AACA;EACE,WAAW;EACX,cAAc;EACd,mBAAmB;EACnB,aAAa;EACb,SAAS;EACT,iBAAiB;EACjB,aAAa;EACb,eAAe;AACjB;AACA;EACE,YAAY;AACd;AACA;EACE,aAAa;AACf;AACA;EACE,SAAS;EACT,eAAe;EACf,gBAAgB;AAClB","sourcesContent":[".inf{\r\n  position:absolute;\r\n  display:flex;\r\n  flex-direction: column;\r\n  z-index: 4;\r\n  left: -28%;\r\n  width:25%;\r\n  top:25%;\r\n  background-color: #1f1e1e;\r\n\r\n}\r\n.otherButton{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:50%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n.infRow{\r\n  display:flex;\r\n}\r\n.h4{\r\n  color:#9590A0;\r\n}\r\n.infInput{\r\n  width:12%;\r\n  font-size: 150%;\r\n  padding-left: 1%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1SuUxCZvdOeEP0JmLqvYaq{\r\n  position:fixed;\r\n  display:flex;\r\n  flex-direction: row;\r\n  z-index: 5;\r\n  left: -28%;\r\n  width:25%;\r\n  margin-top: 13%;\r\n  background-color: #1f1e1e;\r\n}\r\n._1aH3Sa3jBA3IgALK2ZYUjM{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:65%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n._41SxWOupNBnhhTJCVk48H{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n._2OPi1na-vWcR6CxbK7L6TW{\r\n  display:flex;\r\n}\r\n._3vhfdZg1ztZRq4Ujq7oJeY{\r\n  color:#9590A0;\r\n}\r\n._2Tl5-a0bGHVveJpcaz8v-o{\r\n  width:25%;\r\n  font-size: 150%;\r\n  margin-left: 1%;\r\n}\r\n._2xllu_y9FRB1-KNYExOLfR{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n._274fDz1kjs4FXWRpvA2pvl{\r\n  width:45%;\r\n  font-size: 135%;\r\n  justify-content: flex-end;\r\n}\r\n._2BT3jlNyAVpIiPkyhITke4{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabsOpt.module.css"],"names":[],"mappings":"AAAA;EACE,cAAc;EACd,YAAY;EACZ,mBAAmB;EACnB,UAAU;EACV,UAAU;EACV,SAAS;EACT,eAAe;EACf,yBAAyB;AAC3B;AACA;EACE,WAAW;EACX,cAAc;EACd,mBAAmB;EACnB,aAAa;EACb,SAAS;EACT,iBAAiB;EACjB,aAAa;EACb,eAAe;AACjB;AACA;EACE,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,YAAY;AACd;AACA;EACE,aAAa;AACf;AACA;EACE,SAAS;EACT,eAAe;EACf,eAAe;AACjB;AACA;EACE,aAAa;EACb,mBAAmB;AACrB;AACA;EACE,SAAS;EACT,eAAe;EACf,yBAAyB;AAC3B;AACA;EACE,aAAa;EACb,sBAAsB;AACxB","sourcesContent":[".inf{\r\n  position:fixed;\r\n  display:flex;\r\n  flex-direction: row;\r\n  z-index: 5;\r\n  left: -28%;\r\n  width:25%;\r\n  margin-top: 13%;\r\n  background-color: #1f1e1e;\r\n}\r\n.otherButton{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:65%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n.infCol{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n.infRow{\r\n  display:flex;\r\n}\r\n.h4{\r\n  color:#9590A0;\r\n}\r\n.infInput{\r\n  width:25%;\r\n  font-size: 150%;\r\n  margin-left: 1%;\r\n}\r\n.infCol2{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.inputTg{\r\n  width:45%;\r\n  font-size: 135%;\r\n  justify-content: flex-end;\r\n}\r\n.inpSection{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"inf": "_1SuUxCZvdOeEP0JmLqvYaq",
 	"otherButton": "_1aH3Sa3jBA3IgALK2ZYUjM",
+	"infCol": "_41SxWOupNBnhhTJCVk48H",
 	"infRow": "_2OPi1na-vWcR6CxbK7L6TW",
 	"h4": "_3vhfdZg1ztZRq4Ujq7oJeY",
-	"infInput": "_2Tl5-a0bGHVveJpcaz8v-o"
+	"infInput": "_2Tl5-a0bGHVveJpcaz8v-o",
+	"infCol2": "_2xllu_y9FRB1-KNYExOLfR",
+	"inputTg": "_274fDz1kjs4FXWRpvA2pvl",
+	"inpSection": "_2BT3jlNyAVpIiPkyhITke4"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
