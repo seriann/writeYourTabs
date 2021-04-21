@@ -4302,11 +4302,29 @@ const TabCreator = ({
       width: 1000
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
-      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF();
-      const imgProps = newPdf.getImageProperties(imgData);
+      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF(); //
+
+      let imgWidth = 210;
+      let pageHeight = 295;
+      let imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0; //
+
+      newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        newPdf.addPage();
+        newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      /*const imgProps= newPdf.getImageProperties(imgData);
       const pdfWidth = newPdf.internal.pageSize.getWidth();
-      const pdfHeight = imgProps.height * pdfWidth / imgProps.width;
-      newPdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)*/
+
+
       setPdf(newPdf);
       newPdf.save('download.pdf');
     }).catch(err => console.log(err));

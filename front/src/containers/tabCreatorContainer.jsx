@@ -50,11 +50,28 @@ const handleSave = () => {
                       .then(canvas => {
                         const imgData = canvas.toDataURL('image/png')
                         const newPdf = new jsPDF()
+                        //
+                          let imgWidth = 210
+                          let pageHeight = 295
+                          let imgHeight = canvas.height * imgWidth / canvas.width
+                          let heightLeft = imgHeight
+                          let position = 0
+                        //
 
-                        const imgProps= newPdf.getImageProperties(imgData);
+                        newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+                        heightLeft -= pageHeight
+
+                        while (heightLeft >= 0) {
+                          position = heightLeft - imgHeight
+                          newPdf.addPage()
+                          newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+                          heightLeft -= pageHeight
+
+                        }
+                        /*const imgProps= newPdf.getImageProperties(imgData);
                         const pdfWidth = newPdf.internal.pageSize.getWidth();
                         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                        newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)
+                        newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)*/
                         setPdf(newPdf)
                         newPdf.save('download.pdf')
                       }).catch(err=>console.log(err))
