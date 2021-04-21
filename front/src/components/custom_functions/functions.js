@@ -27,6 +27,7 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
 }
 
 export const createText = (svgX,svgY,fretNum,id) => {
+  console.log("y:", svgY);
   let split = Math.round(svgY).toString().split("")
   let splY = split.length > 2? split : split=[0, ...split]
 
@@ -36,7 +37,7 @@ export const createText = (svgX,svgY,fretNum,id) => {
   text.appendChild(txtNode)
   text.setAttribute('x', `${svgX - 3}`)
   if(svgY >= join(splY,12) && svgY <= join(splY,18)){
-    text.setAttribute('y', join(splY[0],22))
+    text.setAttribute('y', join(splY,22))
   }else if(svgY >= join(splY,27) && svgY <= join(splY,33)){
     text.setAttribute('y', join(splY,37))
   }else if(svgY >= join(splY,42) && svgY <= join(splY,48)){
@@ -50,13 +51,25 @@ export const createText = (svgX,svgY,fretNum,id) => {
  }else {
    bool = false
  }
-function join(arr,num){
-  return parseInt([arr[0],num].join(""))
-}
  text.setAttribute('font-size', '18')
  text.setAttribute('id', id)
  svg.appendChild(text)
  if(bool)return id
+}
+
+function join(arr,num){
+  console.log("pasa por arr:",arr);
+  if(arr.length > 3){
+    const numArr = num.toString().split("")
+  let newArr = arr.map((el,i)=> {
+     if(i == arr.length - numArr.length)return el = numArr[0]
+     else if(i == arr.length - 1)return el = numArr[1]
+     else return el
+   })
+    return parseInt(newArr.join(""))
+  }else{
+    return parseInt([arr[0],num].join(""))
+  }
 }
 
 export function svgPoint(element, x, y) {

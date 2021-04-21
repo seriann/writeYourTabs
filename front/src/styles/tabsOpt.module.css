@@ -1,23 +1,25 @@
 .inf{
-  position:absolute;
+  position: sticky;
   display:flex;
-  flex-direction: column;
-  z-index: 4;
-  left: -28%;
-  width:25%;
-  top:25%;
-  background-color: #1f1e1e;
+  flex-direction: row;
 
+  left: -28%;
+  top: 13%;
+  background-color: #1f1e1e;
 }
 .otherButton{
   border:none;
   color: #9590A0;
   background: #5c5c5c;
   outline: none;
-  width:50%;
+  width:65%;
   border-radius: 5%;
   margin-top:2%;
   cursor: pointer;
+}
+.infCol{
+  display: flex;
+  flex-direction: column;
 }
 .infRow{
   display:flex;
@@ -26,7 +28,20 @@
   color:#9590A0;
 }
 .infInput{
-  width:12%;
+  width:15%;
   font-size: 150%;
-  padding-left: 1%;
+  margin-left: 1%;
+}
+.infCol2{
+  display: flex;
+  flex-direction: row;
+}
+.inputTg{
+  width:13%;
+  font-size: 125%;
+  justify-content: flex-end;
+}
+.inpSection{
+  display: flex;
+  flex-direction: column;
 }

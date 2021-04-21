@@ -13,7 +13,7 @@
   width: 95%;
   height: 95%;
   border-radius: 0.1%;
-  
+  z-index: 3;
 }
 .optionsContainer{
   position: absolute;

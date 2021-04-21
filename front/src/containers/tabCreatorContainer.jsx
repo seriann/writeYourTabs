@@ -20,9 +20,15 @@ const TabCreator = ({logged}) => {
  const [author, setAuthor] = useState("")
  const [genre, setGenre] = useState("")
  const [textArea, setTextArea] = useState("")
+ const [firstString, setFirstString]= useState("e")
+ const [secondString,setSecondString]= useState("B")
+ const [thirdString, setThirdString]= useState("G")
+ const [fourthString, setFourthString]= useState("D")
+ const [fifthString, setFifthString]= useState("A")
+ const [sixthString,setSixthString]= useState("E")
  const [tab, setTab] = useState(false)
  const [pdf, setPdf] = useState(null)
- const [viewBox, setViewBox] = useState("0 0 950 300")
+ const [viewBox, setViewBox] = useState("0 0 950 200")
  const input = document.getElementById('svgContainer')
  const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -38,15 +44,34 @@ const TabCreator = ({logged}) => {
 }
 
 const handleSave = () => {
-  html2canvas(svgContainerRef.current)
+  html2canvas(svgContainerRef.current,{
+                                       width:1000
+                     })
                       .then(canvas => {
                         const imgData = canvas.toDataURL('image/png')
                         const newPdf = new jsPDF()
+                        //
+                          let imgWidth = 210
+                          let pageHeight = 295
+                          let imgHeight = canvas.height * imgWidth / canvas.width
+                          let heightLeft = imgHeight
+                          let position = 0
+                        //
 
-                        const imgProps= newPdf.getImageProperties(imgData);
+                        newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+                        heightLeft -= pageHeight
+
+                        while (heightLeft >= 0) {
+                          position = heightLeft - imgHeight
+                          newPdf.addPage()
+                          newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+                          heightLeft -= pageHeight
+
+                        }
+                        /*const imgProps= newPdf.getImageProperties(imgData);
                         const pdfWidth = newPdf.internal.pageSize.getWidth();
                         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                        newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)
+                        newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)*/
                         setPdf(newPdf)
                         newPdf.save('download.pdf')
                       }).catch(err=>console.log(err))
@@ -80,13 +105,21 @@ const handleChange = (e) => {
   if(name == "author")return setAuthor(value)
   if(name == "genre")return setGenre(value)
   if(name == "textarea")return setTextArea(value)
+
+  if(name == "firstString")return setFirstString(value)
+  if(name == "secondString")return setSecondString(value)
+  if(name == "thirdString")return setThirdString(value)
+  if(name == "fourthString")return setFourthString(value)
+  if(name == "fifthString")return setFifthString(value)
+  if(name == "sixthString")return setSixthString(value)
+
 }
 
 const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordenadas del mouse
   const { currentTarget: svg, pageX, pageY, clientX, clientY } = evt
   const id = uniqid()
   let svgP = svgPoint(svg, clientX, clientY)
-  const txt = createText(svgP.x, svgP.y,fretNum, id)
+  const txt = createText(svgP.x, Math.round(svgP.y),fretNum, id)
 
   /*const coords = svg.getBoundingClientRect()
   const y_rounded = Math.round(`${pageY - coords.y}`)
@@ -121,6 +154,7 @@ const addNewLine = () => {  //a mejorar
  arr.map.call(strings,(el)=> el.setAttribute('x2',`${strings1Inf[0] + 270}`))
 
 } else if (linesCounter > 3 && linesCounter < 6) {
+  setViewBox("0 0 950 300")
   let svg2 = document.getElementById('svg2')
   let strings2 = document.getElementsByClassName('string2')
   let strings2Inf = new Array(strings2[0].x2.animVal.value,strings2[0].y1.animVal.value, strings2[5].y1.animVal.value)
@@ -169,6 +203,48 @@ const addNewLine = () => {  //a mejorar
   let strings8Inf = new Array(string8[0].x2.animVal.value,string8[0].y1.animVal.value, string8[5].y1.animVal.value)
   createSeparationLine(strings8Inf[0],strings8Inf[1],strings8Inf[2],svg8)
   arr.map.call(string8,(el)=> el.setAttribute('x2',`${strings8Inf[0] + 270}`))
+}else if(linesCounter > 24 && linesCounter < 27){
+  setViewBox("0 0 950 1350")
+  let svg9 = document.getElementById('svg9')
+  let string9 = document.getElementsByClassName('string9')
+  let strings9Inf = new Array(string9[0].x2.animVal.value,string9[0].y1.animVal.value, string9[5].y1.animVal.value)
+  createSeparationLine(strings9Inf[0],strings9Inf[1],strings9Inf[2],svg9)
+  arr.map.call(string9,(el)=> el.setAttribute('x2',`${strings9Inf[0] + 270}`))
+}else if(linesCounter > 27 && linesCounter < 30){
+  setViewBox("0 0 950 1500")
+  let svg10 = document.getElementById('svg10')
+  let string10 = document.getElementsByClassName('string10')
+  let strings10Inf = new Array(string10[0].x2.animVal.value,string10[0].y1.animVal.value, string10[5].y1.animVal.value)
+  createSeparationLine(strings10Inf[0],strings10Inf[1],strings10Inf[2],svg10)
+  arr.map.call(string10,(el)=> el.setAttribute('x2',`${strings10Inf[0] + 270}`))
+}else if(linesCounter > 30 && linesCounter < 33){
+  setViewBox("0 0 950 1650")
+  let svg11 = document.getElementById('svg11')
+  let string11 = document.getElementsByClassName('string11')
+  let strings11Inf = new Array(string11[0].x2.animVal.value,string11[0].y1.animVal.value, string11[5].y1.animVal.value)
+  createSeparationLine(strings11Inf[0],strings11Inf[1],strings11Inf[2],svg11)
+  arr.map.call(string11,(el)=> el.setAttribute('x2',`${strings11Inf[0] + 270}`))
+}else if(linesCounter > 33 && linesCounter < 36){
+  setViewBox("0 0 950 1800")
+  let svg12 = document.getElementById('svg12')
+  let string12 = document.getElementsByClassName('string12')
+  let strings12Inf = new Array(string12[0].x2.animVal.value,string12[0].y1.animVal.value, string12[5].y1.animVal.value)
+  createSeparationLine(strings12Inf[0],strings12Inf[1],strings12Inf[2],svg12)
+  arr.map.call(string12,(el)=> el.setAttribute('x2',`${strings12Inf[0] + 270}`))
+}else if(linesCounter > 36 && linesCounter < 39){
+  setViewBox("0 0 950 1950")
+  let svg13 = document.getElementById('svg13')
+  let string13 = document.getElementsByClassName('string13')
+  let strings13Inf = new Array(string13[0].x2.animVal.value,string13[0].y1.animVal.value, string13[5].y1.animVal.value)
+  createSeparationLine(strings13Inf[0],strings13Inf[1],strings13Inf[2],svg13)
+  arr.map.call(string13,(el)=> el.setAttribute('x2',`${strings13Inf[0] + 270}`))
+}else if(linesCounter > 39 && linesCounter < 42){
+  setViewBox("0 0 950 2100")
+  let svg14 = document.getElementById('svg14')
+  let string14 = document.getElementsByClassName('string14')
+  let strings14Inf = new Array(string14[0].x2.animVal.value,string14[0].y1.animVal.value, string14[5].y1.animVal.value)
+  createSeparationLine(strings14Inf[0],strings14Inf[1],strings14Inf[2],svg14)
+  arr.map.call(string14,(el)=> el.setAttribute('x2',`${strings14Inf[0] + 270}`))
 }
 console.log(linesCounter);
 setLinesCounter(linesCounter+1)
@@ -192,19 +268,30 @@ setLinesCounter(linesCounter+1)
         />
        :
        <div className={styles.sheet}>
-       <TabsOpt
-        inputRef={inputRef}
-        handleChange={handleChange}
-        fretNum={fretNum}
-        goBack={goBack}
-        addNewLine={addNewLine}
-        handleSave={handleSave}
-       />
         <button className={styles.back} onClick={handleQuit}>
           <i className="far fa-times-circle"></i>
         </button>
-
+          <TabsOpt
+           inputRef={inputRef}
+           handleChange={handleChange}
+           fretNum={fretNum}
+           goBack={goBack}
+           addNewLine={addNewLine}
+           handleSave={handleSave}
+           firstString={firstString}
+           secondString={secondString}
+           thirdString={thirdString}
+           fourthString={fourthString}
+           fifthString={fifthString}
+           sixthString={sixthString}
+          />
             <Tab
+            firstString={firstString}
+            secondString={secondString}
+            thirdString={thirdString}
+            fourthString={fourthString}
+            fifthString={fifthString}
+            sixthString={sixthString}
             viewBox={viewBox}
             author={author}
             title={title}
