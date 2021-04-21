@@ -1,11 +1,10 @@
 .inf{
-  position:fixed;
+  position: sticky;
   display:flex;
   flex-direction: row;
-  z-index: 5;
+
   left: -28%;
-  width:25%;
-  margin-top: 13%;
+  top: 13%;
   background-color: #1f1e1e;
 }
 .otherButton{
@@ -29,7 +28,7 @@
   color:#9590A0;
 }
 .infInput{
-  width:25%;
+  width:15%;
   font-size: 150%;
   margin-left: 1%;
 }
@@ -38,8 +37,8 @@
   flex-direction: row;
 }
 .inputTg{
-  width:45%;
-  font-size: 135%;
+  width:13%;
+  font-size: 125%;
   justify-content: flex-end;
 }
 .inpSection{

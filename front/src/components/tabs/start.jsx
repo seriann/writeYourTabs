@@ -188,6 +188,34 @@ const Start = ({firstString,secondString,thirdString,fourthString,fifthString,si
                  </svg>
 
                }
+               {
+               counter > 36 &&
+
+                <svg id="svg13">
+                <text x="15" y="1213">13</text>
+                 <line x1="30" y1="1215" x2="300" y2="1215" className="string13" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1230" x2="300" y2="1230" className="string13" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1245" x2="300" y2="1245" className="string13" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1260" x2="300" y2="1260" className="string13" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1275" x2="300" y2="1275" className="string13" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1290" x2="300" y2="1290" className="string13" stroke="grey" strokeWidth="1"></line>
+                 </svg>
+
+               }
+               {
+               counter > 39 &&
+
+                <svg id="svg14">
+                <text x="15" y="1313">14</text>
+                 <line x1="30" y1="1315" x2="300" y2="1315" className="string14" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1330" x2="300" y2="1330" className="string14" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1345" x2="300" y2="1345" className="string14" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1360" x2="300" y2="1360" className="string14" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1375" x2="300" y2="1375" className="string14" stroke="grey" strokeWidth="1"></line>
+                 <line x1="30" y1="1390" x2="300" y2="1390" className="string14" stroke="grey" strokeWidth="1"></line>
+                 </svg>
+
+               }
              </svg>
     </div>
   )

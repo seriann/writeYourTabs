@@ -94,7 +94,7 @@ const handleChange = (e) => {
   if(name == "thirdString")return setThirdString(value)
   if(name == "fourthString")return setFourthString(value)
   if(name == "fifthString")return setFifthString(value)
-  if(name == "sixthString")return setThirdString(value)
+  if(name == "sixthString")return setSixthString(value)
 
 }
 
@@ -214,6 +214,20 @@ const addNewLine = () => {  //a mejorar
   let strings12Inf = new Array(string12[0].x2.animVal.value,string12[0].y1.animVal.value, string12[5].y1.animVal.value)
   createSeparationLine(strings12Inf[0],strings12Inf[1],strings12Inf[2],svg12)
   arr.map.call(string12,(el)=> el.setAttribute('x2',`${strings12Inf[0] + 270}`))
+}else if(linesCounter > 36 && linesCounter < 39){
+  setViewBox("0 0 950 1950")
+  let svg13 = document.getElementById('svg13')
+  let string13 = document.getElementsByClassName('string13')
+  let strings13Inf = new Array(string13[0].x2.animVal.value,string13[0].y1.animVal.value, string13[5].y1.animVal.value)
+  createSeparationLine(strings13Inf[0],strings13Inf[1],strings13Inf[2],svg13)
+  arr.map.call(string13,(el)=> el.setAttribute('x2',`${strings13Inf[0] + 270}`))
+}else if(linesCounter > 39 && linesCounter < 42){
+  setViewBox("0 0 950 2100")
+  let svg14 = document.getElementById('svg14')
+  let string14 = document.getElementsByClassName('string14')
+  let strings14Inf = new Array(string14[0].x2.animVal.value,string14[0].y1.animVal.value, string14[5].y1.animVal.value)
+  createSeparationLine(strings14Inf[0],strings14Inf[1],strings14Inf[2],svg14)
+  arr.map.call(string14,(el)=> el.setAttribute('x2',`${strings14Inf[0] + 270}`))
 }
 console.log(linesCounter);
 setLinesCounter(linesCounter+1)

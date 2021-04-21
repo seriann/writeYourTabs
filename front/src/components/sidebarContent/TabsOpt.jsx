@@ -2,6 +2,7 @@ import React from 'react'
 import styles from "../../styles/tabsOpt.module.css"
 
 const TabsOpt = ({firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+
   return(
    <div className={styles.inf}>
     <div className={styles.infCol}>
