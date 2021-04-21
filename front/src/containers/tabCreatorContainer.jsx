@@ -50,13 +50,12 @@ const handleSave = () => {
                       .then(canvas => {
                         const imgData = canvas.toDataURL('image/png')
                         const newPdf = new jsPDF()
-                        //
+
                           let imgWidth = 210
                           let pageHeight = 295
                           let imgHeight = canvas.height * imgWidth / canvas.width
                           let heightLeft = imgHeight
                           let position = 0
-                        //
 
                         newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
                         heightLeft -= pageHeight
@@ -68,10 +67,6 @@ const handleSave = () => {
                           heightLeft -= pageHeight
 
                         }
-                        /*const imgProps= newPdf.getImageProperties(imgData);
-                        const pdfWidth = newPdf.internal.pageSize.getWidth();
-                        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                        newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)*/
                         setPdf(newPdf)
                         newPdf.save('download.pdf')
                       }).catch(err=>console.log(err))
@@ -245,6 +240,97 @@ const addNewLine = () => {  //a mejorar
   let strings14Inf = new Array(string14[0].x2.animVal.value,string14[0].y1.animVal.value, string14[5].y1.animVal.value)
   createSeparationLine(strings14Inf[0],strings14Inf[1],strings14Inf[2],svg14)
   arr.map.call(string14,(el)=> el.setAttribute('x2',`${strings14Inf[0] + 270}`))
+}else if(linesCounter > 42 && linesCounter < 45){
+  setViewBox("0 0 950 2250")
+  let svg15 = document.getElementById('svg15')
+  let string15 = document.getElementsByClassName('string15')
+  let strings15Inf = new Array(string15[0].x2.animVal.value,string15[0].y1.animVal.value, string15[5].y1.animVal.value)
+  createSeparationLine(strings15Inf[0],strings15Inf[1],strings15Inf[2],svg15)
+  arr.map.call(string15,(el)=> el.setAttribute('x2',`${strings15Inf[0] + 270}`))
+}else if(linesCounter > 45 && linesCounter < 48){
+  setViewBox("0 0 950 2400")
+  let svg16 = document.getElementById('svg16')
+  let string16 = document.getElementsByClassName('string16')
+  let strings16Inf = new Array(string16[0].x2.animVal.value,string16[0].y1.animVal.value, string16[5].y1.animVal.value)
+  createSeparationLine(strings16Inf[0],strings16Inf[1],strings16Inf[2],svg16)
+  arr.map.call(string16,(el)=> el.setAttribute('x2',`${strings16Inf[0] + 270}`))
+}else if(linesCounter > 48 && linesCounter < 51){
+  setViewBox("0 0 950 2550")
+  let svg17 = document.getElementById('svg17')
+  let string17 = document.getElementsByClassName('string17')
+  let strings17Inf = new Array(string17[0].x2.animVal.value,string17[0].y1.animVal.value, string17[5].y1.animVal.value)
+  createSeparationLine(strings17Inf[0],strings17Inf[1],strings17Inf[2],svg17)
+  arr.map.call(string17,(el)=> el.setAttribute('x2',`${strings17Inf[0] + 270}`))
+}else if(linesCounter > 51 && linesCounter < 54){
+  setViewBox("0 0 950 2700")
+  let svg18 = document.getElementById('svg18')
+  let string18 = document.getElementsByClassName('string18')
+  let strings18Inf = new Array(string18[0].x2.animVal.value,string18[0].y1.animVal.value, string18[5].y1.animVal.value)
+  createSeparationLine(strings18Inf[0],strings18Inf[1],strings18Inf[2],svg18)
+  arr.map.call(string18,(el)=> el.setAttribute('x2',`${strings18Inf[0] + 270}`))
+}else if(linesCounter > 54 && linesCounter < 57){
+  setViewBox("0 0 950 2850")
+  let svg19 = document.getElementById('svg19')
+  let string19 = document.getElementsByClassName('string19')
+  let strings19Inf = new Array(string19[0].x2.animVal.value,string19[0].y1.animVal.value, string19[5].y1.animVal.value)
+  createSeparationLine(strings19Inf[0],strings19Inf[1],strings19Inf[2],svg19)
+  arr.map.call(string19,(el)=> el.setAttribute('x2',`${strings19Inf[0] + 270}`))
+}else if(linesCounter > 57 && linesCounter < 60){
+  setViewBox("0 0 950 3000")
+  let svg20 = document.getElementById('svg20')
+  let string20 = document.getElementsByClassName('string20')
+  let strings20Inf = new Array(string20[0].x2.animVal.value,string20[0].y1.animVal.value, string20[5].y1.animVal.value)
+  createSeparationLine(strings20Inf[0],strings20Inf[1],strings20Inf[2],svg20)
+  arr.map.call(string20,(el)=> el.setAttribute('x2',`${strings20Inf[0] + 270}`))
+}else if(linesCounter > 60 && linesCounter < 63){
+  setViewBox("0 0 950 3150")
+  let svg21 = document.getElementById('svg21')
+  let string21 = document.getElementsByClassName('string21')
+  let strings21Inf = new Array(string21[0].x2.animVal.value,string21[0].y1.animVal.value, string21[5].y1.animVal.value)
+  createSeparationLine(strings21Inf[0],strings21Inf[1],strings21Inf[2],svg21)
+  arr.map.call(string21,(el)=> el.setAttribute('x2',`${strings21Inf[0] + 270}`))
+}else if(linesCounter > 63 && linesCounter < 66){
+  setViewBox("0 0 950 3300")
+  let svg22 = document.getElementById('svg22')
+  let string22 = document.getElementsByClassName('string22')
+  let strings22Inf = new Array(string22[0].x2.animVal.value,string22[0].y1.animVal.value, string22[5].y1.animVal.value)
+  createSeparationLine(strings22Inf[0],strings22Inf[1],strings22Inf[2],svg22)
+  arr.map.call(string22,(el)=> el.setAttribute('x2',`${strings22Inf[0] + 270}`))
+}else if(linesCounter > 66 && linesCounter < 69){
+  setViewBox("0 0 950 3450")
+  let svg23 = document.getElementById('svg23')
+  let string23 = document.getElementsByClassName('string23')
+  let strings23Inf = new Array(string23[0].x2.animVal.value,string23[0].y1.animVal.value, string23[5].y1.animVal.value)
+  createSeparationLine(strings23Inf[0],strings23Inf[1],strings23Inf[2],svg23)
+  arr.map.call(string23,(el)=> el.setAttribute('x2',`${strings23Inf[0] + 270}`))
+}else if(linesCounter > 69 && linesCounter < 72){
+  setViewBox("0 0 950 3600")
+  let svg24 = document.getElementById('svg24')
+  let string24 = document.getElementsByClassName('string24')
+  let strings24Inf = new Array(string24[0].x2.animVal.value,string24[0].y1.animVal.value, string24[5].y1.animVal.value)
+  createSeparationLine(strings24Inf[0],strings24Inf[1],strings24Inf[2],svg24)
+  arr.map.call(string24,(el)=> el.setAttribute('x2',`${strings24Inf[0] + 270}`))
+}else if(linesCounter > 72 && linesCounter < 75){
+  setViewBox("0 0 950 3750")
+  let svg25 = document.getElementById('svg25')
+  let string25 = document.getElementsByClassName('string25')
+  let strings25Inf = new Array(string25[0].x2.animVal.value,string25[0].y1.animVal.value, string25[5].y1.animVal.value)
+  createSeparationLine(strings25Inf[0],strings25Inf[1],strings25Inf[2],svg25)
+  arr.map.call(string25,(el)=> el.setAttribute('x2',`${strings25Inf[0] + 270}`))
+}else if(linesCounter > 75 && linesCounter < 78){
+  setViewBox("0 0 950 3900")
+  let svg26 = document.getElementById('svg26')
+  let string26 = document.getElementsByClassName('string26')
+  let strings26Inf = new Array(string26[0].x2.animVal.value,string26[0].y1.animVal.value, string26[5].y1.animVal.value)
+  createSeparationLine(strings26Inf[0],strings26Inf[1],strings26Inf[2],svg26)
+  arr.map.call(string26,(el)=> el.setAttribute('x2',`${strings26Inf[0] + 270}`))
+}else if(linesCounter > 78 && linesCounter < 81){
+  setViewBox("0 0 950 4050")
+  let svg27 = document.getElementById('svg27')
+  let string27 = document.getElementsByClassName('string27')
+  let strings27Inf = new Array(string27[0].x2.animVal.value,string27[0].y1.animVal.value, string27[5].y1.animVal.value)
+  createSeparationLine(strings27Inf[0],strings27Inf[1],strings27Inf[2],svg27)
+  arr.map.call(string27,(el)=> el.setAttribute('x2',`${strings27Inf[0] + 270}`))
 }
 console.log(linesCounter);
 setLinesCounter(linesCounter+1)

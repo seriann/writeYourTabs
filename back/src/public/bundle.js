@@ -3982,6 +3982,695 @@ const Start = ({
     className: "string14",
     stroke: "grey",
     strokeWidth: "1"
+  })), counter > 42 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg15"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1413"
+  }, "15"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1415",
+    x2: "300",
+    y2: "1415",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1430",
+    x2: "300",
+    y2: "1430",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1445",
+    x2: "300",
+    y2: "1445",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1460",
+    x2: "300",
+    y2: "1460",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1475",
+    x2: "300",
+    y2: "1475",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1490",
+    x2: "300",
+    y2: "1490",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 45 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg16"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1513"
+  }, "16"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1515",
+    x2: "300",
+    y2: "1515",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1530",
+    x2: "300",
+    y2: "1530",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1545",
+    x2: "300",
+    y2: "1545",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1560",
+    x2: "300",
+    y2: "1560",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1575",
+    x2: "300",
+    y2: "1575",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1590",
+    x2: "300",
+    y2: "1590",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 48 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg17"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1613"
+  }, "17"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1615",
+    x2: "300",
+    y2: "1615",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1630",
+    x2: "300",
+    y2: "1630",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1645",
+    x2: "300",
+    y2: "1645",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1660",
+    x2: "300",
+    y2: "1660",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1675",
+    x2: "300",
+    y2: "1675",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1690",
+    x2: "300",
+    y2: "1690",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 51 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg18"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1713"
+  }, "18"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1715",
+    x2: "300",
+    y2: "1715",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1730",
+    x2: "300",
+    y2: "1730",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1745",
+    x2: "300",
+    y2: "1745",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1760",
+    x2: "300",
+    y2: "1760",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1775",
+    x2: "300",
+    y2: "1775",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1790",
+    x2: "300",
+    y2: "1790",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 54 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg19"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1813"
+  }, "19"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1815",
+    x2: "300",
+    y2: "1815",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1830",
+    x2: "300",
+    y2: "1830",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1845",
+    x2: "300",
+    y2: "1845",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1860",
+    x2: "300",
+    y2: "1860",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1875",
+    x2: "300",
+    y2: "1875",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1890",
+    x2: "300",
+    y2: "1890",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 57 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg20"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1913"
+  }, "20"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1915",
+    x2: "300",
+    y2: "1915",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1930",
+    x2: "300",
+    y2: "1930",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1945",
+    x2: "300",
+    y2: "1945",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1960",
+    x2: "300",
+    y2: "1960",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1975",
+    x2: "300",
+    y2: "1975",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1990",
+    x2: "300",
+    y2: "1990",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 60 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg21"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2013"
+  }, "21"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2015",
+    x2: "300",
+    y2: "2015",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2030",
+    x2: "300",
+    y2: "2030",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2045",
+    x2: "300",
+    y2: "2045",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2060",
+    x2: "300",
+    y2: "2060",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2075",
+    x2: "300",
+    y2: "2075",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2090",
+    x2: "300",
+    y2: "2090",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 63 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg22"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2113"
+  }, "22"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2115",
+    x2: "300",
+    y2: "2115",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2130",
+    x2: "300",
+    y2: "2130",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2145",
+    x2: "300",
+    y2: "2145",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2160",
+    x2: "300",
+    y2: "2160",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2175",
+    x2: "300",
+    y2: "2175",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2190",
+    x2: "300",
+    y2: "2190",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 66 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg23"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2213"
+  }, "23"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2215",
+    x2: "300",
+    y2: "2215",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2230",
+    x2: "300",
+    y2: "2230",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2245",
+    x2: "300",
+    y2: "2245",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2260",
+    x2: "300",
+    y2: "2260",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2275",
+    x2: "300",
+    y2: "2275",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2290",
+    x2: "300",
+    y2: "2290",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 69 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg24"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2313"
+  }, "24"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2315",
+    x2: "300",
+    y2: "2315",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2330",
+    x2: "300",
+    y2: "2330",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2345",
+    x2: "300",
+    y2: "2345",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2360",
+    x2: "300",
+    y2: "2360",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2375",
+    x2: "300",
+    y2: "2375",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2390",
+    x2: "300",
+    y2: "2390",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 72 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg25"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2413"
+  }, "25"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2415",
+    x2: "300",
+    y2: "2415",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2430",
+    x2: "300",
+    y2: "2430",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2445",
+    x2: "300",
+    y2: "2445",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2460",
+    x2: "300",
+    y2: "2460",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2475",
+    x2: "300",
+    y2: "2475",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2490",
+    x2: "300",
+    y2: "2490",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 75 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg26"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2513"
+  }, "26"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2515",
+    x2: "300",
+    y2: "2515",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2530",
+    x2: "300",
+    y2: "2530",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2545",
+    x2: "300",
+    y2: "2545",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2560",
+    x2: "300",
+    y2: "2560",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2575",
+    x2: "300",
+    y2: "2575",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2590",
+    x2: "300",
+    y2: "2590",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 78 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg27"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2613"
+  }, "27"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2615",
+    x2: "300",
+    y2: "2615",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2630",
+    x2: "300",
+    y2: "2630",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2645",
+    x2: "300",
+    y2: "2645",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2660",
+    x2: "300",
+    y2: "2660",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2675",
+    x2: "300",
+    y2: "2675",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2690",
+    x2: "300",
+    y2: "2690",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
   }))));
 };
 
@@ -4302,14 +4991,12 @@ const TabCreator = ({
       width: 1000
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
-      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF(); //
-
+      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF();
       let imgWidth = 210;
       let pageHeight = 295;
       let imgHeight = canvas.height * imgWidth / canvas.width;
       let heightLeft = imgHeight;
-      let position = 0; //
-
+      let position = 0;
       newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
 
@@ -4319,11 +5006,6 @@ const TabCreator = ({
         newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      /*const imgProps= newPdf.getImageProperties(imgData);
-      const pdfWidth = newPdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)*/
-
 
       setPdf(newPdf);
       newPdf.save('download.pdf');
@@ -4507,6 +5189,97 @@ const TabCreator = ({
       let strings14Inf = new Array(string14[0].x2.animVal.value, string14[0].y1.animVal.value, string14[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings14Inf[0], strings14Inf[1], strings14Inf[2], svg14);
       arr.map.call(string14, el => el.setAttribute('x2', `${strings14Inf[0] + 270}`));
+    } else if (linesCounter > 42 && linesCounter < 45) {
+      setViewBox("0 0 950 2250");
+      let svg15 = document.getElementById('svg15');
+      let string15 = document.getElementsByClassName('string15');
+      let strings15Inf = new Array(string15[0].x2.animVal.value, string15[0].y1.animVal.value, string15[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings15Inf[0], strings15Inf[1], strings15Inf[2], svg15);
+      arr.map.call(string15, el => el.setAttribute('x2', `${strings15Inf[0] + 270}`));
+    } else if (linesCounter > 45 && linesCounter < 48) {
+      setViewBox("0 0 950 2400");
+      let svg16 = document.getElementById('svg16');
+      let string16 = document.getElementsByClassName('string16');
+      let strings16Inf = new Array(string16[0].x2.animVal.value, string16[0].y1.animVal.value, string16[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings16Inf[0], strings16Inf[1], strings16Inf[2], svg16);
+      arr.map.call(string16, el => el.setAttribute('x2', `${strings16Inf[0] + 270}`));
+    } else if (linesCounter > 48 && linesCounter < 51) {
+      setViewBox("0 0 950 2550");
+      let svg17 = document.getElementById('svg17');
+      let string17 = document.getElementsByClassName('string17');
+      let strings17Inf = new Array(string17[0].x2.animVal.value, string17[0].y1.animVal.value, string17[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings17Inf[0], strings17Inf[1], strings17Inf[2], svg17);
+      arr.map.call(string17, el => el.setAttribute('x2', `${strings17Inf[0] + 270}`));
+    } else if (linesCounter > 51 && linesCounter < 54) {
+      setViewBox("0 0 950 2700");
+      let svg18 = document.getElementById('svg18');
+      let string18 = document.getElementsByClassName('string18');
+      let strings18Inf = new Array(string18[0].x2.animVal.value, string18[0].y1.animVal.value, string18[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings18Inf[0], strings18Inf[1], strings18Inf[2], svg18);
+      arr.map.call(string18, el => el.setAttribute('x2', `${strings18Inf[0] + 270}`));
+    } else if (linesCounter > 54 && linesCounter < 57) {
+      setViewBox("0 0 950 2850");
+      let svg19 = document.getElementById('svg19');
+      let string19 = document.getElementsByClassName('string19');
+      let strings19Inf = new Array(string19[0].x2.animVal.value, string19[0].y1.animVal.value, string19[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings19Inf[0], strings19Inf[1], strings19Inf[2], svg19);
+      arr.map.call(string19, el => el.setAttribute('x2', `${strings19Inf[0] + 270}`));
+    } else if (linesCounter > 57 && linesCounter < 60) {
+      setViewBox("0 0 950 3000");
+      let svg20 = document.getElementById('svg20');
+      let string20 = document.getElementsByClassName('string20');
+      let strings20Inf = new Array(string20[0].x2.animVal.value, string20[0].y1.animVal.value, string20[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings20Inf[0], strings20Inf[1], strings20Inf[2], svg20);
+      arr.map.call(string20, el => el.setAttribute('x2', `${strings20Inf[0] + 270}`));
+    } else if (linesCounter > 60 && linesCounter < 63) {
+      setViewBox("0 0 950 3150");
+      let svg21 = document.getElementById('svg21');
+      let string21 = document.getElementsByClassName('string21');
+      let strings21Inf = new Array(string21[0].x2.animVal.value, string21[0].y1.animVal.value, string21[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings21Inf[0], strings21Inf[1], strings21Inf[2], svg21);
+      arr.map.call(string21, el => el.setAttribute('x2', `${strings21Inf[0] + 270}`));
+    } else if (linesCounter > 63 && linesCounter < 66) {
+      setViewBox("0 0 950 3300");
+      let svg22 = document.getElementById('svg22');
+      let string22 = document.getElementsByClassName('string22');
+      let strings22Inf = new Array(string22[0].x2.animVal.value, string22[0].y1.animVal.value, string22[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings22Inf[0], strings22Inf[1], strings22Inf[2], svg22);
+      arr.map.call(string22, el => el.setAttribute('x2', `${strings22Inf[0] + 270}`));
+    } else if (linesCounter > 66 && linesCounter < 69) {
+      setViewBox("0 0 950 3450");
+      let svg23 = document.getElementById('svg23');
+      let string23 = document.getElementsByClassName('string23');
+      let strings23Inf = new Array(string23[0].x2.animVal.value, string23[0].y1.animVal.value, string23[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings23Inf[0], strings23Inf[1], strings23Inf[2], svg23);
+      arr.map.call(string23, el => el.setAttribute('x2', `${strings23Inf[0] + 270}`));
+    } else if (linesCounter > 69 && linesCounter < 72) {
+      setViewBox("0 0 950 3600");
+      let svg24 = document.getElementById('svg24');
+      let string24 = document.getElementsByClassName('string24');
+      let strings24Inf = new Array(string24[0].x2.animVal.value, string24[0].y1.animVal.value, string24[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings24Inf[0], strings24Inf[1], strings24Inf[2], svg24);
+      arr.map.call(string24, el => el.setAttribute('x2', `${strings24Inf[0] + 270}`));
+    } else if (linesCounter > 72 && linesCounter < 75) {
+      setViewBox("0 0 950 3750");
+      let svg25 = document.getElementById('svg25');
+      let string25 = document.getElementsByClassName('string25');
+      let strings25Inf = new Array(string25[0].x2.animVal.value, string25[0].y1.animVal.value, string25[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings25Inf[0], strings25Inf[1], strings25Inf[2], svg25);
+      arr.map.call(string25, el => el.setAttribute('x2', `${strings25Inf[0] + 270}`));
+    } else if (linesCounter > 75 && linesCounter < 78) {
+      setViewBox("0 0 950 3900");
+      let svg26 = document.getElementById('svg26');
+      let string26 = document.getElementsByClassName('string26');
+      let strings26Inf = new Array(string26[0].x2.animVal.value, string26[0].y1.animVal.value, string26[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings26Inf[0], strings26Inf[1], strings26Inf[2], svg26);
+      arr.map.call(string26, el => el.setAttribute('x2', `${strings26Inf[0] + 270}`));
+    } else if (linesCounter > 78 && linesCounter < 81) {
+      setViewBox("0 0 950 4050");
+      let svg27 = document.getElementById('svg27');
+      let string27 = document.getElementsByClassName('string27');
+      let strings27Inf = new Array(string27[0].x2.animVal.value, string27[0].y1.animVal.value, string27[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings27Inf[0], strings27Inf[1], strings27Inf[2], svg27);
+      arr.map.call(string27, el => el.setAttribute('x2', `${strings27Inf[0] + 270}`));
     }
 
     console.log(linesCounter);
