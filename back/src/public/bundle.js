@@ -3933,53 +3933,1272 @@ const Start = ({
     id: "svg14"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
     x: "15",
-    y: "1313"
+    y: "1413"
   }, "14"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "1315",
+    y1: "1415",
     x2: "300",
-    y2: "1315",
+    y2: "1415",
     className: "string14",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "1330",
+    y1: "1430",
     x2: "300",
-    y2: "1330",
+    y2: "1430",
     className: "string14",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "1345",
+    y1: "1445",
     x2: "300",
-    y2: "1345",
+    y2: "1445",
     className: "string14",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "1360",
+    y1: "1460",
     x2: "300",
-    y2: "1360",
+    y2: "1460",
     className: "string14",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "1375",
+    y1: "1475",
     x2: "300",
-    y2: "1375",
+    y2: "1475",
     className: "string14",
     stroke: "grey",
     strokeWidth: "1"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
     x1: "30",
-    y1: "1390",
+    y1: "1490",
     x2: "300",
-    y2: "1390",
+    y2: "1490",
     className: "string14",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 42 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg15"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1513"
+  }, "15"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1515",
+    x2: "300",
+    y2: "1515",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1530",
+    x2: "300",
+    y2: "1530",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1545",
+    x2: "300",
+    y2: "1545",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1560",
+    x2: "300",
+    y2: "1560",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1575",
+    x2: "300",
+    y2: "1575",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1590",
+    x2: "300",
+    y2: "1590",
+    className: "string15",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 45 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg16"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1613"
+  }, "16"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1615",
+    x2: "300",
+    y2: "1615",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1630",
+    x2: "300",
+    y2: "1630",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1645",
+    x2: "300",
+    y2: "1645",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1660",
+    x2: "300",
+    y2: "1660",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1675",
+    x2: "300",
+    y2: "1675",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1690",
+    x2: "300",
+    y2: "1690",
+    className: "string16",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 48 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg17"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1713"
+  }, "17"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1715",
+    x2: "300",
+    y2: "1715",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1730",
+    x2: "300",
+    y2: "1730",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1745",
+    x2: "300",
+    y2: "1745",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1760",
+    x2: "300",
+    y2: "1760",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1775",
+    x2: "300",
+    y2: "1775",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1790",
+    x2: "300",
+    y2: "1790",
+    className: "string17",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 51 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg18"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1813"
+  }, "18"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1815",
+    x2: "300",
+    y2: "1815",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1830",
+    x2: "300",
+    y2: "1830",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1845",
+    x2: "300",
+    y2: "1845",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1860",
+    x2: "300",
+    y2: "1860",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1875",
+    x2: "300",
+    y2: "1875",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1890",
+    x2: "300",
+    y2: "1890",
+    className: "string18",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 54 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg19"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "1913"
+  }, "19"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1915",
+    x2: "300",
+    y2: "1915",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1930",
+    x2: "300",
+    y2: "1930",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1945",
+    x2: "300",
+    y2: "1945",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1960",
+    x2: "300",
+    y2: "1960",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1975",
+    x2: "300",
+    y2: "1975",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "1990",
+    x2: "300",
+    y2: "1990",
+    className: "string19",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 57 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg20"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2013"
+  }, "20"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2015",
+    x2: "300",
+    y2: "2015",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2030",
+    x2: "300",
+    y2: "2030",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2045",
+    x2: "300",
+    y2: "2045",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2060",
+    x2: "300",
+    y2: "2060",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2075",
+    x2: "300",
+    y2: "2075",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2090",
+    x2: "300",
+    y2: "2090",
+    className: "string20",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 60 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg21"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2113"
+  }, "21"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2115",
+    x2: "300",
+    y2: "2115",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2130",
+    x2: "300",
+    y2: "2130",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2145",
+    x2: "300",
+    y2: "2145",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2160",
+    x2: "300",
+    y2: "2160",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2175",
+    x2: "300",
+    y2: "2175",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2190",
+    x2: "300",
+    y2: "2190",
+    className: "string21",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 63 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg22"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2213"
+  }, "22"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2215",
+    x2: "300",
+    y2: "2215",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2230",
+    x2: "300",
+    y2: "2230",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2245",
+    x2: "300",
+    y2: "2245",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2260",
+    x2: "300",
+    y2: "2260",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2275",
+    x2: "300",
+    y2: "2275",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2290",
+    x2: "300",
+    y2: "2290",
+    className: "string22",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 66 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg23"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2313"
+  }, "23"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2315",
+    x2: "300",
+    y2: "2315",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2330",
+    x2: "300",
+    y2: "2330",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2345",
+    x2: "300",
+    y2: "2345",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2360",
+    x2: "300",
+    y2: "2360",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2375",
+    x2: "300",
+    y2: "2375",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2390",
+    x2: "300",
+    y2: "2390",
+    className: "string23",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 69 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg24"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2413"
+  }, "24"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2415",
+    x2: "300",
+    y2: "2415",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2430",
+    x2: "300",
+    y2: "2430",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2445",
+    x2: "300",
+    y2: "2445",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2460",
+    x2: "300",
+    y2: "2460",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2475",
+    x2: "300",
+    y2: "2475",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2490",
+    x2: "300",
+    y2: "2490",
+    className: "string24",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 72 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg25"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2513"
+  }, "25"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2515",
+    x2: "300",
+    y2: "2515",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2530",
+    x2: "300",
+    y2: "2530",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2545",
+    x2: "300",
+    y2: "2545",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2560",
+    x2: "300",
+    y2: "2560",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2575",
+    x2: "300",
+    y2: "2575",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2590",
+    x2: "300",
+    y2: "2590",
+    className: "string25",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 75 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg26"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2713"
+  }, "26"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2715",
+    x2: "300",
+    y2: "2715",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2730",
+    x2: "300",
+    y2: "2730",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2745",
+    x2: "300",
+    y2: "2745",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2760",
+    x2: "300",
+    y2: "2760",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2775",
+    x2: "300",
+    y2: "2775",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2790",
+    x2: "300",
+    y2: "2790",
+    className: "string26",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 78 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg27"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2813"
+  }, "27"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2815",
+    x2: "300",
+    y2: "2815",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2830",
+    x2: "300",
+    y2: "2830",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2845",
+    x2: "300",
+    y2: "2845",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2860",
+    x2: "300",
+    y2: "2860",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2875",
+    x2: "300",
+    y2: "2875",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2890",
+    x2: "300",
+    y2: "2890",
+    className: "string27",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 81 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg28"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "2913"
+  }, "28"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2915",
+    x2: "300",
+    y2: "2915",
+    className: "string28",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2930",
+    x2: "300",
+    y2: "2930",
+    className: "string28",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2945",
+    x2: "300",
+    y2: "2945",
+    className: "string28",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2960",
+    x2: "300",
+    y2: "2960",
+    className: "string28",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2975",
+    x2: "300",
+    y2: "2975",
+    className: "string28",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "2990",
+    x2: "300",
+    y2: "2990",
+    className: "string28",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 84 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg29"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3013"
+  }, "29"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3015",
+    x2: "300",
+    y2: "3015",
+    className: "string29",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3030",
+    x2: "300",
+    y2: "3030",
+    className: "string29",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3045",
+    x2: "300",
+    y2: "3045",
+    className: "string29",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3060",
+    x2: "300",
+    y2: "3060",
+    className: "string29",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3075",
+    x2: "300",
+    y2: "3075",
+    className: "string29",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3090",
+    x2: "300",
+    y2: "3090",
+    className: "string29",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 87 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg30"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3113"
+  }, "30"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3115",
+    x2: "300",
+    y2: "3115",
+    className: "string30",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3130",
+    x2: "300",
+    y2: "3130",
+    className: "string30",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3145",
+    x2: "300",
+    y2: "3145",
+    className: "string30",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3160",
+    x2: "300",
+    y2: "3160",
+    className: "string30",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3175",
+    x2: "300",
+    y2: "3175",
+    className: "string30",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3190",
+    x2: "300",
+    y2: "3190",
+    className: "string30",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 90 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg31"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3213"
+  }, "31"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3215",
+    x2: "300",
+    y2: "3215",
+    className: "string31",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3230",
+    x2: "300",
+    y2: "3230",
+    className: "string31",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3245",
+    x2: "300",
+    y2: "3245",
+    className: "string31",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3260",
+    x2: "300",
+    y2: "3260",
+    className: "string31",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3275",
+    x2: "300",
+    y2: "3275",
+    className: "string31",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3290",
+    x2: "300",
+    y2: "3290",
+    className: "string31",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 93 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg32"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3313"
+  }, "32"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3315",
+    x2: "300",
+    y2: "3315",
+    className: "string32",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3330",
+    x2: "300",
+    y2: "3330",
+    className: "string32",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3345",
+    x2: "300",
+    y2: "3345",
+    className: "string32",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3360",
+    x2: "300",
+    y2: "3360",
+    className: "string32",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3375",
+    x2: "300",
+    y2: "3375",
+    className: "string32",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3390",
+    x2: "300",
+    y2: "3390",
+    className: "string32",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 96 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg33"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3413"
+  }, "33"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3415",
+    x2: "300",
+    y2: "3415",
+    className: "string33",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3430",
+    x2: "300",
+    y2: "3430",
+    className: "string33",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3445",
+    x2: "300",
+    y2: "3445",
+    className: "string33",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3460",
+    x2: "300",
+    y2: "3460",
+    className: "string33",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3475",
+    x2: "300",
+    y2: "3475",
+    className: "string33",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3490",
+    x2: "300",
+    y2: "3490",
+    className: "string33",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 99 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg34"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3513"
+  }, "34"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3515",
+    x2: "300",
+    y2: "3515",
+    className: "string34",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3530",
+    x2: "300",
+    y2: "3530",
+    className: "string34",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3545",
+    x2: "300",
+    y2: "3545",
+    className: "string34",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3560",
+    x2: "300",
+    y2: "3560",
+    className: "string34",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3575",
+    x2: "300",
+    y2: "3575",
+    className: "string34",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3590",
+    x2: "300",
+    y2: "3590",
+    className: "string34",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 102 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg35"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3613"
+  }, "35"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3615",
+    x2: "300",
+    y2: "3615",
+    className: "string35",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3630",
+    x2: "300",
+    y2: "3630",
+    className: "string35",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3645",
+    x2: "300",
+    y2: "3645",
+    className: "string35",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3660",
+    x2: "300",
+    y2: "3660",
+    className: "string35",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3675",
+    x2: "300",
+    y2: "3675",
+    className: "string35",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3690",
+    x2: "300",
+    y2: "3690",
+    className: "string35",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 105 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg36"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3713"
+  }, "36"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3715",
+    x2: "300",
+    y2: "3715",
+    className: "string36",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3730",
+    x2: "300",
+    y2: "3730",
+    className: "string36",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3745",
+    x2: "300",
+    y2: "3745",
+    className: "string36",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3760",
+    x2: "300",
+    y2: "3760",
+    className: "string36",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3775",
+    x2: "300",
+    y2: "3775",
+    className: "string36",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3790",
+    x2: "300",
+    y2: "3790",
+    className: "string36",
+    stroke: "grey",
+    strokeWidth: "1"
+  })), counter > 108 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    id: "svg37"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+    x: "15",
+    y: "3813"
+  }, "37"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3815",
+    x2: "300",
+    y2: "3815",
+    className: "string37",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3830",
+    x2: "300",
+    y2: "3830",
+    className: "string37",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3845",
+    x2: "300",
+    y2: "3845",
+    className: "string37",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3860",
+    x2: "300",
+    y2: "3860",
+    className: "string37",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3875",
+    x2: "300",
+    y2: "3875",
+    className: "string37",
+    stroke: "grey",
+    strokeWidth: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("line", {
+    x1: "30",
+    y1: "3890",
+    x2: "300",
+    y2: "3890",
+    className: "string37",
     stroke: "grey",
     strokeWidth: "1"
   }))));
@@ -4254,6 +5473,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+Date.prototype.yyyymmdd = function () {
+  var mm = this.getMonth() + 1; // getMonth() is zero-based
+
+  var dd = this.getDate();
+  return [this.getFullYear(), (mm > 9 ? '' : '0') + "-" + mm, (dd > 9 ? '' : '0') + "-" + dd + "|", this.getHours() + ":", this.getMinutes() + ":", this.getSeconds()].join('');
+};
+
 const TabCreator = ({
   logged
 }) => {
@@ -4298,35 +5524,48 @@ const TabCreator = ({
   };
 
   const handleSave = () => {
+    let date = new Date();
+    document.body.scrollTop = 0; // For Safari
+
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
     html2canvas__WEBPACK_IMPORTED_MODULE_7___default()(svgContainerRef.current, {
       width: 1000
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
-      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF(); //
-
+      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__.jsPDF('pt', 'mm');
       let imgWidth = 210;
-      let pageHeight = 295;
+      let pageHeight = 290;
       let imgHeight = canvas.height * imgWidth / canvas.width;
       let heightLeft = imgHeight;
-      let position = 0; //
-
+      let position = 0;
       newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
 
-      while (heightLeft >= 0) {
+      while (heightLeft >= 10) {
         position = heightLeft - imgHeight;
         newPdf.addPage();
-        newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight - 25);
         heightLeft -= pageHeight;
       }
-      /*const imgProps= newPdf.getImageProperties(imgData);
-      const pdfWidth = newPdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      newPdf.addImage(imgData, 'PNG', 0, 0,pdfWidth, pdfHeight)*/
 
+      console.log("pages num", newPdf.internal.getNumberOfPages());
+      let pageCount = newPdf.internal.getNumberOfPages();
+
+      if (linesCounter <= 39 && pageCount > 1) {
+        console.log("borre una pagina");
+        newPdf.deletePage(pageCount);
+      } else if (linesCounter <= 74 && pageCount > 2) {
+        console.log("borre una pagina");
+        newPdf.deletePage(pageCount);
+      } else if (pageCount >= 4 && pageCount <= 5) {
+        console.log("borre dos paginas");
+        newPdf.deletePage(pageCount);
+        newPdf.deletePage(pageCount - 1);
+      }
 
       setPdf(newPdf);
-      newPdf.save('download.pdf');
+      newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`);
     }).catch(err => console.log(err));
     console.log(pdf);
   };
@@ -4507,6 +5746,167 @@ const TabCreator = ({
       let strings14Inf = new Array(string14[0].x2.animVal.value, string14[0].y1.animVal.value, string14[5].y1.animVal.value);
       (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings14Inf[0], strings14Inf[1], strings14Inf[2], svg14);
       arr.map.call(string14, el => el.setAttribute('x2', `${strings14Inf[0] + 270}`));
+    } else if (linesCounter > 42 && linesCounter < 45) {
+      setViewBox("0 0 950 2250");
+      let svg15 = document.getElementById('svg15');
+      let string15 = document.getElementsByClassName('string15');
+      let strings15Inf = new Array(string15[0].x2.animVal.value, string15[0].y1.animVal.value, string15[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings15Inf[0], strings15Inf[1], strings15Inf[2], svg15);
+      arr.map.call(string15, el => el.setAttribute('x2', `${strings15Inf[0] + 270}`));
+    } else if (linesCounter > 45 && linesCounter < 48) {
+      setViewBox("0 0 950 2400");
+      let svg16 = document.getElementById('svg16');
+      let string16 = document.getElementsByClassName('string16');
+      let strings16Inf = new Array(string16[0].x2.animVal.value, string16[0].y1.animVal.value, string16[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings16Inf[0], strings16Inf[1], strings16Inf[2], svg16);
+      arr.map.call(string16, el => el.setAttribute('x2', `${strings16Inf[0] + 270}`));
+    } else if (linesCounter > 48 && linesCounter < 51) {
+      setViewBox("0 0 950 2550");
+      let svg17 = document.getElementById('svg17');
+      let string17 = document.getElementsByClassName('string17');
+      let strings17Inf = new Array(string17[0].x2.animVal.value, string17[0].y1.animVal.value, string17[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings17Inf[0], strings17Inf[1], strings17Inf[2], svg17);
+      arr.map.call(string17, el => el.setAttribute('x2', `${strings17Inf[0] + 270}`));
+    } else if (linesCounter > 51 && linesCounter < 54) {
+      setViewBox("0 0 950 2700");
+      let svg18 = document.getElementById('svg18');
+      let string18 = document.getElementsByClassName('string18');
+      let strings18Inf = new Array(string18[0].x2.animVal.value, string18[0].y1.animVal.value, string18[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings18Inf[0], strings18Inf[1], strings18Inf[2], svg18);
+      arr.map.call(string18, el => el.setAttribute('x2', `${strings18Inf[0] + 270}`));
+    } else if (linesCounter > 54 && linesCounter < 57) {
+      setViewBox("0 0 950 2850");
+      let svg19 = document.getElementById('svg19');
+      let string19 = document.getElementsByClassName('string19');
+      let strings19Inf = new Array(string19[0].x2.animVal.value, string19[0].y1.animVal.value, string19[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings19Inf[0], strings19Inf[1], strings19Inf[2], svg19);
+      arr.map.call(string19, el => el.setAttribute('x2', `${strings19Inf[0] + 270}`));
+    } else if (linesCounter > 57 && linesCounter < 60) {
+      setViewBox("0 0 950 3000");
+      let svg20 = document.getElementById('svg20');
+      let string20 = document.getElementsByClassName('string20');
+      let strings20Inf = new Array(string20[0].x2.animVal.value, string20[0].y1.animVal.value, string20[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings20Inf[0], strings20Inf[1], strings20Inf[2], svg20);
+      arr.map.call(string20, el => el.setAttribute('x2', `${strings20Inf[0] + 270}`));
+    } else if (linesCounter > 60 && linesCounter < 63) {
+      setViewBox("0 0 950 3150");
+      let svg21 = document.getElementById('svg21');
+      let string21 = document.getElementsByClassName('string21');
+      let strings21Inf = new Array(string21[0].x2.animVal.value, string21[0].y1.animVal.value, string21[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings21Inf[0], strings21Inf[1], strings21Inf[2], svg21);
+      arr.map.call(string21, el => el.setAttribute('x2', `${strings21Inf[0] + 270}`));
+    } else if (linesCounter > 63 && linesCounter < 66) {
+      setViewBox("0 0 950 3300");
+      let svg22 = document.getElementById('svg22');
+      let string22 = document.getElementsByClassName('string22');
+      let strings22Inf = new Array(string22[0].x2.animVal.value, string22[0].y1.animVal.value, string22[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings22Inf[0], strings22Inf[1], strings22Inf[2], svg22);
+      arr.map.call(string22, el => el.setAttribute('x2', `${strings22Inf[0] + 270}`));
+    } else if (linesCounter > 66 && linesCounter < 69) {
+      setViewBox("0 0 950 3450");
+      let svg23 = document.getElementById('svg23');
+      let string23 = document.getElementsByClassName('string23');
+      let strings23Inf = new Array(string23[0].x2.animVal.value, string23[0].y1.animVal.value, string23[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings23Inf[0], strings23Inf[1], strings23Inf[2], svg23);
+      arr.map.call(string23, el => el.setAttribute('x2', `${strings23Inf[0] + 270}`));
+    } else if (linesCounter > 69 && linesCounter < 72) {
+      setViewBox("0 0 950 3600");
+      let svg24 = document.getElementById('svg24');
+      let string24 = document.getElementsByClassName('string24');
+      let strings24Inf = new Array(string24[0].x2.animVal.value, string24[0].y1.animVal.value, string24[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings24Inf[0], strings24Inf[1], strings24Inf[2], svg24);
+      arr.map.call(string24, el => el.setAttribute('x2', `${strings24Inf[0] + 270}`));
+    } else if (linesCounter > 72 && linesCounter < 75) {
+      setViewBox("0 0 950 3750");
+      let svg25 = document.getElementById('svg25');
+      let string25 = document.getElementsByClassName('string25');
+      let strings25Inf = new Array(string25[0].x2.animVal.value, string25[0].y1.animVal.value, string25[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings25Inf[0], strings25Inf[1], strings25Inf[2], svg25);
+      arr.map.call(string25, el => el.setAttribute('x2', `${strings25Inf[0] + 270}`));
+    } else if (linesCounter > 75 && linesCounter < 78) {
+      setViewBox("0 0 950 3900");
+      let svg26 = document.getElementById('svg26');
+      let string26 = document.getElementsByClassName('string26');
+      let strings26Inf = new Array(string26[0].x2.animVal.value, string26[0].y1.animVal.value, string26[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings26Inf[0], strings26Inf[1], strings26Inf[2], svg26);
+      arr.map.call(string26, el => el.setAttribute('x2', `${strings26Inf[0] + 270}`));
+    } else if (linesCounter > 78 && linesCounter < 81) {
+      setViewBox("0 0 950 4050");
+      let svg27 = document.getElementById('svg27');
+      let string27 = document.getElementsByClassName('string27');
+      let strings27Inf = new Array(string27[0].x2.animVal.value, string27[0].y1.animVal.value, string27[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings27Inf[0], strings27Inf[1], strings27Inf[2], svg27);
+      arr.map.call(string27, el => el.setAttribute('x2', `${strings27Inf[0] + 270}`));
+    } else if (linesCounter > 81 && linesCounter < 84) {
+      setViewBox("0 0 950 4200");
+      let svg28 = document.getElementById('svg28');
+      let string28 = document.getElementsByClassName('string28');
+      let strings28Inf = new Array(string28[0].x2.animVal.value, string28[0].y1.animVal.value, string28[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings28Inf[0], strings28Inf[1], strings28Inf[2], svg28);
+      arr.map.call(string28, el => el.setAttribute('x2', `${strings28Inf[0] + 270}`));
+    } else if (linesCounter > 84 && linesCounter < 87) {
+      setViewBox("0 0 950 4350");
+      let svg29 = document.getElementById('svg29');
+      let string29 = document.getElementsByClassName('string29');
+      let strings29Inf = new Array(string29[0].x2.animVal.value, string29[0].y1.animVal.value, string29[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings29Inf[0], strings29Inf[1], strings29Inf[2], svg29);
+      arr.map.call(string29, el => el.setAttribute('x2', `${strings29Inf[0] + 270}`));
+    } else if (linesCounter > 87 && linesCounter < 90) {
+      setViewBox("0 0 950 4500");
+      let svg30 = document.getElementById('svg30');
+      let string30 = document.getElementsByClassName('string30');
+      let strings30Inf = new Array(string30[0].x2.animVal.value, string30[0].y1.animVal.value, string30[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings30Inf[0], strings30Inf[1], strings30Inf[2], svg30);
+      arr.map.call(string30, el => el.setAttribute('x2', `${strings30Inf[0] + 270}`));
+    } else if (linesCounter > 90 && linesCounter < 93) {
+      setViewBox("0 0 950 4650");
+      let svg31 = document.getElementById('svg31');
+      let string31 = document.getElementsByClassName('string31');
+      let strings31Inf = new Array(string31[0].x2.animVal.value, string31[0].y1.animVal.value, string31[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings31Inf[0], strings31Inf[1], strings31Inf[2], svg31);
+      arr.map.call(string31, el => el.setAttribute('x2', `${strings31Inf[0] + 270}`));
+    } else if (linesCounter > 93 && linesCounter < 96) {
+      setViewBox("0 0 950 4800");
+      let svg32 = document.getElementById('svg32');
+      let string32 = document.getElementsByClassName('string32');
+      let strings32Inf = new Array(string32[0].x2.animVal.value, string32[0].y1.animVal.value, string32[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings32Inf[0], strings32Inf[1], strings32Inf[2], svg32);
+      arr.map.call(string32, el => el.setAttribute('x2', `${strings32Inf[0] + 270}`));
+    } else if (linesCounter > 96 && linesCounter < 99) {
+      setViewBox("0 0 950 4950");
+      let svg33 = document.getElementById('svg33');
+      let string33 = document.getElementsByClassName('string33');
+      let strings33Inf = new Array(string33[0].x2.animVal.value, string33[0].y1.animVal.value, string33[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings33Inf[0], strings33Inf[1], strings33Inf[2], svg33);
+      arr.map.call(string33, el => el.setAttribute('x2', `${strings33Inf[0] + 270}`));
+    } else if (linesCounter > 99 && linesCounter < 102) {
+      setViewBox("0 0 950 5100");
+      let svg34 = document.getElementById('svg34');
+      let string34 = document.getElementsByClassName('string34');
+      let strings34Inf = new Array(string34[0].x2.animVal.value, string34[0].y1.animVal.value, string34[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings34Inf[0], strings34Inf[1], strings34Inf[2], svg34);
+      arr.map.call(string34, el => el.setAttribute('x2', `${strings34Inf[0] + 270}`));
+    } else if (linesCounter > 102 && linesCounter < 105) {
+      setViewBox("0 0 950 5250");
+      let svg35 = document.getElementById('svg35');
+      let string35 = document.getElementsByClassName('string35');
+      let strings35Inf = new Array(string35[0].x2.animVal.value, string35[0].y1.animVal.value, string35[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings35Inf[0], strings35Inf[1], strings35Inf[2], svg35);
+      arr.map.call(string35, el => el.setAttribute('x2', `${strings35Inf[0] + 270}`));
+    } else if (linesCounter > 105 && linesCounter < 108) {
+      setViewBox("0 0 950 5400");
+      let svg36 = document.getElementById('svg36');
+      let string36 = document.getElementsByClassName('string36');
+      let strings36Inf = new Array(string36[0].x2.animVal.value, string36[0].y1.animVal.value, string36[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings36Inf[0], strings36Inf[1], strings36Inf[2], svg36);
+      arr.map.call(string36, el => el.setAttribute('x2', `${strings36Inf[0] + 270}`));
+    } else if (linesCounter > 108 && linesCounter < 111) {
+      setViewBox("0 0 950 5550");
+      let svg37 = document.getElementById('svg37');
+      let string37 = document.getElementsByClassName('string37');
+      let strings37Inf = new Array(string37[0].x2.animVal.value, string37[0].y1.animVal.value, string37[5].y1.animVal.value);
+      (0,_components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings37Inf[0], strings37Inf[1], strings37Inf[2], svg37);
+      arr.map.call(string37, el => el.setAttribute('x2', `${strings37Inf[0] + 270}`));
     }
 
     console.log(linesCounter);
@@ -5270,7 +6670,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1SuUxCZvdOeEP0JmLqvYaq{\r\n  position: sticky;\r\n  display:flex;\r\n  flex-direction: row;\r\n\r\n  left: -28%;\r\n  top: 13%;\r\n  background-color: #1f1e1e;\r\n}\r\n._1aH3Sa3jBA3IgALK2ZYUjM{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:65%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n._41SxWOupNBnhhTJCVk48H{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n._2OPi1na-vWcR6CxbK7L6TW{\r\n  display:flex;\r\n}\r\n._3vhfdZg1ztZRq4Ujq7oJeY{\r\n  color:#9590A0;\r\n}\r\n._2Tl5-a0bGHVveJpcaz8v-o{\r\n  width:15%;\r\n  font-size: 150%;\r\n  margin-left: 1%;\r\n}\r\n._2xllu_y9FRB1-KNYExOLfR{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n._274fDz1kjs4FXWRpvA2pvl{\r\n  width:13%;\r\n  font-size: 125%;\r\n  justify-content: flex-end;\r\n}\r\n._2BT3jlNyAVpIiPkyhITke4{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabsOpt.module.css"],"names":[],"mappings":"AAAA;EACE,gBAAgB;EAChB,YAAY;EACZ,mBAAmB;;EAEnB,UAAU;EACV,QAAQ;EACR,yBAAyB;AAC3B;AACA;EACE,WAAW;EACX,cAAc;EACd,mBAAmB;EACnB,aAAa;EACb,SAAS;EACT,iBAAiB;EACjB,aAAa;EACb,eAAe;AACjB;AACA;EACE,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,YAAY;AACd;AACA;EACE,aAAa;AACf;AACA;EACE,SAAS;EACT,eAAe;EACf,eAAe;AACjB;AACA;EACE,aAAa;EACb,mBAAmB;AACrB;AACA;EACE,SAAS;EACT,eAAe;EACf,yBAAyB;AAC3B;AACA;EACE,aAAa;EACb,sBAAsB;AACxB","sourcesContent":[".inf{\r\n  position: sticky;\r\n  display:flex;\r\n  flex-direction: row;\r\n\r\n  left: -28%;\r\n  top: 13%;\r\n  background-color: #1f1e1e;\r\n}\r\n.otherButton{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:65%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n.infCol{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n.infRow{\r\n  display:flex;\r\n}\r\n.h4{\r\n  color:#9590A0;\r\n}\r\n.infInput{\r\n  width:15%;\r\n  font-size: 150%;\r\n  margin-left: 1%;\r\n}\r\n.infCol2{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.inputTg{\r\n  width:13%;\r\n  font-size: 125%;\r\n  justify-content: flex-end;\r\n}\r\n.inpSection{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1SuUxCZvdOeEP0JmLqvYaq{\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  display:flex;\r\n  flex-direction: row;\r\n\r\n  left: -28%;\r\n  top: 13%;\r\n  background-color: #1f1e1e;\r\n}\r\n._1aH3Sa3jBA3IgALK2ZYUjM{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:65%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n._41SxWOupNBnhhTJCVk48H{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n._2OPi1na-vWcR6CxbK7L6TW{\r\n  display:flex;\r\n}\r\n._3vhfdZg1ztZRq4Ujq7oJeY{\r\n  color:#9590A0;\r\n}\r\n._2Tl5-a0bGHVveJpcaz8v-o{\r\n  width:15%;\r\n  font-size: 150%;\r\n  margin-left: 1%;\r\n}\r\n._2xllu_y9FRB1-KNYExOLfR{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n._274fDz1kjs4FXWRpvA2pvl{\r\n  width:13%;\r\n  font-size: 125%;\r\n  justify-content: flex-end;\r\n}\r\n._2BT3jlNyAVpIiPkyhITke4{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/tabsOpt.module.css"],"names":[],"mappings":"AAAA;EACE,wBAAwB;EACxB,gBAAgB;EAChB,MAAM;EACN,YAAY;EACZ,mBAAmB;;EAEnB,UAAU;EACV,QAAQ;EACR,yBAAyB;AAC3B;AACA;EACE,WAAW;EACX,cAAc;EACd,mBAAmB;EACnB,aAAa;EACb,SAAS;EACT,iBAAiB;EACjB,aAAa;EACb,eAAe;AACjB;AACA;EACE,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,YAAY;AACd;AACA;EACE,aAAa;AACf;AACA;EACE,SAAS;EACT,eAAe;EACf,eAAe;AACjB;AACA;EACE,aAAa;EACb,mBAAmB;AACrB;AACA;EACE,SAAS;EACT,eAAe;EACf,yBAAyB;AAC3B;AACA;EACE,aAAa;EACb,sBAAsB;AACxB","sourcesContent":[".inf{\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  display:flex;\r\n  flex-direction: row;\r\n\r\n  left: -28%;\r\n  top: 13%;\r\n  background-color: #1f1e1e;\r\n}\r\n.otherButton{\r\n  border:none;\r\n  color: #9590A0;\r\n  background: #5c5c5c;\r\n  outline: none;\r\n  width:65%;\r\n  border-radius: 5%;\r\n  margin-top:2%;\r\n  cursor: pointer;\r\n}\r\n.infCol{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n.infRow{\r\n  display:flex;\r\n}\r\n.h4{\r\n  color:#9590A0;\r\n}\r\n.infInput{\r\n  width:15%;\r\n  font-size: 150%;\r\n  margin-left: 1%;\r\n}\r\n.infCol2{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.inputTg{\r\n  width:13%;\r\n  font-size: 125%;\r\n  justify-content: flex-end;\r\n}\r\n.inpSection{\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"inf": "_1SuUxCZvdOeEP0JmLqvYaq",
