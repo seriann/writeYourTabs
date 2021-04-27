@@ -10,6 +10,19 @@ import FirstStep from "../components/tabs/FirstStep"
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 
+Date.prototype.yyyymmdd = function() {
+  var mm = this.getMonth() + 1; // getMonth() is zero-based
+  var dd = this.getDate();
+
+  return [this.getFullYear(),
+          (mm>9 ? '' : '0')+ "-" + mm,
+          (dd>9 ? '' : '0')+ "-" + dd + "|",
+          this.getHours() + ":",
+          this.getMinutes() +":",
+          this.getSeconds(),
+         ].join('');
+};
+
 const TabCreator = ({logged}) => {
  const location = useLocation()
  const [fretNum, setFretNum] = useState(0)
@@ -44,31 +57,51 @@ const TabCreator = ({logged}) => {
 }
 
 const handleSave = () => {
+  let date = new Date()
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   html2canvas(svgContainerRef.current,{
                                        width:1000
                      })
                       .then(canvas => {
                         const imgData = canvas.toDataURL('image/png')
-                        const newPdf = new jsPDF()
+                        const newPdf = new jsPDF('pt', 'mm')
 
                           let imgWidth = 210
-                          let pageHeight = 295
-                          let imgHeight = canvas.height * imgWidth / canvas.width
+                          let pageHeight = 290
+                          let imgHeight = (canvas.height * imgWidth) / canvas.width
                           let heightLeft = imgHeight
                           let position = 0
 
                         newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
                         heightLeft -= pageHeight
 
-                        while (heightLeft >= 0) {
+                        while (heightLeft >= 10) {
                           position = heightLeft - imgHeight
                           newPdf.addPage()
-                          newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+                          newPdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight - 25)
                           heightLeft -= pageHeight
-
                         }
+
+                       console.log("pages num", newPdf.internal.getNumberOfPages());
+                       let pageCount = newPdf.internal.getNumberOfPages()
+
+                       if(linesCounter <= 39 && pageCount > 1){
+                         console.log("borre una pagina");
+                         newPdf.deletePage(pageCount)
+                       }
+                        else if(linesCounter <= 74 && pageCount > 2 ){
+                          console.log("borre una pagina");
+                          newPdf.deletePage(pageCount)
+                       }
+                        else if(pageCount >=4 && pageCount <= 5){
+                          console.log("borre dos paginas");
+                          newPdf.deletePage(pageCount)
+                          newPdf.deletePage(pageCount - 1)
+                        }
+
                         setPdf(newPdf)
-                        newPdf.save('download.pdf')
+                        newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
                       }).catch(err=>console.log(err))
                       console.log(pdf);
 }
@@ -331,6 +364,76 @@ const addNewLine = () => {  //a mejorar
   let strings27Inf = new Array(string27[0].x2.animVal.value,string27[0].y1.animVal.value, string27[5].y1.animVal.value)
   createSeparationLine(strings27Inf[0],strings27Inf[1],strings27Inf[2],svg27)
   arr.map.call(string27,(el)=> el.setAttribute('x2',`${strings27Inf[0] + 270}`))
+}else if(linesCounter > 81 && linesCounter < 84){
+  setViewBox("0 0 950 4200")
+  let svg28 = document.getElementById('svg28')
+  let string28 = document.getElementsByClassName('string28')
+  let strings28Inf = new Array(string28[0].x2.animVal.value,string28[0].y1.animVal.value, string28[5].y1.animVal.value)
+  createSeparationLine(strings28Inf[0],strings28Inf[1],strings28Inf[2],svg28)
+  arr.map.call(string28,(el)=> el.setAttribute('x2',`${strings28Inf[0] + 270}`))
+}else if(linesCounter > 84 && linesCounter < 87){
+  setViewBox("0 0 950 4350")
+  let svg29 = document.getElementById('svg29')
+  let string29 = document.getElementsByClassName('string29')
+  let strings29Inf = new Array(string29[0].x2.animVal.value,string29[0].y1.animVal.value, string29[5].y1.animVal.value)
+  createSeparationLine(strings29Inf[0],strings29Inf[1],strings29Inf[2],svg29)
+  arr.map.call(string29,(el)=> el.setAttribute('x2',`${strings29Inf[0] + 270}`))
+}else if(linesCounter > 87 && linesCounter < 90){
+  setViewBox("0 0 950 4500")
+  let svg30 = document.getElementById('svg30')
+  let string30 = document.getElementsByClassName('string30')
+  let strings30Inf = new Array(string30[0].x2.animVal.value,string30[0].y1.animVal.value, string30[5].y1.animVal.value)
+  createSeparationLine(strings30Inf[0],strings30Inf[1],strings30Inf[2],svg30)
+  arr.map.call(string30,(el)=> el.setAttribute('x2',`${strings30Inf[0] + 270}`))
+}else if(linesCounter > 90 && linesCounter < 93){
+  setViewBox("0 0 950 4650")
+  let svg31 = document.getElementById('svg31')
+  let string31 = document.getElementsByClassName('string31')
+  let strings31Inf = new Array(string31[0].x2.animVal.value,string31[0].y1.animVal.value, string31[5].y1.animVal.value)
+  createSeparationLine(strings31Inf[0],strings31Inf[1],strings31Inf[2],svg31)
+  arr.map.call(string31,(el)=> el.setAttribute('x2',`${strings31Inf[0] + 270}`))
+}else if(linesCounter > 93 && linesCounter < 96){
+  setViewBox("0 0 950 4800")
+  let svg32 = document.getElementById('svg32')
+  let string32 = document.getElementsByClassName('string32')
+  let strings32Inf = new Array(string32[0].x2.animVal.value,string32[0].y1.animVal.value, string32[5].y1.animVal.value)
+  createSeparationLine(strings32Inf[0],strings32Inf[1],strings32Inf[2],svg32)
+  arr.map.call(string32,(el)=> el.setAttribute('x2',`${strings32Inf[0] + 270}`))
+}else if(linesCounter > 96 && linesCounter < 99){
+  setViewBox("0 0 950 4950")
+  let svg33 = document.getElementById('svg33')
+  let string33 = document.getElementsByClassName('string33')
+  let strings33Inf = new Array(string33[0].x2.animVal.value,string33[0].y1.animVal.value, string33[5].y1.animVal.value)
+  createSeparationLine(strings33Inf[0],strings33Inf[1],strings33Inf[2],svg33)
+  arr.map.call(string33,(el)=> el.setAttribute('x2',`${strings33Inf[0] + 270}`))
+}else if(linesCounter > 99 && linesCounter < 102){
+  setViewBox("0 0 950 5100")
+  let svg34 = document.getElementById('svg34')
+  let string34 = document.getElementsByClassName('string34')
+  let strings34Inf = new Array(string34[0].x2.animVal.value,string34[0].y1.animVal.value, string34[5].y1.animVal.value)
+  createSeparationLine(strings34Inf[0],strings34Inf[1],strings34Inf[2],svg34)
+  arr.map.call(string34,(el)=> el.setAttribute('x2',`${strings34Inf[0] + 270}`))
+}else if(linesCounter > 102 && linesCounter < 105){
+  setViewBox("0 0 950 5250")
+  let svg35 = document.getElementById('svg35')
+  let string35 = document.getElementsByClassName('string35')
+  let strings35Inf = new Array(string35[0].x2.animVal.value,string35[0].y1.animVal.value, string35[5].y1.animVal.value)
+  createSeparationLine(strings35Inf[0],strings35Inf[1],strings35Inf[2],svg35)
+  arr.map.call(string35,(el)=> el.setAttribute('x2',`${strings35Inf[0] + 270}`))
+}else if(linesCounter > 105 && linesCounter < 108){
+  setViewBox("0 0 950 5400")
+  let svg36 = document.getElementById('svg36')
+  let string36 = document.getElementsByClassName('string36')
+  let strings36Inf = new Array(string36[0].x2.animVal.value,string36[0].y1.animVal.value, string36[5].y1.animVal.value)
+  createSeparationLine(strings36Inf[0],strings36Inf[1],strings36Inf[2],svg36)
+  arr.map.call(string36,(el)=> el.setAttribute('x2',`${strings36Inf[0] + 270}`))
+}else if(linesCounter > 108 && linesCounter < 111){
+  setViewBox("0 0 950 5550")
+  let svg37 = document.getElementById('svg37')
+  let string37 = document.getElementsByClassName('string37')
+  let strings37Inf = new Array(string37[0].x2.animVal.value,string37[0].y1.animVal.value, string37[5].y1.animVal.value)
+  createSeparationLine(strings37Inf[0],strings37Inf[1],strings37Inf[2],svg37)
+  arr.map.call(string37,(el)=> el.setAttribute('x2',`${strings37Inf[0] + 270}`))
 }
 console.log(linesCounter);
 setLinesCounter(linesCounter+1)
