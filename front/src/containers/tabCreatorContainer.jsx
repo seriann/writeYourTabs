@@ -94,7 +94,11 @@ const handleSave = () => {
                           console.log("borre una pagina");
                           newPdf.deletePage(pageCount)
                        }
-                        else if(pageCount >=4 && pageCount <= 5){
+                        else if(pageCount >= 4 && pageCount < 5){
+                          console.log("borre una pagina");
+                          newPdf.deletePage(pageCount)
+                        }
+                        else if(pageCount == 5){
                           console.log("borre dos paginas");
                           newPdf.deletePage(pageCount)
                           newPdf.deletePage(pageCount - 1)
@@ -149,13 +153,6 @@ const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordena
   let svgP = svgPoint(svg, clientX, clientY)
   const txt = createText(svgP.x, Math.round(svgP.y),fretNum, id)
 
-  /*const coords = svg.getBoundingClientRect()
-  const y_rounded = Math.round(`${pageY - coords.y}`)
-  const id = uniqid()
-console.log("coords",coords.x,coords.y);
-console.log("client",clientX,clientY);
-console.log("page",pageX,pageY);
-  const txt = createSvgText(clientX, clientY, coords.x, coords.y,y_rounded, fretNum, svg, id)*/
    if(txt != undefined) {
      setIdHistory([...idHistory, txt])
      inputRef.current.focus()
