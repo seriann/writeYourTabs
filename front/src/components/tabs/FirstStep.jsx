@@ -12,7 +12,7 @@ const FirstStep = ({ handleClick, handleChange, title, author, genre, textarea }
      onChange={handleChange}
      name="title"
      className={styles.input}
-     
+     required
      />
     <label className={styles.label}>Author</label>
      <input
@@ -20,7 +20,7 @@ const FirstStep = ({ handleClick, handleChange, title, author, genre, textarea }
      onChange={handleChange}
      name="author"
      className={styles.input}
-
+     required
      />
     <label className={styles.label}>Genre</label>
     <input
@@ -28,16 +28,18 @@ const FirstStep = ({ handleClick, handleChange, title, author, genre, textarea }
     onChange={handleChange}
     name="genre"
     className={styles.input}
+    required
     />
     <div className={styles.textareaContainer}>
-      <label className={styles.label}>you want to say some words? put them here!</label>
+      <label className={styles.label}>you want to leave a short description? it's optional</label>
         <textarea
         value={textarea}
         onChange={handleChange}
         name="textarea"
         className={styles.input2}
+        maxLength="250"
         />
-      <p className={styles.counter}>0/250</p>
+      <p className={styles.counter}>{`${textarea.length}/250`}</p>
     </div>
     <input
     type='submit'

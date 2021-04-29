@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Home from "../containers/HomeContainer"
-import MyTabs from "../containers/MyTabsContainer"
+import MyTabs from "../containers/myTabsContainer"
 import TabCreator from "../containers/tabCreatorContainer"
 import API from "../api/index"
 import Footer from './footer'
@@ -35,7 +35,7 @@ useEffect(()=>{
         <div className={styles.content}>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/mytabs" component={MyTabs} />
+          <Route path="/mytabs" render={()=> <MyTabs logged={logged}/>} />
           <Route path="/create" render={()=> <TabCreator logged={logged} />} />
           <Redirect from="/" to="/home"/>
         </Switch>

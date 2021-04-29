@@ -7,6 +7,7 @@ import Line from "../components/tabs/extraLine"
 import { svgPoint,createSvgText,createText, uniqid, createSeparationLine } from "../components/custom_functions/functions"
 import TabsOpt from "../components/sidebarContent/TabsOpt"
 import FirstStep from "../components/tabs/FirstStep"
+import LoginFirst from '../components/errors/LoginFirst'
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 
@@ -132,12 +133,12 @@ const handleQuit = () => {
 }
 const handleChange = (e) => {
   const { name, value } = e.target
+
   if(name == "fret")return setFretNum(value)
   if(name == "title")return setTitle(value)
   if(name == "author")return setAuthor(value)
   if(name == "genre")return setGenre(value)
-  if(name == "textarea")return setTextArea(value)
-
+  if(name == "textarea") setTextArea(value)
   if(name == "firstString")return setFirstString(value)
   if(name == "secondString")return setSecondString(value)
   if(name == "thirdString")return setThirdString(value)
@@ -441,7 +442,7 @@ setLinesCounter(linesCounter+1)
      <animated.div style={props} className={styles.container}>
      {
        JSON.stringify(logged) == "{}"?
-       <div>primero logueate</div>
+       <LoginFirst/>
        :
        tab == false ?
        <FirstStep
