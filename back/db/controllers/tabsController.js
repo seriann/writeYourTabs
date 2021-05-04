@@ -8,7 +8,15 @@ const TabController = {
   },
   create(req,res,next){
     Tab.create(req.body)
-        .then(tab => res.send(tab))
+        .then(tab => {
+          if(req.file){
+            console.log("req.file",req.file);
+            const { filename } = req.file
+            tab.setPdf(filename)
+            tab.save()
+          }
+          res.send(tab)
+        })
         .catch(err => next(err))
   },
   update(req,res,next){

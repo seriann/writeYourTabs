@@ -57,7 +57,7 @@ const TabCreator = ({logged}) => {
      }
 }
 
-const handleSave = () => {
+const handleSave = (upload) => {
   let date = new Date()
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -105,8 +105,13 @@ const handleSave = () => {
                           newPdf.deletePage(pageCount - 1)
                         }
 
-                        setPdf(newPdf)
-                        newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
+                        if(upload) {
+                          setPdf(newPdf.output('blob'))
+                        }
+
+                        if(!upload){
+                          newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
+                        }
                       }).catch(err=>console.log(err))
                       console.log(pdf);
 }
@@ -459,6 +464,11 @@ setLinesCounter(linesCounter+1)
           <i className="far fa-times-circle"></i>
         </button>
           <TabsOpt
+           author={author}
+           title={title}
+           text={textArea}
+           genre={genre}
+           pdf={pdf}
            inputRef={inputRef}
            handleChange={handleChange}
            fretNum={fretNum}

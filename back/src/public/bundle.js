@@ -2602,10 +2602,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/tabsOpt.module.css */ "./front/src/styles/tabsOpt.module.css");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
+
 
 
 
 const TabsOpt = ({
+  author,
+  title,
+  text,
+  genre,
+  pdf,
   firstString,
   secondString,
   thirdString,
@@ -2619,6 +2626,30 @@ const TabsOpt = ({
   addNewLine,
   handleSave
 }) => {
+  const handleSubmit = async e => {
+    handleSave(true);
+    let date = new Date();
+
+    try {
+      const formData = new FormData();
+      formData.append("author", author);
+      formData.append("title", title);
+      formData.append("text", text);
+      formData.append("genre", genre);
+      formData.append("pdf", pdf);
+      formData.append("createdAt", date.yyyymmdd().split("|")[0]);
+      const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_2__.default)({
+        url: '/tabs',
+        method: 'POST',
+        data: formData
+      });
+      console.log(response);
+      return response;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.inf
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2642,9 +2673,12 @@ const TabsOpt = ({
     onClick: addNewLine,
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
   }, "Add line"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: handleSave,
+    onClick: () => handleSave(false),
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
-  }, "save tab"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "save tab"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleSubmit,
+    className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
+  }, "submit tab"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.infCol2
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.h4
@@ -5319,7 +5353,6 @@ __webpack_require__.r(__webpack_exports__);
 const MyTabsContainer = ({
   logged
 }) => {
-  console.log("aver que putas pasa", logged);
   const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_4__.useSpring)({
     to: {
       opacity: 1,
@@ -5578,7 +5611,7 @@ const TabCreator = ({
     }
   };
 
-  const handleSave = () => {
+  const handleSave = upload => {
     let date = new Date();
     document.body.scrollTop = 0; // For Safari
 
@@ -5622,8 +5655,13 @@ const TabCreator = ({
         newPdf.deletePage(pageCount - 1);
       }
 
-      setPdf(newPdf);
-      newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`);
+      if (upload) {
+        setPdf(newPdf.output('blob'));
+      }
+
+      if (!upload) {
+        newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`);
+      }
     }).catch(err => console.log(err));
     console.log(pdf);
   };
@@ -5982,6 +6020,11 @@ const TabCreator = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "far fa-times-circle"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_sidebarContent_TabsOpt__WEBPACK_IMPORTED_MODULE_5__.default, {
+    author: author,
+    title: title,
+    text: textArea,
+    genre: genre,
+    pdf: pdf,
     inputRef: inputRef,
     handleChange: handleChange,
     fretNum: fretNum,

@@ -19,7 +19,6 @@ const tabSchema = new Schema({
   },
   pdf:{
     type:String,
-    required:true
   },
   createdAt:{
     type:String
@@ -29,6 +28,13 @@ const tabSchema = new Schema({
    default: true
   }
 },{ timestamps: { createdAt: 'created_at' } })
+
+tabSchema.methods.setPdf = function(filename){
+  this.pdf = `http://localhost:3000/public/${filename}`
+}
+
+
+
 
 const Tab = mongoose.model("tab", tabSchema)
 

@@ -1,7 +1,34 @@
 import React from 'react'
 import styles from "../../styles/tabsOpt.module.css"
+import API from '../../api/index'
 
-const TabsOpt = ({firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+const TabsOpt = ({author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+
+const handleSubmit = async (e) => {
+  handleSave(true)
+  let date = new Date()
+  try{
+    const formData = new FormData()
+
+    formData.append("author",author)
+    formData.append("title",title)
+    formData.append("text",text)
+    formData.append("genre",genre)
+    formData.append("pdf",pdf)
+    formData.append("createdAt",date.yyyymmdd().split("|")[0])
+
+   const response = await API({
+     url:'/tabs',
+     method:'POST',
+     data: formData
+   })
+   console.log(response);
+   return response
+
+  }catch(e){
+    console.log(e);
+  }
+}
 
   return(
    <div className={styles.inf}>
@@ -26,8 +53,11 @@ const TabsOpt = ({firstString,secondString,thirdString,fourthString,fifthString,
           className={styles.otherButton}
           >Add line</button>
           <button
-          onClick={handleSave}
+          onClick={()=>handleSave(false)}
           className={styles.otherButton}>save tab</button>
+          <button
+          onClick={handleSubmit}
+          className={styles.otherButton}>submit tab</button>
         </div>
       </div>
       <div className={styles.infCol2}>
