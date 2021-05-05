@@ -1,12 +1,13 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import styles from "../../styles/tabsOpt.module.css"
 import API from '../../api/index'
 
 const TabsOpt = ({author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
-
+const submitRef = useRef()
 const handleSubmit = async (e) => {
   handleSave(true)
   let date = new Date()
+
   try{
     const formData = new FormData()
 
@@ -26,8 +27,15 @@ const handleSubmit = async (e) => {
    return response
 
   }catch(e){
-    console.log(e);
+
+    if(e.message.indexOf("406") != -1){
+    console.log("ref", submitRef);
+    submitRef.current.click()
+  }else{
+    console.log("exception",e.message);
   }
+  }
+
 }
 
   return(
@@ -56,6 +64,7 @@ const handleSubmit = async (e) => {
           onClick={()=>handleSave(false)}
           className={styles.otherButton}>save tab</button>
           <button
+          ref={submitRef}
           onClick={handleSubmit}
           className={styles.otherButton}>submit tab</button>
         </div>

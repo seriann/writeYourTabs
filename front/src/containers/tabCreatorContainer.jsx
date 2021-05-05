@@ -56,8 +56,8 @@ const TabCreator = ({logged}) => {
          goBack()
      }
 }
-
 const handleSave = (upload) => {
+  let bool = false
   let date = new Date()
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -105,15 +105,16 @@ const handleSave = (upload) => {
                           newPdf.deletePage(pageCount - 1)
                         }
 
-                        if(upload) {
+                        if(upload && bool == false) {
                           setPdf(newPdf.output('blob'))
+
                         }
 
                         if(!upload){
                           newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
                         }
                       }).catch(err=>console.log(err))
-                      console.log(pdf);
+                      console.log("aver2",pdf);
 }
 
 

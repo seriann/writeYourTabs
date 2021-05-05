@@ -27,7 +27,7 @@ export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,s
 }
 
 export const createText = (svgX,svgY,fretNum,id) => {
-  console.log("y:", svgY);
+
   let split = Math.round(svgY).toString().split("")
   let splY = split.length > 2? split : split=[0, ...split]
 
@@ -58,7 +58,6 @@ export const createText = (svgX,svgY,fretNum,id) => {
 }
 
 function join(arr,num){
-  console.log("pasa por arr:",arr);
   if(arr.length > 3){
     const numArr = num.toString().split("")
   let newArr = arr.map((el,i)=> {

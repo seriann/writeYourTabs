@@ -2252,7 +2252,6 @@ const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, 
   if (bool) return id;
 };
 const createText = (svgX, svgY, fretNum, id) => {
-  console.log("y:", svgY);
   let split = Math.round(svgY).toString().split("");
   let splY = split.length > 2 ? split : split = [0, ...split];
   let bool = true;
@@ -2284,8 +2283,6 @@ const createText = (svgX, svgY, fretNum, id) => {
 };
 
 function join(arr, num) {
-  console.log("pasa por arr:", arr);
-
   if (arr.length > 3) {
     const numArr = num.toString().split("");
     let newArr = arr.map((el, i) => {
@@ -2626,6 +2623,8 @@ const TabsOpt = ({
   addNewLine,
   handleSave
 }) => {
+  const submitRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+
   const handleSubmit = async e => {
     handleSave(true);
     let date = new Date();
@@ -2646,7 +2645,12 @@ const TabsOpt = ({
       console.log(response);
       return response;
     } catch (e) {
-      console.log(e);
+      if (e.message.indexOf("406") != -1) {
+        console.log("ref", submitRef);
+        submitRef.current.click();
+      } else {
+        console.log("exception", e.message);
+      }
     }
   };
 
@@ -2676,6 +2680,7 @@ const TabsOpt = ({
     onClick: () => handleSave(false),
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
   }, "save tab"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    ref: submitRef,
     onClick: handleSubmit,
     className: _styles_tabsOpt_module_css__WEBPACK_IMPORTED_MODULE_1__.default.otherButton
   }, "submit tab"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5612,6 +5617,7 @@ const TabCreator = ({
   };
 
   const handleSave = upload => {
+    let bool = false;
     let date = new Date();
     document.body.scrollTop = 0; // For Safari
 
@@ -5655,7 +5661,7 @@ const TabCreator = ({
         newPdf.deletePage(pageCount - 1);
       }
 
-      if (upload) {
+      if (upload && bool == false) {
         setPdf(newPdf.output('blob'));
       }
 
@@ -5663,7 +5669,7 @@ const TabCreator = ({
         newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`);
       }
     }).catch(err => console.log(err));
-    console.log(pdf);
+    console.log("aver2", pdf);
   };
 
   const goBack = () => {

@@ -7,6 +7,7 @@ const TabController = {
         .catch(err => next(err))
   },
   create(req,res,next){
+   if(!req.file)return res.status(406).send({error:'tab not submitted'})
     Tab.create(req.body)
         .then(tab => {
           if(req.file){
