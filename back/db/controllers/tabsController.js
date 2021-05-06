@@ -7,8 +7,17 @@ const TabController = {
         .catch(err => next(err))
   },
   create(req,res,next){
+   if(!req.file)return res.status(406).send({error:'tab not submitted'})
     Tab.create(req.body)
-        .then(tab => res.send(tab))
+        .then(tab => {
+          if(req.file){
+            console.log("req.file",req.file);
+            const { filename } = req.file
+            tab.setPdf(filename)
+            tab.save()
+          }
+          res.send(tab)
+        })
         .catch(err => next(err))
   },
   update(req,res,next){

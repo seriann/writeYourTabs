@@ -30,6 +30,7 @@ app.use(sessions({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use("/public", express.static(`${__dirname}/storage/imgs`))
+app.use("/public", express.static(`${__dirname}/storage/pdfs`))
 app.use(express.static(__dirname + "/public"));
 app.use(morgan('dev'))
 app.use(express.json());

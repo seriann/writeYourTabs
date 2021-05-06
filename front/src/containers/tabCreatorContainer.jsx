@@ -7,8 +7,11 @@ import Line from "../components/tabs/extraLine"
 import { svgPoint,createSvgText,createText, uniqid, createSeparationLine } from "../components/custom_functions/functions"
 import TabsOpt from "../components/sidebarContent/TabsOpt"
 import FirstStep from "../components/tabs/FirstStep"
+import LoginFirst from '../components/errors/LoginFirst'
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
+import Modal from '../components/Modal/Modal'
+import API from '../api/index'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -41,6 +44,7 @@ const TabCreator = ({logged}) => {
  const [sixthString,setSixthString]= useState("E")
  const [tab, setTab] = useState(false)
  const [pdf, setPdf] = useState(null)
+ const [modal, setModal] = useState(false)
  const [viewBox, setViewBox] = useState("0 0 950 200")
  const input = document.getElementById('svgContainer')
  const props = useSpring({
@@ -49,14 +53,15 @@ const TabCreator = ({logged}) => {
     })
  const inputRef = useRef()
  const svgContainerRef = useRef()
+ const submitRef = useRef()
     document.onkeydown = function (e){
      e = e || window.event;
      if ((e.which == 90 || e.keyCode == 90) && e.ctrlKey) {
          goBack()
      }
 }
-
-const handleSave = () => {
+const handleSave = (upload) => {
+  let bool = false
   let date = new Date()
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -94,16 +99,26 @@ const handleSave = () => {
                           console.log("borre una pagina");
                           newPdf.deletePage(pageCount)
                        }
-                        else if(pageCount >=4 && pageCount <= 5){
+                        else if(pageCount >= 4 && pageCount < 5){
+                          console.log("borre una pagina");
+                          newPdf.deletePage(pageCount)
+                        }
+                        else if(pageCount == 5){
                           console.log("borre dos paginas");
                           newPdf.deletePage(pageCount)
                           newPdf.deletePage(pageCount - 1)
                         }
 
-                        setPdf(newPdf)
-                        newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
+                        if(upload && bool == false) {
+                          setPdf(newPdf.output('blob'))
+
+                        }
+
+                        if(!upload){
+                          newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
+                        }
                       }).catch(err=>console.log(err))
-                      console.log(pdf);
+                      console.log("aver2",pdf);
 }
 
 
@@ -126,14 +141,48 @@ const handleQuit = () => {
   setTextArea("")
   setTab(!tab)
 }
+const handleSubmit = async (e) => {
+  handleSave(true)
+  let date = new Date()
+
+  try{
+    const formData = new FormData()
+
+    formData.append("author",author)
+    formData.append("title",title)
+    formData.append("text",textArea)
+    formData.append("genre",genre)
+    formData.append("pdf",pdf)
+    formData.append("createdAt",date.yyyymmdd().split("|")[0])
+
+   const response = await API({
+     url:'/tabs',
+     method:'POST',
+     data: formData
+   })
+   console.log(response);
+   setModal(false)
+   return response
+
+  }catch(e){
+
+    if(e.message.indexOf("406") != -1){
+    submitRef.current.click()
+  }else{
+    console.log("exception",e.message);
+  }
+  }
+
+}
+
 const handleChange = (e) => {
   const { name, value } = e.target
+
   if(name == "fret")return setFretNum(value)
   if(name == "title")return setTitle(value)
   if(name == "author")return setAuthor(value)
   if(name == "genre")return setGenre(value)
-  if(name == "textarea")return setTextArea(value)
-
+  if(name == "textarea") setTextArea(value)
   if(name == "firstString")return setFirstString(value)
   if(name == "secondString")return setSecondString(value)
   if(name == "thirdString")return setThirdString(value)
@@ -149,13 +198,6 @@ const clicked = (evt) =>{  //dibuja el numero/simbolo del input con las coordena
   let svgP = svgPoint(svg, clientX, clientY)
   const txt = createText(svgP.x, Math.round(svgP.y),fretNum, id)
 
-  /*const coords = svg.getBoundingClientRect()
-  const y_rounded = Math.round(`${pageY - coords.y}`)
-  const id = uniqid()
-console.log("coords",coords.x,coords.y);
-console.log("client",clientX,clientY);
-console.log("page",pageX,pageY);
-  const txt = createSvgText(clientX, clientY, coords.x, coords.y,y_rounded, fretNum, svg, id)*/
    if(txt != undefined) {
      setIdHistory([...idHistory, txt])
      inputRef.current.focus()
@@ -444,7 +486,7 @@ setLinesCounter(linesCounter+1)
      <animated.div style={props} className={styles.container}>
      {
        JSON.stringify(logged) == "{}"?
-       <div>primero logueate</div>
+       <LoginFirst/>
        :
        tab == false ?
        <FirstStep
@@ -461,6 +503,9 @@ setLinesCounter(linesCounter+1)
           <i className="far fa-times-circle"></i>
         </button>
           <TabsOpt
+          modal={modal}
+          setModal={setModal}
+
            inputRef={inputRef}
            handleChange={handleChange}
            fretNum={fretNum}
@@ -488,6 +533,12 @@ setLinesCounter(linesCounter+1)
             counter={linesCounter}
             svgContainerRef={svgContainerRef}
             />
+            {modal && <Modal
+              submitRef={submitRef}
+              setModal={setModal}
+              handleSave={handleSave}
+              handleSubmit={handleSubmit}
+              />}
        </div>
 
      }

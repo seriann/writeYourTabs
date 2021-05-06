@@ -9,7 +9,7 @@ const Start = ({firstString,secondString,thirdString,fourthString,fifthString,si
      ref={svgContainerRef}
      className={styles.container}
     >
-    <h2 className={styles.title}>{title} - {author}</h2>
+    <h2 className={styles.title}>{author} - {title}</h2>
 
      <svg version="1.1"
       baseProfile="full"

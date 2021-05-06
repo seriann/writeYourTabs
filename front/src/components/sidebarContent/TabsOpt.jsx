@@ -1,7 +1,13 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import styles from "../../styles/tabsOpt.module.css"
 
-const TabsOpt = ({firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+const TabsOpt = ({modal,setModal,author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+const submitRef = useRef()
+
+const handleModal = () => {
+  setModal(true)
+}
+
 
   return(
    <div className={styles.inf}>
@@ -26,9 +32,10 @@ const TabsOpt = ({firstString,secondString,thirdString,fourthString,fifthString,
           className={styles.otherButton}
           >Add line</button>
           <button
-          onClick={handleSave}
+          onClick={handleModal}
           className={styles.otherButton}>save tab</button>
         </div>
+
       </div>
       <div className={styles.infCol2}>
         <h4 className={styles.h4}>tuning: </h4>

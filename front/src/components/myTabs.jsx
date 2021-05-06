@@ -10,9 +10,9 @@ const MyTabs = () => {
     })
 
   return (
-    <animated.div style={props} className={styles.container}>
+    <div>
       MyTABS
-    </animated.div>
+    </div>
   )
 }
 
