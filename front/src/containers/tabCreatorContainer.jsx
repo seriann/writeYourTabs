@@ -10,6 +10,7 @@ import FirstStep from "../components/tabs/FirstStep"
 import LoginFirst from '../components/errors/LoginFirst'
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
+import Modal from '../components/Modal/Modal'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -42,6 +43,7 @@ const TabCreator = ({logged}) => {
  const [sixthString,setSixthString]= useState("E")
  const [tab, setTab] = useState(false)
  const [pdf, setPdf] = useState(null)
+ const [modal, setModal] = useState(false)
  const [viewBox, setViewBox] = useState("0 0 950 200")
  const input = document.getElementById('svgContainer')
  const props = useSpring({
@@ -465,11 +467,9 @@ setLinesCounter(linesCounter+1)
           <i className="far fa-times-circle"></i>
         </button>
           <TabsOpt
-           author={author}
-           title={title}
-           text={textArea}
-           genre={genre}
-           pdf={pdf}
+          modal={modal}
+          setModal={setModal}
+
            inputRef={inputRef}
            handleChange={handleChange}
            fretNum={fretNum}
@@ -497,6 +497,15 @@ setLinesCounter(linesCounter+1)
             counter={linesCounter}
             svgContainerRef={svgContainerRef}
             />
+            {modal && <Modal
+              setModal={setModal}
+              author={author}
+              title={title}
+              text={textArea}
+              genre={genre}
+              pdf={pdf}
+              handleSave={handleSave}
+              />}
        </div>
 
      }

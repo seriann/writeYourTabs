@@ -1,42 +1,13 @@
 import React,{useRef} from 'react'
 import styles from "../../styles/tabsOpt.module.css"
-import API from '../../api/index'
 
-const TabsOpt = ({author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+const TabsOpt = ({modal,setModal,author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
 const submitRef = useRef()
-const handleSubmit = async (e) => {
-  handleSave(true)
-  let date = new Date()
 
-  try{
-    const formData = new FormData()
-
-    formData.append("author",author)
-    formData.append("title",title)
-    formData.append("text",text)
-    formData.append("genre",genre)
-    formData.append("pdf",pdf)
-    formData.append("createdAt",date.yyyymmdd().split("|")[0])
-
-   const response = await API({
-     url:'/tabs',
-     method:'POST',
-     data: formData
-   })
-   console.log(response);
-   return response
-
-  }catch(e){
-
-    if(e.message.indexOf("406") != -1){
-    console.log("ref", submitRef);
-    submitRef.current.click()
-  }else{
-    console.log("exception",e.message);
-  }
-  }
-
+const handleModal = () => {
+  setModal(true)
 }
+
 
   return(
    <div className={styles.inf}>
@@ -61,13 +32,10 @@ const handleSubmit = async (e) => {
           className={styles.otherButton}
           >Add line</button>
           <button
-          onClick={()=>handleSave(false)}
+          onClick={handleModal}
           className={styles.otherButton}>save tab</button>
-          <button
-          ref={submitRef}
-          onClick={handleSubmit}
-          className={styles.otherButton}>submit tab</button>
         </div>
+
       </div>
       <div className={styles.infCol2}>
         <h4 className={styles.h4}>tuning: </h4>
