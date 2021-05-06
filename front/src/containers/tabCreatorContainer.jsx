@@ -11,6 +11,7 @@ import LoginFirst from '../components/errors/LoginFirst'
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import Modal from '../components/Modal/Modal'
+import API from '../api/index'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -52,6 +53,7 @@ const TabCreator = ({logged}) => {
     })
  const inputRef = useRef()
  const svgContainerRef = useRef()
+ const submitRef = useRef()
     document.onkeydown = function (e){
      e = e || window.event;
      if ((e.which == 90 || e.keyCode == 90) && e.ctrlKey) {
@@ -139,6 +141,40 @@ const handleQuit = () => {
   setTextArea("")
   setTab(!tab)
 }
+const handleSubmit = async (e) => {
+  handleSave(true)
+  let date = new Date()
+
+  try{
+    const formData = new FormData()
+
+    formData.append("author",author)
+    formData.append("title",title)
+    formData.append("text",textArea)
+    formData.append("genre",genre)
+    formData.append("pdf",pdf)
+    formData.append("createdAt",date.yyyymmdd().split("|")[0])
+
+   const response = await API({
+     url:'/tabs',
+     method:'POST',
+     data: formData
+   })
+   console.log(response);
+   setModal(false)
+   return response
+
+  }catch(e){
+
+    if(e.message.indexOf("406") != -1){
+    submitRef.current.click()
+  }else{
+    console.log("exception",e.message);
+  }
+  }
+
+}
+
 const handleChange = (e) => {
   const { name, value } = e.target
 
@@ -498,13 +534,10 @@ setLinesCounter(linesCounter+1)
             svgContainerRef={svgContainerRef}
             />
             {modal && <Modal
+              submitRef={submitRef}
               setModal={setModal}
-              author={author}
-              title={title}
-              text={textArea}
-              genre={genre}
-              pdf={pdf}
               handleSave={handleSave}
+              handleSubmit={handleSubmit}
               />}
        </div>
 

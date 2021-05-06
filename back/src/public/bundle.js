@@ -2028,46 +2028,12 @@ __webpack_require__.r(__webpack_exports__);
 
 const Modal = ({
   setModal,
-  author,
-  title,
-  text,
-  genre,
-  pdf,
-  handleSave
+  submitRef,
+  handleSave,
+  handleSubmit
 }) => {
-  const submitRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-
   const handleClose = () => {
     setModal(false);
-  };
-
-  const handleSubmit = async e => {
-    handleSave(true);
-    let date = new Date();
-
-    try {
-      const formData = new FormData();
-      formData.append("author", author);
-      formData.append("title", title);
-      formData.append("text", text);
-      formData.append("genre", genre);
-      formData.append("pdf", pdf);
-      formData.append("createdAt", date.yyyymmdd().split("|")[0]);
-      const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_2__.default)({
-        url: '/tabs',
-        method: 'POST',
-        data: formData
-      });
-      console.log(response);
-      setModal(false);
-      return response;
-    } catch (e) {
-      if (e.message.indexOf("406") != -1) {
-        submitRef.current.click();
-      } else {
-        console.log("exception", e.message);
-      }
-    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5618,8 +5584,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/tabCreator.module.css */ "./front/src/styles/tabCreator.module.css");
-/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_tabs_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/tabs/start */ "./front/src/components/tabs/start.jsx");
 /* harmony import */ var _components_tabs_extraLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/tabs/extraLine */ "./front/src/components/tabs/extraLine.jsx");
 /* harmony import */ var _components_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/custom_functions/functions */ "./front/src/components/custom_functions/functions.js");
@@ -5630,6 +5596,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
 /* harmony import */ var _components_Modal_Modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Modal/Modal */ "./front/src/components/Modal/Modal.js");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../api/index */ "./front/src/api/index.js");
+
 
 
 
@@ -5654,7 +5622,7 @@ Date.prototype.yyyymmdd = function () {
 const TabCreator = ({
   logged
 }) => {
-  const location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useLocation)();
+  const location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useLocation)();
   const [fretNum, setFretNum] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [linesCounter, setLinesCounter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const [idHistory, setIdHistory] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
@@ -5674,7 +5642,7 @@ const TabCreator = ({
   const [modal, setModal] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 200");
   const input = document.getElementById('svgContainer');
-  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_12__.useSpring)({
+  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_13__.useSpring)({
     to: {
       opacity: 1,
       transform: 'translate3d(0%,0,0)'
@@ -5686,6 +5654,7 @@ const TabCreator = ({
   });
   const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   const svgContainerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  const submitRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
 
   document.onkeydown = function (e) {
     e = e || window.event;
@@ -5771,6 +5740,35 @@ const TabCreator = ({
     setGenre("");
     setTextArea("");
     setTab(!tab);
+  };
+
+  const handleSubmit = async e => {
+    handleSave(true);
+    let date = new Date();
+
+    try {
+      const formData = new FormData();
+      formData.append("author", author);
+      formData.append("title", title);
+      formData.append("text", textArea);
+      formData.append("genre", genre);
+      formData.append("pdf", pdf);
+      formData.append("createdAt", date.yyyymmdd().split("|")[0]);
+      const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_11__.default)({
+        url: '/tabs',
+        method: 'POST',
+        data: formData
+      });
+      console.log(response);
+      setModal(false);
+      return response;
+    } catch (e) {
+      if (e.message.indexOf("406") != -1) {
+        submitRef.current.click();
+      } else {
+        console.log("exception", e.message);
+      }
+    }
   };
 
   const handleChange = e => {
@@ -6087,7 +6085,7 @@ const TabCreator = ({
     setLinesCounter(linesCounter + 1);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_12__.animated.div, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_13__.animated.div, {
     style: props,
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, JSON.stringify(logged) == "{}" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_errors_LoginFirst__WEBPACK_IMPORTED_MODULE_7__.default, null) : tab == false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_tabs_FirstStep__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -6133,13 +6131,10 @@ const TabCreator = ({
     counter: linesCounter,
     svgContainerRef: svgContainerRef
   }), modal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Modal_Modal__WEBPACK_IMPORTED_MODULE_10__.default, {
+    submitRef: submitRef,
     setModal: setModal,
-    author: author,
-    title: title,
-    text: textArea,
-    genre: genre,
-    pdf: pdf,
-    handleSave: handleSave
+    handleSave: handleSave,
+    handleSubmit: handleSubmit
   })));
 };
 
