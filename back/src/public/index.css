@@ -1,5 +1,5 @@
 :root{
-  --main-background: #202024;
+  --main-background: #262730;
   --main-black: #121212;
   --main-button: #042078;
   --main-black: #0B090F;
@@ -9,7 +9,7 @@
  box-sizing: border-box;
  margin: 0;
  padding: 0;
- font-family:sans-serif;
+ font-family: 'IBM Plex Sans', sans-serif;
 }
  body{
       display: flex;

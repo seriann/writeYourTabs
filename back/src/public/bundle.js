@@ -2021,8 +2021,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_modal_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/modal.module.css */ "./front/src/styles/modal.module.css");
-/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
-
 
 
 
@@ -2603,7 +2601,15 @@ const MyTabs = () => {
       transform: 'translate3d(100%,0,0)'
     }
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "MyTABS");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.loggedContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.title
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.p
+  }, "My tabs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.listContainer
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyTabs);
@@ -5752,6 +5758,7 @@ const TabCreator = ({
       formData.append("title", title);
       formData.append("text", textArea);
       formData.append("genre", genre);
+      formData.append("userId", logged._id);
       formData.append("pdf", pdf);
       formData.append("createdAt", date.yyyymmdd().split("|")[0]);
       const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_11__.default)({
@@ -6509,7 +6516,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".AeXPHUAxoKeZocZZIyIjC{\r\n  display: flex;\r\n  align-self: center;\r\n  align-items: center;\r\n  background-color: #062940;\r\n  height: 20%;\r\n  padding: 5%;\r\n  border-radius: 5px 30px 5px;\r\n}\r\n._15GSQ9liI4SZsmRukbAIrr{\r\n  color:white;\r\n  font-weight: bold;\r\n  font-size: 120%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/loginFirst.module.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,kBAAkB;EAClB,mBAAmB;EACnB,yBAAyB;EACzB,WAAW;EACX,WAAW;EACX,2BAA2B;AAC7B;AACA;EACE,WAAW;EACX,iBAAiB;EACjB,eAAe;AACjB","sourcesContent":[".container{\r\n  display: flex;\r\n  align-self: center;\r\n  align-items: center;\r\n  background-color: #062940;\r\n  height: 20%;\r\n  padding: 5%;\r\n  border-radius: 5px 30px 5px;\r\n}\r\n.p{\r\n  color:white;\r\n  font-weight: bold;\r\n  font-size: 120%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".AeXPHUAxoKeZocZZIyIjC{\r\n  display: flex;\r\n  align-self: center;\r\n  align-items: center;\r\n  background-color: #062940;\r\n  margin:0 auto;\r\n  height: 20%;\r\n  padding: 5%;\r\n  border-radius: 5px 30px 5px;\r\n}\r\n._15GSQ9liI4SZsmRukbAIrr{\r\n  color:white;\r\n  font-weight: bold;\r\n  font-size: 120%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/loginFirst.module.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,kBAAkB;EAClB,mBAAmB;EACnB,yBAAyB;EACzB,aAAa;EACb,WAAW;EACX,WAAW;EACX,2BAA2B;AAC7B;AACA;EACE,WAAW;EACX,iBAAiB;EACjB,eAAe;AACjB","sourcesContent":[".container{\r\n  display: flex;\r\n  align-self: center;\r\n  align-items: center;\r\n  background-color: #062940;\r\n  margin:0 auto;\r\n  height: 20%;\r\n  padding: 5%;\r\n  border-radius: 5px 30px 5px;\r\n}\r\n.p{\r\n  color:white;\r\n  font-weight: bold;\r\n  font-size: 120%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "AeXPHUAxoKeZocZZIyIjC",
@@ -6609,10 +6616,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1ryhKuJmrwAM45cF-lSB5z{\r\n  background-color: #1D1B1B;\r\n  height: 95%;\r\n  width: 95%;\r\n  display:flex;\r\n  justify-content: center;\r\n  margin:0 auto;\r\n  border-radius: 1%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,YAAY;EACZ,uBAAuB;EACvB,aAAa;EACb,iBAAiB;AACnB","sourcesContent":[".container{\r\n  background-color: #1D1B1B;\r\n  height: 95%;\r\n  width: 95%;\r\n  display:flex;\r\n  justify-content: center;\r\n  margin:0 auto;\r\n  border-radius: 1%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1ryhKuJmrwAM45cF-lSB5z{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n\r\n}\r\n\r\n.EwMKvcTuonBrjnr-WEk1a{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2m5vqJyEzxbgNmGJHG7Oor{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n._3yFEWDk14KcWL8-FisLkvi{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n._21qADeL6XncLuiVKaPlLpX{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;;AAEd;;AAEA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;AACrB","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n\r\n}\r\n\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"container": "_1ryhKuJmrwAM45cF-lSB5z"
+	"container": "_1ryhKuJmrwAM45cF-lSB5z",
+	"loggedContainer": "EwMKvcTuonBrjnr-WEk1a",
+	"title": "_2m5vqJyEzxbgNmGJHG7Oor",
+	"p": "_3yFEWDk14KcWL8-FisLkvi",
+	"listContainer": "_21qADeL6XncLuiVKaPlLpX"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6678,7 +6689,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2kKThhk06TvfYWBe0svXgX{\r\n  display:flex;\r\n  flex-direction: column;\r\n  flex:1;\r\n  background-color:#222226;\r\n  padding:5%;\r\n}\r\n._3ikRtcXY2KolV7QqrqvDpy{\r\n  color: #9590A0;\r\n  padding-top:5%;\r\n  font-weight: 600;\r\n}\r\n._3ikRtcXY2KolV7QqrqvDpy:hover{\r\n  color:#4D39C7;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/profileOpt.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,MAAM;EACN,wBAAwB;EACxB,UAAU;AACZ;AACA;EACE,cAAc;EACd,cAAc;EACd,gBAAgB;AAClB;AACA;EACE,aAAa;AACf","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  flex:1;\r\n  background-color:#222226;\r\n  padding:5%;\r\n}\r\n.p{\r\n  color: #9590A0;\r\n  padding-top:5%;\r\n  font-weight: 600;\r\n}\r\n.p:hover{\r\n  color:#4D39C7;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2kKThhk06TvfYWBe0svXgX{\r\n  display:flex;\r\n  flex-direction: column;\r\n  flex:1;\r\n  padding:5%;\r\n}\r\n._3ikRtcXY2KolV7QqrqvDpy{\r\n  color: #9590A0;\r\n  padding-top:5%;\r\n  font-weight: 600;\r\n}\r\n._3ikRtcXY2KolV7QqrqvDpy:hover{\r\n  color:#4D39C7;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/styles/profileOpt.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,MAAM;EACN,UAAU;AACZ;AACA;EACE,cAAc;EACd,cAAc;EACd,gBAAgB;AAClB;AACA;EACE,aAAa;AACf","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  flex:1;\r\n  padding:5%;\r\n}\r\n.p{\r\n  color: #9590A0;\r\n  padding-top:5%;\r\n  font-weight: 600;\r\n}\r\n.p:hover{\r\n  color:#4D39C7;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_2kKThhk06TvfYWBe0svXgX",

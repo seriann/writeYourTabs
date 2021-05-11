@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./back/src/index",
+    "start": "nodemon ./back/src/index",
     "dev": "webpack -w --mode development",
     "build": "webpack --mode production"
   },

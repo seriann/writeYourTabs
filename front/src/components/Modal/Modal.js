@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styles from '../../styles/modal.module.css'
-import API from '../../api/index'
+
 
 const Modal = ({setModal,submitRef,handleSave,handleSubmit}) => {
 

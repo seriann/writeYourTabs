@@ -38,12 +38,15 @@ const TabController = {
         .then(tab => res.send(tab))
         .catch(err => next(err))
   },
-   /*addNewLine(req,res,next){
-     Tab.findById({_id:req.params.id})
-        .then(tab => {
-          [...tab.modelPerLine, req.body]
+   findAllUserTabs(req,res,next){
+     let userId = req.params.userId
+     Tab.find({active: true})
+        .then(tabs => {
+          let filtered = tabs.filter(el=> el.userId === userId)
+          res.send(tabs)
         })
-   }*/
+        .catch(err => next(err))
+   }
 }
 
 module.exports = TabController

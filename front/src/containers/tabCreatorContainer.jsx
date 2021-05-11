@@ -152,6 +152,7 @@ const handleSubmit = async (e) => {
     formData.append("title",title)
     formData.append("text",textArea)
     formData.append("genre",genre)
+    formData.append("userId",logged._id)
     formData.append("pdf",pdf)
     formData.append("createdAt",date.yyyymmdd().split("|")[0])
 

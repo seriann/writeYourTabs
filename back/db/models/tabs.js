@@ -20,6 +20,11 @@ const tabSchema = new Schema({
   pdf:{
     type:String,
   },
+  userId:{
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "user"
+  },
   createdAt:{
     type:String
   },

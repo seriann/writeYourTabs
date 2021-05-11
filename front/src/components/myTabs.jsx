@@ -10,8 +10,12 @@ const MyTabs = () => {
     })
 
   return (
-    <div>
-      MyTABS
+    <div className={styles.loggedContainer}>
+      <div className={styles.title}>
+        <p className={styles.p}>My tabs</p>
+      </div>
+      <div className={styles.listContainer}>
+      </div>
     </div>
   )
 }
