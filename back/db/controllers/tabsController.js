@@ -42,8 +42,8 @@ const TabController = {
      let userId = req.params.userId
      Tab.find({active: true})
         .then(tabs => {
-          let filtered = tabs.filter(el=> el.userId === userId)
-          res.send(tabs)
+          let filtered = tabs.filter(el=> el.userId == userId)
+          res.send(filtered)
         })
         .catch(err => next(err))
    }
