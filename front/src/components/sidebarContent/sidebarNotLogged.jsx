@@ -1,8 +1,9 @@
 import React,{ useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from "../../styles/sidebarNotLogged.module.css"
 import { loggUser } from "../../redux/action-creators/login"
+import { fetchTabs } from "../../redux/action-creators/tabs"
 import SignUp from "../../containers/signUpContainer"
 import ErrorMsg from "../errors/msgerror"
 import API from "../../api/index"
@@ -16,6 +17,9 @@ const [isLoading, setIsLoading] = useState(false)
 const [errorMsg, setErrorMsg] = useState("")
 const [errorBool, setErrorBool] = useState(false)
 const [signup, setSignup] = useState(false)
+const myTabs= useSelector((state)=> {
+  return state.tabs.myTabs
+})
 
 const props = useSpring({
     to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -36,7 +40,6 @@ const handleChange = (e) => {
   }
 }
 const goBack = () => {
-  console.log("ATRAS");
   setSignup(false)
 }
 const handleSubmit = (e) => {
@@ -49,7 +52,8 @@ const handleSubmit = (e) => {
   .then(res => res.data)
   .then(data => {
     dispatch(loggUser(data))
-    console.log("user loged",data);
+    dispatch(fetchTabs(data._id))
+    console.log("aver las tab", myTabs);
   })
   .catch(err =>{
      console.log("upps..",err)

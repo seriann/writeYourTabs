@@ -1,10 +1,12 @@
 import React,{useRef} from 'react'
 import styles from "../../styles/tabsOpt.module.css"
 
-const TabsOpt = ({modal,setModal,author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
+const TabsOpt = ({successMsg,onSuccess,modal,setModal,author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
 const submitRef = useRef()
 
 const handleModal = () => {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   setModal(true)
 }
 
@@ -35,7 +37,9 @@ const handleModal = () => {
           onClick={handleModal}
           className={styles.otherButton}>save tab</button>
         </div>
-
+         <div className={styles.successDiv}>
+           <p className={styles.p}>{onSuccess&& successMsg}</p>
+         </div>
       </div>
       <div className={styles.infCol2}>
         <h4 className={styles.h4}>tuning: </h4>

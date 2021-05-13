@@ -20,14 +20,23 @@ const tabSchema = new Schema({
   pdf:{
     type:String,
   },
+  userId:{
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "user"
+  },
   createdAt:{
     type:String
+  },
+  views:{
+    type: Number,
+    default: 0
   },
   active : {
    type : Boolean,
    default: true
   }
-},{ timestamps: { createdAt: 'created_at' } })
+})
 
 tabSchema.methods.setPdf = function(filename){
   this.pdf = `http://localhost:3000/public/${filename}`

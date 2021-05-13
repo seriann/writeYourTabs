@@ -47,3 +47,10 @@
   display: flex;
   flex-direction: column;
 }
+.successDiv{
+  margin-top: 5%;
+}
+.p{
+  font-size: 120%;
+  color: green;
+}

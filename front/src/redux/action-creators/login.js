@@ -13,7 +13,6 @@ const fetchLogin = (email, password) => (dispatch) => {
   })
   .then(res => res.data)
   .then(data => {
-    console.log(`user logged ${data}`);
     dispatch(loggUser)
   })
   .catch(err => console.log(err))

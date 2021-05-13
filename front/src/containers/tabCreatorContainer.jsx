@@ -18,8 +18,8 @@ Date.prototype.yyyymmdd = function() {
   var dd = this.getDate();
 
   return [this.getFullYear(),
-          (mm>9 ? '' : '0')+ "-" + mm,
-          (dd>9 ? '' : '0')+ "-" + dd + "|",
+          "-" + (mm>9 ? '' : '0')+ mm,
+          "-" + (dd>9 ? '' : '0') + dd + "|",
           this.getHours() + ":",
           this.getMinutes() +":",
           this.getSeconds(),
@@ -45,6 +45,14 @@ const TabCreator = ({logged}) => {
  const [tab, setTab] = useState(false)
  const [pdf, setPdf] = useState(null)
  const [modal, setModal] = useState(false)
+
+ const [isLoading, setIsLoading] = useState(false)
+ const [loader, setLoader] = useState(0)
+ const [errBool, setErrBool] = useState(false)
+ const [errMsg, setErrMsg] = useState("")
+ const [onSuccess, setOnSuccess] = useState(false)
+ const [successMsg, setSuccessMsg] = useState("")
+
  const [viewBox, setViewBox] = useState("0 0 950 200")
  const input = document.getElementById('svgContainer')
  const props = useSpring({
@@ -60,7 +68,7 @@ const TabCreator = ({logged}) => {
          goBack()
      }
 }
-const handleSave = (upload) => {
+const handleSave = (upload, allOptions) => {
   let bool = false
   let date = new Date()
   document.body.scrollTop = 0; // For Safari
@@ -109,13 +117,31 @@ const handleSave = (upload) => {
                           newPdf.deletePage(pageCount - 1)
                         }
 
-                        if(upload && bool == false) {
+                        if(upload && pdf === null || allOptions === true) {
                           setPdf(newPdf.output('blob'))
 
                         }
 
-                        if(!upload){
-                          newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`)
+                        if(upload === false || allOptions === true){
+                          newPdf.save(`${author}-${title}|${date.yyyymmdd()}.pdf`,{returnPromise:true})
+                                .then(()=>{
+                                  if(upload == false && allOptions == null){
+                                    setIsLoading(false)
+                                    setLoader(0)
+                                  }
+                                })
+                                .catch(()=>{
+                                  setIsLoading(false)
+                                  setErrBool(true)
+                                  setErrMsg("Oops! something went wrong, try again later")
+
+                                  setTimeout(()=>{
+                                    setLoader(0)
+                                    setErrBool(false)
+                                    setErrMsg("")
+                                  },10000)
+                                })
+
                         }
                       }).catch(err=>console.log(err))
                       console.log("aver2",pdf);
@@ -141,10 +167,14 @@ const handleQuit = () => {
   setTextArea("")
   setTab(!tab)
 }
-const handleSubmit = async (e) => {
-  handleSave(true)
-  let date = new Date()
+const handleSubmit = async (boolean, secondBool,number) => {
 
+  setIsLoading(true)
+  setLoader(number)
+  handleSave(boolean,secondBool)
+
+if(boolean === true || secondBool === true){
+  let date = new Date()
   try{
     const formData = new FormData()
 
@@ -152,6 +182,7 @@ const handleSubmit = async (e) => {
     formData.append("title",title)
     formData.append("text",textArea)
     formData.append("genre",genre)
+    formData.append("userId",logged._id)
     formData.append("pdf",pdf)
     formData.append("createdAt",date.yyyymmdd().split("|")[0])
 
@@ -162,15 +193,35 @@ const handleSubmit = async (e) => {
    })
    console.log(response);
    setModal(false)
+   setPdf(null)
+   setIsLoading(false)
+   setLoader(0)
+   setOnSuccess(true)
+   setSuccessMsg("✔ Your tab were submitted successfully")
+
+   setTimeout(()=>{
+     setOnSuccess(false)
+     setSuccessMsg("")
+   },10000)
    return response
+    }catch(e){
 
-  }catch(e){
+      if(e.message.indexOf("406") != -1){
+      submitRef.current.click()
+    }else{
+      setIsLoading(false)
+      setErrBool(true)
+      setErrMsg("Oops! something went wrong, try again later")
 
-    if(e.message.indexOf("406") != -1){
-    submitRef.current.click()
-  }else{
-    console.log("exception",e.message);
-  }
+      setTimeout(()=>{
+        setLoader(0)
+        setErrBool(false)
+        setErrMsg("")
+      },10000)
+
+      console.log("exception",e.message);
+    }
+   }
   }
 
 }
@@ -503,9 +554,10 @@ setLinesCounter(linesCounter+1)
           <i className="far fa-times-circle"></i>
         </button>
           <TabsOpt
-          modal={modal}
-          setModal={setModal}
-
+           modal={modal}
+           setModal={setModal}
+           onSuccess={onSuccess}
+           successMsg={successMsg}
            inputRef={inputRef}
            handleChange={handleChange}
            fretNum={fretNum}
@@ -534,11 +586,15 @@ setLinesCounter(linesCounter+1)
             svgContainerRef={svgContainerRef}
             />
             {modal && <Modal
-              submitRef={submitRef}
-              setModal={setModal}
-              handleSave={handleSave}
-              handleSubmit={handleSubmit}
-              />}
+                       errBool={errBool}
+                       errMsg={errMsg}
+                       isLoading={isLoading}
+                       loader={loader}
+                       submitRef={submitRef}
+                       setModal={setModal}
+                       handleSave={handleSave}
+                       handleSubmit={handleSubmit}
+                       />}
        </div>
 
      }
