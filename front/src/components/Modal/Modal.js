@@ -3,7 +3,7 @@ import Loader from '../Loader'
 import styles from '../../styles/modal.module.css'
 
 
-const Modal = ({loader,isLoading,setModal,submitRef,handleSave,handleSubmit}) => {
+const Modal = ({errBool,errMsg,loader,isLoading,setModal,submitRef,handleSave,handleSubmit}) => {
 
 
  const handleClose = () => {
@@ -26,7 +26,11 @@ const Modal = ({loader,isLoading,setModal,submitRef,handleSave,handleSubmit}) =>
               onClick={()=>handleSubmit(false,null,1)}
               className={styles.optButton}>Download</button>
               {isLoading === true && loader === 1?
-                <Loader/> : null
+                <Loader/>
+                :
+                loader === 1 && errBool?
+                <p className={styles.errMsg}>{errMsg}</p>
+                : null
               }
            </section>
            <section className={styles.section}>
@@ -35,7 +39,11 @@ const Modal = ({loader,isLoading,setModal,submitRef,handleSave,handleSubmit}) =>
              onClick={()=>handleSubmit(null,true,2)}
              className={styles.optButton}>Download & upload</button>
              {isLoading === true && loader === 2?
-               <Loader/> : null
+               <Loader/>
+               :
+               loader === 2 && errBool?
+               <p className={styles.errMsg}>{errMsg}</p>
+               : null
              }
            </section>
            <section className={styles.section}>
@@ -45,7 +53,11 @@ const Modal = ({loader,isLoading,setModal,submitRef,handleSave,handleSubmit}) =>
               ref={submitRef}
               className={styles.optButton}>Upload</button>
               {isLoading === true && loader === 3?
-                <Loader/> : null
+                <Loader/>
+                :
+                loader === 3 && errBool?
+                <p className={styles.errMsg}>{errMsg}</p>
+                : null
               }
            </section>
          </div>

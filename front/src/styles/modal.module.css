@@ -67,3 +67,7 @@
 .title{
   align-self: center;
 }
+.errMsg{
+  font-size: 120%;
+  color: red;
+}

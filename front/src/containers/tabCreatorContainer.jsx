@@ -28,8 +28,6 @@ Date.prototype.yyyymmdd = function() {
 
 const TabCreator = ({logged}) => {
  const location = useLocation()
- const [isLoading, setIsLoading] = useState(false)
- const [loader, setLoader] = useState(0)
  const [fretNum, setFretNum] = useState(0)
  const [linesCounter, setLinesCounter] = useState(1)
  const [idHistory, setIdHistory] = useState([])
@@ -47,6 +45,14 @@ const TabCreator = ({logged}) => {
  const [tab, setTab] = useState(false)
  const [pdf, setPdf] = useState(null)
  const [modal, setModal] = useState(false)
+
+ const [isLoading, setIsLoading] = useState(false)
+ const [loader, setLoader] = useState(0)
+ const [errBool, setErrBool] = useState(false)
+ const [errMsg, setErrMsg] = useState("")
+ const [onSuccess, setOnSuccess] = useState(false)
+ const [successMsg, setSuccessMsg] = useState("")
+
  const [viewBox, setViewBox] = useState("0 0 950 200")
  const input = document.getElementById('svgContainer')
  const props = useSpring({
@@ -124,6 +130,17 @@ const handleSave = (upload, allOptions) => {
                                     setLoader(0)
                                   }
                                 })
+                                .catch(()=>{
+                                  setIsLoading(false)
+                                  setErrBool(true)
+                                  setErrMsg("Oops! something went wrong, try again later")
+
+                                  setTimeout(()=>{
+                                    setLoader(0)
+                                    setErrBool(false)
+                                    setErrMsg("")
+                                  },10000)
+                                })
 
                         }
                       }).catch(err=>console.log(err))
@@ -179,6 +196,13 @@ if(boolean === true || secondBool === true){
    setPdf(null)
    setIsLoading(false)
    setLoader(0)
+   setOnSuccess(true)
+   setSuccessMsg("✔ Your tab were submitted successfully")
+
+   setTimeout(()=>{
+     setOnSuccess(false)
+     setSuccessMsg("")
+   },10000)
    return response
     }catch(e){
 
@@ -186,7 +210,15 @@ if(boolean === true || secondBool === true){
       submitRef.current.click()
     }else{
       setIsLoading(false)
-      setLoader(0)
+      setErrBool(true)
+      setErrMsg("Oops! something went wrong, try again later")
+
+      setTimeout(()=>{
+        setLoader(0)
+        setErrBool(false)
+        setErrMsg("")
+      },10000)
+
       console.log("exception",e.message);
     }
    }
@@ -522,9 +554,10 @@ setLinesCounter(linesCounter+1)
           <i className="far fa-times-circle"></i>
         </button>
           <TabsOpt
-          modal={modal}
-          setModal={setModal}
-
+           modal={modal}
+           setModal={setModal}
+           onSuccess={onSuccess}
+           successMsg={successMsg}
            inputRef={inputRef}
            handleChange={handleChange}
            fretNum={fretNum}
@@ -553,6 +586,8 @@ setLinesCounter(linesCounter+1)
             svgContainerRef={svgContainerRef}
             />
             {modal && <Modal
+                       errBool={errBool}
+                       errMsg={errMsg}
                        isLoading={isLoading}
                        loader={loader}
                        submitRef={submitRef}
