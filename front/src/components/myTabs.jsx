@@ -1,20 +1,24 @@
 import React from 'react'
 import styles from "../styles/myTabs.module.css"
-import { useSpring, animated } from 'react-spring'
+import TabComponent from './tabComponent'
 
-const MyTabs = () => {
-
-  const props = useSpring({
-      to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-      from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-    })
-
+const MyTabs = ({tabs}) => {
+console.log('aver',tabs);
   return (
     <div className={styles.loggedContainer}>
       <div className={styles.title}>
         <p className={styles.p}>My tabs</p>
       </div>
       <div className={styles.listContainer}>
+      {tabs.map((el)=> {
+        return <TabComponent
+                key={el._id}
+                title={el.title}
+                author={el.author}
+                date={el.createdAt}
+                views={el.views}
+                />
+      })}
       </div>
     </div>
   )

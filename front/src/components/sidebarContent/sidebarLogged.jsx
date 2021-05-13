@@ -7,7 +7,6 @@ import { useSpring, animated } from 'react-spring'
 const SidebarContent = ({user, logout}) => {
 
   const location = useLocation()
-  console.log(location);
   const [isVisible, setIsVisible] = useState(false)
   const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },

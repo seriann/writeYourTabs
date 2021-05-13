@@ -32,3 +32,32 @@ color:white;
   width: 95%;
   border-radius: 1.5%;
 }
+.tabComponentContainer{
+ display:flex;
+ flex:1;
+ margin:0 auto;
+ flex-direction: row;
+ justify-content: space-between;
+ width: 95%;
+ height: 6%;
+ background-color: var(--main-black);
+ align-items: center;
+ padding: 2%;
+ border-radius: 0.5vw;
+ margin-top: 2%;
+}
+.tabSectionA{
+  flex:7;
+}
+.tabSectionB{
+  flex:2;
+}
+.tabSectionC{
+  flex:1;
+}
+.tabSection{
+  margin-right: 6%;
+}
+.tabP{
+  color: white;
+}

@@ -2,9 +2,16 @@ import React from 'react'
 import MyTabs from "../components/myTabs"
 import LoginFirst from '../components/errors/LoginFirst'
 import styles from '../styles/myTabs.module.css'
+import { useSelector } from "react-redux";
 import { useSpring, animated } from 'react-spring'
 
-const MyTabsContainer = ({logged}) => {
+const MyTabsContainer = () => {
+  const logged = useSelector((state) => {
+    return state.login.loggedUser
+  })
+  const myTabs= useSelector((state)=> {
+    return state.tabs.myTabs
+  })
   const props = useSpring({
       to: { opacity: 1, transform: 'translate3d(0%,0,0)' },
       from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
@@ -16,7 +23,7 @@ const MyTabsContainer = ({logged}) => {
       JSON.stringify(logged) == "{}"?
       <LoginFirst />
       :
-      <MyTabs />
+      <MyTabs tabs={myTabs}/>
     }
 
    </animated.div>

@@ -9,6 +9,7 @@ import Footer from './footer'
 import Navbar from "../containers/NavbarContainer"
 import SidebarContainer from "../containers/sidebarContainer"
 import { loggUser } from "../redux/action-creators/login"
+import { fetchTabs } from "../redux/action-creators/tabs"
 import styles from "../styles/main.module.css"
 
 const Main = () => {
@@ -23,6 +24,7 @@ useEffect(()=>{
      .then(data => {
        console.log("user logged:", data);
        dispatch(loggUser(data))
+       dispatch(fetchTabs(data._id))
      })
      .catch(err => console.log("ups", err))
 },[])
@@ -35,7 +37,7 @@ useEffect(()=>{
         <div className={styles.content}>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/mytabs" render={()=> <MyTabs logged={logged}/>} />
+          <Route path="/mytabs" component={MyTabs} />
           <Route path="/create" render={()=> <TabCreator logged={logged} />} />
           <Redirect from="/" to="/home"/>
         </Switch>
