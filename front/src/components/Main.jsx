@@ -5,7 +5,7 @@ import Home from "../containers/HomeContainer"
 import MyTabs from "../containers/myTabsContainer"
 import TabCreatorContainer from "./TabCreator/container/tabCreatorContainer"
 import API from "../api/index"
-import Footer from './footer'
+import Footer from './Footer/footer'
 import Navbar from "../containers/NavbarContainer"
 import SidebarContainer from "./sidebarContent/container/sidebarContainer"
 import { loggUser } from "../redux/action-creators/login"
@@ -14,15 +14,11 @@ import styles from "../styles/main.module.css"
 
 const Main = () => {
 const dispatch = useDispatch()
-const logged = useSelector((state) => {
-  return state.login.loggedUser
-})
 
 useEffect(()=>{
   API.get("/users/persist/me")
      .then(res => res.data)
      .then(data => {
-       console.log("user logged:", data);
        dispatch(loggUser(data))
        dispatch(fetchTabs(data._id))
      })
