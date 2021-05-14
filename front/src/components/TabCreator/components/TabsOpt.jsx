@@ -1,7 +1,5 @@
-/*REUBICAR EN OTRA PARTE*/
-
 import React,{useRef} from 'react'
-import styles from "../../styles/tabsOpt.module.css"
+import styles from "../styles/tabsOpt.module.css"
 
 const TabsOpt = ({successMsg,onSuccess,modal,setModal,author,title,text,genre,pdf,firstString,secondString,thirdString,fourthString,fifthString,sixthString, inputRef, handleChange, fretNum, goBack, addNewLine,handleSave }) => {
 const submitRef = useRef()

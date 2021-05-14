@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import Loader from '../Loader'
+import Loader from '../../../Loader/Loader'
 import styles from '../../styles/modal.module.css'
 
 

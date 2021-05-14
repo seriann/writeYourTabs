@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../../styles/start.module.css"
+import styles from "../styles/start.module.css"
 
 const Start = ({firstString,secondString,thirdString,fourthString,fifthString,sixthString,viewBox,author,title,counter, clicked,svgContainerRef}) => {
 

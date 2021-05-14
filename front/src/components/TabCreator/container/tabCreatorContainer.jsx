@@ -1,17 +1,17 @@
 import React, {useState, useEffect, useRef} from 'react'
 import styles from "../styles/tabCreator.module.css"
 import { useSpring, animated } from 'react-spring'
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from 'react-router-dom'
-import Tab from "../components/tabs/start"
-import Line from "../components/tabs/extraLine"
-import { svgPoint,createSvgText,createText, uniqid, createSeparationLine } from "../components/custom_functions/functions"
-import TabsOpt from "../components/sidebarContent/TabsOpt"
-import FirstStep from "../components/tabs/FirstStep"
-import LoginFirst from '../components/errors/LoginFirst'
+import Tab from "../components/start"
+import { svgPoint,createSvgText,createText, uniqid, createSeparationLine } from "../../custom_functions/functions"
+import TabsOpt from "../components/TabsOpt"
+import FirstStep from "../components/FirstStep"
+import LoginFirst from '../../errors/LoginFirst'
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import Modal from '../components/Modal/Modal'
-import API from '../api/index'
+import API from '../../../api/index'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -26,8 +26,11 @@ Date.prototype.yyyymmdd = function() {
          ].join('');
 };
 
-const TabCreator = ({logged}) => {
+const TabCreator = () => {
  const location = useLocation()
+ const logged = useSelector((state) => {
+   return state.login.loggedUser
+ })
  const [fretNum, setFretNum] = useState(0)
  const [linesCounter, setLinesCounter] = useState(1)
  const [idHistory, setIdHistory] = useState([])

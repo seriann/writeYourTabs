@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../../styles/firstStep.module.css"
+import styles from "../styles/firstStep.module.css"
 
 const FirstStep = ({ handleClick, handleChange, title, author, genre, textarea }) => {
   return (
