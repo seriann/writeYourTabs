@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
-import styles from "../../styles/errmsg.module.css"
+import styles from "./styles/errmsg.module.css"
 
 export default ({text}) => {
 

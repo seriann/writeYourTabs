@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import styles from "../../styles/buttonTab.module.css"
+import styles from "./styles/buttonTab.module.css"
 import { useSpring, animated } from 'react-spring'
 
 const ButtonTab = () => {

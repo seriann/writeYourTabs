@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SignUp from "../components/signUp"
-import API from "../../../api/index"
+import API from "../../api/index"
 
 const SignUpContainer = ({ goBack }) => {
 

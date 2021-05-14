@@ -2,8 +2,8 @@ import React from 'react'
 import ContentNotLogged from "../components/sidebarNotLogged"
 import ContentLogged from "../components/sidebarLogged"
 import styles from "../styles/sidebar.module.css"
-import API from "../../../api/index"
-import { loggUser } from "../../../redux/action-creators/login"
+import API from "../../api/index"
+import { loggUser } from "../../redux/action-creators/login"
 import { useSelector, useDispatch } from 'react-redux'
 
 const Sidebar = () => {

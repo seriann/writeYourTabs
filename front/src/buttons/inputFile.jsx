@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../../styles/inputFile.module.css"
+import styles from "./styles/inputFile.module.css"
 
 const FileUploader = ({ text, onFileSelectSuccess, onFileSelectError}) =>{
 

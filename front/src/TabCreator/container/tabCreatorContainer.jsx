@@ -11,7 +11,7 @@ import LoginFirst from '../../errors/LoginFirst'
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import Modal from '../components/Modal/Modal'
-import API from '../../../api/index'
+import API from '../../api/index'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
