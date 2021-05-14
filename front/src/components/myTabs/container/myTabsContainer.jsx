@@ -1,6 +1,6 @@
 import React from 'react'
 import MyTabs from "../components/myTabs"
-import LoginFirst from '../components/errors/LoginFirst'
+import LoginFirst from '../../errors/LoginFirst'
 import styles from '../styles/myTabs.module.css'
 import { useSelector } from "react-redux";
 import { useSpring, animated } from 'react-spring'
