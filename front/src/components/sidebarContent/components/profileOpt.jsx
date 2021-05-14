@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
-import styles from "../../styles/profileOpt.module.css"
+import styles from "../styles/profileOpt.module.css"
 
 const Options = ({logout}) => {
 

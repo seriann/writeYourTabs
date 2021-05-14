@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../styles/signUp.module.css"
-import InputFileUploader from "./buttons/inputFile"
-import ErrMsg from "./errors/msgerror"
+import InputFileUploader from "../../buttons/inputFile"
+import ErrMsg from "../../errors/msgerror"
 import { useSpring, animated } from 'react-spring'
 
 const SignUp = ({isLoading,handleChange,email,password,handleFile,handleImgError,handleSubmit,username,image,errMsg,name,errBool}) => {

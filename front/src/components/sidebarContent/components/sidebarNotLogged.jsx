@@ -1,12 +1,12 @@
 import React,{ useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import styles from "../../styles/sidebarNotLogged.module.css"
-import { loggUser } from "../../redux/action-creators/login"
-import { fetchTabs } from "../../redux/action-creators/tabs"
-import SignUp from "../../containers/signUpContainer"
-import ErrorMsg from "../errors/msgerror"
-import API from "../../api/index"
+import styles from "../styles/sidebarNotLogged.module.css"
+import { loggUser } from "../../../redux/action-creators/login"
+import { fetchTabs } from "../../../redux/action-creators/tabs"
+import SignUp from "../container/signUpContainer"
+import ErrorMsg from "../../errors/msgerror"
+import API from "../../../api/index"
 import { useSpring, animated } from 'react-spring'
 
 const SidebarContent = () => {

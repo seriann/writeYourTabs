@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import styles from "../../styles/sidebarLogged.module.css"
+import styles from "../styles/sidebarLogged.module.css"
 import Options from "./profileOpt"
 import { useSpring, animated } from 'react-spring'
 

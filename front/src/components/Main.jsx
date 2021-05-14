@@ -7,7 +7,7 @@ import TabCreator from "../containers/tabCreatorContainer"
 import API from "../api/index"
 import Footer from './footer'
 import Navbar from "../containers/NavbarContainer"
-import SidebarContainer from "../containers/sidebarContainer"
+import SidebarContainer from "./sidebarContent/container/sidebarContainer"
 import { loggUser } from "../redux/action-creators/login"
 import { fetchTabs } from "../redux/action-creators/tabs"
 import styles from "../styles/main.module.css"
@@ -33,7 +33,7 @@ useEffect(()=>{
     <div>
     <Navbar />
      <div className={styles.flexContainer}>
-         <SidebarContainer logged={logged} />
+         <SidebarContainer />
         <div className={styles.content}>
         <Switch>
           <Route path="/home" component={Home} />

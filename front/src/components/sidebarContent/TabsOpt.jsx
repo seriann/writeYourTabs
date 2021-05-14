@@ -1,3 +1,5 @@
+/*REUBICAR EN OTRA PARTE*/
+
 import React,{useRef} from 'react'
 import styles from "../../styles/tabsOpt.module.css"
 
