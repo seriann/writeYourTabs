@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../styles/navbar.module.css"
 import { Link } from 'react-router-dom'
-import ButtonTab from "./buttons/buttonsTab"
+import ButtonTab from "../../buttons/buttonsTab"
 
 const Navbar = () => {
   return (

@@ -2,9 +2,7 @@ import React from 'react'
 import Navbar from "../components/Navbar"
 
 const NavbarContainer = () => {
-  return(
-    <Navbar />
-  )
+  return <Navbar />
 }
 
 export default NavbarContainer

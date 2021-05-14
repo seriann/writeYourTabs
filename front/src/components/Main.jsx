@@ -6,7 +6,7 @@ import MyTabs from "../containers/myTabsContainer"
 import TabCreatorContainer from "./TabCreator/container/tabCreatorContainer"
 import API from "../api/index"
 import Footer from './Footer/footer'
-import Navbar from "../containers/NavbarContainer"
+import NavbarContainer from "./Navbar/container/NavbarContainer"
 import SidebarContainer from "./sidebarContent/container/sidebarContainer"
 import { loggUser } from "../redux/action-creators/login"
 import { fetchTabs } from "../redux/action-creators/tabs"
@@ -27,7 +27,7 @@ useEffect(()=>{
 
   return (
     <div>
-    <Navbar />
+    <NavbarContainer />
      <div className={styles.flexContainer}>
          <SidebarContainer />
         <div className={styles.content}>
