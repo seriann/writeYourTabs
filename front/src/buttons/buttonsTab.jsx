@@ -4,6 +4,7 @@ import styles from "./styles/buttonTab.module.css"
 import { useSpring, animated } from 'react-spring'
 
 const ButtonTab = () => {
+
 const [home,setHome] = useState(true)
 const [tab,setTab] = useState(false)
 const [create,setCreate] = useState(false)
@@ -25,6 +26,10 @@ useEffect(()=>{
     setCreate(false)
   }else if(pathname == "/create"){
     setCreate(true)
+    setTab(false)
+    setHome(false)
+  }else if(pathname == "/tab"){
+    setCreate(false)
     setTab(false)
     setHome(false)
   }

@@ -1,3 +1,6 @@
+import { useLocation } from 'react-router-dom'
+export const useQuery = () => new URLSearchParams(useLocation().search);
+
 export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,svg, id) =>{
   let bool = true
   const text = document.createElementNS('http://www.w3.org/2000/svg','text')
