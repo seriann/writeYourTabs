@@ -31,22 +31,22 @@ useEffect(()=>{
 
   return (
     <div>
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-    <NavbarContainer />
-     <div className={styles.flexContainer}>
-         <SidebarContainer />
-        <div className={styles.content}>
-        <Switch>
-          <Route path="/home" component={HomeContainer} />
-          <Route path="/mytabs" component={MyTabsContainer} />
-          <Route path="/create" component={TabCreatorContainer} />
-          <Route path="/tab" render={()=> <PdfViewerContainer name={query.get("s")}/>} />
-          <Redirect from="/" to="/home"/>
-        </Switch>
-         </div>
-        </div>
+     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
+      <NavbarContainer />
+       <div className={styles.flexContainer}>
+           <SidebarContainer />
+          <div className={styles.content}>
+          <Switch>
+            <Route path="/home" component={HomeContainer} />
+            <Route path="/mytabs" component={MyTabsContainer} />
+            <Route path="/create" component={TabCreatorContainer} />
+            <Route path="/tab" render={()=> <PdfViewerContainer name={query.get("s")}/>} />
+            <Redirect from="/" to="/home"/>
+          </Switch>
+           </div>
+          </div>
         <Footer />
-        </Worker>
+      </Worker>
     </div>
   )
 }

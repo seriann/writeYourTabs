@@ -3,6 +3,8 @@
   --main-black: #121212;
   --main-button: #042078;
   --main-black: #0B090F;
+  --main-blue: #124ba6;
+  --main-lightBlue: #7b82b3;
 }
 
 * {
@@ -31,5 +33,5 @@ html {
       color: #797780;
     }
 .fa-calendar-alt{
-  color: #b0baff;
+  color: var(--main-lightBlue);
 }

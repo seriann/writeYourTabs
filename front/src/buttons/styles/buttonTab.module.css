@@ -1,21 +1,29 @@
+.container{
+  display:flex;
+  flex:1
+}
 .buttons{
+  align-items: center;
+  flex:3.3;
   text-decoration: none;
-   border:none;
-   color: white;
-   background: none;
-   outline: none;
-   padding:5%;
+  border:none;
+  color: white;
+  background: none;
+  outline: none;
+  padding:4%;
 }
 .buttons:hover{
-  border-bottom: 1px solid #124ba6;
+  border-bottom: 0.5vh solid var(--main-lightBlue);
 }
 .activeButton{
+  align-items: center;
+  flex:3.3;
   text-decoration: none;
    border:none;
    font-weight: bold;
    color: white;
    background: none;
    outline: none;
-   padding:5%;
-   border-bottom: 2px solid #124ba6;
+   padding:4%;
+   border-bottom: 0.5vh solid var(--main-blue);
  }

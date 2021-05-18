@@ -7744,19 +7744,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/tabCreator.module.css */ "./front/src/TabCreator/styles/tabCreator.module.css");
-/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _components_start__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/start */ "./front/src/TabCreator/components/start.jsx");
-/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../custom_functions/functions */ "./front/src/custom_functions/functions.js");
-/* harmony import */ var _components_TabsOpt__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/TabsOpt */ "./front/src/TabCreator/components/TabsOpt.jsx");
-/* harmony import */ var _components_FirstStep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/FirstStep */ "./front/src/TabCreator/components/FirstStep.jsx");
-/* harmony import */ var _errors_LoginFirst__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../errors/LoginFirst */ "./front/src/errors/LoginFirst.jsx");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
-/* harmony import */ var _components_Modal_Modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Modal/Modal */ "./front/src/TabCreator/components/Modal/Modal.js");
-/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
+/* harmony import */ var _redux_action_creators_tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/action-creators/tabs */ "./front/src/redux/action-creators/tabs.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _components_start__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/start */ "./front/src/TabCreator/components/start.jsx");
+/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../custom_functions/functions */ "./front/src/custom_functions/functions.js");
+/* harmony import */ var _components_TabsOpt__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/TabsOpt */ "./front/src/TabCreator/components/TabsOpt.jsx");
+/* harmony import */ var _components_FirstStep__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/FirstStep */ "./front/src/TabCreator/components/FirstStep.jsx");
+/* harmony import */ var _errors_LoginFirst__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../errors/LoginFirst */ "./front/src/errors/LoginFirst.jsx");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
+/* harmony import */ var _components_Modal_Modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Modal/Modal */ "./front/src/TabCreator/components/Modal/Modal.js");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
+
 
 
 
@@ -7780,7 +7782,8 @@ Date.prototype.yyyymmdd = function () {
 };
 
 const TabCreator = () => {
-  const location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useLocation)();
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  const location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useLocation)();
   const logged = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(state => {
     return state.login.loggedUser;
   });
@@ -7809,7 +7812,7 @@ const TabCreator = () => {
   const [successMsg, setSuccessMsg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const [viewBox, setViewBox] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("0 0 950 200");
   const input = document.getElementById('svgContainer');
-  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_13__.useSpring)({
+  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_14__.useSpring)({
     to: {
       opacity: 1,
       transform: 'translate3d(0%,0,0)'
@@ -7838,11 +7841,11 @@ const TabCreator = () => {
 
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
-    html2canvas__WEBPACK_IMPORTED_MODULE_8___default()(svgContainerRef.current, {
+    html2canvas__WEBPACK_IMPORTED_MODULE_9___default()(svgContainerRef.current, {
       width: 1000
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
-      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_9__.jsPDF('pt', 'mm');
+      const newPdf = new jspdf__WEBPACK_IMPORTED_MODULE_10__.jsPDF('pt', 'mm');
       let imgWidth = 210;
       let pageHeight = 290;
       let imgHeight = canvas.height * imgWidth / canvas.width;
@@ -7942,12 +7945,12 @@ const TabCreator = () => {
         formData.append("userId", logged._id);
         formData.append("pdf", pdf);
         formData.append("createdAt", date.yyyymmdd().split("|")[0]);
-        const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_11__.default)({
+        const response = await (0,_api_index__WEBPACK_IMPORTED_MODULE_12__.default)({
           url: '/tabs',
           method: 'POST',
           data: formData
         });
-        console.log(response);
+        dispatch((0,_redux_action_creators_tabs__WEBPACK_IMPORTED_MODULE_3__.addTab)(response.data));
         setModal(false);
         setPdf(null);
         setIsLoading(false);
@@ -8004,9 +8007,9 @@ const TabCreator = () => {
       clientX,
       clientY
     } = evt;
-    const id = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.uniqid)();
-    let svgP = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.svgPoint)(svg, clientX, clientY);
-    const txt = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createText)(svgP.x, Math.round(svgP.y), fretNum, id);
+    const id = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.uniqid)();
+    let svgP = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.svgPoint)(svg, clientX, clientY);
+    const txt = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createText)(svgP.x, Math.round(svgP.y), fretNum, id);
 
     if (txt != undefined) {
       setIdHistory([...idHistory, txt]);
@@ -8038,252 +8041,252 @@ const TabCreator = () => {
       let svg2 = document.getElementById('svg2');
       let strings2 = document.getElementsByClassName('string2');
       let strings2Inf = new Array(strings2[0].x2.animVal.value, strings2[0].y1.animVal.value, strings2[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings2Inf[0], strings2Inf[1], strings2Inf[2], svg2);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings2Inf[0], strings2Inf[1], strings2Inf[2], svg2);
       arr.map.call(strings2, el => el.setAttribute('x2', `${strings2Inf[0] + 270}`));
     } else if (linesCounter > 6 && linesCounter < 9) {
       setViewBox("0 0 950 450");
       let svg3 = document.getElementById('svg3');
       let strings3 = document.getElementsByClassName('string3');
       let strings3Inf = new Array(strings3[0].x2.animVal.value, strings3[0].y1.animVal.value, strings3[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings3Inf[0], strings3Inf[1], strings3Inf[2], svg3);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings3Inf[0], strings3Inf[1], strings3Inf[2], svg3);
       arr.map.call(strings3, el => el.setAttribute('x2', `${strings3Inf[0] + 270}`));
     } else if (linesCounter > 9 && linesCounter < 12) {
       setViewBox("0 0 950 600");
       let svg4 = document.getElementById('svg4');
       let strings4 = document.getElementsByClassName('string4');
       let strings4Inf = new Array(strings4[0].x2.animVal.value, strings4[0].y1.animVal.value, strings4[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings4Inf[0], strings4Inf[1], strings4Inf[2], svg4);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings4Inf[0], strings4Inf[1], strings4Inf[2], svg4);
       arr.map.call(strings4, el => el.setAttribute('x2', `${strings4Inf[0] + 270}`));
     } else if (linesCounter > 12 && linesCounter < 15) {
       setViewBox("0 0 950 750");
       let svg5 = document.getElementById('svg5');
       let strings5 = document.getElementsByClassName('string5');
       let strings5Inf = new Array(strings5[0].x2.animVal.value, strings5[0].y1.animVal.value, strings5[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings5Inf[0], strings5Inf[1], strings5Inf[2], svg5);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings5Inf[0], strings5Inf[1], strings5Inf[2], svg5);
       arr.map.call(strings5, el => el.setAttribute('x2', `${strings5Inf[0] + 270}`));
     } else if (linesCounter > 15 && linesCounter < 18) {
       setViewBox("0 0 950 900");
       let svg6 = document.getElementById('svg6');
       let string6 = document.getElementsByClassName('string6');
       let strings6Inf = new Array(string6[0].x2.animVal.value, string6[0].y1.animVal.value, string6[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings6Inf[0], strings6Inf[1], strings6Inf[2], svg6);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings6Inf[0], strings6Inf[1], strings6Inf[2], svg6);
       arr.map.call(string6, el => el.setAttribute('x2', `${strings6Inf[0] + 270}`));
     } else if (linesCounter > 18 && linesCounter < 21) {
       setViewBox("0 0 950 1050");
       let svg7 = document.getElementById('svg7');
       let string7 = document.getElementsByClassName('string7');
       let strings7Inf = new Array(string7[0].x2.animVal.value, string7[0].y1.animVal.value, string7[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings7Inf[0], strings7Inf[1], strings7Inf[2], svg7);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings7Inf[0], strings7Inf[1], strings7Inf[2], svg7);
       arr.map.call(string7, el => el.setAttribute('x2', `${strings7Inf[0] + 270}`));
     } else if (linesCounter > 21 && linesCounter < 24) {
       setViewBox("0 0 950 1200");
       let svg8 = document.getElementById('svg8');
       let string8 = document.getElementsByClassName('string8');
       let strings8Inf = new Array(string8[0].x2.animVal.value, string8[0].y1.animVal.value, string8[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings8Inf[0], strings8Inf[1], strings8Inf[2], svg8);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings8Inf[0], strings8Inf[1], strings8Inf[2], svg8);
       arr.map.call(string8, el => el.setAttribute('x2', `${strings8Inf[0] + 270}`));
     } else if (linesCounter > 24 && linesCounter < 27) {
       setViewBox("0 0 950 1350");
       let svg9 = document.getElementById('svg9');
       let string9 = document.getElementsByClassName('string9');
       let strings9Inf = new Array(string9[0].x2.animVal.value, string9[0].y1.animVal.value, string9[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings9Inf[0], strings9Inf[1], strings9Inf[2], svg9);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings9Inf[0], strings9Inf[1], strings9Inf[2], svg9);
       arr.map.call(string9, el => el.setAttribute('x2', `${strings9Inf[0] + 270}`));
     } else if (linesCounter > 27 && linesCounter < 30) {
       setViewBox("0 0 950 1500");
       let svg10 = document.getElementById('svg10');
       let string10 = document.getElementsByClassName('string10');
       let strings10Inf = new Array(string10[0].x2.animVal.value, string10[0].y1.animVal.value, string10[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings10Inf[0], strings10Inf[1], strings10Inf[2], svg10);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings10Inf[0], strings10Inf[1], strings10Inf[2], svg10);
       arr.map.call(string10, el => el.setAttribute('x2', `${strings10Inf[0] + 270}`));
     } else if (linesCounter > 30 && linesCounter < 33) {
       setViewBox("0 0 950 1650");
       let svg11 = document.getElementById('svg11');
       let string11 = document.getElementsByClassName('string11');
       let strings11Inf = new Array(string11[0].x2.animVal.value, string11[0].y1.animVal.value, string11[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings11Inf[0], strings11Inf[1], strings11Inf[2], svg11);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings11Inf[0], strings11Inf[1], strings11Inf[2], svg11);
       arr.map.call(string11, el => el.setAttribute('x2', `${strings11Inf[0] + 270}`));
     } else if (linesCounter > 33 && linesCounter < 36) {
       setViewBox("0 0 950 1800");
       let svg12 = document.getElementById('svg12');
       let string12 = document.getElementsByClassName('string12');
       let strings12Inf = new Array(string12[0].x2.animVal.value, string12[0].y1.animVal.value, string12[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings12Inf[0], strings12Inf[1], strings12Inf[2], svg12);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings12Inf[0], strings12Inf[1], strings12Inf[2], svg12);
       arr.map.call(string12, el => el.setAttribute('x2', `${strings12Inf[0] + 270}`));
     } else if (linesCounter > 36 && linesCounter < 39) {
       setViewBox("0 0 950 1950");
       let svg13 = document.getElementById('svg13');
       let string13 = document.getElementsByClassName('string13');
       let strings13Inf = new Array(string13[0].x2.animVal.value, string13[0].y1.animVal.value, string13[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings13Inf[0], strings13Inf[1], strings13Inf[2], svg13);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings13Inf[0], strings13Inf[1], strings13Inf[2], svg13);
       arr.map.call(string13, el => el.setAttribute('x2', `${strings13Inf[0] + 270}`));
     } else if (linesCounter > 39 && linesCounter < 42) {
       setViewBox("0 0 950 2100");
       let svg14 = document.getElementById('svg14');
       let string14 = document.getElementsByClassName('string14');
       let strings14Inf = new Array(string14[0].x2.animVal.value, string14[0].y1.animVal.value, string14[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings14Inf[0], strings14Inf[1], strings14Inf[2], svg14);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings14Inf[0], strings14Inf[1], strings14Inf[2], svg14);
       arr.map.call(string14, el => el.setAttribute('x2', `${strings14Inf[0] + 270}`));
     } else if (linesCounter > 42 && linesCounter < 45) {
       setViewBox("0 0 950 2250");
       let svg15 = document.getElementById('svg15');
       let string15 = document.getElementsByClassName('string15');
       let strings15Inf = new Array(string15[0].x2.animVal.value, string15[0].y1.animVal.value, string15[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings15Inf[0], strings15Inf[1], strings15Inf[2], svg15);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings15Inf[0], strings15Inf[1], strings15Inf[2], svg15);
       arr.map.call(string15, el => el.setAttribute('x2', `${strings15Inf[0] + 270}`));
     } else if (linesCounter > 45 && linesCounter < 48) {
       setViewBox("0 0 950 2400");
       let svg16 = document.getElementById('svg16');
       let string16 = document.getElementsByClassName('string16');
       let strings16Inf = new Array(string16[0].x2.animVal.value, string16[0].y1.animVal.value, string16[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings16Inf[0], strings16Inf[1], strings16Inf[2], svg16);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings16Inf[0], strings16Inf[1], strings16Inf[2], svg16);
       arr.map.call(string16, el => el.setAttribute('x2', `${strings16Inf[0] + 270}`));
     } else if (linesCounter > 48 && linesCounter < 51) {
       setViewBox("0 0 950 2550");
       let svg17 = document.getElementById('svg17');
       let string17 = document.getElementsByClassName('string17');
       let strings17Inf = new Array(string17[0].x2.animVal.value, string17[0].y1.animVal.value, string17[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings17Inf[0], strings17Inf[1], strings17Inf[2], svg17);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings17Inf[0], strings17Inf[1], strings17Inf[2], svg17);
       arr.map.call(string17, el => el.setAttribute('x2', `${strings17Inf[0] + 270}`));
     } else if (linesCounter > 51 && linesCounter < 54) {
       setViewBox("0 0 950 2700");
       let svg18 = document.getElementById('svg18');
       let string18 = document.getElementsByClassName('string18');
       let strings18Inf = new Array(string18[0].x2.animVal.value, string18[0].y1.animVal.value, string18[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings18Inf[0], strings18Inf[1], strings18Inf[2], svg18);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings18Inf[0], strings18Inf[1], strings18Inf[2], svg18);
       arr.map.call(string18, el => el.setAttribute('x2', `${strings18Inf[0] + 270}`));
     } else if (linesCounter > 54 && linesCounter < 57) {
       setViewBox("0 0 950 2850");
       let svg19 = document.getElementById('svg19');
       let string19 = document.getElementsByClassName('string19');
       let strings19Inf = new Array(string19[0].x2.animVal.value, string19[0].y1.animVal.value, string19[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings19Inf[0], strings19Inf[1], strings19Inf[2], svg19);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings19Inf[0], strings19Inf[1], strings19Inf[2], svg19);
       arr.map.call(string19, el => el.setAttribute('x2', `${strings19Inf[0] + 270}`));
     } else if (linesCounter > 57 && linesCounter < 60) {
       setViewBox("0 0 950 3000");
       let svg20 = document.getElementById('svg20');
       let string20 = document.getElementsByClassName('string20');
       let strings20Inf = new Array(string20[0].x2.animVal.value, string20[0].y1.animVal.value, string20[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings20Inf[0], strings20Inf[1], strings20Inf[2], svg20);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings20Inf[0], strings20Inf[1], strings20Inf[2], svg20);
       arr.map.call(string20, el => el.setAttribute('x2', `${strings20Inf[0] + 270}`));
     } else if (linesCounter > 60 && linesCounter < 63) {
       setViewBox("0 0 950 3150");
       let svg21 = document.getElementById('svg21');
       let string21 = document.getElementsByClassName('string21');
       let strings21Inf = new Array(string21[0].x2.animVal.value, string21[0].y1.animVal.value, string21[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings21Inf[0], strings21Inf[1], strings21Inf[2], svg21);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings21Inf[0], strings21Inf[1], strings21Inf[2], svg21);
       arr.map.call(string21, el => el.setAttribute('x2', `${strings21Inf[0] + 270}`));
     } else if (linesCounter > 63 && linesCounter < 66) {
       setViewBox("0 0 950 3300");
       let svg22 = document.getElementById('svg22');
       let string22 = document.getElementsByClassName('string22');
       let strings22Inf = new Array(string22[0].x2.animVal.value, string22[0].y1.animVal.value, string22[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings22Inf[0], strings22Inf[1], strings22Inf[2], svg22);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings22Inf[0], strings22Inf[1], strings22Inf[2], svg22);
       arr.map.call(string22, el => el.setAttribute('x2', `${strings22Inf[0] + 270}`));
     } else if (linesCounter > 66 && linesCounter < 69) {
       setViewBox("0 0 950 3450");
       let svg23 = document.getElementById('svg23');
       let string23 = document.getElementsByClassName('string23');
       let strings23Inf = new Array(string23[0].x2.animVal.value, string23[0].y1.animVal.value, string23[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings23Inf[0], strings23Inf[1], strings23Inf[2], svg23);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings23Inf[0], strings23Inf[1], strings23Inf[2], svg23);
       arr.map.call(string23, el => el.setAttribute('x2', `${strings23Inf[0] + 270}`));
     } else if (linesCounter > 69 && linesCounter < 72) {
       setViewBox("0 0 950 3600");
       let svg24 = document.getElementById('svg24');
       let string24 = document.getElementsByClassName('string24');
       let strings24Inf = new Array(string24[0].x2.animVal.value, string24[0].y1.animVal.value, string24[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings24Inf[0], strings24Inf[1], strings24Inf[2], svg24);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings24Inf[0], strings24Inf[1], strings24Inf[2], svg24);
       arr.map.call(string24, el => el.setAttribute('x2', `${strings24Inf[0] + 270}`));
     } else if (linesCounter > 72 && linesCounter < 75) {
       setViewBox("0 0 950 3750");
       let svg25 = document.getElementById('svg25');
       let string25 = document.getElementsByClassName('string25');
       let strings25Inf = new Array(string25[0].x2.animVal.value, string25[0].y1.animVal.value, string25[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings25Inf[0], strings25Inf[1], strings25Inf[2], svg25);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings25Inf[0], strings25Inf[1], strings25Inf[2], svg25);
       arr.map.call(string25, el => el.setAttribute('x2', `${strings25Inf[0] + 270}`));
     } else if (linesCounter > 75 && linesCounter < 78) {
       setViewBox("0 0 950 3900");
       let svg26 = document.getElementById('svg26');
       let string26 = document.getElementsByClassName('string26');
       let strings26Inf = new Array(string26[0].x2.animVal.value, string26[0].y1.animVal.value, string26[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings26Inf[0], strings26Inf[1], strings26Inf[2], svg26);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings26Inf[0], strings26Inf[1], strings26Inf[2], svg26);
       arr.map.call(string26, el => el.setAttribute('x2', `${strings26Inf[0] + 270}`));
     } else if (linesCounter > 78 && linesCounter < 81) {
       setViewBox("0 0 950 4050");
       let svg27 = document.getElementById('svg27');
       let string27 = document.getElementsByClassName('string27');
       let strings27Inf = new Array(string27[0].x2.animVal.value, string27[0].y1.animVal.value, string27[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings27Inf[0], strings27Inf[1], strings27Inf[2], svg27);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings27Inf[0], strings27Inf[1], strings27Inf[2], svg27);
       arr.map.call(string27, el => el.setAttribute('x2', `${strings27Inf[0] + 270}`));
     } else if (linesCounter > 81 && linesCounter < 84) {
       setViewBox("0 0 950 4200");
       let svg28 = document.getElementById('svg28');
       let string28 = document.getElementsByClassName('string28');
       let strings28Inf = new Array(string28[0].x2.animVal.value, string28[0].y1.animVal.value, string28[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings28Inf[0], strings28Inf[1], strings28Inf[2], svg28);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings28Inf[0], strings28Inf[1], strings28Inf[2], svg28);
       arr.map.call(string28, el => el.setAttribute('x2', `${strings28Inf[0] + 270}`));
     } else if (linesCounter > 84 && linesCounter < 87) {
       setViewBox("0 0 950 4350");
       let svg29 = document.getElementById('svg29');
       let string29 = document.getElementsByClassName('string29');
       let strings29Inf = new Array(string29[0].x2.animVal.value, string29[0].y1.animVal.value, string29[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings29Inf[0], strings29Inf[1], strings29Inf[2], svg29);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings29Inf[0], strings29Inf[1], strings29Inf[2], svg29);
       arr.map.call(string29, el => el.setAttribute('x2', `${strings29Inf[0] + 270}`));
     } else if (linesCounter > 87 && linesCounter < 90) {
       setViewBox("0 0 950 4500");
       let svg30 = document.getElementById('svg30');
       let string30 = document.getElementsByClassName('string30');
       let strings30Inf = new Array(string30[0].x2.animVal.value, string30[0].y1.animVal.value, string30[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings30Inf[0], strings30Inf[1], strings30Inf[2], svg30);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings30Inf[0], strings30Inf[1], strings30Inf[2], svg30);
       arr.map.call(string30, el => el.setAttribute('x2', `${strings30Inf[0] + 270}`));
     } else if (linesCounter > 90 && linesCounter < 93) {
       setViewBox("0 0 950 4650");
       let svg31 = document.getElementById('svg31');
       let string31 = document.getElementsByClassName('string31');
       let strings31Inf = new Array(string31[0].x2.animVal.value, string31[0].y1.animVal.value, string31[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings31Inf[0], strings31Inf[1], strings31Inf[2], svg31);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings31Inf[0], strings31Inf[1], strings31Inf[2], svg31);
       arr.map.call(string31, el => el.setAttribute('x2', `${strings31Inf[0] + 270}`));
     } else if (linesCounter > 93 && linesCounter < 96) {
       setViewBox("0 0 950 4800");
       let svg32 = document.getElementById('svg32');
       let string32 = document.getElementsByClassName('string32');
       let strings32Inf = new Array(string32[0].x2.animVal.value, string32[0].y1.animVal.value, string32[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings32Inf[0], strings32Inf[1], strings32Inf[2], svg32);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings32Inf[0], strings32Inf[1], strings32Inf[2], svg32);
       arr.map.call(string32, el => el.setAttribute('x2', `${strings32Inf[0] + 270}`));
     } else if (linesCounter > 96 && linesCounter < 99) {
       setViewBox("0 0 950 4950");
       let svg33 = document.getElementById('svg33');
       let string33 = document.getElementsByClassName('string33');
       let strings33Inf = new Array(string33[0].x2.animVal.value, string33[0].y1.animVal.value, string33[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings33Inf[0], strings33Inf[1], strings33Inf[2], svg33);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings33Inf[0], strings33Inf[1], strings33Inf[2], svg33);
       arr.map.call(string33, el => el.setAttribute('x2', `${strings33Inf[0] + 270}`));
     } else if (linesCounter > 99 && linesCounter < 102) {
       setViewBox("0 0 950 5100");
       let svg34 = document.getElementById('svg34');
       let string34 = document.getElementsByClassName('string34');
       let strings34Inf = new Array(string34[0].x2.animVal.value, string34[0].y1.animVal.value, string34[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings34Inf[0], strings34Inf[1], strings34Inf[2], svg34);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings34Inf[0], strings34Inf[1], strings34Inf[2], svg34);
       arr.map.call(string34, el => el.setAttribute('x2', `${strings34Inf[0] + 270}`));
     } else if (linesCounter > 102 && linesCounter < 105) {
       setViewBox("0 0 950 5250");
       let svg35 = document.getElementById('svg35');
       let string35 = document.getElementsByClassName('string35');
       let strings35Inf = new Array(string35[0].x2.animVal.value, string35[0].y1.animVal.value, string35[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings35Inf[0], strings35Inf[1], strings35Inf[2], svg35);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings35Inf[0], strings35Inf[1], strings35Inf[2], svg35);
       arr.map.call(string35, el => el.setAttribute('x2', `${strings35Inf[0] + 270}`));
     } else if (linesCounter > 105 && linesCounter < 108) {
       setViewBox("0 0 950 5400");
       let svg36 = document.getElementById('svg36');
       let string36 = document.getElementsByClassName('string36');
       let strings36Inf = new Array(string36[0].x2.animVal.value, string36[0].y1.animVal.value, string36[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings36Inf[0], strings36Inf[1], strings36Inf[2], svg36);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings36Inf[0], strings36Inf[1], strings36Inf[2], svg36);
       arr.map.call(string36, el => el.setAttribute('x2', `${strings36Inf[0] + 270}`));
     } else if (linesCounter > 108 && linesCounter < 111) {
       setViewBox("0 0 950 5550");
       let svg37 = document.getElementById('svg37');
       let string37 = document.getElementsByClassName('string37');
       let strings37Inf = new Array(string37[0].x2.animVal.value, string37[0].y1.animVal.value, string37[5].y1.animVal.value);
-      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_4__.createSeparationLine)(strings37Inf[0], strings37Inf[1], strings37Inf[2], svg37);
+      (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.createSeparationLine)(strings37Inf[0], strings37Inf[1], strings37Inf[2], svg37);
       arr.map.call(string37, el => el.setAttribute('x2', `${strings37Inf[0] + 270}`));
     }
 
@@ -8291,10 +8294,10 @@ const TabCreator = () => {
     setLinesCounter(linesCounter + 1);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_13__.animated.div, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_14__.animated.div, {
     style: props,
     className: _styles_tabCreator_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
-  }, JSON.stringify(logged) == "{}" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_LoginFirst__WEBPACK_IMPORTED_MODULE_7__.default, null) : tab == false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_FirstStep__WEBPACK_IMPORTED_MODULE_6__.default, {
+  }, JSON.stringify(logged) == "{}" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_LoginFirst__WEBPACK_IMPORTED_MODULE_8__.default, null) : tab == false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_FirstStep__WEBPACK_IMPORTED_MODULE_7__.default, {
     handleClick: handleClick,
     handleChange: handleChange,
     title: title,
@@ -8308,7 +8311,7 @@ const TabCreator = () => {
     onClick: handleQuit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "far fa-times-circle"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TabsOpt__WEBPACK_IMPORTED_MODULE_5__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TabsOpt__WEBPACK_IMPORTED_MODULE_6__.default, {
     modal: modal,
     setModal: setModal,
     onSuccess: onSuccess,
@@ -8325,7 +8328,7 @@ const TabCreator = () => {
     fourthString: fourthString,
     fifthString: fifthString,
     sixthString: sixthString
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_start__WEBPACK_IMPORTED_MODULE_3__.default, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_start__WEBPACK_IMPORTED_MODULE_4__.default, {
     firstString: firstString,
     secondString: secondString,
     thirdString: thirdString,
@@ -8338,7 +8341,7 @@ const TabCreator = () => {
     clicked: clicked,
     counter: linesCounter,
     svgContainerRef: svgContainerRef
-  }), modal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Modal_Modal__WEBPACK_IMPORTED_MODULE_10__.default, {
+  }), modal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Modal_Modal__WEBPACK_IMPORTED_MODULE_11__.default, {
     errBool: errBool,
     errMsg: errMsg,
     isLoading: isLoading,
@@ -8433,7 +8436,7 @@ const ButtonTab = () => {
       setTab(false);
       setHome(false);
     }
-  }, []);
+  }, [location.pathname]);
 
   const handleClick = e => {
     const {
@@ -8457,6 +8460,8 @@ const ButtonTab = () => {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_3__.animated.div, {
     style: props
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_buttonTab_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     title: "home",
     onClick: handleClick,
@@ -8472,7 +8477,7 @@ const ButtonTab = () => {
     title: "create",
     className: create ? _styles_buttonTab_module_css__WEBPACK_IMPORTED_MODULE_1__.default.activeButton : _styles_buttonTab_module_css__WEBPACK_IMPORTED_MODULE_1__.default.buttons,
     to: "/create"
-  }, "Create Tab"));
+  }, "Create Tab")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonTab);
@@ -8812,7 +8817,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/myTabs.module.css */ "./front/src/myTabs/styles/myTabs.module.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _tabComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabComponent */ "./front/src/myTabs/components/tabComponent.jsx");
+
 
 
 
@@ -8820,7 +8827,6 @@ __webpack_require__.r(__webpack_exports__);
 const MyTabs = ({
   tabs
 }) => {
-  console.log('aver', tabs);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.loggedContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -8830,13 +8836,16 @@ const MyTabs = ({
   }, "My tabs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.listContainer
   }, tabs.map(el => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabComponent__WEBPACK_IMPORTED_MODULE_2__.default, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       key: el._id,
+      to: `/tab?s=${el._id}`,
+      className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.link
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabComponent__WEBPACK_IMPORTED_MODULE_2__.default, {
       title: el.title,
       author: el.author,
       date: el.createdAt,
       views: el.views
-    });
+    }));
   })));
 };
 
@@ -8995,8 +9004,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_pdfViewer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/pdfViewer */ "./front/src/pdfViewer/components/pdfViewer.jsx");
 /* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
+/* harmony import */ var _Loader_Loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Loader/Loader */ "./front/src/Loader/Loader.jsx");
+/* harmony import */ var _styles_index_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/index.module.css */ "./front/src/pdfViewer/styles/index.module.css");
+
+
 
 
 
@@ -9007,16 +9020,23 @@ const PVC = ({
   name,
   link
 }) => {
-  const location = query_string__WEBPACK_IMPORTED_MODULE_2__.parse((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)().search);
+  const location = query_string__WEBPACK_IMPORTED_MODULE_2__.parse((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useLocation)().search);
   const [tab, setTab] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     _api_index__WEBPACK_IMPORTED_MODULE_3__.default.get(`/tabs/${location.s}`).then(res => res.data).then(data => {
       setTab(data);
-    }).catch(err => console.log("err", err));
+      setIsLoading(false);
+    }).catch(err => {
+      setIsLoading(false);
+      console.log("err", err);
+    });
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_pdfViewer__WEBPACK_IMPORTED_MODULE_1__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_index_module_css__WEBPACK_IMPORTED_MODULE_5__.default.loader
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Loader_Loader__WEBPACK_IMPORTED_MODULE_4__.default, null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_pdfViewer__WEBPACK_IMPORTED_MODULE_1__.default, {
     tab: tab
-  });
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PVC);
@@ -9068,7 +9088,8 @@ const fetchLogin = (email, password) => dispatch => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchTabs": () => /* binding */ fetchTabs,
-/* harmony export */   "setTabs": () => /* binding */ setTabs
+/* harmony export */   "setTabs": () => /* binding */ setTabs,
+/* harmony export */   "addTab": () => /* binding */ addTab
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./front/src/redux/constants.js");
 /* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
@@ -9078,6 +9099,11 @@ __webpack_require__.r(__webpack_exports__);
 const setTabs = tabs => ({
   type: _constants__WEBPACK_IMPORTED_MODULE_0__.SET_MY_TABS,
   payload: tabs
+});
+
+const addTab = tab => ({
+  type: _constants__WEBPACK_IMPORTED_MODULE_0__.ADD_TAB,
+  payload: tab
 });
 
 const fetchTabs = userId => dispatch => {
@@ -9098,12 +9124,14 @@ const fetchTabs = userId => dispatch => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "IS_LOGGED": () => /* binding */ IS_LOGGED,
-/* harmony export */   "SET_MY_TABS": () => /* binding */ SET_MY_TABS
+/* harmony export */   "SET_MY_TABS": () => /* binding */ SET_MY_TABS,
+/* harmony export */   "ADD_TAB": () => /* binding */ ADD_TAB
 /* harmony export */ });
 //login
 const IS_LOGGED = "IS_LOGGED"; //Tabs
 
 const SET_MY_TABS = "SET_MY_TABS";
+const ADD_TAB = "ADD_TAB";
 
 
 /***/ }),
@@ -9211,6 +9239,11 @@ const initialState = {
     case _constants__WEBPACK_IMPORTED_MODULE_0__.SET_MY_TABS:
       return { ...state,
         myTabs: payload
+      };
+
+    case _constants__WEBPACK_IMPORTED_MODULE_0__.ADD_TAB:
+      return { ...state,
+        myTabs: [...state.myTabs, payload]
       };
 
     default:
@@ -9912,7 +9945,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1cPJQ7or48xo9RrSyblsIf{\r\n  background-color: black;\r\n  height: 4rem;\r\n  width:100%;\r\n  display:flex;\r\n  flex:1;\r\n  align-items: center;\r\n  padding-left: 5%;\r\n}\r\n._5vMIjGbYKekJob987eUwj{\r\n  color:#9590A0;\r\n  flex:1.7;\r\n}\r\n._2Zld6V5UxzEgtB4a6TbTA5{\r\n  flex:6;\r\n}\r\n._1Q4y1w4oVRz8rpf32QtN3T{\r\n  padding:1%;\r\n  margin-right: 2%;\r\n  outline: none;\r\n  font-size: 100%;\r\n}\r\n._3WNRmuzzUb3ezBIchhYgkt{\r\n  flex:2.3;\r\n  color:white;\r\n  justify-content: space-between;\r\n  list-style:none;\r\n}\r\n.S2C8Zo84RqWxmoVcoxoZ{\r\n  padding:1.3%;\r\n  border-radius: 30%;\r\n  outline: none;\r\n  border:0;\r\n  background-color: #9cb4ff;\r\n}\r\n._3hOysVgPz3NWd1wjEtI8ds{\r\nmargin-left:15%;\r\nmargin-right: 15%;\r\n}\r\n._3S4HrrbormYgzI7jz0VyxT{\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n.sVabdFMZBODSRuINbfs9u{\r\n  text-decoration: none;\r\n  color:inherit;\r\n}\r\n._1npmMiVg6g3eTtpNsFO41i{\r\n  margin-left:15%;\r\n  margin-right: 15%;\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n._3S4HrrbormYgzI7jz0VyxT:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n._1npmMiVg6g3eTtpNsFO41i:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/Navbar/styles/navbar.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,YAAY;EACZ,UAAU;EACV,YAAY;EACZ,MAAM;EACN,mBAAmB;EACnB,gBAAgB;AAClB;AACA;EACE,aAAa;EACb,QAAQ;AACV;AACA;EACE,MAAM;AACR;AACA;EACE,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,eAAe;AACjB;AACA;EACE,QAAQ;EACR,WAAW;EACX,8BAA8B;EAC9B,eAAe;AACjB;AACA;EACE,YAAY;EACZ,kBAAkB;EAClB,aAAa;EACb,QAAQ;EACR,yBAAyB;AAC3B;AACA;AACA,eAAe;AACf,iBAAiB;AACjB;AACA;EACE,iBAAiB;EACjB,YAAY;GACX,gBAAgB;GAChB,YAAY;GACZ,aAAa;AAChB;AACA;EACE,qBAAqB;EACrB,aAAa;AACf;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;GACX,gBAAgB;GAChB,YAAY;GACZ,aAAa;AAChB;AACA;EACE,mBAAmB;EACnB,UAAU;EACV,kBAAkB;AACpB;AACA;EACE,mBAAmB;EACnB,UAAU;EACV,kBAAkB;AACpB","sourcesContent":[".nav{\r\n  background-color: black;\r\n  height: 4rem;\r\n  width:100%;\r\n  display:flex;\r\n  flex:1;\r\n  align-items: center;\r\n  padding-left: 5%;\r\n}\r\n.title{\r\n  color:#9590A0;\r\n  flex:1.7;\r\n}\r\n.formContainer{\r\n  flex:6;\r\n}\r\n.navInput{\r\n  padding:1%;\r\n  margin-right: 2%;\r\n  outline: none;\r\n  font-size: 100%;\r\n}\r\n.navbarSection{\r\n  flex:2.3;\r\n  color:white;\r\n  justify-content: space-between;\r\n  list-style:none;\r\n}\r\n.boton{\r\n  padding:1.3%;\r\n  border-radius: 30%;\r\n  outline: none;\r\n  border:0;\r\n  background-color: #9cb4ff;\r\n}\r\n.a{\r\nmargin-left:15%;\r\nmargin-right: 15%;\r\n}\r\n.b{\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n.c{\r\n  text-decoration: none;\r\n  color:inherit;\r\n}\r\n.ab{\r\n  margin-left:15%;\r\n  margin-right: 15%;\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n.b:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n.ab:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1cPJQ7or48xo9RrSyblsIf{\r\n  background-color: black;\r\n  height: 4rem;\r\n  width:100%;\r\n  display:flex;\r\n  flex:1;\r\n  align-items: center;\r\n  padding-left: 5%;\r\n}\r\n._5vMIjGbYKekJob987eUwj{\r\n  color:#9590A0;\r\n  flex:2;\r\n}\r\n._2Zld6V5UxzEgtB4a6TbTA5{\r\n  flex:6;\r\n}\r\n._1Q4y1w4oVRz8rpf32QtN3T{\r\n  width:50%;\r\n  padding:1%;\r\n  margin-right: 2%;\r\n  outline: none;\r\n  font-size: 100%;\r\n}\r\n._3WNRmuzzUb3ezBIchhYgkt{\r\n  flex:3;\r\n  color:white;\r\n  justify-content: space-between;\r\n  list-style:none;\r\n}\r\n.S2C8Zo84RqWxmoVcoxoZ{\r\n  padding:1.3%;\r\n  border-radius: 30%;\r\n  outline: none;\r\n  border:0;\r\n  background-color: #9cb4ff;\r\n}\r\n._3hOysVgPz3NWd1wjEtI8ds{\r\nmargin-left:15%;\r\nmargin-right: 15%;\r\n}\r\n._3S4HrrbormYgzI7jz0VyxT{\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n.sVabdFMZBODSRuINbfs9u{\r\n  text-decoration: none;\r\n  color:inherit;\r\n}\r\n._1npmMiVg6g3eTtpNsFO41i{\r\n  margin-left:15%;\r\n  margin-right: 15%;\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n._3S4HrrbormYgzI7jz0VyxT:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n._1npmMiVg6g3eTtpNsFO41i:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/Navbar/styles/navbar.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,YAAY;EACZ,UAAU;EACV,YAAY;EACZ,MAAM;EACN,mBAAmB;EACnB,gBAAgB;AAClB;AACA;EACE,aAAa;EACb,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,SAAS;EACT,UAAU;EACV,gBAAgB;EAChB,aAAa;EACb,eAAe;AACjB;AACA;EACE,MAAM;EACN,WAAW;EACX,8BAA8B;EAC9B,eAAe;AACjB;AACA;EACE,YAAY;EACZ,kBAAkB;EAClB,aAAa;EACb,QAAQ;EACR,yBAAyB;AAC3B;AACA;AACA,eAAe;AACf,iBAAiB;AACjB;AACA;EACE,iBAAiB;EACjB,YAAY;GACX,gBAAgB;GAChB,YAAY;GACZ,aAAa;AAChB;AACA;EACE,qBAAqB;EACrB,aAAa;AACf;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;GACX,gBAAgB;GAChB,YAAY;GACZ,aAAa;AAChB;AACA;EACE,mBAAmB;EACnB,UAAU;EACV,kBAAkB;AACpB;AACA;EACE,mBAAmB;EACnB,UAAU;EACV,kBAAkB;AACpB","sourcesContent":[".nav{\r\n  background-color: black;\r\n  height: 4rem;\r\n  width:100%;\r\n  display:flex;\r\n  flex:1;\r\n  align-items: center;\r\n  padding-left: 5%;\r\n}\r\n.title{\r\n  color:#9590A0;\r\n  flex:2;\r\n}\r\n.formContainer{\r\n  flex:6;\r\n}\r\n.navInput{\r\n  width:50%;\r\n  padding:1%;\r\n  margin-right: 2%;\r\n  outline: none;\r\n  font-size: 100%;\r\n}\r\n.navbarSection{\r\n  flex:3;\r\n  color:white;\r\n  justify-content: space-between;\r\n  list-style:none;\r\n}\r\n.boton{\r\n  padding:1.3%;\r\n  border-radius: 30%;\r\n  outline: none;\r\n  border:0;\r\n  background-color: #9cb4ff;\r\n}\r\n.a{\r\nmargin-left:15%;\r\nmargin-right: 15%;\r\n}\r\n.b{\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n.c{\r\n  text-decoration: none;\r\n  color:inherit;\r\n}\r\n.ab{\r\n  margin-left:15%;\r\n  margin-right: 15%;\r\n  font-weight: bold;\r\n  color: white;\r\n   background: none;\r\n   border: none;\r\n   outline: none;\r\n}\r\n.b:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n.ab:hover{\r\n  background: #b0baff;\r\n  padding:3%;\r\n  border-radius: 10%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"nav": "_1cPJQ7or48xo9RrSyblsIf",
@@ -10133,9 +10166,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._30a6R1u0OxisjVF-AmRpqz{\r\n  text-decoration: none;\r\n   border:none;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:5%;\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz:hover{\r\n  border-bottom: 1px solid #124ba6;\r\n}\r\n._38zsPA1qKHjwzpIr31qfA0{\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:5%;\r\n   border-bottom: 2px solid #124ba6;\r\n }\r\n", "",{"version":3,"sources":["webpack://./front/src/buttons/styles/buttonTab.module.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;GACpB,WAAW;GACX,YAAY;GACZ,gBAAgB;GAChB,aAAa;GACb,UAAU;AACb;AACA;EACE,gCAAgC;AAClC;AACA;EACE,qBAAqB;GACpB,WAAW;GACX,iBAAiB;GACjB,YAAY;GACZ,gBAAgB;GAChB,aAAa;GACb,UAAU;GACV,gCAAgC;CAClC","sourcesContent":[".buttons{\r\n  text-decoration: none;\r\n   border:none;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:5%;\r\n}\r\n.buttons:hover{\r\n  border-bottom: 1px solid #124ba6;\r\n}\r\n.activeButton{\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:5%;\r\n   border-bottom: 2px solid #124ba6;\r\n }\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1YYI79cOZ-BQTq3mxgYBuJ{\r\n  display:flex;\r\n  flex:1\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n  border:none;\r\n  color: white;\r\n  background: none;\r\n  outline: none;\r\n  padding:4%;\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz:hover{\r\n  border-bottom: 0.5vh solid var(--main-lightBlue);\r\n}\r\n._38zsPA1qKHjwzpIr31qfA0{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:4%;\r\n   border-bottom: 0.5vh solid var(--main-blue);\r\n }\r\n", "",{"version":3,"sources":["webpack://./front/src/buttons/styles/buttonTab.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ;AACF;AACA;EACE,mBAAmB;EACnB,QAAQ;EACR,qBAAqB;EACrB,WAAW;EACX,YAAY;EACZ,gBAAgB;EAChB,aAAa;EACb,UAAU;AACZ;AACA;EACE,gDAAgD;AAClD;AACA;EACE,mBAAmB;EACnB,QAAQ;EACR,qBAAqB;GACpB,WAAW;GACX,iBAAiB;GACjB,YAAY;GACZ,gBAAgB;GAChB,aAAa;GACb,UAAU;GACV,2CAA2C;CAC7C","sourcesContent":[".container{\r\n  display:flex;\r\n  flex:1\r\n}\r\n.buttons{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n  border:none;\r\n  color: white;\r\n  background: none;\r\n  outline: none;\r\n  padding:4%;\r\n}\r\n.buttons:hover{\r\n  border-bottom: 0.5vh solid var(--main-lightBlue);\r\n}\r\n.activeButton{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:4%;\r\n   border-bottom: 0.5vh solid var(--main-blue);\r\n }\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
+	"container": "_1YYI79cOZ-BQTq3mxgYBuJ",
 	"buttons": "_30a6R1u0OxisjVF-AmRpqz",
 	"activeButton": "_38zsPA1qKHjwzpIr31qfA0"
 };
@@ -10255,10 +10289,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n\r\n}\r\n\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:7;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:1;\r\n}\r\n._2pTSTioH3xu490Hie0AnYK{\r\n  margin-right: 6%;\r\n}\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;;AAEd;;AAEA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;AACrB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;CACpB,cAAc;AACf;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,gBAAgB;AAClB;AACA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n\r\n}\r\n\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.tabSectionA{\r\n  flex:7;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:1;\r\n}\r\n.tabSection{\r\n  margin-right: 6%;\r\n}\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:7;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:1;\r\n}\r\n._2pTSTioH3xu490Hie0AnYK{\r\n  margin-right: 6%;\r\n}\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;AACd;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;CACpB,cAAc;AACf;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,gBAAgB;AAClB;AACA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:7;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:1;\r\n}\r\n.tabSection{\r\n  margin-right: 6%;\r\n}\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "vzofMzuA0Lfa8rKZP4tJX",
+	"link": "IYzy_umInf0gvykX6FeTm",
 	"loggedContainer": "_1swfuPbd-NQA8qUbDYcAnq",
 	"title": "_2VSCJixprqRM5cGgZOwvaw",
 	"p": "EsE-OrPuPwE-smk9qdXpH",
@@ -10295,10 +10330,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2dxy9vHsxmp9vPhCc92Pf3{\r\n  width: 100%;\r\n  height: 90vh;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/pdfViewer/styles/index.module.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;AACd","sourcesContent":[".container{\r\n  width: 100%;\r\n  height: 90vh;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2dxy9vHsxmp9vPhCc92Pf3{\r\n  width: 100%;\r\n  height: 90vh;\r\n}\r\n._1uF7HBECuvA42fZx00YyTL{\r\n  width: 100%;\r\n  height: 90vh;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/pdfViewer/styles/index.module.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;AACd;AACA;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,mBAAmB;AACrB","sourcesContent":[".container{\r\n  width: 100%;\r\n  height: 90vh;\r\n}\r\n.loader{\r\n  width: 100%;\r\n  height: 90vh;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"container": "_2dxy9vHsxmp9vPhCc92Pf3"
+	"container": "_2dxy9vHsxmp9vPhCc92Pf3",
+	"loader": "_1uF7HBECuvA42fZx00YyTL"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -9,19 +9,20 @@
 }
 .title{
   color:#9590A0;
-  flex:1.7;
+  flex:2;
 }
 .formContainer{
   flex:6;
 }
 .navInput{
+  width:50%;
   padding:1%;
   margin-right: 2%;
   outline: none;
   font-size: 100%;
 }
 .navbarSection{
-  flex:2.3;
+  flex:3;
   color:white;
   justify-content: space-between;
   list-style:none;

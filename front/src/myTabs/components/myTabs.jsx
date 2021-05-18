@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from "../styles/myTabs.module.css"
+import { Link } from 'react-router-dom'
 import TabComponent from './tabComponent'
 
 const MyTabs = ({tabs}) => {
-console.log('aver',tabs);
   return (
     <div className={styles.loggedContainer}>
       <div className={styles.title}>
@@ -11,13 +11,17 @@ console.log('aver',tabs);
       </div>
       <div className={styles.listContainer}>
       {tabs.map((el)=> {
-        return <TabComponent
+        return <Link
                 key={el._id}
-                title={el.title}
-                author={el.author}
-                date={el.createdAt}
-                views={el.views}
-                />
+                to={`/tab?s=${el._id}`}
+                className={styles.link}>
+                 <TabComponent
+                  title={el.title}
+                  author={el.author}
+                  date={el.createdAt}
+                  views={el.views}
+                  />
+                </Link>
       })}
       </div>
     </div>

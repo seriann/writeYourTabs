@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import styles from "../styles/tabCreator.module.css"
 import { useSpring, animated } from 'react-spring'
 import { useSelector, useDispatch } from "react-redux";
+import { addTab } from '../../redux/action-creators/tabs'
 import { useLocation } from 'react-router-dom'
 import Tab from "../components/start"
 import { svgPoint,createSvgText,createText, uniqid, createSeparationLine } from "../../custom_functions/functions"
@@ -27,6 +28,7 @@ Date.prototype.yyyymmdd = function() {
 };
 
 const TabCreator = () => {
+ const dispatch = useDispatch()
  const location = useLocation()
  const logged = useSelector((state) => {
    return state.login.loggedUser
@@ -194,7 +196,7 @@ if(boolean === true || secondBool === true){
      method:'POST',
      data: formData
    })
-   console.log(response);
+    dispatch(addTab(response.data))
    setModal(false)
    setPdf(null)
    setIsLoading(false)
