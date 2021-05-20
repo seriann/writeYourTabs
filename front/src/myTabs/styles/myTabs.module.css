@@ -3,9 +3,11 @@
   height: 100%;
   width: 100%;
   display:flex;
-
 }
-
+.link{
+  text-decoration: none;
+   border:none;
+}
 .loggedContainer{
  display: flex;
  flex-direction: column;
@@ -31,6 +33,8 @@ color:white;
   height: 85%;
   width: 95%;
   border-radius: 1.5%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .tabComponentContainer{
  display:flex;
@@ -46,18 +50,23 @@ color:white;
  border-radius: 0.5vw;
  margin-top: 2%;
 }
+.tabComponentContainer:hover{
+  border: 0.3vh solid var(--main-blue);
+  cursor: pointer;
+}
 .tabSectionA{
-  flex:7;
+  flex:5;
 }
 .tabSectionB{
   flex:2;
 }
 .tabSectionC{
+  flex:2
+}
+.tabSectionD{
   flex:1;
 }
-.tabSection{
-  margin-right: 6%;
-}
+
 .tabP{
   color: white;
 }

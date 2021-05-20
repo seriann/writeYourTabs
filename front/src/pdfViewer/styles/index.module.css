@@ -1,0 +1,10 @@
+.container{
+  width: 100%;
+  height: 90vh;
+}
+.loader{
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}

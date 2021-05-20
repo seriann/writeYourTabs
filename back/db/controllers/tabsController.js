@@ -46,7 +46,59 @@ const TabController = {
           res.send(filtered)
         })
         .catch(err => next(err))
-   }
+   },
+   search(req,res,net){
+     //localhost:xxxx/api/tabs/search?for="title"&param="something"&page="num"
+     //localhost:xxxx/api/tabs/search?for="author"&param="something"&page="num"
+     let perPage = 7
+     let page = req.query.page || 1
+     let regexQuery = new RegExp(req.query.param,"i")
+     if(req.query.for == "title"){
+     Tab.find({title: regexQuery})
+        .populate({ path: "userId", select: "username" })
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, results)=>{
+          Tab.count((err, count) =>{
+            if(err) return next(err)
+            res.json({
+              results:results,
+              page:{
+                now:page,
+                total: Math.ceil(count/perPage) //redondea el número de paginas
+              }})
+          })
+        })
+      }else if(req.query.for == "author"){
+        Tab.find({author: regexQuery})
+           .populate({ path: "userId", select: "username" })
+           .skip((perPage * page) - perPage)
+           .limit(perPage)
+           .exec((err, results)=>{
+             Tab.count((err, count) =>{
+               if(err) return next(err)
+               res.json({
+                 results:results,
+                 page:{
+                   now:page,
+                   total: Math.ceil(count/perPage) //redondea el número de paginas
+                 }})
+             })
+           })
+      }
+
+ }
+}
+let filtCoincidence = (arr,arr2) => {
+  let coincidences = []
+  for (let i = 0; i < arr.length-1; i++) {
+    for (let j = i+1; j < arr.length-1; j++) {
+      if(arr[i]._id.toString() ===  arr[j]._id.toString()){
+        coincidences.push(arr[j])
+      }
+    }
+  }
+  return coincidences
 }
 
 module.exports = TabController

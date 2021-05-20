@@ -4,6 +4,7 @@ import styles from "./styles/buttonTab.module.css"
 import { useSpring, animated } from 'react-spring'
 
 const ButtonTab = () => {
+
 const [home,setHome] = useState(true)
 const [tab,setTab] = useState(false)
 const [create,setCreate] = useState(false)
@@ -27,8 +28,12 @@ useEffect(()=>{
     setCreate(true)
     setTab(false)
     setHome(false)
+  }else{
+    setCreate(false)
+    setTab(false)
+    setHome(false)
   }
-},[])
+},[location.pathname])
 
 
 const handleClick = (e) => {
@@ -50,20 +55,28 @@ const handleClick = (e) => {
 
   return (
     <animated.div style={props}>
-      <Link
-      title="home"
-      onClick={handleClick}
-      className={home? styles.activeButton : styles.buttons}
-      to="/home">Home</Link>
-      <Link
-       onClick={handleClick}
-       title="mytabs"
-       className={tab? styles.activeButton : styles.buttons}
-       to="/mytabs">MyTabs</Link>
-      <Link onClick={handleClick}
-       title="create"
-       className={create? styles.activeButton : styles.buttons}
-       to="/create">Create Tab</Link>
+     <div className={styles.container}>
+        <Link
+        title="home"
+        onClick={handleClick}
+        className={home? styles.activeButton : styles.buttons}
+        to="/home">
+        Home
+        </Link>
+        <Link
+         onClick={handleClick}
+         title="mytabs"
+         className={tab? styles.activeButton : styles.buttons}
+         to="/mytabs">
+         MyTabs
+         </Link>
+        <Link onClick={handleClick}
+         title="create"
+         className={create? styles.activeButton : styles.buttons}
+         to="/create">
+         Create Tab
+         </Link>
+      </div>
     </animated.div>
   )
 }

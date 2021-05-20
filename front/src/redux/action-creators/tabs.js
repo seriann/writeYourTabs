@@ -1,10 +1,8 @@
-import { SET_MY_TABS } from "../constants"
+import { SET_MY_TABS, ADD_TAB } from "../constants"
 import API from "../../api/index"
 
-const setTabs = (tabs) => ({
-  type: SET_MY_TABS,
-  payload: tabs
-})
+const setTabs = tabs => ({ type: SET_MY_TABS, payload: tabs })
+const addTab = tab => ({ type: ADD_TAB, payload: tab })
 
 const fetchTabs = (userId) => (dispatch) => {
   API.get(`/tabs/sf/${userId}`)
@@ -13,4 +11,4 @@ const fetchTabs = (userId) => (dispatch) => {
      .catch(err => err)
 }
 
-export { fetchTabs, setTabs }
+export { fetchTabs, setTabs, addTab }

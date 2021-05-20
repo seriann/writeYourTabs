@@ -8,14 +8,14 @@ const TabComponent = ({title, author, date, views, createdBy}) => {
         <p className={styles.tabP}>{author} - {title}</p>
       </section>
       {createdBy !== undefined &&
-      <section className={styles.tabSection}>
+      <section className={styles.tabSectionC}>
         <p className={styles.tabP} >created by: {createdBy}</p>
       </section>
       }
       <section className={styles.tabSectionB}>
         <p className={styles.tabP} >{date} <i className="far fa-calendar-alt"></i></p>
       </section>
-      <section className={styles.tabSectionC}>
+      <section className={styles.tabSectionD}>
         <p className={styles.tabP} >{views} views</p>
       </section>
     </div>
