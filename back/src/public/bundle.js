@@ -7774,6 +7774,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 Date.prototype.yyyymmdd = function () {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
 
@@ -7941,7 +7942,7 @@ const TabCreator = () => {
         formData.append("author", author);
         formData.append("title", title);
         formData.append("text", textArea);
-        formData.append("genre", genre);
+        formData.append("genre", (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.autoCapitalize)(genre));
         formData.append("userId", logged._id);
         formData.append("pdf", pdf);
         formData.append("createdAt", date.yyyymmdd().split("|")[0]);
@@ -8548,6 +8549,7 @@ const FileUploader = ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useQuery": () => /* binding */ useQuery,
+/* harmony export */   "autoCapitalize": () => /* binding */ autoCapitalize,
 /* harmony export */   "createSvgText": () => /* binding */ createSvgText,
 /* harmony export */   "createText": () => /* binding */ createText,
 /* harmony export */   "svgPoint": () => /* binding */ svgPoint,
@@ -8559,6 +8561,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 
 const useQuery = () => new URLSearchParams((0,react_router_dom__WEBPACK_IMPORTED_MODULE_0__.useLocation)().search);
+const autoCapitalize = str => {
+  str = str.toLowerCase(str);
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, id) => {
   let bool = true;
   const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');

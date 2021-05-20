@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./back/src/index",
+    "start": "nodemon ./back/src/index",
     "dev": "webpack -w --mode development",
     "build": "webpack --mode production"
   },
@@ -33,7 +33,7 @@
     "mongoose": "^5.11.10",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pdfjs-dist": "^2.6.347",

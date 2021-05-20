@@ -1,6 +1,11 @@
 import { useLocation } from 'react-router-dom'
 export const useQuery = () => new URLSearchParams(useLocation().search);
 
+export const autoCapitalize = (str) => {
+   str = str.toLowerCase(str)
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,svg, id) =>{
   let bool = true
   const text = document.createElementNS('http://www.w3.org/2000/svg','text')

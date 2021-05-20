@@ -13,6 +13,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import Modal from '../components/Modal/Modal'
 import API from '../../api/index'
+import { autoCapitalize } from '../../custom_functions/functions'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -186,7 +187,7 @@ if(boolean === true || secondBool === true){
     formData.append("author",author)
     formData.append("title",title)
     formData.append("text",textArea)
-    formData.append("genre",genre)
+    formData.append("genre",autoCapitalize(genre))
     formData.append("userId",logged._id)
     formData.append("pdf",pdf)
     formData.append("createdAt",date.yyyymmdd().split("|")[0])

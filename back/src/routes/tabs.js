@@ -8,5 +8,6 @@ router.put("/:id", TabController.update)
 router.get("/:id", TabController.findById)
 router.get("/sf/:userId", TabController.findAllUserTabs)
 router.put("/delete/:id", TabController.delete)
+router.get("/v/search", TabController.search)
 
 module.exports = router
