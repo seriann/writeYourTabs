@@ -64,6 +64,26 @@ showFavTabs(req,res,next){
       })
       .catch((err) => next(err));
   },
+  search(req, res, next){
+    //localhost:xxxx/api/users/v/search?for="something"&page="num"
+    let perPage = 7
+    let page = req.query.page || 1
+    let regexQuery = new RegExp(req.query.for,"i")
+    User.find({username: regexQuery})
+       .skip((perPage * page) - perPage)
+       .limit(perPage)
+       .exec((err, results)=>{
+         User.count((err, count) =>{
+           if(err) return next(err)
+           res.json({
+             results:results,
+             page:{
+               now:page,
+               total: Math.ceil(count/perPage) //redondea el número de paginas
+             }})
+         })
+       })
+  },
 //---------------------passport-------------------------------------------------
   login(req, res, next){
     console.log(req.user);

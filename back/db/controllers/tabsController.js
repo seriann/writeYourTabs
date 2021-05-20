@@ -47,45 +47,48 @@ const TabController = {
         })
         .catch(err => next(err))
    },
-  async search(req,res,net){
-     //localhost:xxxx/api/tabs/search?for="something"
-     let regexQuery = new RegExp(req.query.for,"i")
-
-     let arrTitle = await Tab.find({title: regexQuery})
-     let arrAuthor = await Tab.find({author: regexQuery})
-     let longArr = []
-     let shortArr = []
-     let sendArr = []
-     let indexesOfShortArr = []
-
-          if(arrTitle.length > arrAuthor.length){          //el array con más coincidencias
-            longArr = arrTitle
-            shortArr= arrAuthor
-          }
-          else if((arrTitle.length < arrAuthor.length)){
-            longArr = arrAuthor
-            shortArr= arrTitle
-          }
-
-          for (let i = 0; i < longArr.length-1; i++) {
-            for (let j = 0; j < shortArr.length; j++) {
-              if(longArr[i]._id.toString() == shortArr[j]._id.toString()){
-                indexesOfShortArr = [...indexesOfShortArr, j]
-              }
-            }
-          }
-
-          indexesOfShortArr.map((el)=> {
-            shortArr[el] = null
-            //shortArr.splice(el,1)
+   search(req,res,net){
+     //localhost:xxxx/api/tabs/search?for="title"&param="something"&page="num"
+     //localhost:xxxx/api/tabs/search?for="author"&param="something"&page="num"
+     let perPage = 7
+     let page = req.query.page || 1
+     let regexQuery = new RegExp(req.query.param,"i")
+     if(req.query.for == "title"){
+     Tab.find({title: regexQuery})
+        .populate({ path: "userId", select: "username" })
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, results)=>{
+          Tab.count((err, count) =>{
+            if(err) return next(err)
+            res.json({
+              results:results,
+              page:{
+                now:page,
+                total: Math.ceil(count/perPage) //redondea el número de paginas
+              }})
           })
-          shortArr = shortArr.filter(el => el != null)
-          sendArr = longArr.concat(shortArr)
+        })
+      }else if(req.query.for == "author"){
+        Tab.find({author: regexQuery})
+           .populate({ path: "userId", select: "username" })
+           .skip((perPage * page) - perPage)
+           .limit(perPage)
+           .exec((err, results)=>{
+             Tab.count((err, count) =>{
+               if(err) return next(err)
+               res.json({
+                 results:results,
+                 page:{
+                   now:page,
+                   total: Math.ceil(count/perPage) //redondea el número de paginas
+                 }})
+             })
+           })
+      }
 
-          res.send(sendArr)
-   }
+ }
 }
-
 let filtCoincidence = (arr,arr2) => {
   let coincidences = []
   for (let i = 0; i < arr.length-1; i++) {

@@ -28,7 +28,7 @@ useEffect(()=>{
     setCreate(true)
     setTab(false)
     setHome(false)
-  }else if(pathname == "/tab"){
+  }else{
     setCreate(false)
     setTab(false)
     setHome(false)

@@ -55,17 +55,18 @@ color:white;
   cursor: pointer;
 }
 .tabSectionA{
-  flex:7;
+  flex:5;
 }
 .tabSectionB{
   flex:2;
 }
 .tabSectionC{
+  flex:2
+}
+.tabSectionD{
   flex:1;
 }
-.tabSection{
-  margin-right: 6%;
-}
+
 .tabP{
   color: white;
 }

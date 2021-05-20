@@ -1,0 +1,38 @@
+.container{
+  height: 100%;
+  width: 100%;
+  background-color: #1c1e21;
+  display:flex;
+  flex:1;
+  flex-direction: column;
+}
+.title{
+  display:flex;
+  flex-direction: column;
+  width:95%;
+  flex:1.7;
+  justify-content: space-around;
+  margin:0 auto;
+
+}
+.p{
+align-self: center;
+font-weight: bold;
+font-size: 135%;
+color:white;
+}
+.listContainer{
+  align-self: center;
+  margin:0 auto;
+  background-color: #1D1B1B;
+  flex:8.3;
+  width: 95%;
+  border-radius: 1.5%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-bottom: 3%;
+}
+.link{
+  text-decoration: none;
+   border:none;
+}

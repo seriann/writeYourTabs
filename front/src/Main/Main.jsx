@@ -9,6 +9,7 @@ import API from "../api/index"
 import Footer from '../Footer/footer'
 import NavbarContainer from "../Navbar/container/NavbarContainer"
 import SidebarContainer from "../sidebarContent/container/sidebarContainer"
+import SearchContainer from "../search/container/searchContainer"
 import { loggUser } from "../redux/action-creators/login"
 import { fetchTabs } from "../redux/action-creators/tabs"
 import styles from "./styles/main.module.css"
@@ -41,6 +42,7 @@ useEffect(()=>{
             <Route path="/mytabs" component={MyTabsContainer} />
             <Route path="/create" component={TabCreatorContainer} />
             <Route path="/tab" render={()=> <PdfViewerContainer name={query.get("s")}/>} />
+            <Route path="/search" render={()=> <SearchContainer name={query.get("for")} />}/>
             <Redirect from="/" to="/home"/>
           </Switch>
            </div>

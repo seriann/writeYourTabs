@@ -5276,7 +5276,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Home_container_homeContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Home/container/homeContainer */ "./front/src/Home/container/homeContainer.jsx");
 /* harmony import */ var _myTabs_container_myTabsContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../myTabs/container/myTabsContainer */ "./front/src/myTabs/container/myTabsContainer.jsx");
@@ -5286,11 +5286,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Footer/footer */ "./front/src/Footer/footer.jsx");
 /* harmony import */ var _Navbar_container_NavbarContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Navbar/container/NavbarContainer */ "./front/src/Navbar/container/NavbarContainer.jsx");
 /* harmony import */ var _sidebarContent_container_sidebarContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../sidebarContent/container/sidebarContainer */ "./front/src/sidebarContent/container/sidebarContainer.jsx");
-/* harmony import */ var _redux_action_creators_login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../redux/action-creators/login */ "./front/src/redux/action-creators/login.js");
-/* harmony import */ var _redux_action_creators_tabs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../redux/action-creators/tabs */ "./front/src/redux/action-creators/tabs.js");
-/* harmony import */ var _styles_main_module_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./styles/main.module.css */ "./front/src/Main/styles/main.module.css");
-/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../custom_functions/functions */ "./front/src/custom_functions/functions.js");
-/* harmony import */ var _phuocng_react_pdf_viewer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @phuocng/react-pdf-viewer */ "./node_modules/@phuocng/react-pdf-viewer/index.js");
+/* harmony import */ var _search_container_searchContainer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../search/container/searchContainer */ "./front/src/search/container/searchContainer.jsx");
+/* harmony import */ var _redux_action_creators_login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../redux/action-creators/login */ "./front/src/redux/action-creators/login.js");
+/* harmony import */ var _redux_action_creators_tabs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../redux/action-creators/tabs */ "./front/src/redux/action-creators/tabs.js");
+/* harmony import */ var _styles_main_module_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./styles/main.module.css */ "./front/src/Main/styles/main.module.css");
+/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../custom_functions/functions */ "./front/src/custom_functions/functions.js");
+/* harmony import */ var _phuocng_react_pdf_viewer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @phuocng/react-pdf-viewer */ "./node_modules/@phuocng/react-pdf-viewer/index.js");
+
 
 
 
@@ -5310,34 +5312,39 @@ __webpack_require__.r(__webpack_exports__);
 
 const Main = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const query = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_13__.useQuery)();
+  const query = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_14__.useQuery)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     _api_index__WEBPACK_IMPORTED_MODULE_6__.default.get("/users/persist/me").then(res => res.data).then(data => {
-      dispatch((0,_redux_action_creators_login__WEBPACK_IMPORTED_MODULE_10__.loggUser)(data));
-      dispatch((0,_redux_action_creators_tabs__WEBPACK_IMPORTED_MODULE_11__.fetchTabs)(data._id));
+      dispatch((0,_redux_action_creators_login__WEBPACK_IMPORTED_MODULE_11__.loggUser)(data));
+      dispatch((0,_redux_action_creators_tabs__WEBPACK_IMPORTED_MODULE_12__.fetchTabs)(data._id));
     }).catch(err => console.log("ups", err));
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_phuocng_react_pdf_viewer__WEBPACK_IMPORTED_MODULE_14__.Worker, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_phuocng_react_pdf_viewer__WEBPACK_IMPORTED_MODULE_15__.Worker, {
     workerUrl: "https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Navbar_container_NavbarContainer__WEBPACK_IMPORTED_MODULE_8__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: _styles_main_module_css__WEBPACK_IMPORTED_MODULE_12__.default.flexContainer
+    className: _styles_main_module_css__WEBPACK_IMPORTED_MODULE_13__.default.flexContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sidebarContent_container_sidebarContainer__WEBPACK_IMPORTED_MODULE_9__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: _styles_main_module_css__WEBPACK_IMPORTED_MODULE_12__.default.content
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    className: _styles_main_module_css__WEBPACK_IMPORTED_MODULE_13__.default.content
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/home",
     component: _Home_container_homeContainer__WEBPACK_IMPORTED_MODULE_2__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/mytabs",
     component: _myTabs_container_myTabsContainer__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/create",
     component: _TabCreator_container_tabCreatorContainer__WEBPACK_IMPORTED_MODULE_4__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/tab",
     render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pdfViewer_container_pdfViewerContainer__WEBPACK_IMPORTED_MODULE_5__.default, {
       name: query.get("s")
     })
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Redirect, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+    path: "/search",
+    render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_container_searchContainer__WEBPACK_IMPORTED_MODULE_10__.default, {
+      name: query.get("for")
+    })
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Redirect, {
     from: "/",
     to: "/home"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Footer_footer__WEBPACK_IMPORTED_MODULE_7__.default, null)));
@@ -5366,17 +5373,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Navbar = () => {
+const Navbar = ({
+  handleSubmit,
+  handleChange,
+  input
+}) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_navbar_module_css__WEBPACK_IMPORTED_MODULE_1__.default.nav
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: _styles_navbar_module_css__WEBPACK_IMPORTED_MODULE_1__.default.title
   }, "WriteYourTabs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    onSubmit: handleSubmit,
     className: _styles_navbar_module_css__WEBPACK_IMPORTED_MODULE_1__.default.formContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    value: input,
+    onChange: handleChange,
     className: _styles_navbar_module_css__WEBPACK_IMPORTED_MODULE_1__.default.navInput,
     type: "search",
-    placeholder: "Search"
+    placeholder: "Search @users, tabs..."
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: _styles_navbar_module_css__WEBPACK_IMPORTED_MODULE_1__.default.boton,
     type: "submit"
@@ -5404,11 +5418,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Navbar */ "./front/src/Navbar/components/Navbar.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+
 
 
 
 const NavbarContainer = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, null);
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
+  const [input, setInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+
+  const handleChange = e => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    history.push(`/search?for=${input}`);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, {
+    handleChange: handleChange,
+    handleSubmit: handleSubmit,
+    input: input
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavbarContainer);
@@ -8432,7 +8464,7 @@ const ButtonTab = () => {
       setCreate(true);
       setTab(false);
       setHome(false);
-    } else if (pathname == "/tab") {
+    } else {
       setCreate(false);
       setTab(false);
       setHome(false);
@@ -8889,7 +8921,7 @@ const TabComponent = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabP
   }, author, " - ", title)), createdBy !== undefined && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabSection
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabSectionC
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabP
   }, "created by: ", createdBy)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
@@ -8899,7 +8931,7 @@ const TabComponent = ({
   }, date, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "far fa-calendar-alt"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabSectionC
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabSectionD
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.tabP
   }, views, " views")));
@@ -9256,6 +9288,118 @@ const initialState = {
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./front/src/search/components/search.jsx":
+/*!************************************************!*\
+  !*** ./front/src/search/components/search.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/search.module.css */ "./front/src/search/styles/search.module.css");
+/* harmony import */ var _myTabs_components_tabComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../myTabs/components/tabComponent */ "./front/src/myTabs/components/tabComponent.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+
+const Search = ({
+  handleChange,
+  results,
+  params,
+  searchFor
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.title
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.p
+  }, searchFor + "s", " that matches with: \"", params, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.p,
+    htmlFor: "s"
+  }, "Search by: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    onChange: handleChange,
+    id: "s"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "title"
+  }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "author"
+  }, "Author"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.listContainer
+  }, results.map(el => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+      key: el._id,
+      to: `/tab?s=${el._id}`,
+      className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.link
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_myTabs_components_tabComponent__WEBPACK_IMPORTED_MODULE_2__.default, {
+      key: el._id,
+      title: el.title,
+      createdBy: el.userId.username,
+      author: el.author,
+      date: el.createdAt,
+      views: el.views
+    }));
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
+
+/***/ }),
+
+/***/ "./front/src/search/container/searchContainer.jsx":
+/*!********************************************************!*\
+  !*** ./front/src/search/container/searchContainer.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/search */ "./front/src/search/components/search.jsx");
+/* harmony import */ var _api_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/index */ "./front/src/api/index.js");
+
+
+
+
+const SearchContainer = ({
+  name
+}) => {
+  const [searchFor, setSearchfor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("title");
+  const [page, setPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [results, setResults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log("paso");
+    _api_index__WEBPACK_IMPORTED_MODULE_2__.default.get(`/tabs/v/search?for=${searchFor}&param=${name}&page=${page}`).then(res => res.data).then(data => setResults(data.results)).catch(err => console.log("ups", err));
+  }, [name]);
+
+  const handleChange = e => {
+    const {
+      value
+    } = e.target;
+    _api_index__WEBPACK_IMPORTED_MODULE_2__.default.get(`/tabs/v/search?for=${value}&param=${name}&page=${1}`).then(res => res.data).then(data => setResults(data.results)).catch(err => console.log("ups", err));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_search__WEBPACK_IMPORTED_MODULE_1__.default, {
+    handleChange: handleChange,
+    results: results,
+    params: name,
+    searchFor: searchFor
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchContainer);
 
 /***/ }),
 
@@ -10295,7 +10439,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:7;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:1;\r\n}\r\n._2pTSTioH3xu490Hie0AnYK{\r\n  margin-right: 6%;\r\n}\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;AACd;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;CACpB,cAAc;AACf;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE,gBAAgB;AAClB;AACA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:7;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:1;\r\n}\r\n.tabSection{\r\n  margin-right: 6%;\r\n}\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:5;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:2\r\n}\r\n._3ZMbZOzPuu2iUOhWt0glej{\r\n  flex:1;\r\n}\r\n\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;AACd;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;CACpB,cAAc;AACf;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE;AACF;AACA;EACE,MAAM;AACR;;AAEA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n margin-top: 2%;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:5;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:2\r\n}\r\n.tabSectionD{\r\n  flex:1;\r\n}\r\n\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "vzofMzuA0Lfa8rKZP4tJX",
@@ -10308,7 +10452,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"tabSectionA": "_1typgopATfLCbXmNaXMzr9",
 	"tabSectionB": "_3eOIGpyCIbPEMf0ymo4rs2",
 	"tabSectionC": "_1f2p-Otf1DNWOh9vMR5Q7S",
-	"tabSection": "_2pTSTioH3xu490Hie0AnYK",
+	"tabSectionD": "_3ZMbZOzPuu2iUOhWt0glej",
 	"tabP": "_14q5CrjXOwGpu3-P7bZiMn"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -10341,6 +10485,40 @@ ___CSS_LOADER_EXPORT___.push([module.id, "._2dxy9vHsxmp9vPhCc92Pf3{\r\n  width: 
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_2dxy9vHsxmp9vPhCc92Pf3",
 	"loader": "_1uF7HBECuvA42fZx00YyTL"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./front/src/search/styles/search.module.css":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./front/src/search/styles/search.module.css ***!
+  \*****************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "._3Fv9sb_2bTiULhPpME8aFE{\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #1c1e21;\r\n  display:flex;\r\n  flex:1;\r\n  flex-direction: column;\r\n}\r\n._3KFmTOMuXcNwUrgsir4W3Y{\r\n  display:flex;\r\n  flex-direction: column;\r\n  width:95%;\r\n  flex:1.7;\r\n  justify-content: space-around;\r\n  margin:0 auto;\r\n\r\n}\r\n._20UL6xXVJ3plbMakI0Ikh6{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n._2sWIbY0pL2xYFVEL7jU0bb{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n  margin-bottom: 3%;\r\n}\r\n._3sRaYjYirNcAKmsROYi9Mm{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/search/styles/search.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,WAAW;EACX,yBAAyB;EACzB,YAAY;EACZ,MAAM;EACN,sBAAsB;AACxB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,SAAS;EACT,QAAQ;EACR,6BAA6B;EAC7B,aAAa;;AAEf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,QAAQ;EACR,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;EAChB,iBAAiB;AACnB;AACA;EACE,qBAAqB;GACpB,WAAW;AACd","sourcesContent":[".container{\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #1c1e21;\r\n  display:flex;\r\n  flex:1;\r\n  flex-direction: column;\r\n}\r\n.title{\r\n  display:flex;\r\n  flex-direction: column;\r\n  width:95%;\r\n  flex:1.7;\r\n  justify-content: space-around;\r\n  margin:0 auto;\r\n\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n  margin-bottom: 3%;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n}\r\n"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"container": "_3Fv9sb_2bTiULhPpME8aFE",
+	"title": "_3KFmTOMuXcNwUrgsir4W3Y",
+	"p": "_20UL6xXVJ3plbMakI0Ikh6",
+	"listContainer": "_2sWIbY0pL2xYFVEL7jU0bb",
+	"link": "_3sRaYjYirNcAKmsROYi9Mm"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -73678,6 +73856,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_index_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./front/src/search/styles/search.module.css":
+/*!***************************************************!*\
+  !*** ./front/src/search/styles/search.module.css ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_search_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!./search.module.css */ "./node_modules/css-loader/dist/cjs.js!./front/src/search/styles/search.module.css");
+
+            
+
+var options = {"injectType":"singletonStyleTag"};
+
+options.insert = "head";
+options.singleton = true;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 

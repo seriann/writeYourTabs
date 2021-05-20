@@ -11,6 +11,7 @@ router.put("/delete/:id", UserController.delete)
 router.post("/login",passport.authenticate("local"), UserController.login)
 router.post("/logout", UserController.logout)
 router.get("/persist/me", UserController.check)
+router.get("/v/search", UserController.search)
 
 //------------------------Favourites--------------------------------------------
 router.get("/:id/showfav/tabs", UserController.showFavTabs)
