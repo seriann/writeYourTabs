@@ -1,0 +1,35 @@
+.container{
+  display:flex;
+  flex-direction: row;
+  background-color: var(--main-black);
+  flex:1;
+  padding: 2%;
+  border-radius: 0.5vw;
+  margin:0 auto;
+}
+.container:hover{
+  border: 0.3vh solid var(--main-blue);
+}
+.infContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.img{
+  width: 18%;
+  border-radius: 100%;
+  border: black 2px solid;
+  margin-right:4%;
+  width: 4vw;
+  height: 6vh;
+}
+.p1{
+  color: white;
+  font-weight: bold;
+  font-size: 100%;
+}
+.p2{
+  color: #f6e3ff;
+  font-weight: bold;
+  font-size: 120%;
+}

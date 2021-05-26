@@ -7,6 +7,7 @@
 .link{
   text-decoration: none;
    border:none;
+   margin-top: 2%;
 }
 .loggedContainer{
  display: flex;
@@ -48,7 +49,10 @@ color:white;
  align-items: center;
  padding: 2%;
  border-radius: 0.5vw;
- margin-top: 2%;
+}
+.compContainer{
+  height: 6%;
+  margin-top:1%;
 }
 .tabComponentContainer:hover{
   border: 0.3vh solid var(--main-blue);

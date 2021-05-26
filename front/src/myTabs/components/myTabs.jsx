@@ -11,8 +11,10 @@ const MyTabs = ({tabs}) => {
       </div>
       <div className={styles.listContainer}>
       {tabs.map((el)=> {
-        return <Link
-                key={el._id}
+        return <div
+               className={styles.compContainer}
+               key={el._id}
+               ><Link
                 to={`/tab?s=${el._id}`}
                 className={styles.link}>
                  <TabComponent
@@ -21,7 +23,7 @@ const MyTabs = ({tabs}) => {
                   date={el.createdAt}
                   views={el.views}
                   />
-                </Link>
+                </Link></div>
       })}
       </div>
     </div>

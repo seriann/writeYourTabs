@@ -13,7 +13,7 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  history.push(`/search?for=${input}`)
+  if(input.length > 0) history.push(`/search?for=${input}`)
 }
 
   return <Navbar handleChange={handleChange} handleSubmit={handleSubmit} input={input}/>
