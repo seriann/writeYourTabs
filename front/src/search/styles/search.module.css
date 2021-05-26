@@ -22,7 +22,8 @@ font-size: 135%;
 color:white;
 }
 .listContainer{
-  align-self: center;
+  display:flex;
+  flex-direction: column;
   margin:0 auto;
   background-color: #1D1B1B;
   flex:8.3;
@@ -31,8 +32,29 @@ color:white;
   overflow-x: hidden;
   overflow-y: auto;
   margin-bottom: 3%;
+  padding-top: 2%;
+}
+.listContainer2{
+  display:flex;
+  flex-direction: column;
+  margin:0 auto;
+  justify-content: center;
+  background-color: #1D1B1B;
+  flex:8.3;
+  width: 95%;
+  border-radius: 1.5%;
+  margin-bottom: 3%;
+  padding-top: 2%;
 }
 .link{
   text-decoration: none;
-   border:none;
+  border:none;
+}
+.usersContainer{
+  margin: 3%;
+  width:60%;
+  align-content: center;
+}
+.loaderContainer{
+margin-bottom: 5%;
 }

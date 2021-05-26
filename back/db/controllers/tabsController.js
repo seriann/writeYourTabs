@@ -47,7 +47,7 @@ const TabController = {
         })
         .catch(err => next(err))
    },
-   search(req,res,net){
+   search(req,res,next){
      //localhost:xxxx/api/tabs/search?for="title"&param="something"&page="num"
      //localhost:xxxx/api/tabs/search?for="author"&param="something"&page="num"
      let perPage = 7
