@@ -6,7 +6,8 @@ import NotFound from './notFound'
 import { Link } from 'react-router-dom'
 import Loader from '../../Loader/Loader'
 
-const Search = ({errMsg,notFound,isLoading,boolTabs,handleChange,results, params, searchFor}) => {
+const Search = ({pages,errMsg,notFound,isLoading,boolTabs,handleChange,results, params, searchFor}) => {
+  console.log("pages",pages);
   return (
     <div className={styles.container}>
        <div className={styles.title}>

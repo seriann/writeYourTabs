@@ -2,15 +2,17 @@ import React,{useState, useEffect} from 'react'
 import Search from '../components/search'
 import API from '../../api/index'
 
-const SearchContainer = ({name}) => {
-
+const SearchContainer = ({name,page}) => {
+console.log("query",name);
 const [searchFor,setSearchfor] = useState("title")
 const [boolTabs, setboolTabs] = useState(true)
-const [page, setPage] = useState(1)
 const [results, setResults] = useState([])
 const [isLoading, setIsLoading] = useState(false)
 const [notFound, setNotFounded] = useState(false)
 const [errMsg, setErrMsg] = useState("")
+const [pages, setPages] = useState({})
+
+
   useEffect(()=>{
     setboolTabs(true)
     setResults([])
@@ -27,6 +29,7 @@ const [errMsg, setErrMsg] = useState("")
            setIsLoading(false)
            if(isMounted){
            setResults(data.results)
+           setPages(data.page)
            if(data.results.length === 0){
              setNotFounded(true)
              setErrMsg(`sorry, didn't find nothing for: "${name}"`)
@@ -45,6 +48,7 @@ const [errMsg, setErrMsg] = useState("")
          setIsLoading(false)
          if(isMounted){
          setResults(data.results)
+         setPages(data.page)
          if(data.results.length === 0){
            setNotFounded(true)
            setErrMsg(`sorry, didn't find nothing for: "${name}"`)
@@ -70,6 +74,7 @@ const handleChange = (e) => {
 }
 
   return <Search
+          pages={pages}
           notFound={notFound}
           isLoading={isLoading}
           handleChange={handleChange}

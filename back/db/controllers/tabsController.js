@@ -97,7 +97,7 @@ const TabController = {
     let shortArr = []
     let indexesOfShortArr= []
     let sendArr = []
-    const promises = [Tab.find({title: regexQuery}).exec(), Tab.find({author: regexQuery}).exec()]
+    const promises = [Tab.find({title: regexQuery}).populate({ path: "userId", select: "username" }).exec(), Tab.find({author: regexQuery}).populate({ path: "userId", select: "username" }).exec()]
     Promise.all(promises)
            .then((result)=>{
              if(result[0].length > result[1].length){

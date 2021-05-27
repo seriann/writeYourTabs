@@ -46,13 +46,14 @@ color:white;
  width: 95%;
  height: 6%;
  background-color: var(--main-black);
+ border: 0.3vh solid var(--main-black);
  align-items: center;
  padding: 2%;
  border-radius: 0.5vw;
 }
 .compContainer{
   height: 6%;
-  margin-top:1%;
+  margin-top:2.3%;
 }
 .tabComponentContainer:hover{
   border: 0.3vh solid var(--main-blue);

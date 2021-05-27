@@ -5342,7 +5342,8 @@ const Main = () => {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/search",
     render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_container_searchContainer__WEBPACK_IMPORTED_MODULE_10__.default, {
-      name: query.get("for")
+      name: query.get("for"),
+      page: query.get("page")
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Redirect, {
     from: "/",
@@ -5433,7 +5434,7 @@ const NavbarContainer = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (input.length > 0) history.push(`/search?for=${input}`);
+    if (input.length > 0) history.push(`/search?for=${input}&page=1`);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -9386,6 +9387,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Search = ({
+  pages,
   errMsg,
   notFound,
   isLoading,
@@ -9395,6 +9397,7 @@ const Search = ({
   params,
   searchFor
 }) => {
+  console.log("pages", pages);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -9460,15 +9463,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const SearchContainer = ({
-  name
+  name,
+  page
 }) => {
+  console.log("query", name);
   const [searchFor, setSearchfor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("title");
   const [boolTabs, setboolTabs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const [page, setPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const [results, setResults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [notFound, setNotFounded] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [errMsg, setErrMsg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setboolTabs(true);
     setResults([]);
@@ -9485,6 +9490,7 @@ const SearchContainer = ({
 
         if (isMounted) {
           setResults(data.results);
+          setPages(data.page);
 
           if (data.results.length === 0) {
             setNotFounded(true);
@@ -9501,6 +9507,7 @@ const SearchContainer = ({
 
         if (isMounted) {
           setResults(data.results);
+          setPages(data.page);
 
           if (data.results.length === 0) {
             setNotFounded(true);
@@ -9526,6 +9533,7 @@ const SearchContainer = ({
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_search__WEBPACK_IMPORTED_MODULE_1__.default, {
+    pages: pages,
     notFound: notFound,
     isLoading: isLoading,
     handleChange: handleChange,
@@ -10454,7 +10462,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1YYI79cOZ-BQTq3mxgYBuJ{\r\n  display:flex;\r\n  flex:1\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n  border:none;\r\n  color: white;\r\n  background: none;\r\n  outline: none;\r\n  padding:4%;\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz:hover{\r\n  border-bottom: 0.5vh solid var(--main-lightBlue);\r\n}\r\n._38zsPA1qKHjwzpIr31qfA0{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:4%;\r\n   border-bottom: 0.5vh solid var(--main-blue);\r\n }\r\n", "",{"version":3,"sources":["webpack://./front/src/buttons/styles/buttonTab.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ;AACF;AACA;EACE,mBAAmB;EACnB,QAAQ;EACR,qBAAqB;EACrB,WAAW;EACX,YAAY;EACZ,gBAAgB;EAChB,aAAa;EACb,UAAU;AACZ;AACA;EACE,gDAAgD;AAClD;AACA;EACE,mBAAmB;EACnB,QAAQ;EACR,qBAAqB;GACpB,WAAW;GACX,iBAAiB;GACjB,YAAY;GACZ,gBAAgB;GAChB,aAAa;GACb,UAAU;GACV,2CAA2C;CAC7C","sourcesContent":[".container{\r\n  display:flex;\r\n  flex:1\r\n}\r\n.buttons{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n  border:none;\r\n  color: white;\r\n  background: none;\r\n  outline: none;\r\n  padding:4%;\r\n}\r\n.buttons:hover{\r\n  border-bottom: 0.5vh solid var(--main-lightBlue);\r\n}\r\n.activeButton{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:4%;\r\n   border-bottom: 0.5vh solid var(--main-blue);\r\n }\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1YYI79cOZ-BQTq3mxgYBuJ{\r\n  display:flex;\r\n  flex:1\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n  border:none;\r\n  color: white;\r\n  background: none;\r\n  outline: none;\r\n  padding:4%;\r\n  border-bottom: 0.5vh solid var(--main-black);\r\n}\r\n._30a6R1u0OxisjVF-AmRpqz:hover{\r\n  border-bottom: 0.5vh solid var(--main-lightBlue);\r\n}\r\n._38zsPA1qKHjwzpIr31qfA0{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:4%;\r\n   border-bottom: 0.5vh solid var(--main-blue);\r\n }\r\n", "",{"version":3,"sources":["webpack://./front/src/buttons/styles/buttonTab.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ;AACF;AACA;EACE,mBAAmB;EACnB,QAAQ;EACR,qBAAqB;EACrB,WAAW;EACX,YAAY;EACZ,gBAAgB;EAChB,aAAa;EACb,UAAU;EACV,4CAA4C;AAC9C;AACA;EACE,gDAAgD;AAClD;AACA;EACE,mBAAmB;EACnB,QAAQ;EACR,qBAAqB;GACpB,WAAW;GACX,iBAAiB;GACjB,YAAY;GACZ,gBAAgB;GAChB,aAAa;GACb,UAAU;GACV,2CAA2C;CAC7C","sourcesContent":[".container{\r\n  display:flex;\r\n  flex:1\r\n}\r\n.buttons{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n  border:none;\r\n  color: white;\r\n  background: none;\r\n  outline: none;\r\n  padding:4%;\r\n  border-bottom: 0.5vh solid var(--main-black);\r\n}\r\n.buttons:hover{\r\n  border-bottom: 0.5vh solid var(--main-lightBlue);\r\n}\r\n.activeButton{\r\n  align-items: center;\r\n  flex:3.3;\r\n  text-decoration: none;\r\n   border:none;\r\n   font-weight: bold;\r\n   color: white;\r\n   background: none;\r\n   outline: none;\r\n   padding:4%;\r\n   border-bottom: 0.5vh solid var(--main-blue);\r\n }\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_1YYI79cOZ-BQTq3mxgYBuJ",
@@ -10577,7 +10585,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.g43LQbQEvJCQV9S6B6_Cf{\r\n  height: 6%;\r\n  margin-top:1%;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:5;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:2\r\n}\r\n._3ZMbZOzPuu2iUOhWt0glej{\r\n  flex:1;\r\n}\r\n\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;GACX,cAAc;AACjB;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;AACrB;AACA;EACE,UAAU;EACV,aAAa;AACf;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE;AACF;AACA;EACE,MAAM;AACR;;AAEA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.compContainer{\r\n  height: 6%;\r\n  margin-top:1%;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:5;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:2\r\n}\r\n.tabSectionD{\r\n  flex:1;\r\n}\r\n\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n border: 0.3vh solid var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.g43LQbQEvJCQV9S6B6_Cf{\r\n  height: 6%;\r\n  margin-top:2.3%;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:5;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:2\r\n}\r\n._3ZMbZOzPuu2iUOhWt0glej{\r\n  flex:1;\r\n}\r\n\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;GACX,cAAc;AACjB;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,qCAAqC;CACrC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;AACrB;AACA;EACE,UAAU;EACV,eAAe;AACjB;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE;AACF;AACA;EACE,MAAM;AACR;;AAEA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n border: 0.3vh solid var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.compContainer{\r\n  height: 6%;\r\n  margin-top:2.3%;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:5;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:2\r\n}\r\n.tabSectionD{\r\n  flex:1;\r\n}\r\n\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "vzofMzuA0Lfa8rKZP4tJX",
