@@ -1,4 +1,5 @@
 const { Tab } = require("../models/index")
+const Functions = require("./fn")
 
 const TabController = {
   findAll(req,res,next){
@@ -86,19 +87,49 @@ const TabController = {
              })
            })
       }
+ },
+  searchV2(req,res,next){
+    //localhost:xxxx/api/tabs/search?for="something"&page="num"
+    let perPage = 7
+    let page = req.query.page || 1
+    let regexQuery = new RegExp(req.query.for,"i")
+    let longArr = []
+    let shortArr = []
+    let indexesOfShortArr= []
+    let sendArr = []
+    const promises = [Tab.find({title: regexQuery}).exec(), Tab.find({author: regexQuery}).exec()]
+    Promise.all(promises)
+           .then((result)=>{
+             if(result[0].length > result[1].length){
+               longArr = result[0]
+               shortArr= result[1]
+             }else {
+               longArr = result[1]
+               shortArr= result[0]
+             }
+             for (let i = 0; i < longArr.length-1; i++) {
+               for (let j = 0; j < shortArr.length; j++) {
+                 if(longArr[i]._id.toString() == shortArr[j]._id.toString())indexesOfShortArr.push(j)
+               }
+             }
+             indexesOfShortArr.map((el)=> {
+               shortArr[el] = null
+               //shortArr.splice(el,1)
+             })
+             shortArr = shortArr.filter(el => el != null)
+            sendArr = longArr.concat(shortArr)
 
+      const response = Functions.paginate(sendArr,perPage)
+      console.log("res", response);
+             res.json({results: response[page-1] || [],
+                       page:{
+                         now:page,
+                         total:response.length
+                       }
+                     })
+           })
+           .catch((err)=>next(err))
  }
-}
-let filtCoincidence = (arr,arr2) => {
-  let coincidences = []
-  for (let i = 0; i < arr.length-1; i++) {
-    for (let j = i+1; j < arr.length-1; j++) {
-      if(arr[i]._id.toString() ===  arr[j]._id.toString()){
-        coincidences.push(arr[j])
-      }
-    }
-  }
-  return coincidences
 }
 
 module.exports = TabController

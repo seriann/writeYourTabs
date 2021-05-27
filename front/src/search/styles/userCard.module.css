@@ -17,11 +17,11 @@
 }
 .img{
   width: 18%;
-  border-radius: 100%;
-  border: black 2px solid;
+  border-radius: 50%;
+  border: white 1px solid;
   margin-right:4%;
   width: 4vw;
-  height: 6vh;
+  height: 4vw;
 }
 .p1{
   color: white;

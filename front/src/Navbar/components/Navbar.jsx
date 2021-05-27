@@ -15,7 +15,7 @@ const Navbar = ({handleSubmit,handleChange,input}) => {
          onChange={handleChange}
          className={styles.navInput}
          type="search"
-         placeholder="Search @users, tabs..."/>
+         placeholder="Search for @users, artist name or title"/>
         <button className={styles.boton} type="submit"><i className="fas fa-search"></i></button>
       </form>
       <section className={styles.navbarSection}>

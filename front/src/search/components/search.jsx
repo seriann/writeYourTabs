@@ -2,24 +2,15 @@ import React from 'react'
 import styles from '../styles/search.module.css'
 import TabComponent from '../../myTabs/components/tabComponent'
 import UserCard from './UserCard'
+import NotFound from './notFound'
 import { Link } from 'react-router-dom'
 import Loader from '../../Loader/Loader'
 
-const Search = ({isLoading,boolTabs,handleChange,results, params, searchFor}) => {
+const Search = ({errMsg,notFound,isLoading,boolTabs,handleChange,results, params, searchFor}) => {
   return (
     <div className={styles.container}>
        <div className={styles.title}>
          <div><p className={styles.p}>{searchFor+"s"} that matches with: "{params}"</p></div>
-
-            <form>
-              <label className={styles.p} htmlFor="s">Search by: </label>
-                <select onChange={handleChange} id="s">
-                  <option value="title">Title</option>
-                  <option value="author">Author</option>
-                </select>
-            </form>
-            <div>
-          </div>
        </div>
        <div className={isLoading? styles.listContainer2 : styles.listContainer}>
 
@@ -30,7 +21,10 @@ const Search = ({isLoading,boolTabs,handleChange,results, params, searchFor}) =>
              </div>
              :
              boolTabs === true?
-             results.map((el)=>{
+              notFound === true?
+              <NotFound msg={errMsg}/>
+              :
+               results.map((el)=>{
                return <Link
                        key={el._id}
                        to={`/tab?s=${el._id}`}
@@ -45,6 +39,9 @@ const Search = ({isLoading,boolTabs,handleChange,results, params, searchFor}) =>
                        </Link>
              })
              :boolTabs === false?
+               notFound === true?
+              <NotFound param={params}/>
+              :
              results.map((el)=>{
               console.log("pasa");
               return <div
