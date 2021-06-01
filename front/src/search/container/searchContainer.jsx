@@ -3,7 +3,6 @@ import Search from '../components/search'
 import API from '../../api/index'
 
 const SearchContainer = ({name,page}) => {
-console.log("query",name);
 const [searchFor,setSearchfor] = useState("title")
 const [boolTabs, setboolTabs] = useState(true)
 const [results, setResults] = useState([])
@@ -11,7 +10,7 @@ const [isLoading, setIsLoading] = useState(false)
 const [notFound, setNotFounded] = useState(false)
 const [errMsg, setErrMsg] = useState("")
 const [pages, setPages] = useState({})
-
+const [dataLength, setDataLength] = useState(0)
 
   useEffect(()=>{
     setboolTabs(true)
@@ -28,12 +27,14 @@ const [pages, setPages] = useState({})
          .then(data => {
            setIsLoading(false)
            if(isMounted){
+             console.log("paso antes de pages");
            setResults(data.results)
            setPages(data.page)
            if(data.results.length === 0){
              setNotFounded(true)
              setErrMsg(`sorry, didn't find nothing for: "${name}"`)
            }
+           setDataLength(data.results.length * data.page.total)
           }
          })
          .catch(err => {
@@ -53,6 +54,7 @@ const [pages, setPages] = useState({})
            setNotFounded(true)
            setErrMsg(`sorry, didn't find nothing for: "${name}"`)
          }
+         setDataLength(data.results.length * data.page.total)
          }
         })
        .catch(err => {
@@ -74,6 +76,7 @@ const handleChange = (e) => {
 }
 
   return <Search
+          dataLength={dataLength}
           pages={pages}
           notFound={notFound}
           isLoading={isLoading}

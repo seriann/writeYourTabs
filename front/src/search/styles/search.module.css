@@ -40,9 +40,9 @@ color:white;
   background-color: #1D1B1B;
   flex:8.3;
   width: 95%;
+  height: 100%;
   border-radius: 1.5%;
-  overflow-x: hidden;
-  overflow-y: auto;
+
   margin-bottom: 3%;
   padding-top: 2%;
 }
@@ -70,4 +70,9 @@ color:white;
 }
 .loaderContainer{
 margin-bottom: 5%;
+}
+.paginationContainer{
+  position:relative;
+    bottom:0%;
+    left:3%;
 }

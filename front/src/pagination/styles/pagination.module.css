@@ -1,0 +1,23 @@
+.container{
+  display:flex;
+  
+  list-style:none;
+}
+.li{
+  border: 1px solid white;
+  border-radius: 5%;
+  height: 4vh;
+  width:2vw;
+  text-align: center;
+  color:white;
+  font-size: 120%;
+  cursor: pointer;
+}
+.liActive{
+  border: 1px solid white;
+  width:2vw;
+  text-align: center;
+  color:black;
+  background-color: white;
+  font-size: 120%;
+}

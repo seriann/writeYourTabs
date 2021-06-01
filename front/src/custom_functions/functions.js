@@ -3,7 +3,7 @@ export const useQuery = () => new URLSearchParams(useLocation().search);
 
 export const autoCapitalize = (str) => {
    str = str.toLowerCase(str)
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,svg, id) =>{

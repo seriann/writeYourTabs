@@ -53,7 +53,7 @@ color:white;
 }
 .compContainer{
   height: 6%;
-  margin-top:2.3%;
+  margin-top:3vh;
 }
 .tabComponentContainer:hover{
   border: 0.3vh solid var(--main-blue);

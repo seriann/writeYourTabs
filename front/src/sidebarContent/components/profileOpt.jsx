@@ -11,7 +11,7 @@ const props = useSpring({
 
   return(
     <animated.div style={props} className={styles.container}>
-      <p className={styles.p}><i class="fas fa-cog"></i> Options</p>
+      <p className={styles.p}><i className="fas fa-cog"></i> Options</p>
       <p onClick={logout} className={styles.p}><i className="fas fa-sign-out-alt"></i> Logout</p>
     </animated.div>
   )

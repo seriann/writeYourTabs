@@ -2,6 +2,7 @@
   display:flex;
   flex-direction: row;
   background-color: var(--main-black);
+  border: 0.3vh solid var(--main-black);
   flex:1;
   padding: 2%;
   border-radius: 0.5vw;
