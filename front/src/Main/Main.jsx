@@ -42,7 +42,7 @@ useEffect(()=>{
             <Route path="/mytabs" component={MyTabsContainer} />
             <Route path="/create" component={TabCreatorContainer} />
             <Route path="/tab" render={()=> <PdfViewerContainer name={query.get("s")}/>} />
-            <Route path="/search" render={()=> <SearchContainer name={query.get("for")} page={query.get("page")} />}/>
+            <Route path="/search" render={()=> <SearchContainer name={query.get("for")} page={query.get("page")} obj={{name:query.get("for"),page:query.get("page")}} />}/>
             <Redirect from="/" to="/home"/>
           </Switch>
            </div>

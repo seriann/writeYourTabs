@@ -5343,7 +5343,11 @@ const Main = () => {
     path: "/search",
     render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_container_searchContainer__WEBPACK_IMPORTED_MODULE_10__.default, {
       name: query.get("for"),
-      page: query.get("page")
+      page: query.get("page"),
+      obj: {
+        name: query.get("for"),
+        page: query.get("page")
+      }
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Redirect, {
     from: "/",
@@ -9012,10 +9016,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  currentPage,
+  handleNext,
+  handlePrevious,
   renderPageNumbers,
   handleClick,
   maxPageLimit,
-  page
+  pages
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
@@ -9024,11 +9031,15 @@ __webpack_require__.r(__webpack_exports__);
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-double-left"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li
+    className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li,
+    onClick: handlePrevious,
+    disabled: currentPage == pages[0] ? true : false
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-left"
   })), renderPageNumbers, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li
+    onClick: handleNext,
+    className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li,
+    disabled: currentPage == pages[pages.length - 1] ? true : false
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-right"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
@@ -9062,51 +9073,65 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const PaginationContainer = ({
-  dataLength,
   page,
-  redirect
+  redirect,
+  obj
 }) => {
   const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
   const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [rowArr, setRowArr] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const [itemsPerPage, setitemsPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [pageNumberLimit, setpageNumberLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [maxPageLimit, setMaxPageLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [minPageLimit, setMinPageLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log("pages", page);
+    console.log("page", page);
     setCurrentPage(page.now);
     const pagesArr = [];
 
-    for (let i = 1; i <= Math.floor(dataLength / itemsPerPage); i++) {
+    for (let i = 1; i <= page.total; i++) {
       pagesArr.push(i);
     }
 
     setPages(pagesArr);
-  }, [page.total]);
+  }, [obj]);
 
   const handleClick = e => {
     const {
       id
     } = e.target;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
-      to: `${redirect}&page=${id}`
-    }); //history.push(`${redirect}&page=${id}`)
+    console.log("id", typeof id);
+    history.push(`${redirect}&page=${id}`);
+  };
+
+  const handleNext = () => {
+    if (currentPage < page.total) history.push(`${redirect}&page=${currentPage + 1}`);
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) history.push(`${redirect}&page=${currentPage - 1}`);
   };
 
   const renderPageNumbers = pages.map(el => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: el,
-      id: el,
-      onClick: handleClick,
-      className: currentPage == el ? _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__.default.liActive : _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__.default.li
-    }, el);
+    if (el < maxPageLimit + 1 && el > minPageLimit) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        key: el,
+        id: el,
+        onClick: handleClick,
+        className: currentPage == el ? _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__.default.liActive : _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__.default.li
+      }, el);
+    } else {
+      return null;
+    }
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_paginationComponent__WEBPACK_IMPORTED_MODULE_1__.default, {
     maxPageLimit: maxPageLimit,
+    currentPage: currentPage,
     handleClick: handleClick,
     renderPageNumbers: renderPageNumbers,
-    page: page
+    pages: pages,
+    handleNext: handleNext,
+    handlePrevious: handlePrevious
   });
 };
 
@@ -9544,7 +9569,6 @@ const Search = ({
   }) : boolTabs === false ? notFound === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_notFound__WEBPACK_IMPORTED_MODULE_4__.default, {
     param: params
   }) : results.map(el => {
-    console.log("pasa");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       key: el._id,
       className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.usersContainer
@@ -9559,8 +9583,11 @@ const Search = ({
   }) : null, !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_search_module_css__WEBPACK_IMPORTED_MODULE_1__.default.paginationContainer
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pagination_container_paginationContainer__WEBPACK_IMPORTED_MODULE_6__.default, {
+    obj: {
+      results,
+      pages
+    },
     page: pages,
-    dataLength: dataLength,
     redirect: `/search?for=${params}`
   }))));
 };
@@ -9589,7 +9616,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const SearchContainer = ({
   name,
-  page
+  page,
+  obj
 }) => {
   const [searchFor, setSearchfor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("title");
   const [boolTabs, setboolTabs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
@@ -9600,6 +9628,7 @@ const SearchContainer = ({
   const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
   const [dataLength, setDataLength] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log("Paso por el useEffect");
     setboolTabs(true);
     setResults([]);
     setNotFounded(false);
@@ -9614,7 +9643,6 @@ const SearchContainer = ({
         setIsLoading(false);
 
         if (isMounted) {
-          console.log("paso antes de pages");
           setResults(data.results);
           setPages(data.page);
 
@@ -9651,7 +9679,7 @@ const SearchContainer = ({
     }
 
     return () => isMounted = false;
-  }, [name]);
+  }, [obj]);
 
   const handleChange = e => {
     setboolTabs(true);
@@ -10820,7 +10848,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._3Fv9sb_2bTiULhPpME8aFE{\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #1c1e21;\r\n  display:flex;\r\n  flex:1;\r\n  flex-direction: column;\r\n}\r\n._3KFmTOMuXcNwUrgsir4W3Y{\r\n  display:flex;\r\n  flex-direction: column;\r\n  width:95%;\r\n  flex:1.7;\r\n  justify-content: center;\r\n  margin:0 auto;\r\n\r\n}\r\n._20UL6xXVJ3plbMakI0Ikh6{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n._3nEEXaEu82NLxjZrc0vFpD{\r\n  font-size: 135%;\r\n  color:white;\r\n  font-weight: 100;\r\n  align-self: center;\r\n  margin-bottom: 15%;\r\n}\r\n.dDkZWKdGqGysrLawWbNf8{\r\n  display:flex;\r\n  flex:1;\r\n  justify-content: center;\r\n}\r\n._2sWIbY0pL2xYFVEL7jU0bb{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  height: 100%;\r\n  border-radius: 1.5%;\r\n\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n._15j-XkOg4cYpYPohFNgVdr{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  justify-content: center;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n._3sRaYjYirNcAKmsROYi9Mm{\r\n  text-decoration: none;\r\n  border:none;\r\n}\r\n._54CDhyC0cfn3JLH74erkH{\r\n  margin-left: 3%;\r\n  margin-bottom: 1%;\r\n  width:40%;\r\n  align-content: center;\r\n}\r\n._3jJE7fV6iW2to9NzbMODdv{\r\nmargin-bottom: 5%;\r\n}\r\n._9hV9gEhvYrgWFsah0hvfz{\r\n  position:relative;\r\n    bottom:0%;\r\n    left:3%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/search/styles/search.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,WAAW;EACX,yBAAyB;EACzB,YAAY;EACZ,MAAM;EACN,sBAAsB;AACxB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,SAAS;EACT,QAAQ;EACR,uBAAuB;EACvB,aAAa;;AAEf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,eAAe;EACf,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,kBAAkB;AACpB;AACA;EACE,YAAY;EACZ,MAAM;EACN,uBAAuB;AACzB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,aAAa;EACb,yBAAyB;EACzB,QAAQ;EACR,UAAU;EACV,YAAY;EACZ,mBAAmB;;EAEnB,iBAAiB;EACjB,eAAe;AACjB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,aAAa;EACb,uBAAuB;EACvB,yBAAyB;EACzB,QAAQ;EACR,UAAU;EACV,mBAAmB;EACnB,iBAAiB;EACjB,eAAe;AACjB;AACA;EACE,qBAAqB;EACrB,WAAW;AACb;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,SAAS;EACT,qBAAqB;AACvB;AACA;AACA,iBAAiB;AACjB;AACA;EACE,iBAAiB;IACf,SAAS;IACT,OAAO;AACX","sourcesContent":[".container{\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #1c1e21;\r\n  display:flex;\r\n  flex:1;\r\n  flex-direction: column;\r\n}\r\n.title{\r\n  display:flex;\r\n  flex-direction: column;\r\n  width:95%;\r\n  flex:1.7;\r\n  justify-content: center;\r\n  margin:0 auto;\r\n\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.p2{\r\n  font-size: 135%;\r\n  color:white;\r\n  font-weight: 100;\r\n  align-self: center;\r\n  margin-bottom: 15%;\r\n}\r\n.errContainer{\r\n  display:flex;\r\n  flex:1;\r\n  justify-content: center;\r\n}\r\n.listContainer{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  height: 100%;\r\n  border-radius: 1.5%;\r\n\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n.listContainer2{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  justify-content: center;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n  border:none;\r\n}\r\n.usersContainer{\r\n  margin-left: 3%;\r\n  margin-bottom: 1%;\r\n  width:40%;\r\n  align-content: center;\r\n}\r\n.loaderContainer{\r\nmargin-bottom: 5%;\r\n}\r\n.paginationContainer{\r\n  position:relative;\r\n    bottom:0%;\r\n    left:3%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._3Fv9sb_2bTiULhPpME8aFE{\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #1c1e21;\r\n  display:flex;\r\n  flex:1;\r\n  flex-direction: column;\r\n}\r\n._3KFmTOMuXcNwUrgsir4W3Y{\r\n  display:flex;\r\n  flex-direction: column;\r\n  width:95%;\r\n  flex:1.7;\r\n  justify-content: center;\r\n  margin:0 auto;\r\n\r\n}\r\n._20UL6xXVJ3plbMakI0Ikh6{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n._3nEEXaEu82NLxjZrc0vFpD{\r\n  font-size: 135%;\r\n  color:white;\r\n  font-weight: 100;\r\n  align-self: center;\r\n  margin-bottom: 15%;\r\n}\r\n.dDkZWKdGqGysrLawWbNf8{\r\n  display:flex;\r\n  flex:1;\r\n  justify-content: center;\r\n}\r\n._2sWIbY0pL2xYFVEL7jU0bb{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  height: 100%;\r\n  border-radius: 1.5%;\r\n  align-content: space-between;\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n._15j-XkOg4cYpYPohFNgVdr{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  justify-content: center;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n._3sRaYjYirNcAKmsROYi9Mm{\r\n  text-decoration: none;\r\n  border:none;\r\n}\r\n._54CDhyC0cfn3JLH74erkH{\r\n  margin-left: 3%;\r\n  margin-bottom: 1%;\r\n  width:40%;\r\n  align-content: center;\r\n}\r\n._3jJE7fV6iW2to9NzbMODdv{\r\nmargin-bottom: 5%;\r\n}\r\n._9hV9gEhvYrgWFsah0hvfz{\r\n  margin-top: auto;\r\n  margin-left:4%;\r\n  margin-bottom:3%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/search/styles/search.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,WAAW;EACX,yBAAyB;EACzB,YAAY;EACZ,MAAM;EACN,sBAAsB;AACxB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,SAAS;EACT,QAAQ;EACR,uBAAuB;EACvB,aAAa;;AAEf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,eAAe;EACf,WAAW;EACX,gBAAgB;EAChB,kBAAkB;EAClB,kBAAkB;AACpB;AACA;EACE,YAAY;EACZ,MAAM;EACN,uBAAuB;AACzB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,aAAa;EACb,yBAAyB;EACzB,QAAQ;EACR,UAAU;EACV,YAAY;EACZ,mBAAmB;EACnB,4BAA4B;EAC5B,iBAAiB;EACjB,eAAe;AACjB;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,aAAa;EACb,uBAAuB;EACvB,yBAAyB;EACzB,QAAQ;EACR,UAAU;EACV,mBAAmB;EACnB,iBAAiB;EACjB,eAAe;AACjB;AACA;EACE,qBAAqB;EACrB,WAAW;AACb;AACA;EACE,eAAe;EACf,iBAAiB;EACjB,SAAS;EACT,qBAAqB;AACvB;AACA;AACA,iBAAiB;AACjB;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,gBAAgB;AAClB","sourcesContent":[".container{\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #1c1e21;\r\n  display:flex;\r\n  flex:1;\r\n  flex-direction: column;\r\n}\r\n.title{\r\n  display:flex;\r\n  flex-direction: column;\r\n  width:95%;\r\n  flex:1.7;\r\n  justify-content: center;\r\n  margin:0 auto;\r\n\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.p2{\r\n  font-size: 135%;\r\n  color:white;\r\n  font-weight: 100;\r\n  align-self: center;\r\n  margin-bottom: 15%;\r\n}\r\n.errContainer{\r\n  display:flex;\r\n  flex:1;\r\n  justify-content: center;\r\n}\r\n.listContainer{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  height: 100%;\r\n  border-radius: 1.5%;\r\n  align-content: space-between;\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n.listContainer2{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin:0 auto;\r\n  justify-content: center;\r\n  background-color: #1D1B1B;\r\n  flex:8.3;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  margin-bottom: 3%;\r\n  padding-top: 2%;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n  border:none;\r\n}\r\n.usersContainer{\r\n  margin-left: 3%;\r\n  margin-bottom: 1%;\r\n  width:40%;\r\n  align-content: center;\r\n}\r\n.loaderContainer{\r\nmargin-bottom: 5%;\r\n}\r\n.paginationContainer{\r\n  margin-top: auto;\r\n  margin-left:4%;\r\n  margin-bottom:3%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_3Fv9sb_2bTiULhPpME8aFE",

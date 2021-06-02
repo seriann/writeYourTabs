@@ -4,33 +4,41 @@ import  { Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import styles from '../styles/pagination.module.css'
 
-const PaginationContainer = ({dataLength,page, redirect}) => {
+const PaginationContainer = ({page, redirect,obj}) => {
 
  const history = useHistory();
  const [pages, setPages] = useState([])
+ const [rowArr, setRowArr] = useState(0)
  const [currentPage, setCurrentPage] = useState(1);
- const [itemsPerPage, setitemsPerPage] = useState(5);
 
  const [pageNumberLimit, setpageNumberLimit] = useState(5)
  const [maxPageLimit, setMaxPageLimit] = useState(5);
  const [minPageLimit, setMinPageLimit] = useState(0);
 
  useEffect(()=>{
-   console.log("pages",page);
+   console.log("page",page);
    setCurrentPage(page.now)
    const pagesArr = [];
-  for (let i = 1; i <= Math.floor(dataLength / itemsPerPage); i++) {
+  for (let i = 1; i <= page.total; i++) {
     pagesArr.push(i);
   }
    setPages(pagesArr)
- },[page.total])
+ },[obj])
 
  const handleClick = (e) => {
    const {id} = e.target
-   return <Redirect to={`${redirect}&page=${id}`} />
-   //history.push(`${redirect}&page=${id}`)
+   console.log("id", typeof id);
+     history.push(`${redirect}&page=${id}`)
  }
+const handleNext = () => {
+  if(currentPage < page.total)history.push(`${redirect}&page=${currentPage+1}`)
+}
+const handlePrevious = () => {
+  if(currentPage > 1)history.push(`${redirect}&page=${currentPage-1}`)
+}
+
  const renderPageNumbers = pages.map((el) =>{
+   if (el < maxPageLimit + 1 && el > minPageLimit){
    return (
      <li
       key={el}
@@ -41,13 +49,19 @@ const PaginationContainer = ({dataLength,page, redirect}) => {
      {el}
      </li>
    )
+ }else{
+   return null;
+ }
  })
 
   return <PaginationComponent
           maxPageLimit={maxPageLimit}
+          currentPage={currentPage}
           handleClick={handleClick}
           renderPageNumbers={renderPageNumbers}
-          page={page}
+          pages={pages}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
           />
 }
 export default PaginationContainer

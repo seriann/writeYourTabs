@@ -44,7 +44,6 @@ const Search = ({dataLength,pages,errMsg,notFound,isLoading,boolTabs,handleChang
               <NotFound param={params}/>
               :
              results.map((el)=>{
-              console.log("pasa");
               return <div
                       key={el._id}
                       className={styles.usersContainer}>
@@ -63,7 +62,11 @@ const Search = ({dataLength,pages,errMsg,notFound,isLoading,boolTabs,handleChang
            }
           {!isLoading &&
             <div className={styles.paginationContainer}>
-              <Pagination page={pages} dataLength={dataLength} redirect={`/search?for=${params}`}/>
+              <Pagination
+               obj={{results,pages}}
+               page={pages}
+               redirect={`/search?for=${params}`}
+              />
             </div>
           }
        </div>

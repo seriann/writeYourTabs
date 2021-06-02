@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import Search from '../components/search'
 import API from '../../api/index'
 
-const SearchContainer = ({name,page}) => {
+const SearchContainer = ({name,page,obj}) => {
 const [searchFor,setSearchfor] = useState("title")
 const [boolTabs, setboolTabs] = useState(true)
 const [results, setResults] = useState([])
@@ -13,6 +13,7 @@ const [pages, setPages] = useState({})
 const [dataLength, setDataLength] = useState(0)
 
   useEffect(()=>{
+    console.log("Paso por el useEffect");
     setboolTabs(true)
     setResults([])
     setNotFounded(false)
@@ -27,7 +28,6 @@ const [dataLength, setDataLength] = useState(0)
          .then(data => {
            setIsLoading(false)
            if(isMounted){
-             console.log("paso antes de pages");
            setResults(data.results)
            setPages(data.page)
            if(data.results.length === 0){
@@ -63,7 +63,7 @@ const [dataLength, setDataLength] = useState(0)
        })
      }
     return () => isMounted = false
-  },[name])
+  },[obj])
 
 const handleChange = (e) => {
   setboolTabs(true)
