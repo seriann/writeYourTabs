@@ -9078,22 +9078,47 @@ const PaginationContainer = ({
   obj
 }) => {
   const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
-  const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  const [rowArr, setRowArr] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([[0], [0], [0]]);
+  const [ind, setind] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [jnd, setjnd] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const [pageNumberLimit, setpageNumberLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [maxPageLimit, setMaxPageLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [minPageLimit, setMinPageLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log("page", page);
     setCurrentPage(page.now);
-    const pagesArr = [];
+    let pagesArr = [];
 
     for (let i = 1; i <= page.total; i++) {
       pagesArr.push(i);
     }
 
-    setPages(pagesArr);
+    pagesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    let newPagesArr = [];
+    let arrCounter = pagesArr.length / pageNumberLimit;
+    let i = 0;
+    let j = pageNumberLimit;
+
+    while (arrCounter >= 0) {
+      newPagesArr.push(pagesArr.slice(i, j));
+      i += pageNumberLimit;
+      j += pageNumberLimit;
+      arrCounter--;
+    }
+
+    newPagesArr = newPagesArr.filter(el => el.length != 0);
+    setPages(newPagesArr);
+
+    for (let i = 0; i < newPagesArr.length - 1; i++) {
+      for (let j = 0; j < newPagesArr[i].length; j++) {
+        if (page.now == newPagesArr[i][j]) {
+          setind(i);
+          setjnd(j);
+        }
+      }
+    }
+
+    console.log("pagess", pages);
   }, [obj]);
 
   const handleClick = e => {
@@ -9112,8 +9137,9 @@ const PaginationContainer = ({
     if (currentPage > 1) history.push(`${redirect}&page=${currentPage - 1}`);
   };
 
-  const renderPageNumbers = pages.map(el => {
+  const renderPageNumbers = pages[ind].map(el => {
     if (el < maxPageLimit + 1 && el > minPageLimit) {
+      console.log(el);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         key: el,
         id: el,
