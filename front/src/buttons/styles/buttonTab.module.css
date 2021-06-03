@@ -11,6 +11,7 @@
   background: none;
   outline: none;
   padding:4%;
+  border-bottom: 0.5vh solid var(--main-black);
 }
 .buttons:hover{
   border-bottom: 0.5vh solid var(--main-lightBlue);

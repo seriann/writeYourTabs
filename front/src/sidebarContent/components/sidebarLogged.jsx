@@ -24,7 +24,7 @@ const SidebarContent = ({user, logout}) => {
          <p className={styles.name}>{user.name}</p>
          <p className={styles.username}>{user.username}</p>
        </section>
-       <button onClick={handleClick} className={isVisible? styles.buttonActive:styles.button}><Link className={styles.button}><i className="fas fa-angle-down"></i></Link></button>
+       <button onClick={handleClick} className={isVisible? styles.buttonActive:styles.button}><a className={styles.button}><i className="fas fa-angle-down"></i></a></button>
       </div>
       {
         isVisible &&

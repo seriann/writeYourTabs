@@ -2,16 +2,19 @@ import React,{useState, useEffect} from 'react'
 import Search from '../components/search'
 import API from '../../api/index'
 
-const SearchContainer = ({name}) => {
 
+const SearchContainer = ({name,page,obj}) => {
 const [searchFor,setSearchfor] = useState("title")
 const [boolTabs, setboolTabs] = useState(true)
-const [page, setPage] = useState(1)
 const [results, setResults] = useState([])
 const [isLoading, setIsLoading] = useState(false)
 const [notFound, setNotFounded] = useState(false)
 const [errMsg, setErrMsg] = useState("")
+const [pages, setPages] = useState({})
+const [dataLength, setDataLength] = useState(0)
+
   useEffect(()=>{
+    console.log("Paso por el useEffect");
     setboolTabs(true)
     setResults([])
     setNotFounded(false)
@@ -27,10 +30,12 @@ const [errMsg, setErrMsg] = useState("")
            setIsLoading(false)
            if(isMounted){
            setResults(data.results)
+           setPages(data.page)
            if(data.results.length === 0){
              setNotFounded(true)
              setErrMsg(`sorry, didn't find nothing for: "${name}"`)
            }
+           setDataLength(data.results.length * data.page.total)
           }
          })
          .catch(err => {
@@ -45,10 +50,12 @@ const [errMsg, setErrMsg] = useState("")
          setIsLoading(false)
          if(isMounted){
          setResults(data.results)
+         setPages(data.page)
          if(data.results.length === 0){
            setNotFounded(true)
            setErrMsg(`sorry, didn't find nothing for: "${name}"`)
          }
+         setDataLength(data.results.length * data.page.total)
          }
         })
        .catch(err => {
@@ -57,7 +64,7 @@ const [errMsg, setErrMsg] = useState("")
        })
      }
     return () => isMounted = false
-  },[name])
+  },[obj])
 
 const handleChange = (e) => {
   setboolTabs(true)
@@ -70,6 +77,8 @@ const handleChange = (e) => {
 }
 
   return <Search
+          dataLength={dataLength}
+          pages={pages}
           notFound={notFound}
           isLoading={isLoading}
           handleChange={handleChange}

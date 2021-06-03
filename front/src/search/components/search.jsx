@@ -5,8 +5,9 @@ import UserCard from './UserCard'
 import NotFound from './notFound'
 import { Link } from 'react-router-dom'
 import Loader from '../../Loader/Loader'
+import Pagination from '../../pagination/container/paginationContainer'
 
-const Search = ({errMsg,notFound,isLoading,boolTabs,handleChange,results, params, searchFor}) => {
+const Search = ({dataLength,pages,errMsg,notFound,isLoading,boolTabs,handleChange,results, params, searchFor}) => {
   return (
     <div className={styles.container}>
        <div className={styles.title}>
@@ -43,7 +44,6 @@ const Search = ({errMsg,notFound,isLoading,boolTabs,handleChange,results, params
               <NotFound param={params}/>
               :
              results.map((el)=>{
-              console.log("pasa");
               return <div
                       key={el._id}
                       className={styles.usersContainer}>
@@ -60,7 +60,15 @@ const Search = ({errMsg,notFound,isLoading,boolTabs,handleChange,results, params
                    })
                    :null
            }
-
+          {!isLoading &&
+            <div className={styles.paginationContainer}>
+              <Pagination
+               obj={{results,pages}}
+               page={pages}
+               redirect={`/search?for=${params}`}
+              />
+            </div>
+          }
        </div>
     </div>
   )

@@ -66,8 +66,8 @@ showFavTabs(req,res,next){
   },
   search(req, res, next){
     //localhost:xxxx/api/users/v/search?for="something"&page="num"
-    let perPage = 7
-    let page = req.query.page || 1
+    let perPage = 5
+    let page = parseInt(req.query.page) || 1
     let regexQuery = new RegExp(req.query.for,"i")
     User.find({username: regexQuery})
        .skip((perPage * page) - perPage)
@@ -79,7 +79,7 @@ showFavTabs(req,res,next){
              results:results,
              page:{
                now:page,
-               total: Math.ceil(count/perPage) //redondea el número de paginas
+               total: Math.floor(count/perPage) //redondea el número de paginas
              }})
          })
        })

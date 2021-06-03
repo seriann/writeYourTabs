@@ -35,3 +35,6 @@ html {
 .fa-calendar-alt{
   color: var(--main-lightBlue);
 }
+.fa-angle-down{
+  cursor:pointer;
+}

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTab } from '../../redux/action-creators/tabs'
 import { useLocation } from 'react-router-dom'
 import Tab from "../components/start"
-import { svgPoint,createSvgText,createText, uniqid, createSeparationLine } from "../../custom_functions/functions"
+import { svgPoint,createSvgText,createText, uniqid, createSeparationLine,autoCapitalize } from "../../custom_functions/functions"
 import TabsOpt from "../components/TabsOpt"
 import FirstStep from "../components/FirstStep"
 import LoginFirst from '../../errors/LoginFirst'
@@ -13,7 +13,6 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import Modal from '../components/Modal/Modal'
 import API from '../../api/index'
-import { autoCapitalize } from '../../custom_functions/functions'
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based

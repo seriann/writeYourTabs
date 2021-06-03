@@ -52,7 +52,7 @@ const TabController = {
      //localhost:xxxx/api/tabs/search?for="title"&param="something"&page="num"
      //localhost:xxxx/api/tabs/search?for="author"&param="something"&page="num"
      let perPage = 7
-     let page = req.query.page || 1
+     let page = parseInt(req.query.page) || 1
      let regexQuery = new RegExp(req.query.param,"i")
      if(req.query.for == "title"){
      Tab.find({title: regexQuery})
@@ -91,13 +91,13 @@ const TabController = {
   searchV2(req,res,next){
     //localhost:xxxx/api/tabs/search?for="something"&page="num"
     let perPage = 7
-    let page = req.query.page || 1
+    let page = parseInt(req.query.page) || 1
     let regexQuery = new RegExp(req.query.for,"i")
     let longArr = []
     let shortArr = []
     let indexesOfShortArr= []
     let sendArr = []
-    const promises = [Tab.find({title: regexQuery}).exec(), Tab.find({author: regexQuery}).exec()]
+    const promises = [Tab.find({title: regexQuery}).populate({ path: "userId", select: "username" }).exec(), Tab.find({author: regexQuery}).populate({ path: "userId", select: "username" }).exec()]
     Promise.all(promises)
            .then((result)=>{
              if(result[0].length > result[1].length){
@@ -120,7 +120,6 @@ const TabController = {
             sendArr = longArr.concat(shortArr)
 
       const response = Functions.paginate(sendArr,perPage)
-      console.log("res", response);
              res.json({results: response[page-1] || [],
                        page:{
                          now:page,

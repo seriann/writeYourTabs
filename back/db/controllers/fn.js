@@ -12,7 +12,6 @@ const Functions = {
   },
    paginate(arr, size) {
   return arr.reduce((acc, val, i) => {
-    console.log("redondeo para:", (i/ size));
     let idx = Math.floor(i / size)
     let page = acc[idx] || (acc[idx] = [])
     page.push(val)
