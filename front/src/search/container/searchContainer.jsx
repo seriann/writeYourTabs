@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react'
 import Search from '../components/search'
 import API from '../../api/index'
 
+
 const SearchContainer = ({name,page,obj}) => {
 const [searchFor,setSearchfor] = useState("title")
 const [boolTabs, setboolTabs] = useState(true)

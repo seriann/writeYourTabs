@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PaginationComponent from '../components/paginationComponent'
+import { convertPagesToArray } from '../../custom_functions/functions'
 import  { Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import styles from '../styles/pagination.module.css'
@@ -7,10 +8,11 @@ import styles from '../styles/pagination.module.css'
 const PaginationContainer = ({page, redirect,obj}) => {
 
  const history = useHistory();
- const [pages, setPages] = useState([[0],[0],[0]])
+ const [pages, setPages] = useState([[],[],[]])
  const [ind, setind] = useState(0)
  const [jnd, setjnd] = useState(0)
  const [currentPage, setCurrentPage] = useState(1);
+ const [indexOfUltimateStack,setIndex] = useState(0)
 
  const [pageNumberLimit, setpageNumberLimit] = useState(5)
  const [maxPageLimit, setMaxPageLimit] = useState(5);
@@ -18,11 +20,8 @@ const PaginationContainer = ({page, redirect,obj}) => {
 
  useEffect(()=>{
    setCurrentPage(page.now)
-   let pagesArr = [];
-  for (let i = 1; i <= page.total; i++) {
-    pagesArr.push(i);
-  }
-pagesArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+  let pagesArr = convertPagesToArray(page.total)
+
   let newPagesArr = []
   let arrCounter = pagesArr.length / pageNumberLimit
   let i = 0
@@ -35,22 +34,21 @@ pagesArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
   }
   newPagesArr = newPagesArr.filter((el)=> el.length != 0)
   setPages(newPagesArr)
-
-    for (let i = 0; i < newPagesArr.length-1; i++) {
+    for (let i = 0; i < newPagesArr.length; i++) {
       for (let j = 0; j < newPagesArr[i].length; j++) {
         if(page.now == newPagesArr[i][j]){
           setind(i)
           setjnd(j)
-
+        }
+        if(page.total == newPagesArr[i][j]){
+          setIndex(i)
         }
       }
     }
-console.log("pagess",pages);
  },[obj])
 
  const handleClick = (e) => {
    const {id} = e.target
-   console.log("id", typeof id);
      history.push(`${redirect}&page=${id}`)
  }
 const handleNext = () => {
@@ -59,10 +57,20 @@ const handleNext = () => {
 const handlePrevious = () => {
   if(currentPage > 1)history.push(`${redirect}&page=${currentPage-1}`)
 }
-
- const renderPageNumbers = pages[ind].map((el) =>{
-   if (el < maxPageLimit + 1 && el > minPageLimit){
-   console.log(el);
+const handleLast = () => {
+  if(currentPage < page.total)history.push(`${redirect}&page=${page.total}`)
+}
+const handleFirst = () => {
+  if(currentPage > 1) history.push(`${redirect}&page=1`)
+}
+const showNextStack = () => {
+  setind(ind+1)
+}
+const showPrevStack = () => {
+  setind(ind-1)
+}
+ const renderPageNumbers = pages[ind] != undefined?pages[ind].map((el) =>{
+//   if (el < maxPageLimit + 1 && el > minPageLimit){
    return (
      <li
       key={el}
@@ -73,12 +81,19 @@ const handlePrevious = () => {
      {el}
      </li>
    )
- }else{
-   return null;
- }
-})
+// }else{
+//   return null;
+// }
+}):null
 
   return <PaginationComponent
+          showNextStack={showNextStack}
+          handleLast={handleLast}
+          handleFirst={handleFirst}
+          ind={ind}
+          jnd={jnd}
+          indexOfUltimateStack={indexOfUltimateStack}
+          showPrevStack={showPrevStack}
           maxPageLimit={maxPageLimit}
           currentPage={currentPage}
           handleClick={handleClick}

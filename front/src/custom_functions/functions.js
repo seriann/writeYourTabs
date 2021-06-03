@@ -5,6 +5,13 @@ export const autoCapitalize = (str) => {
    str = str.toLowerCase(str)
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+export const convertPagesToArray = (numOfPages) => {
+  let arr = []
+  for (let i = 1; i <= numOfPages; i++) {
+    arr.push(i)
+  }
+  return arr
+}
 
 export const createSvgText = (mouseX, mouseY,coordsX, coordsY,rounded, fretNum,svg, id) =>{
   let bool = true

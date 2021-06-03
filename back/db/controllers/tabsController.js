@@ -120,7 +120,6 @@ const TabController = {
             sendArr = longArr.concat(shortArr)
 
       const response = Functions.paginate(sendArr,perPage)
-      console.log("res", response);
              res.json({results: response[page-1] || [],
                        page:{
                          now:page,

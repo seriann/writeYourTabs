@@ -8586,6 +8586,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useQuery": () => /* binding */ useQuery,
 /* harmony export */   "autoCapitalize": () => /* binding */ autoCapitalize,
+/* harmony export */   "convertPagesToArray": () => /* binding */ convertPagesToArray,
 /* harmony export */   "createSvgText": () => /* binding */ createSvgText,
 /* harmony export */   "createText": () => /* binding */ createText,
 /* harmony export */   "svgPoint": () => /* binding */ svgPoint,
@@ -8600,6 +8601,15 @@ const useQuery = () => new URLSearchParams((0,react_router_dom__WEBPACK_IMPORTED
 const autoCapitalize = str => {
   str = str.toLowerCase(str);
   return str.charAt(0).toUpperCase() + str.slice(1);
+};
+const convertPagesToArray = numOfPages => {
+  let arr = [];
+
+  for (let i = 1; i <= numOfPages; i++) {
+    arr.push(i);
+  }
+
+  return arr;
 };
 const createSvgText = (mouseX, mouseY, coordsX, coordsY, rounded, fretNum, svg, id) => {
   let bool = true;
@@ -9016,6 +9026,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  handleLast,
+  handleFirst,
+  indexOfUltimateStack,
+  ind,
+  jnd,
+  showPrevStack,
+  showNextStack,
   currentPage,
   handleNext,
   handlePrevious,
@@ -9027,6 +9044,7 @@ __webpack_require__.r(__webpack_exports__);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: handleFirst,
     className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-double-left"
@@ -9036,13 +9054,20 @@ __webpack_require__.r(__webpack_exports__);
     disabled: currentPage == pages[0] ? true : false
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-left"
-  })), renderPageNumbers, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+  })), ind > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: showPrevStack,
+    className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li
+  }, "..."), renderPageNumbers, ind < indexOfUltimateStack && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: showNextStack,
+    className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li
+  }, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: handleNext,
     className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li,
     disabled: currentPage == pages[pages.length - 1] ? true : false
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-right"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: handleLast,
     className: _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_1__.default.li
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-angle-double-right"
@@ -9064,8 +9089,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_paginationComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/paginationComponent */ "./front/src/pagination/components/paginationComponent.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/pagination.module.css */ "./front/src/pagination/styles/pagination.module.css");
+/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../custom_functions/functions */ "./front/src/custom_functions/functions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/pagination.module.css */ "./front/src/pagination/styles/pagination.module.css");
+
 
 
 
@@ -9077,23 +9104,18 @@ const PaginationContainer = ({
   redirect,
   obj
 }) => {
-  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
-  const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([[0], [0], [0]]);
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
+  const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([[], [], []]);
   const [ind, setind] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [jnd, setjnd] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [indexOfUltimateStack, setIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [pageNumberLimit, setpageNumberLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [maxPageLimit, setMaxPageLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5);
   const [minPageLimit, setMinPageLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setCurrentPage(page.now);
-    let pagesArr = [];
-
-    for (let i = 1; i <= page.total; i++) {
-      pagesArr.push(i);
-    }
-
-    pagesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    let pagesArr = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_2__.convertPagesToArray)(page.total);
     let newPagesArr = [];
     let arrCounter = pagesArr.length / pageNumberLimit;
     let i = 0;
@@ -9109,23 +9131,24 @@ const PaginationContainer = ({
     newPagesArr = newPagesArr.filter(el => el.length != 0);
     setPages(newPagesArr);
 
-    for (let i = 0; i < newPagesArr.length - 1; i++) {
+    for (let i = 0; i < newPagesArr.length; i++) {
       for (let j = 0; j < newPagesArr[i].length; j++) {
         if (page.now == newPagesArr[i][j]) {
           setind(i);
           setjnd(j);
         }
+
+        if (page.total == newPagesArr[i][j]) {
+          setIndex(i);
+        }
       }
     }
-
-    console.log("pagess", pages);
   }, [obj]);
 
   const handleClick = e => {
     const {
       id
     } = e.target;
-    console.log("id", typeof id);
     history.push(`${redirect}&page=${id}`);
   };
 
@@ -9137,20 +9160,41 @@ const PaginationContainer = ({
     if (currentPage > 1) history.push(`${redirect}&page=${currentPage - 1}`);
   };
 
-  const renderPageNumbers = pages[ind].map(el => {
-    if (el < maxPageLimit + 1 && el > minPageLimit) {
-      console.log(el);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-        key: el,
-        id: el,
-        onClick: handleClick,
-        className: currentPage == el ? _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__.default.liActive : _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_2__.default.li
-      }, el);
-    } else {
-      return null;
-    }
-  });
+  const handleLast = () => {
+    if (currentPage < page.total) history.push(`${redirect}&page=${page.total}`);
+  };
+
+  const handleFirst = () => {
+    if (currentPage > 1) history.push(`${redirect}&page=1`);
+  };
+
+  const showNextStack = () => {
+    setind(ind + 1);
+  };
+
+  const showPrevStack = () => {
+    setind(ind - 1);
+  };
+
+  const renderPageNumbers = pages[ind] != undefined ? pages[ind].map(el => {
+    //   if (el < maxPageLimit + 1 && el > minPageLimit){
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: el,
+      id: el,
+      onClick: handleClick,
+      className: currentPage == el ? _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_3__.default.liActive : _styles_pagination_module_css__WEBPACK_IMPORTED_MODULE_3__.default.li
+    }, el); // }else{
+    //   return null;
+    // }
+  }) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_paginationComponent__WEBPACK_IMPORTED_MODULE_1__.default, {
+    showNextStack: showNextStack,
+    handleLast: handleLast,
+    handleFirst: handleFirst,
+    ind: ind,
+    jnd: jnd,
+    indexOfUltimateStack: indexOfUltimateStack,
+    showPrevStack: showPrevStack,
     maxPageLimit: maxPageLimit,
     currentPage: currentPage,
     handleClick: handleClick,
@@ -10811,7 +10855,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1aG4IMgl2wL45xZ-gRvju8{\r\n  display:flex;\r\n  \r\n  list-style:none;\r\n}\r\n.HYLHhxLkFQmKKjwMmW8sf{\r\n  border: 1px solid white;\r\n  border-radius: 5%;\r\n  height: 4vh;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:white;\r\n  font-size: 120%;\r\n  cursor: pointer;\r\n}\r\n._2fxsTOkFvR-M0egiC0ODqq{\r\n  border: 1px solid white;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:black;\r\n  background-color: white;\r\n  font-size: 120%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/pagination/styles/pagination.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;;EAEZ,eAAe;AACjB;AACA;EACE,uBAAuB;EACvB,iBAAiB;EACjB,WAAW;EACX,SAAS;EACT,kBAAkB;EAClB,WAAW;EACX,eAAe;EACf,eAAe;AACjB;AACA;EACE,uBAAuB;EACvB,SAAS;EACT,kBAAkB;EAClB,WAAW;EACX,uBAAuB;EACvB,eAAe;AACjB","sourcesContent":[".container{\r\n  display:flex;\r\n  \r\n  list-style:none;\r\n}\r\n.li{\r\n  border: 1px solid white;\r\n  border-radius: 5%;\r\n  height: 4vh;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:white;\r\n  font-size: 120%;\r\n  cursor: pointer;\r\n}\r\n.liActive{\r\n  border: 1px solid white;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:black;\r\n  background-color: white;\r\n  font-size: 120%;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1aG4IMgl2wL45xZ-gRvju8{\r\n  display:flex;\r\n\r\n  list-style:none;\r\n}\r\n.HYLHhxLkFQmKKjwMmW8sf{\r\n  border: 1px solid white;\r\n  border-radius: 5%;\r\n  height: 4vh;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:white;\r\n  font-size: 120%;\r\n  cursor: pointer;\r\n}\r\n.HYLHhxLkFQmKKjwMmW8sf:hover{\r\n  background-color: white;\r\n  color: #1D1B1B;\r\n}\r\n._2fxsTOkFvR-M0egiC0ODqq{\r\n  border: 1px solid white;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:#1D1B1B;\r\n  background-color: white;\r\n  font-size: 120%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/pagination/styles/pagination.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;;EAEZ,eAAe;AACjB;AACA;EACE,uBAAuB;EACvB,iBAAiB;EACjB,WAAW;EACX,SAAS;EACT,kBAAkB;EAClB,WAAW;EACX,eAAe;EACf,eAAe;AACjB;AACA;EACE,uBAAuB;EACvB,cAAc;AAChB;AACA;EACE,uBAAuB;EACvB,SAAS;EACT,kBAAkB;EAClB,aAAa;EACb,uBAAuB;EACvB,eAAe;AACjB","sourcesContent":[".container{\r\n  display:flex;\r\n\r\n  list-style:none;\r\n}\r\n.li{\r\n  border: 1px solid white;\r\n  border-radius: 5%;\r\n  height: 4vh;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:white;\r\n  font-size: 120%;\r\n  cursor: pointer;\r\n}\r\n.li:hover{\r\n  background-color: white;\r\n  color: #1D1B1B;\r\n}\r\n.liActive{\r\n  border: 1px solid white;\r\n  width:2vw;\r\n  text-align: center;\r\n  color:#1D1B1B;\r\n  background-color: white;\r\n  font-size: 120%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_1aG4IMgl2wL45xZ-gRvju8",
