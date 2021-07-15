@@ -51,6 +51,11 @@ color:white;
  padding: 2%;
  border-radius: 0.5vw;
 }
+.paginationContainer{
+  position: fixed;
+  bottom:10%;
+  left:5%;
+}
 .compContainer{
   height: 6%;
   margin-top:3vh;

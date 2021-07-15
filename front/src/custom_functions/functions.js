@@ -1,6 +1,16 @@
 import { useLocation } from 'react-router-dom'
 export const useQuery = () => new URLSearchParams(useLocation().search);
 
+export const paginate = (arr, size) => {
+ return arr.reduce((acc, val, i) => {
+  let idx = Math.floor(i / size)
+  let page = acc[idx] || (acc[idx] = [])
+  page.push(val)
+
+  return acc
+ }, [])
+}
+
 export const autoCapitalize = (str) => {
    str = str.toLowerCase(str)
   return str.charAt(0).toUpperCase() + str.slice(1);

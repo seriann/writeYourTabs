@@ -67,7 +67,7 @@ const handleClick = (e) => {
          onClick={handleClick}
          title="mytabs"
          className={tab? styles.activeButton : styles.buttons}
-         to="/mytabs">
+         to="/mytabs?page=1">
          MyTabs
          </Link>
         <Link onClick={handleClick}
