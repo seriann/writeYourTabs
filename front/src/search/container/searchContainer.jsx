@@ -14,7 +14,6 @@ const [pages, setPages] = useState({})
 const [dataLength, setDataLength] = useState(0)
 
   useEffect(()=>{
-    console.log("Paso por el useEffect");
     setboolTabs(true)
     setResults([])
     setNotFounded(false)

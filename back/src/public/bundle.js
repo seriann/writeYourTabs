@@ -5330,7 +5330,9 @@ const Main = () => {
     component: _Home_container_homeContainer__WEBPACK_IMPORTED_MODULE_2__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/mytabs",
-    component: _myTabs_container_myTabsContainer__WEBPACK_IMPORTED_MODULE_3__.default
+    render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_myTabs_container_myTabsContainer__WEBPACK_IMPORTED_MODULE_3__.default, {
+      page: query.get("page")
+    })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     path: "/create",
     component: _TabCreator_container_tabCreatorContainer__WEBPACK_IMPORTED_MODULE_4__.default
@@ -8508,7 +8510,7 @@ const ButtonTab = () => {
     onClick: handleClick,
     title: "mytabs",
     className: tab ? _styles_buttonTab_module_css__WEBPACK_IMPORTED_MODULE_1__.default.activeButton : _styles_buttonTab_module_css__WEBPACK_IMPORTED_MODULE_1__.default.buttons,
-    to: "/mytabs"
+    to: "/mytabs?page=1"
   }, "MyTabs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     onClick: handleClick,
     title: "create",
@@ -8585,6 +8587,7 @@ const FileUploader = ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useQuery": () => /* binding */ useQuery,
+/* harmony export */   "paginate": () => /* binding */ paginate,
 /* harmony export */   "autoCapitalize": () => /* binding */ autoCapitalize,
 /* harmony export */   "convertPagesToArray": () => /* binding */ convertPagesToArray,
 /* harmony export */   "createSvgText": () => /* binding */ createSvgText,
@@ -8598,6 +8601,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 
 const useQuery = () => new URLSearchParams((0,react_router_dom__WEBPACK_IMPORTED_MODULE_0__.useLocation)().search);
+const paginate = (arr, size) => {
+  return arr.reduce((acc, val, i) => {
+    let idx = Math.floor(i / size);
+    let page = acc[idx] || (acc[idx] = []);
+    page.push(val);
+    return acc;
+  }, []);
+};
 const autoCapitalize = str => {
   str = str.toLowerCase(str);
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -8869,15 +8880,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/myTabs.module.css */ "./front/src/myTabs/styles/myTabs.module.css");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _tabComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabComponent */ "./front/src/myTabs/components/tabComponent.jsx");
+/* harmony import */ var _pagination_container_paginationContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pagination/container/paginationContainer */ "./front/src/pagination/container/paginationContainer.jsx");
+
 
 
 
 
 
 const MyTabs = ({
-  tabs
+  tabs,
+  pages,
+  page
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.loggedContainer
@@ -8887,11 +8902,11 @@ const MyTabs = ({
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.p
   }, "My tabs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.listContainer
-  }, tabs.map(el => {
+  }, tabs && tabs.map(el => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.compContainer,
       key: el._id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
       to: `/tab?s=${el._id}`,
       className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.link
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_tabComponent__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -8900,7 +8915,17 @@ const MyTabs = ({
       date: el.createdAt,
       views: el.views
     })));
-  })));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_1__.default.paginationContainer
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pagination_container_paginationContainer__WEBPACK_IMPORTED_MODULE_3__.default, {
+    obj: {
+      tabs,
+      pages
+    },
+    page: pages,
+    redirect: `/mytabs`,
+    noParams: true
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyTabs);
@@ -8973,7 +8998,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _errors_LoginFirst__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../errors/LoginFirst */ "./front/src/errors/LoginFirst.jsx");
 /* harmony import */ var _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/myTabs.module.css */ "./front/src/myTabs/styles/myTabs.module.css");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var react_spring__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-spring */ "./node_modules/react-spring/web.js");
+/* harmony import */ var _custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../custom_functions/functions */ "./front/src/custom_functions/functions.js");
 
 
 
@@ -8981,14 +9007,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const MyTabsContainer = () => {
+
+const MyTabsContainer = ({
+  page
+}) => {
+  const [tabsPaginated, setTabsPaginated] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [result, setResults] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
   const logged = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(state => {
     return state.login.loggedUser;
   });
   const myTabs = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(state => {
     return state.tabs.myTabs;
   });
-  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_5__.useSpring)({
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log("asd");
+    let paginated = (0,_custom_functions_functions__WEBPACK_IMPORTED_MODULE_5__.paginate)(myTabs, 8);
+    setTabsPaginated(paginated);
+    setResults(paginated[page - 1]);
+    setPages({
+      now: page,
+      total: paginated.length
+    });
+  }, [page]);
+  const props = (0,react_spring__WEBPACK_IMPORTED_MODULE_6__.useSpring)({
     to: {
       opacity: 1,
       transform: 'translate3d(0%,0,0)'
@@ -8998,11 +9040,13 @@ const MyTabsContainer = () => {
       transform: 'translate3d(100%,0,0)'
     }
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_5__.animated.div, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_spring__WEBPACK_IMPORTED_MODULE_6__.animated.div, {
     style: props,
     className: _styles_myTabs_module_css__WEBPACK_IMPORTED_MODULE_3__.default.container
   }, JSON.stringify(logged) == "{}" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_errors_LoginFirst__WEBPACK_IMPORTED_MODULE_2__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_myTabs__WEBPACK_IMPORTED_MODULE_1__.default, {
-    tabs: myTabs
+    tabs: result,
+    page: page,
+    pages: pages
   }));
 };
 
@@ -9102,7 +9146,8 @@ __webpack_require__.r(__webpack_exports__);
 const PaginationContainer = ({
   page,
   redirect,
-  obj
+  obj,
+  noParams
 }) => {
   const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
   const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([[], [], []]);
@@ -9149,23 +9194,46 @@ const PaginationContainer = ({
     const {
       id
     } = e.target;
-    history.push(`${redirect}&page=${id}`);
+
+    if (noParams === true) {
+      history.push(`${redirect}?page=${id}`);
+    } else {
+      history.push(`${redirect}&page=${id}`);
+    }
   };
 
   const handleNext = () => {
-    if (currentPage < page.total) history.push(`${redirect}&page=${currentPage + 1}`);
+    let next = parseInt(currentPage) + 1;
+
+    if (noParams === true) {
+      if (currentPage < page.total) history.push(`${redirect}?page=${next}`);
+    } else {
+      if (currentPage < page.total) history.push(`${redirect}&page=${next}`);
+    }
   };
 
   const handlePrevious = () => {
-    if (currentPage > 1) history.push(`${redirect}&page=${currentPage - 1}`);
+    if (noParams === true) {
+      if (currentPage > 1) history.push(`${redirect}?page=${currentPage - 1}`);
+    } else {
+      if (currentPage > 1) history.push(`${redirect}&page=${currentPage - 1}`);
+    }
   };
 
   const handleLast = () => {
-    if (currentPage < page.total) history.push(`${redirect}&page=${page.total}`);
+    if (noParams === true) {
+      if (currentPage < page.total) history.push(`${redirect}?page=${page.total}`);
+    } else {
+      if (currentPage < page.total) history.push(`${redirect}&page=${page.total}`);
+    }
   };
 
   const handleFirst = () => {
-    if (currentPage > 1) history.push(`${redirect}&page=1`);
+    if (noParams === true) {
+      if (currentPage > 1) history.push(`${redirect}?page=1`);
+    } else {
+      if (currentPage > 1) history.push(`${redirect}&page=1`);
+    }
   };
 
   const showNextStack = () => {
@@ -9698,7 +9766,6 @@ const SearchContainer = ({
   const [pages, setPages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
   const [dataLength, setDataLength] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log("Paso por el useEffect");
     setboolTabs(true);
     setResults([]);
     setNotFounded(false);
@@ -9910,7 +9977,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/sidebarNotLogged.module.css */ "./front/src/sidebarContent/styles/sidebarNotLogged.module.css");
 /* harmony import */ var _redux_action_creators_login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/action-creators/login */ "./front/src/redux/action-creators/login.js");
@@ -10034,7 +10100,8 @@ const SidebarContent = () => {
     type: "submit"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.signUp
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't have an account yet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't have an account yet?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.a,
     onClick: () => setSignup(true),
     to: "#",
     className: _styles_sidebarNotLogged_module_css__WEBPACK_IMPORTED_MODULE_2__.default.link
@@ -10813,7 +10880,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n border: 0.3vh solid var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.g43LQbQEvJCQV9S6B6_Cf{\r\n  height: 6%;\r\n  margin-top:3vh;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:5;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:2\r\n}\r\n._3ZMbZOzPuu2iUOhWt0glej{\r\n  flex:1;\r\n}\r\n\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;GACX,cAAc;AACjB;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,qCAAqC;CACrC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;AACrB;AACA;EACE,UAAU;EACV,cAAc;AAChB;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE;AACF;AACA;EACE,MAAM;AACR;;AAEA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n border: 0.3vh solid var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.compContainer{\r\n  height: 6%;\r\n  margin-top:3vh;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:5;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:2\r\n}\r\n.tabSectionD{\r\n  flex:1;\r\n}\r\n\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vzofMzuA0Lfa8rKZP4tJX{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.IYzy_umInf0gvykX6FeTm{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n._1swfuPbd-NQA8qUbDYcAnq{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n._2VSCJixprqRM5cGgZOwvaw{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.EsE-OrPuPwE-smk9qdXpH{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.os05WFE7l7W05SHcy7RA0{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n border: 0.3vh solid var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n._2bfOFl06zS1P1E-B1mWJVI{\r\n  position: fixed;\r\n  bottom:10%;\r\n  left:5%;\r\n}\r\n.g43LQbQEvJCQV9S6B6_Cf{\r\n  height: 6%;\r\n  margin-top:3vh;\r\n}\r\n.T_pAmIvzov9oCDLjLb6sV:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n._1typgopATfLCbXmNaXMzr9{\r\n  flex:5;\r\n}\r\n._3eOIGpyCIbPEMf0ymo4rs2{\r\n  flex:2;\r\n}\r\n._1f2p-Otf1DNWOh9vMR5Q7S{\r\n  flex:2\r\n}\r\n._3ZMbZOzPuu2iUOhWt0glej{\r\n  flex:1;\r\n}\r\n\r\n._14q5CrjXOwGpu3-P7bZiMn{\r\n  color: white;\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/myTabs/styles/myTabs.module.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;EACzB,YAAY;EACZ,WAAW;EACX,YAAY;AACd;AACA;EACE,qBAAqB;GACpB,WAAW;GACX,cAAc;AACjB;AACA;CACC,aAAa;CACb,sBAAsB;CACtB,WAAW;CACX,OAAO;AACR;AACA;EACE,YAAY;EACZ,SAAS;EACT,WAAW;EACX,aAAa;AACf;AACA;AACA,kBAAkB;AAClB,iBAAiB;AACjB,eAAe;AACf,WAAW;AACX;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,UAAU;EACV,mBAAmB;EACnB,kBAAkB;EAClB,gBAAgB;AAClB;AACA;CACC,YAAY;CACZ,MAAM;CACN,aAAa;CACb,mBAAmB;CACnB,8BAA8B;CAC9B,UAAU;CACV,UAAU;CACV,mCAAmC;CACnC,qCAAqC;CACrC,mBAAmB;CACnB,WAAW;CACX,oBAAoB;AACrB;AACA;EACE,eAAe;EACf,UAAU;EACV,OAAO;AACT;AACA;EACE,UAAU;EACV,cAAc;AAChB;AACA;EACE,oCAAoC;EACpC,eAAe;AACjB;AACA;EACE,MAAM;AACR;AACA;EACE,MAAM;AACR;AACA;EACE;AACF;AACA;EACE,MAAM;AACR;;AAEA;EACE,YAAY;AACd","sourcesContent":[".container{\r\n  background-color: #141414;\r\n  height: 100%;\r\n  width: 100%;\r\n  display:flex;\r\n}\r\n.link{\r\n  text-decoration: none;\r\n   border:none;\r\n   margin-top: 2%;\r\n}\r\n.loggedContainer{\r\n display: flex;\r\n flex-direction: column;\r\n width: 100%;\r\n flex: 1;\r\n}\r\n.title{\r\n  display:flex;\r\n  width:95%;\r\n  height: 10%;\r\n  margin:0 auto;\r\n}\r\n.p{\r\nalign-self: center;\r\nfont-weight: bold;\r\nfont-size: 135%;\r\ncolor:white;\r\n}\r\n.listContainer{\r\n  align-self: center;\r\n  margin:0 auto;\r\n  background-color: #1D1B1B;\r\n  height: 85%;\r\n  width: 95%;\r\n  border-radius: 1.5%;\r\n  overflow-x: hidden;\r\n  overflow-y: auto;\r\n}\r\n.tabComponentContainer{\r\n display:flex;\r\n flex:1;\r\n margin:0 auto;\r\n flex-direction: row;\r\n justify-content: space-between;\r\n width: 95%;\r\n height: 6%;\r\n background-color: var(--main-black);\r\n border: 0.3vh solid var(--main-black);\r\n align-items: center;\r\n padding: 2%;\r\n border-radius: 0.5vw;\r\n}\r\n.paginationContainer{\r\n  position: fixed;\r\n  bottom:10%;\r\n  left:5%;\r\n}\r\n.compContainer{\r\n  height: 6%;\r\n  margin-top:3vh;\r\n}\r\n.tabComponentContainer:hover{\r\n  border: 0.3vh solid var(--main-blue);\r\n  cursor: pointer;\r\n}\r\n.tabSectionA{\r\n  flex:5;\r\n}\r\n.tabSectionB{\r\n  flex:2;\r\n}\r\n.tabSectionC{\r\n  flex:2\r\n}\r\n.tabSectionD{\r\n  flex:1;\r\n}\r\n\r\n.tabP{\r\n  color: white;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "vzofMzuA0Lfa8rKZP4tJX",
@@ -10823,6 +10890,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"p": "EsE-OrPuPwE-smk9qdXpH",
 	"listContainer": "os05WFE7l7W05SHcy7RA0",
 	"tabComponentContainer": "T_pAmIvzov9oCDLjLb6sV",
+	"paginationContainer": "_2bfOFl06zS1P1E-B1mWJVI",
 	"compContainer": "g43LQbQEvJCQV9S6B6_Cf",
 	"tabSectionA": "_1typgopATfLCbXmNaXMzr9",
 	"tabSectionB": "_3eOIGpyCIbPEMf0ymo4rs2",
@@ -11090,7 +11158,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2npecypB3K2W7xihNy-wVl{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n._1V5ptvfd050wawRDMZ86Bp{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n._2E4wb-9rqMVEAn44uKPEPn{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.lJPHZPNfXHBb2tuYxTjAT{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.lJPHZPNfXHBb2tuYxTjAT:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._24ZRyacYixWxed9MAy1mpm{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n._2MOTyPaoyuEixgYxo_Ul7h{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n._39QD8XbkAput0kLIsykcG8{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n._1apADdwHrQc3SYmxEExqJE{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  margin-left: 7%;\r\n  padding-bottom:7%;\r\n}\r\n._3x9bXRHU7_lkhLFf8-UEA0 {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: miJtxWoR6O_VieH3Ad8kM 1s linear infinite;\r\n    animation: miJtxWoR6O_VieH3Ad8kM 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes miJtxWoR6O_VieH3Ad8kM {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/sidebarContent/styles/sidebarNotLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;;AAEjB;AACA;EACE,YAAY;EACZ,sBAAsB;AACxB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,eAAe;AACjB;AACA;AACA,qBAAqB;AACrB,cAAc;AACd,cAAc;AACd;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,iBAAiB;AACnB;AACA;EACE,yBAAyB;IACvB,2DAA0C;IAC1C,mDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;;AAEA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n.containerForm{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.signUp{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n.link{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  margin-left: 7%;\r\n  padding-bottom:7%;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2npecypB3K2W7xihNy-wVl{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n._1V5ptvfd050wawRDMZ86Bp{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n._2E4wb-9rqMVEAn44uKPEPn{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.lJPHZPNfXHBb2tuYxTjAT{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.lJPHZPNfXHBb2tuYxTjAT:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n._24ZRyacYixWxed9MAy1mpm{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n._2MOTyPaoyuEixgYxo_Ul7h{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n._39QD8XbkAput0kLIsykcG8{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n._1apADdwHrQc3SYmxEExqJE{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  margin-left: 7%;\r\n  padding-bottom:7%;\r\n}\r\n._3x9bXRHU7_lkhLFf8-UEA0 {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: miJtxWoR6O_VieH3Ad8kM 1s linear infinite;\r\n    animation: miJtxWoR6O_VieH3Ad8kM 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n._3p6JWmvWGFUAZ2_BDtTUpv{\r\n  cursor: pointer;\r\n}\r\n@keyframes miJtxWoR6O_VieH3Ad8kM {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n", "",{"version":3,"sources":["webpack://./front/src/sidebarContent/styles/sidebarNotLogged.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;;AAEjB;AACA;EACE,YAAY;EACZ,sBAAsB;AACxB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,iBAAiB;AACnB;AACA;CACC,SAAS;CACT,WAAW;CACX,cAAc;CACd,gBAAgB;CAChB,aAAa;CACb,mCAAmC;CACnC,WAAW;CACX,kBAAkB;CAClB,YAAY;CACZ;AACD;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,SAAS;EACT,WAAW;EACX,aAAa;EACb,cAAc;EACd,yBAAyB;EACzB,WAAW;EACX,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,iBAAiB;EACjB,WAAW;EACX,eAAe;AACjB;AACA;AACA,qBAAqB;AACrB,cAAc;AACd,cAAc;AACd;AACA;EACE,gBAAgB;EAChB,cAAc;EACd,YAAY;EACZ,UAAU;EACV,aAAa;EACb,eAAe;EACf,gBAAgB;EAChB,eAAe;EACf,iBAAiB;AACnB;AACA;EACE,yBAAyB;IACvB,2DAA0C;IAC1C,mDAAkC;IAClC,0BAA0B;IAC1B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,aAAa;IACb,aAAa;AACjB;AACA;EACE,eAAe;AACjB;AACA;EACE,KAAK,uBAAuB,EAAE;EAC9B,OAAO,yBAAyB,EAAE;AACpC","sourcesContent":[".container{\r\n  display:flex;\r\n  flex-direction: column;\r\n  margin-top: 10%;\r\n\r\n}\r\n.containerForm{\r\n  display:flex;\r\n  flex-direction: column;\r\n}\r\n.h{\r\n  color:white;\r\n  flex-wrap: wrap;\r\n  margin-left: 10%;\r\n  margin-bottom: 1%;\r\n}\r\n.input{\r\n width:80%;\r\n height: 5vh;\r\n margin: 0 auto;\r\n padding-left: 5%;\r\n margin-top:5%;\r\n background-color: var(--main-black);\r\n border:none;\r\n border-radius: 5px;\r\n color: white;\r\n outline:none\r\n}\r\n.input:focus{\r\n  border: 1px solid #009ec9;\r\n}\r\n.button{\r\n  width:80%;\r\n  height: 4vh;\r\n  margin:0 auto;\r\n  margin-top: 5%;\r\n  background-color: #605D67;\r\n  border:none;\r\n  border-radius: 15px;\r\n  color:white;\r\n}\r\n.signUp{\r\n  display:flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  font-weight: bold;\r\n  color:white;\r\n  margin-top: 10%;\r\n}\r\n.link{\r\ntext-decoration: none;\r\ncolor: #4D39C7;\r\nmargin-top: 2%;\r\n}\r\n.back{\r\n  background: none;\r\n  color: inherit;\r\n  border: none;\r\n  padding: 0;\r\n  font: inherit;\r\n  cursor: pointer;\r\n  outline: inherit;\r\n  margin-left: 7%;\r\n  padding-bottom:7%;\r\n}\r\n.loader {\r\n  border: 3px solid #f3f3f3;\r\n    -webkit-animation: spin 1s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    border-top: 3px solid #555;\r\n    border-radius: 50%;\r\n    width: 30px;\r\n    height: 30px;\r\n    margin:0 auto;\r\n    margin-top:3%;\r\n}\r\n.a{\r\n  cursor: pointer;\r\n}\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": "_2npecypB3K2W7xihNy-wVl",
@@ -11102,7 +11170,8 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"link": "_39QD8XbkAput0kLIsykcG8",
 	"back": "_1apADdwHrQc3SYmxEExqJE",
 	"loader": "_3x9bXRHU7_lkhLFf8-UEA0",
-	"spin": "miJtxWoR6O_VieH3Ad8kM"
+	"spin": "miJtxWoR6O_VieH3Ad8kM",
+	"a": "_3p6JWmvWGFUAZ2_BDtTUpv"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -5,7 +5,7 @@ import  { Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import styles from '../styles/pagination.module.css'
 
-const PaginationContainer = ({page, redirect,obj}) => {
+const PaginationContainer = ({page, redirect,obj, noParams}) => {
 
  const history = useHistory();
  const [pages, setPages] = useState([[],[],[]])
@@ -49,19 +49,41 @@ const PaginationContainer = ({page, redirect,obj}) => {
 
  const handleClick = (e) => {
    const {id} = e.target
+   if(noParams === true){
+     history.push(`${redirect}?page=${id}`)
+   }else{
      history.push(`${redirect}&page=${id}`)
+   }
+
  }
 const handleNext = () => {
-  if(currentPage < page.total)history.push(`${redirect}&page=${currentPage+1}`)
+  let next = parseInt(currentPage) + 1
+  if(noParams === true){
+    if(currentPage < page.total)history.push(`${redirect}?page=${next}`)
+  }else{
+    if(currentPage < page.total)history.push(`${redirect}&page=${next}`)
+  }
 }
 const handlePrevious = () => {
-  if(currentPage > 1)history.push(`${redirect}&page=${currentPage-1}`)
+  if(noParams === true){
+    if(currentPage > 1)history.push(`${redirect}?page=${currentPage-1}`)
+  }else{
+    if(currentPage > 1)history.push(`${redirect}&page=${currentPage-1}`)
+  }
 }
 const handleLast = () => {
+  if(noParams === true){
+  if(currentPage < page.total)history.push(`${redirect}?page=${page.total}`)
+  }else{
   if(currentPage < page.total)history.push(`${redirect}&page=${page.total}`)
+  }
 }
 const handleFirst = () => {
-  if(currentPage > 1) history.push(`${redirect}&page=1`)
+  if(noParams === true){
+    if(currentPage > 1) history.push(`${redirect}?page=1`)
+  }else{
+    if(currentPage > 1) history.push(`${redirect}&page=1`)
+  }
 }
 const showNextStack = () => {
   setind(ind+1)
