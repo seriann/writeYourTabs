@@ -85,7 +85,7 @@ const handleSubmit = (e) => {
        </form>
        <div className={styles.signUp}>
           <p>Don't have an account yet?</p>
-          <Link onClick={() => setSignup(true)} to="#" className={styles.link}>Sign up here</Link>
+          <a className={styles.a} onClick={() => setSignup(true)} to="#" className={styles.link}>Sign up here</a>
 
        </div>
        </animated.div>
